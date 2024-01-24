@@ -10,7 +10,6 @@ namespace EVEOnline.Esi.Communication
 {
     public class EsiResponse
     {
-        private readonly string _version;
         private readonly string _eTag;
         private readonly Guid _requestId;
         private readonly HttpResponseMessage _httpResponseMessage;
@@ -25,7 +24,6 @@ namespace EVEOnline.Esi.Communication
         public HttpStatusCode StatusCode => _statusCode;
         public string ETag => _eTag;        
         public HttpResponseMessage HttpResponseMessage => _httpResponseMessage;
-        public string Version => _version;
         public DateTime? Date => _date;
         public DateTime? Expires => _expires;
         public DateTime? LastModified => _lastModified;
