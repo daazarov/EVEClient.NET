@@ -13,7 +13,7 @@ jobs:
   build:
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: 'EVEOnline.Esi.Communication.sln'
+      SOLUTION: 'src/EVEOnline.Esi.Communication.sln'
       
     runs-on: ubuntu-latest
 
@@ -26,7 +26,7 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore $SOLUTION
       
     - name: Build
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
