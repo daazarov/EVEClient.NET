@@ -28,7 +28,14 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { "GetAlliancesAsync", "get_alliance" },
                 { "GetAlliancePublicInformationAsync", "get_alliances_alliance_id" },
                 { "GetAllianceCorporationsAsync", "get_alliances_alliance_id_corporations" },
-                { "GetAllianceIconAsync", "get_alliances_alliance_id_icons" }
+                { "GetAllianceIconAsync", "get_alliances_alliance_id_icons" },
+
+                { "GetCharacterAssets", "get_characters_character_id_assets" },
+                { "PostCharacterLocationAssets", "post_characters_character_id_assets_locations"},
+                { "PostCharacterNameAssets", "post_characters_character_id_assets_names" },
+                { "GetCorporationAssets", "get_corporations_corporation_id_assets" },
+                { "PostCorporationLocationAssets", "post_corporations_corporation_id_assets_locations" },
+                { "PostCorporationNameAssets", "post_corporations_corporation_id_assets_names" }
             };
         }
 

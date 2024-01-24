@@ -17,7 +17,7 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         [Route("/v2/alliances/", Version = EndpointVersion.V2)]
         [Route("/legacy/alliances/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<int>>> GetAlliancesAsync();
+        Task<EsiResponse<List<int>>> GetAlliancesAsync();
 
         /// <summary>
         /// Public information about an alliance
@@ -41,7 +41,7 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         [Route("/v2/alliances/{alliance_id}/corporations/", Version = EndpointVersion.V2)]
         [Route("/legacy/alliances/{alliance_id}/corporations/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/{alliance_id}/corporations/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<int>>> GetAllianceCorporationsAsync(int allianceId);
+        Task<EsiResponse<List<int>>> GetAllianceCorporationsAsync(int allianceId);
 
         /// <summary>
         /// Get the icon urls for a alliance

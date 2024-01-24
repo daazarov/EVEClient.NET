@@ -28,7 +28,7 @@ namespace EVEOnline.Esi.Communication
         [Route("/latest/characters/{character_id}/standings/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/standings/", Version = EndpointVersion.V2)]
         [Route("/dev/characters/{character_id}/standings/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<CharacterStanding>>> GetCharacterStandingsAsync(int characterId);
+        Task<EsiResponse<List<CharacterStanding>>> GetCharacterStandingsAsync(int characterId);
 
         /// <summary>
         /// Return a list of agents research information for a character.
@@ -39,7 +39,7 @@ namespace EVEOnline.Esi.Communication
         [Route("/latest/characters/{character_id}/agents_research/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/agents_research/", Version = EndpointVersion.V2)]
         [Route("/dev/characters/{character_id}/agents_research/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<CharacterAgentsResearch>>> GetCharacterAgentsResearchAsync(int characterId);
+        Task<EsiResponse<List<CharacterAgentsResearch>>> GetCharacterAgentsResearchAsync(int characterId);
 
         /// <summary>
         /// A list of blueprints
@@ -50,7 +50,7 @@ namespace EVEOnline.Esi.Communication
         [Route("/latest/characters/{character_id}/blueprints/", Version = EndpointVersion.Latest)]
         [Route("/v3/characters/{character_id}/blueprints/", Version = EndpointVersion.V3)]
         [Route("/dev/characters/{character_id}/blueprints/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<IEnumerable<CharacterBlueprint>>> GetCharacterBlueprintsAsync(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<CharacterBlueprint>>> GetCharacterBlueprintsAsync(int characterId, int page = 1);
 
         /// <summary>
         /// Get a list of all the corporations a character has been a member of
@@ -60,7 +60,7 @@ namespace EVEOnline.Esi.Communication
         [Route("/latest/characters/{character_id}/corporationhistory/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/corporationhistory/", Version = EndpointVersion.V2)]
         [Route("/dev/characters/{character_id}/corporationhistory/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<CharacterCorporationHistory>>> GetCharacterCorporationHistoryAsync(int characterId);
+        Task<EsiResponse<List<CharacterCorporationHistory>>> GetCharacterCorporationHistoryAsync(int characterId);
 
         /// <summary>
         /// Takes a source character ID in the url and a set of target character ID’s in the body, returns a CSPA charge cost
@@ -92,7 +92,7 @@ namespace EVEOnline.Esi.Communication
         [Route("/latest/characters/{character_id}/medals/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/medals/", Version = EndpointVersion.V2)]
         [Route("/dev/characters/{character_id}/medals/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<CharacterMedal>>> GetCharacterMedalsAsync(int characterId);
+        Task<EsiResponse<List<CharacterMedal>>> GetCharacterMedalsAsync(int characterId);
 
         /// <summary>
         /// Return character notifications
@@ -103,7 +103,7 @@ namespace EVEOnline.Esi.Communication
         [Route("/v5/characters/{character_id}/notifications/", Version = EndpointVersion.V5)]
         [Route("/v6/characters/{character_id}/notifications/", Version = EndpointVersion.V6)]
         [Route("/dev/characters/{character_id}/notifications/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<CharacterNotification>>> GetCharacterNotificationsAsync(int characterId);
+        Task<EsiResponse<List<CharacterNotification>>> GetCharacterNotificationsAsync(int characterId);
 
         /// <summary>
         /// Return notifications about having been added to someone’s contact list
@@ -113,7 +113,7 @@ namespace EVEOnline.Esi.Communication
         [Route("/latest/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.V2)]
         [Route("/dev/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<CharacterContactNotification>>> GetCharacterContactNotificationsAsync(int characterId);
+        Task<EsiResponse<List<CharacterContactNotification>>> GetCharacterContactNotificationsAsync(int characterId);
 
         /// <summary>
         /// Get portrait urls for a character
@@ -144,7 +144,7 @@ namespace EVEOnline.Esi.Communication
         [Route("/latest/characters/{character_id}/titles/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/titles/", Version = EndpointVersion.V2)]
         [Route("/dev/characters/{character_id}/titles/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<CharacterTitle>>> GetCharacterTitlesAsync(int characterId);
+        Task<EsiResponse<List<CharacterTitle>>> GetCharacterTitlesAsync(int characterId);
 
         /// <summary>
         /// Bulk lookup of character IDs to corporation, alliance and faction
@@ -154,6 +154,6 @@ namespace EVEOnline.Esi.Communication
         [Route("/latest/characters/affiliation/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/affiliation/", Version = EndpointVersion.V2)]
         [Route("/dev/characters/affiliation/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<IEnumerable<CharacterAffilation>>> PostCharacterAffilationAsync(int[] characterIds);
+        Task<EsiResponse<List<CharacterAffilation>>> PostCharacterAffilationAsync(int[] characterIds);
     }
 }
