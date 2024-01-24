@@ -14,6 +14,7 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// <summary>
         /// from_type string
         /// </summary>
+        [JsonProperty("standing")]
         [JsonConverter(typeof(StringEnumConverter))]
         public StandingType StandingType { get; set; }
 

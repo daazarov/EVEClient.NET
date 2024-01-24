@@ -12,6 +12,8 @@ namespace EVEOnline.Esi.Communication
         Dev,
         Legacy,
         V2,
-        V5
+        V3,
+        V5,
+        V6
     }
 }

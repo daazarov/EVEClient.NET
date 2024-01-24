@@ -39,6 +39,7 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// <summary>
         /// The character’s gender
         /// </summary>
+        [JsonProperty("gender")]
         [JsonConverter(typeof(StringEnumConverter))]
         public Gender Gender { get; set; }
 

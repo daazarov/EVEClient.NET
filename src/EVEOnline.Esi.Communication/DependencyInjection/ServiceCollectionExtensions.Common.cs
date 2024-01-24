@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EVEOnline.Esi.Communication.DependencyInjection
 {
-    public static partial class ServiceCollectionExtensions
+    internal static partial class ServiceCollectionExtensions
     {
         internal static IServiceCollection AddTransientWithReplace<TService, TImplementation>(this IServiceCollection services)
             where TService : class

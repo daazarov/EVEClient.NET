@@ -1,6 +1,6 @@
 ﻿using EVEOnline.Esi.Communication.Attributes;
 
-namespace EVEOnline.Esi.Communication.DataContract
+namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
 {
     internal class CharacterIdModel
     {

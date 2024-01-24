@@ -6,14 +6,29 @@ using System.Threading.Tasks;
 
 namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
 {
-    internal class GetCharacterStandingsRequest : RouteModelBase<CharacterIdModel>
+    internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
     {
-        public GetCharacterStandingsRequest(CharacterIdModel uriModel) : base(uriModel)
+        public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+        { }
+
+        public static CharacterIdRouteRequest Create(int characterId)
+        {
+            return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+        }
+    }
+    internal class GetCharacterBlueprintsRequest : RouteModelBase<PageBasedCharacterIdModel>
+    {
+        public GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
         { }
     }
-    internal class GetCharacterPulicInformationRequest : RouteModelBase<CharacterIdModel>
+    internal class PostCharacterCspaRequest : RequestBase<CharacterIdModel, CharacterIdsBodyModel>
     {
-        public GetCharacterPulicInformationRequest(CharacterIdModel uriModel) : base(uriModel)
+        public PostCharacterCspaRequest(CharacterIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
+        { }
+    }
+    internal class PostCharacterAffilationRequest : BodyModelBase<CharacterIdsBodyModel>
+    {
+        public PostCharacterAffilationRequest(CharacterIdsBodyModel bodyModel) : base(bodyModel)
         { }
     }
 }
