@@ -6,29 +6,46 @@ using System.Threading.Tasks;
 
 namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
 {
-    internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+    internal class CharactersRequests
     {
-        public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-        { }
-
-        public static CharacterIdRouteRequest Create(int characterId)
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
         {
-            return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+        internal class GetCharacterBlueprintsRequest : RouteModelBase<PageBasedCharacterIdModel>
+        {
+            public GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            { }
+        }
+        internal class PostCharacterCspaRequest : RequestBase<CharacterIdModel, CharacterIdsBodyModel>
+        {
+            public PostCharacterCspaRequest(CharacterIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
+            { }
+        }
+        internal class PostCharacterAffilationRequest : BodyModelBase<CharacterIdsBodyModel>
+        {
+            public PostCharacterAffilationRequest(CharacterIdsBodyModel bodyModel) : base(bodyModel)
+            { }
         }
     }
-    internal class GetCharacterBlueprintsRequest : RouteModelBase<PageBasedCharacterIdModel>
+
+    internal class AllianceRequests
     {
-        public GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-        { }
-    }
-    internal class PostCharacterCspaRequest : RequestBase<CharacterIdModel, CharacterIdsBodyModel>
-    {
-        public PostCharacterCspaRequest(CharacterIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
-        { }
-    }
-    internal class PostCharacterAffilationRequest : BodyModelBase<CharacterIdsBodyModel>
-    {
-        public PostCharacterAffilationRequest(CharacterIdsBodyModel bodyModel) : base(bodyModel)
-        { }
+        internal class AllianceIdRouteRequest : RouteModelBase<AllianceIdModel>
+        {
+            public AllianceIdRouteRequest(AllianceIdModel uriModel) : base(uriModel)
+            { }
+
+            public static AllianceIdRouteRequest Create(int allianceId)
+            {
+                return new AllianceIdRouteRequest(new AllianceIdModel(allianceId));
+            }
+        }
     }
 }

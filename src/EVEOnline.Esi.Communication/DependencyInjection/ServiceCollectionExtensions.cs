@@ -67,6 +67,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IEsiLogicAccessor, EsiLogicAccessor>();
             services.TryAddTransient<IEsiContextFactory, EsiContextFactory>();
             services.TryAddTransient<IRequestPiplineBuilder, RequestPiplineBuilder>();
+            services.TryAddTransient<IEndpointPriorityProvider, EndpointPriorityProvider>();
             services.TryAddTransient(typeof(IEsiHttpClient<>), typeof(EsiHttpClient<>));
 
             services.AddLogics();
@@ -89,6 +90,7 @@ namespace Microsoft.Extensions.DependencyInjection
         private static IServiceCollection AddLogics(this IServiceCollection services)
         {
             services.TryAddTransient<ICharacterLogic, CharacterLogic>();
+            services.TryAddTransient<IAllianceLogic, AllianceLogic>();
 
             return services;
         }

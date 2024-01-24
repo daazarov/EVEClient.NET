@@ -2,12 +2,12 @@
 {
     public class RoutePriority
     {
-        public EndpointType Version { get; set; }
+        public EndpointVersion Version { get; set; }
         public int Order { get; set; }
         public bool Enable { get; set; } = true;
 
-        public static RoutePriority Dev => new RoutePriority { Version = EndpointType.Dev };
-        public static RoutePriority Latest => new RoutePriority { Version = EndpointType.Latest };
+        public static RoutePriority Dev => new RoutePriority { Version = EndpointVersion.Dev };
+        public static RoutePriority Latest => new RoutePriority { Version = EndpointVersion.Latest };
 
         public static bool operator < (RoutePriority left, RoutePriority right) 
         {

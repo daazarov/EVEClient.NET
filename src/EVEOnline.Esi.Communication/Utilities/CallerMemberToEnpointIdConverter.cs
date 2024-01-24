@@ -23,7 +23,12 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { "GetCharacterPortraitAsync", "get_characters_character_id_portrait" },
                 { "GetCharacterRolesAsync", "get_characters_character_id_roles" },
                 { "GetCharacterTitlesAsync", "get_characters_character_id_titles" },
-                { "PostCharacterAffilationAsync", "post_characters_affiliation" }
+                { "PostCharacterAffilationAsync", "post_characters_affiliation" },
+
+                { "GetAlliancesAsync", "get_alliance" },
+                { "GetAlliancePublicInformationAsync", "get_alliances_alliance_id" },
+                { "GetAllianceCorporationsAsync", "get_alliances_alliance_id_corporations" },
+                { "GetAllianceIconAsync", "get_alliances_alliance_id_icons" }
             };
         }
 

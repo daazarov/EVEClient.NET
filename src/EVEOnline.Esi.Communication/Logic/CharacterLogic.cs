@@ -1,11 +1,10 @@
-﻿using EVEOnline.Esi.Communication.DataContract;
-using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
+using EVEOnline.Esi.Communication.DataContract;
+using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
+
+using static EVEOnline.Esi.Communication.DataContract.Requests.Internal.CharactersRequests;
 
 namespace EVEOnline.Esi.Communication.Logic
 {
