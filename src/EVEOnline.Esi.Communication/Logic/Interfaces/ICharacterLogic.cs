@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using EVEOnline.Esi.Communication.Attributes;
@@ -15,10 +14,10 @@ namespace EVEOnline.Esi.Communication
         /// <param name="characterId">An EVE character ID</param>
         /// <returns>Public data for the given character</returns>
         [PublicEndpoint]
-        [Route("/latest/characters/{character_id}/", Type = EndpointType.Latest)]
-        [Route("/v5/characters/{character_id}/", Type = EndpointType.V5)]
-        [Route("/legacy/characters/{character_id}/", Type = EndpointType.Legacy)]
-        [Route("/dev/characters/{character_id}/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/", Version = EndpointVersion.Latest)]
+        [Route("/v5/characters/{character_id}/", Version = EndpointVersion.V5)]
+        [Route("/legacy/characters/{character_id}/", Version = EndpointVersion.Legacy)]
+        [Route("/dev/characters/{character_id}/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<CharacterPublicInformation>> GetCharacterPulicInformationAsync(int characterId);
 
         /// <summary>
@@ -26,9 +25,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_standings.v1")]
-        [Route("/latest/characters/{character_id}/standings/", Type = EndpointType.Latest)]
-        [Route("/v2/characters/{character_id}/standings/", Type = EndpointType.V2)]
-        [Route("/dev/characters/{character_id}/standings/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/standings/", Version = EndpointVersion.Latest)]
+        [Route("/v2/characters/{character_id}/standings/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/{character_id}/standings/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<IEnumerable<CharacterStanding>>> GetCharacterStandingsAsync(int characterId);
 
         /// <summary>
@@ -37,9 +36,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_agents_research.v1")]
-        [Route("/latest/characters/{character_id}/agents_research/", Type = EndpointType.Latest)]
-        [Route("/v2/characters/{character_id}/agents_research/", Type = EndpointType.V2)]
-        [Route("/dev/characters/{character_id}/agents_research/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/agents_research/", Version = EndpointVersion.Latest)]
+        [Route("/v2/characters/{character_id}/agents_research/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/{character_id}/agents_research/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<IEnumerable<CharacterAgentsResearch>>> GetCharacterAgentsResearchAsync(int characterId);
 
         /// <summary>
@@ -48,9 +47,9 @@ namespace EVEOnline.Esi.Communication
         /// <param name="characterId">An EVE character ID</param>
         /// <param name="page">Which page of results to return. Default value: 1</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_blueprints.v1")]
-        [Route("/latest/characters/{character_id}/blueprints/", Type = EndpointType.Latest)]
-        [Route("/v3/characters/{character_id}/blueprints/", Type = EndpointType.V3)]
-        [Route("/dev/characters/{character_id}/blueprints/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/blueprints/", Version = EndpointVersion.Latest)]
+        [Route("/v3/characters/{character_id}/blueprints/", Version = EndpointVersion.V3)]
+        [Route("/dev/characters/{character_id}/blueprints/", Version = EndpointVersion.Dev)]
         Task<EsiResponsePagination<IEnumerable<CharacterBlueprint>>> GetCharacterBlueprintsAsync(int characterId, int page = 1);
 
         /// <summary>
@@ -58,9 +57,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [PublicEndpoint]
-        [Route("/latest/characters/{character_id}/corporationhistory/", Type = EndpointType.Latest)]
-        [Route("/v2/characters/{character_id}/corporationhistory/", Type = EndpointType.V2)]
-        [Route("/dev/characters/{character_id}/corporationhistory/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/corporationhistory/", Version = EndpointVersion.Latest)]
+        [Route("/v2/characters/{character_id}/corporationhistory/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/{character_id}/corporationhistory/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<IEnumerable<CharacterCorporationHistory>>> GetCharacterCorporationHistoryAsync(int characterId);
 
         /// <summary>
@@ -70,9 +69,9 @@ namespace EVEOnline.Esi.Communication
         /// <param name="characterIds">The target characters to calculate the charge for</param>
         /// <returns></returns>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_contacts.v1")]
-        [Route("/latest/characters/{character_id}/cspa/", Type = EndpointType.Latest)]
-        [Route("/v5/characters/{character_id}/cspa/", Type = EndpointType.V5)]
-        [Route("/dev/characters/{character_id}/cspa/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/cspa/", Version = EndpointVersion.Latest)]
+        [Route("/v5/characters/{character_id}/cspa/", Version = EndpointVersion.V5)]
+        [Route("/dev/characters/{character_id}/cspa/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<long>> PostCharacterCspaAsync(int characterId, int[] characterIds);
 
         /// <summary>
@@ -80,9 +79,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_fatigue.v1")]
-        [Route("/latest/characters/{character_id}/fatigue/", Type = EndpointType.Latest)]
-        [Route("/v2/characters/{character_id}/fatigue/", Type = EndpointType.V2)]
-        [Route("/dev/characters/{character_id}/fatigue/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/fatigue/", Version = EndpointVersion.Latest)]
+        [Route("/v2/characters/{character_id}/fatigue/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/{character_id}/fatigue/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<CharacterFatigue>> GetCharacterFatigueAsync(int characterId);
 
         /// <summary>
@@ -90,9 +89,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_medals.v1")]
-        [Route("/latest/characters/{character_id}/medals/", Type = EndpointType.Latest)]
-        [Route("/v2/characters/{character_id}/medals/", Type = EndpointType.V2)]
-        [Route("/dev/characters/{character_id}/medals/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/medals/", Version = EndpointVersion.Latest)]
+        [Route("/v2/characters/{character_id}/medals/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/{character_id}/medals/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<IEnumerable<CharacterMedal>>> GetCharacterMedalsAsync(int characterId);
 
         /// <summary>
@@ -100,10 +99,10 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_notifications.v1")]
-        [Route("/latest/characters/{character_id}/notifications/", Type = EndpointType.Latest)]
-        [Route("/v5/characters/{character_id}/notifications/", Type = EndpointType.V5)]
-        [Route("/v6/characters/{character_id}/notifications/", Type = EndpointType.V6)]
-        [Route("/dev/characters/{character_id}/notifications/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/notifications/", Version = EndpointVersion.Latest)]
+        [Route("/v5/characters/{character_id}/notifications/", Version = EndpointVersion.V5)]
+        [Route("/v6/characters/{character_id}/notifications/", Version = EndpointVersion.V6)]
+        [Route("/dev/characters/{character_id}/notifications/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<IEnumerable<CharacterNotification>>> GetCharacterNotificationsAsync(int characterId);
 
         /// <summary>
@@ -111,9 +110,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_notifications.v1")]
-        [Route("/latest/characters/{character_id}/notifications/contacts/", Type = EndpointType.Latest)]
-        [Route("/v2/characters/{character_id}/notifications/contacts/", Type = EndpointType.V2)]
-        [Route("/dev/characters/{character_id}/notifications/contacts/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.Latest)]
+        [Route("/v2/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<IEnumerable<CharacterContactNotification>>> GetCharacterContactNotificationsAsync(int characterId);
 
         /// <summary>
@@ -121,10 +120,10 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [PublicEndpoint]
-        [Route("/latest/characters/{character_id}/portrait/", Type = EndpointType.Latest)]
-        [Route("/v3/characters/{character_id}/portrait/", Type = EndpointType.V3)]
-        [Route("/v2/characters/{character_id}/portrait/", Type = EndpointType.V2)]
-        [Route("/dev/characters/{character_id}/portrait/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/portrait/", Version = EndpointVersion.Latest)]
+        [Route("/v3/characters/{character_id}/portrait/", Version = EndpointVersion.V3)]
+        [Route("/v2/characters/{character_id}/portrait/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/{character_id}/portrait/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<CharacterPortrait>> GetCharacterPortraitAsync(int characterId);
 
         /// <summary>
@@ -132,9 +131,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_corporation_roles.v1")]
-        [Route("/latest/characters/{character_id}/roles/", Type = EndpointType.Latest)]
-        [Route("/v3/characters/{character_id}/roles/", Type = EndpointType.V3)]
-        [Route("/dev/characters/{character_id}/roles/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/roles/", Version = EndpointVersion.Latest)]
+        [Route("/v3/characters/{character_id}/roles/", Version = EndpointVersion.V3)]
+        [Route("/dev/characters/{character_id}/roles/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<CharacterRoles>> GetCharacterRolesAsync(int characterId);
 
         /// <summary>
@@ -142,9 +141,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-characters.read_titles.v1")]
-        [Route("/latest/characters/{character_id}/titles/", Type = EndpointType.Latest)]
-        [Route("/v2/characters/{character_id}/titles/", Type = EndpointType.V2)]
-        [Route("/dev/characters/{character_id}/titles/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/{character_id}/titles/", Version = EndpointVersion.Latest)]
+        [Route("/v2/characters/{character_id}/titles/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/{character_id}/titles/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<IEnumerable<CharacterTitle>>> GetCharacterTitlesAsync(int characterId);
 
         /// <summary>
@@ -152,9 +151,9 @@ namespace EVEOnline.Esi.Communication
         /// </summary>
         /// <param name="characterIds">The character IDs to fetch affiliations for. All characters must exist, or none will be returned</param>
         [PublicEndpoint]
-        [Route("/latest/characters/affiliation/", Type = EndpointType.Latest)]
-        [Route("/v2/characters/affiliation/", Type = EndpointType.V2)]
-        [Route("/dev/characters/affiliation/", Type = EndpointType.Dev)]
+        [Route("/latest/characters/affiliation/", Version = EndpointVersion.Latest)]
+        [Route("/v2/characters/affiliation/", Version = EndpointVersion.V2)]
+        [Route("/dev/characters/affiliation/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<IEnumerable<CharacterAffilation>>> PostCharacterAffilationAsync(int[] characterIds);
     }
 }

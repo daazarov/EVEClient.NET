@@ -6,7 +6,8 @@ namespace EVEOnline.Esi.Communication.Attributes
     internal class RouteAttribute : Attribute
     {
         private string _template;
-        private EndpointType _type;
+        private EndpointVersion _version;
+        private bool _default;
         
         public RouteAttribute(string template)
         {
@@ -14,6 +15,7 @@ namespace EVEOnline.Esi.Communication.Attributes
         }
 
         public string Template { get => _template; set => _template = value; }
-        public EndpointType Type { get => _type; set => _type = value; }
+        public EndpointVersion Version { get => _version; set => _version = value; }
+        public bool Default { get => _default; set => _default = value; }
     }
 }

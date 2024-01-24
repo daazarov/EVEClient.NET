@@ -1,10 +1,6 @@
-﻿using EVEOnline.Esi.Communication.Logic.Interfaces;
+﻿using System;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EVEOnline.Esi.Communication.Logic.Interfaces;
 
 namespace EVEOnline.Esi.Communication.Logic
 {
@@ -13,8 +9,10 @@ namespace EVEOnline.Esi.Communication.Logic
         private readonly IServiceProvider _serviceProvider;
 
         private ICharacterLogic _characterLogic;
+        private IAllianceLogic _allianceLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
+        public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
 
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)

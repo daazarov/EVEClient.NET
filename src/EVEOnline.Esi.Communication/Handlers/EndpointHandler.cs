@@ -24,10 +24,9 @@ namespace EVEOnline.Esi.Communication.Handlers
 
             foreach (var priority in priorities)
             {
-                // There is no need to check the route availability, as it is checked when registering the service
-                var route = routeAttributes.Where(x => x.Type == priority.Version).First();
+                var route = routeAttributes.Where(x => x.Version == priority.Version).FirstOrDefault();
 
-                routeQueue.AddRoute(BuildUrlQuery(context, route.Template), priority);
+                routeQueue.AddRoute(BuildUrlQuery(context, route?.Template), priority);
             }
 
             context.RequestContext.RouteQueue = routeQueue;
@@ -37,6 +36,8 @@ namespace EVEOnline.Esi.Communication.Handlers
 
         private string BuildUrlQuery(EsiContext context, string template)
         {
+            template.ArgumentStringNotNullOrEmpty(nameof(template));
+
             var url = UrlQueryBuilder.BuildRouteString(template, context.RequestContext.RouteParametersMap.ToNameValueCollection());
 
             return UrlQueryBuilder.BuildQueryString(url, context.RequestContext.QueryParametersMap.ToNameValueCollection());
