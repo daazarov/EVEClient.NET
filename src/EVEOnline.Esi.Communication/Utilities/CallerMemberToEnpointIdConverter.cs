@@ -35,7 +35,12 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { "PostCharacterNameAssets", "post_characters_character_id_assets_names" },
                 { "GetCorporationAssets", "get_corporations_corporation_id_assets" },
                 { "PostCorporationLocationAssets", "post_corporations_corporation_id_assets_locations" },
-                { "PostCorporationNameAssets", "post_corporations_corporation_id_assets_names" }
+                { "PostCorporationNameAssets", "post_corporations_corporation_id_assets_names" },
+
+                { "GetCharacterBookmarksAsync", "get_characters_character_id_bookmarks" },
+                { "GetCharacterBookmarkFoldersAsync", "get_characters_character_id_bookmarks_folders" },
+                { "GetCorporationBookmarksAsync", "get_corporations_corporation_id_bookmarks" },
+                { "GetCorporationBookmarkFoldersAsync", "get_corporations_corporation_id_bookmarks_folders" }
             };
         }
 

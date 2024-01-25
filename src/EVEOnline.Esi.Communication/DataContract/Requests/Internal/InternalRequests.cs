@@ -1,9 +1,4 @@
 ﻿using EVEOnline.Esi.Communication.DataContract.Requests.Internal.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
 {
@@ -82,6 +77,31 @@ namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
             public static CorporationItemsPostRequest Create(int corporationId, long[] itemIds)
             {
                 return new CorporationItemsPostRequest(new CorporationIdModel(corporationId), new AssertItemBodyModel(itemIds));
+            }
+        }
+
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
+            }
+        }
+    }
+
+    internal class BookmarkRequests
+    {
+        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
+        {
+            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
             }
         }
 

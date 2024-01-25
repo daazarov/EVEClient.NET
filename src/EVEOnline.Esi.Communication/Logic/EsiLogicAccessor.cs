@@ -11,10 +11,12 @@ namespace EVEOnline.Esi.Communication.Logic
         private ICharacterLogic _characterLogic;
         private IAllianceLogic _allianceLogic;
         private IAssetsLogic _assetsLogic;
+        private IBookmarksLogic _bookmarksLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
         public IAssetsLogic AssetsLogic => GetOrSet<IAssetsLogic>(ref _assetsLogic);
+        public IBookmarksLogic BookmarksLogic => GetOrSet<IBookmarksLogic>(ref _bookmarksLogic);
 
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
