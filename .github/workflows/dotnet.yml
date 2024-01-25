@@ -4,7 +4,15 @@
 name: .NET
 
 on:
+  create:
+    branches: 
+      - release/**
   push:
+    branches: [ "main" ]
+    paths: 
+    - '**.cs'
+    - '**.csproj'
+    - '**.sln'
   pull_request:
     branches: [ "main" ]
     paths: 
