@@ -10,9 +10,11 @@ namespace EVEOnline.Esi.Communication.Logic
 
         private ICharacterLogic _characterLogic;
         private IAllianceLogic _allianceLogic;
+        private IAssetsLogic _assetsLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
+        public IAssetsLogic AssetsLogic => GetOrSet<IAssetsLogic>(ref _assetsLogic);
 
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
