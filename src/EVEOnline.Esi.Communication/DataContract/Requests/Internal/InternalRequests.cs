@@ -116,4 +116,40 @@ namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
             }
         }
     }
+
+    internal class CalendarRequests
+    {
+        internal class CalendarRouteRequest : RouteModelBase<CharacterIdEventIdRouteModel>
+        {
+            public CalendarRouteRequest(CharacterIdEventIdRouteModel uriModel) : base(uriModel)
+            { }
+
+            public static CalendarRouteRequest Create(int characterId, int eventId)
+            {
+                return new CalendarRouteRequest(new CharacterIdEventIdRouteModel(characterId, eventId));
+            }
+        }
+
+        internal class CalendarRouteFromEventQueryRequest : RouteModelBase<CharacterIdFromEventIdQueryModel>
+        {
+            public CalendarRouteFromEventQueryRequest(CharacterIdFromEventIdQueryModel uriModel) : base(uriModel)
+            { }
+
+            public static CalendarRouteFromEventQueryRequest Create(int characterId, int? fromEventId)
+            {
+                return new CalendarRouteFromEventQueryRequest(new CharacterIdFromEventIdQueryModel(characterId, fromEventId));
+            }
+        }
+
+        internal class CalendarRespondeRequest : RequestBase<CharacterIdEventIdRouteModel, CalendarRespondeBodyModel>
+        {
+            public CalendarRespondeRequest(CharacterIdEventIdRouteModel uriModel, CalendarRespondeBodyModel response) : base(uriModel, response)
+            { }
+
+            public static CalendarRespondeRequest Create(int characterId, int eventId, EventResponse response)
+            {
+                return new CalendarRespondeRequest(new CharacterIdEventIdRouteModel(characterId, eventId), new CalendarRespondeBodyModel(response));
+            }
+        }
+    }
 }

@@ -46,7 +46,11 @@ namespace EVEOnline.Esi.Communication.Handlers
 
                 if (attribute != null)
                 {
-                    result.Add(attribute.ParameterName, ReflectionUtils.GetPropertyValueDelegate<string>(type, prop.Name).Invoke(model));
+                    var value = ReflectionUtils.GetPropertyValueDelegate<string>(type, prop.Name).Invoke(model);
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        result.Add(attribute.ParameterName, value);
+                    }
                 }
             }
 

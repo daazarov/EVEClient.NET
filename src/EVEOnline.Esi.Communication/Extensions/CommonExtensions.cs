@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 
 namespace EVEOnline.Esi.Communication.Extensions
 {
@@ -113,6 +115,16 @@ namespace EVEOnline.Esi.Communication.Extensions
         public static string SHA256(this string @this)
         {
             return HashingFactory.Instance.CreateHashingInstance(HashingAliases.SHA256).GenerateHash(@this);
+        }
+
+        public static string GetEnumMemberAttributeValue(this Enum @this)
+        {
+            var type = @this.GetType();
+            var typeInfo = type.GetTypeInfo();
+            var memberInfo = typeInfo.DeclaredMembers.SingleOrDefault(x => x.Name == @this.ToString());
+            var attribute = memberInfo?.GetCustomAttribute<EnumMemberAttribute>(false);
+
+            return attribute?.Value;
         }
     }
 }
