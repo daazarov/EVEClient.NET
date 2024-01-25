@@ -5,15 +5,19 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    paths: 
+    - '**.cs'
+    - '**.csproj'
+    - '**.sln'
 
 jobs:
-  build:
+  build-and-test:
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: 'src/EVEOnline.Esi.Communication.sln'
+      SOLUTION: '.\src\EVEOnline.Esi.Communication.sln'
+      DIRECTORY: 'src'
       
     runs-on: ubuntu-latest
 
@@ -32,4 +36,4 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test $SOLUTION --no-build --verbosity normal
