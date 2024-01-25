@@ -92,6 +92,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<ICharacterLogic, CharacterLogic>();
             services.TryAddTransient<IAllianceLogic, AllianceLogic>();
             services.TryAddTransient<IAssetsLogic, AssetsLogic>();
+            services.TryAddTransient<IBookmarksLogic, BookmarksLogic>();
 
             return services;
         }
