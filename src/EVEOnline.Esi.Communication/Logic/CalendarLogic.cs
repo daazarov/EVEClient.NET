@@ -18,13 +18,13 @@ namespace EVEOnline.Esi.Communication.Logic
         }
 
         public Task<EsiResponse<List<Attendee>>> GetCalendarEventAttendeesAsync(int characterId, int eventId) =>
-            _esiClient.GetRequestAsync<CalendarRouteRequest, List<Attendee>>(CalendarRouteRequest.Create(characterId, eventId));
+            _esiClient.GetRequestAsync<CalendarEventAttendeesRequest, List<Attendee>>(CalendarEventAttendeesRequest.Create(characterId, eventId));
 
         public Task<EsiResponse<CharacterCalendarEvent>> GetCharacterCalendarEventAsync(int characterId, int eventId) =>
-            _esiClient.GetRequestAsync<CalendarRouteRequest, CharacterCalendarEvent>(CalendarRouteRequest.Create(characterId, eventId));
+            _esiClient.GetRequestAsync<CalendarEventRequest, CharacterCalendarEvent>(CalendarEventRequest.Create(characterId, eventId));
 
         public Task<EsiResponse<List<CharacterCalendarItem>>> GetCharacterSummaryCalendarEventsAsync(int characterId, int? fromEventId = null) =>
-            _esiClient.GetRequestAsync<CalendarRouteFromEventQueryRequest, List<CharacterCalendarItem>>(CalendarRouteFromEventQueryRequest.Create(characterId, fromEventId));
+            _esiClient.GetRequestAsync<SummaryCalendarEventsRequest, List<CharacterCalendarItem>>(SummaryCalendarEventsRequest.Create(characterId, fromEventId));
 
         public Task<EsiResponse> RespondCaracterEventAsync(int characterId, int eventId, EventResponse eventResponse) =>
             _esiClient.PutNoContentRequestAsync<CalendarRespondeRequest>(CalendarRespondeRequest.Create(characterId, eventId, eventResponse));

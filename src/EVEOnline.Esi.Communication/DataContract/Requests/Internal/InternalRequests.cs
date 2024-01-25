@@ -119,28 +119,36 @@ namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
 
     internal class CalendarRequests
     {
-        internal class CalendarRouteRequest : RouteModelBase<CharacterIdEventIdRouteModel>
+        internal class CalendarEventRequest : RouteModelBase<CharacterIdEventIdRouteModel>
         {
-            public CalendarRouteRequest(CharacterIdEventIdRouteModel uriModel) : base(uriModel)
+            public CalendarEventRequest(CharacterIdEventIdRouteModel uriModel) : base(uriModel)
             { }
 
-            public static CalendarRouteRequest Create(int characterId, int eventId)
+            public static CalendarEventRequest Create(int characterId, int eventId)
             {
-                return new CalendarRouteRequest(new CharacterIdEventIdRouteModel(characterId, eventId));
+                return new CalendarEventRequest(new CharacterIdEventIdRouteModel(characterId, eventId));
             }
         }
-
-        internal class CalendarRouteFromEventQueryRequest : RouteModelBase<CharacterIdFromEventIdQueryModel>
+        internal class CalendarEventAttendeesRequest : RouteModelBase<CharacterIdEventIdRouteModel>
         {
-            public CalendarRouteFromEventQueryRequest(CharacterIdFromEventIdQueryModel uriModel) : base(uriModel)
+            public CalendarEventAttendeesRequest(CharacterIdEventIdRouteModel uriModel) : base(uriModel)
             { }
 
-            public static CalendarRouteFromEventQueryRequest Create(int characterId, int? fromEventId)
+            public static CalendarEventAttendeesRequest Create(int characterId, int eventId)
             {
-                return new CalendarRouteFromEventQueryRequest(new CharacterIdFromEventIdQueryModel(characterId, fromEventId));
+                return new CalendarEventAttendeesRequest(new CharacterIdEventIdRouteModel(characterId, eventId));
             }
         }
+        internal class SummaryCalendarEventsRequest : RouteModelBase<SummaryCalendarEventsUriModel>
+        {
+            public SummaryCalendarEventsRequest(SummaryCalendarEventsUriModel uriModel) : base(uriModel)
+            { }
 
+            public static SummaryCalendarEventsRequest Create(int characterId, int? fromEventId)
+            {
+                return new SummaryCalendarEventsRequest(new SummaryCalendarEventsUriModel(characterId, fromEventId));
+            }
+        }
         internal class CalendarRespondeRequest : RequestBase<CharacterIdEventIdRouteModel, CalendarRespondeBodyModel>
         {
             public CalendarRespondeRequest(CharacterIdEventIdRouteModel uriModel, CalendarRespondeBodyModel response) : base(uriModel, response)
