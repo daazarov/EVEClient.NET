@@ -4,11 +4,8 @@
 name: .NET
 
 on:
-  create:
-    branches: 
-      - release/**
   push:
-    branches: [ "main" ]
+    branches: [ "main", "release/**" ]
     paths: 
     - '**.cs'
     - '**.csproj'
