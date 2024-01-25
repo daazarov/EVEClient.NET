@@ -40,7 +40,12 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { "GetCharacterBookmarksAsync", "get_characters_character_id_bookmarks" },
                 { "GetCharacterBookmarkFoldersAsync", "get_characters_character_id_bookmarks_folders" },
                 { "GetCorporationBookmarksAsync", "get_corporations_corporation_id_bookmarks" },
-                { "GetCorporationBookmarkFoldersAsync", "get_corporations_corporation_id_bookmarks_folders" }
+                { "GetCorporationBookmarkFoldersAsync", "get_corporations_corporation_id_bookmarks_folders" },
+
+                { "GetCharacterSummaryCalendarEventsAsync", "get_characters_character_id_calendar" },
+                { "GetCharacterCalendarEventAsync", "get_characters_character_id_calendar_event_id" },
+                { "RespondCaracterEventAsync", "put_characters_character_id_calendar_event_id" },
+                { "GetCalendarEventAttendeesAsync", "get_characters_character_id_calendar_event_id_attendees" }
             };
         }
 

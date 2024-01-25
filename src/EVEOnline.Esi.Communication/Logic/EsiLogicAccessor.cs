@@ -12,11 +12,13 @@ namespace EVEOnline.Esi.Communication.Logic
         private IAllianceLogic _allianceLogic;
         private IAssetsLogic _assetsLogic;
         private IBookmarksLogic _bookmarksLogic;
+        private ICalendarLogic _calendarLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
         public IAssetsLogic AssetsLogic => GetOrSet<IAssetsLogic>(ref _assetsLogic);
         public IBookmarksLogic BookmarksLogic => GetOrSet<IBookmarksLogic>(ref _bookmarksLogic);
+        public ICalendarLogic CalendarLogic => GetOrSet<ICalendarLogic>(ref _calendarLogic);
 
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)

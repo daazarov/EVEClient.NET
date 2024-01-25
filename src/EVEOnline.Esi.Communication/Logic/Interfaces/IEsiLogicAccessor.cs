@@ -6,5 +6,7 @@
         IAllianceLogic AllianceLogic { get; }
         IAssetsLogic AssetsLogic { get; }
         IBookmarksLogic BookmarksLogic { get; }
+        ICalendarLogic CalendarLogic { get; }
+
     }
 }
