@@ -17,7 +17,6 @@ jobs:
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: '.\src\EVEOnline.Esi.Communication.sln'
-      DIRECTORY: 'src'
       
     runs-on: ubuntu-latest
 
