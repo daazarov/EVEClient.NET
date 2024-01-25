@@ -2,9 +2,9 @@
 
 namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
 {
-    internal class CharacterIdFromEventIdQueryModel : CharacterIdModel
+    internal class SummaryCalendarEventsUriModel : CharacterIdModel
     {
-        public CharacterIdFromEventIdQueryModel(int characterId, int? eventId) : base(characterId)
+        public SummaryCalendarEventsUriModel(int characterId, int? eventId) : base(characterId)
         {
             FromEventId = eventId;
         }
