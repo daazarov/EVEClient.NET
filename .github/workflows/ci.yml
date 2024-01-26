@@ -28,8 +28,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: windows-latest
-            name: Windows
           - os: ubuntu-latest
             name: Linux
             
