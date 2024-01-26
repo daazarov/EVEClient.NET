@@ -48,7 +48,17 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { "GetCalendarEventAttendeesAsync", "get_characters_character_id_calendar_event_id_attendees" },
 
                 { "GetCharacterClonesAsync", "get_characters_character_id_clones" },
-                { "GetCharacterCloneImplantsAsync", "get_characters_character_id_implants" }
+                { "GetCharacterCloneImplantsAsync", "get_characters_character_id_implants" },
+
+                { "GetAllianceContactsAsync", "get_alliances_alliance_id_contacts" },
+                { "GetAllianceContactLabelsAsync", "get_alliances_alliance_id_contacts_labels" },
+                { "DeleteCharacterContactsAsync", "delete_characters_character_id_contacts" },
+                { "GetCharacterContactsAsync", "get_characters_character_id_contacts" },
+                { "AddCharacterContacts", "post_characters_character_id_contacts" },
+                { "UpdateCharacterContacts", "put_characters_character_id_contacts" },
+                { "GetCharacterContactLabelsAsync", "get_characters_character_id_contacts_labels" },
+                { "GetCorporationContactsAsync", "get_corporations_corporation_id_contacts" },
+                { "GetCorporationContactLabelsAsync", "get_corporations_corporation_id_contacts_labels" }
             };
         }
 

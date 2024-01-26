@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal.Models
+namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
 {
     internal class AssertItemBodyModel : List<long>
     {
