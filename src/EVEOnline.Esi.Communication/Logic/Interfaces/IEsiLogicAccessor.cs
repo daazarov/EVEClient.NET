@@ -7,6 +7,6 @@
         IAssetsLogic AssetsLogic { get; }
         IBookmarksLogic BookmarksLogic { get; }
         ICalendarLogic CalendarLogic { get; }
-
+        IClonesLogic ClonesLogic { get; }
     }
 }

@@ -45,7 +45,10 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { "GetCharacterSummaryCalendarEventsAsync", "get_characters_character_id_calendar" },
                 { "GetCharacterCalendarEventAsync", "get_characters_character_id_calendar_event_id" },
                 { "RespondCaracterEventAsync", "put_characters_character_id_calendar_event_id" },
-                { "GetCalendarEventAttendeesAsync", "get_characters_character_id_calendar_event_id_attendees" }
+                { "GetCalendarEventAttendeesAsync", "get_characters_character_id_calendar_event_id_attendees" },
+
+                { "GetCharacterClonesAsync", "get_characters_character_id_clones" },
+                { "GetCharacterCloneImplantsAsync", "get_characters_character_id_implants" }
             };
         }
 
