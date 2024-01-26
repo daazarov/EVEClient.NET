@@ -22,9 +22,17 @@ jobs:
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: '.\src\EVEOnline.Esi.Communication.sln'
-      
-    runs-on: ubuntu-latest
 
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            name: Windows
+          - os: ubuntu-latest
+            name: Linux
+            
     steps:
     - uses: actions/checkout@v3
     
