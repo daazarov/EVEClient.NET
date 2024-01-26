@@ -8,5 +8,6 @@
         IBookmarksLogic BookmarksLogic { get; }
         ICalendarLogic CalendarLogic { get; }
         IClonesLogic ClonesLogic { get; }
+        IContactsLogic ContactsLogic { get; }
     }
 }

@@ -14,6 +14,7 @@ namespace EVEOnline.Esi.Communication.Logic
         private IBookmarksLogic _bookmarksLogic;
         private ICalendarLogic _calendarLogic;
         private IClonesLogic _clonesLogic;
+        private IContactsLogic _contactsLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -21,6 +22,7 @@ namespace EVEOnline.Esi.Communication.Logic
         public IBookmarksLogic BookmarksLogic => GetOrSet<IBookmarksLogic>(ref _bookmarksLogic);
         public ICalendarLogic CalendarLogic => GetOrSet<ICalendarLogic>(ref _calendarLogic);
         public IClonesLogic ClonesLogic => GetOrSet<IClonesLogic>(ref _clonesLogic);
+        public IContactsLogic ContactsLogic => GetOrSet<IContactsLogic>(ref _contactsLogic);
 
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)

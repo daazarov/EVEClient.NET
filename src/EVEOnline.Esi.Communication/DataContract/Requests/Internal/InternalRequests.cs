@@ -1,6 +1,4 @@
-﻿using EVEOnline.Esi.Communication.DataContract.Requests.Internal.Models;
-
-namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
+﻿namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
 {
     internal class CharactersRequests
     {
@@ -171,6 +169,97 @@ namespace EVEOnline.Esi.Communication.DataContract.Requests.Internal
             public static CharacterIdRouteRequest Create(int characterId)
             {
                 return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+    }
+
+    internal class ContactRequests
+    {
+        internal class AddUpdateCharacterContactRequest : RequestBase<AddUpdateCharacterContactUriModel, ContactsIdsBodyModel>
+        {
+            public AddUpdateCharacterContactRequest(AddUpdateCharacterContactUriModel uriModel, ContactsIdsBodyModel itemIds) : base(uriModel, itemIds)
+            { }
+
+            public static AddUpdateCharacterContactRequest Create(int characterId, int[] contactIds, float standing, int[] labelIds, bool watched)
+            {
+                return new AddUpdateCharacterContactRequest(new AddUpdateCharacterContactUriModel(characterId, standing, labelIds, watched), new ContactsIdsBodyModel(contactIds));
+            }
+        }
+
+        internal class DeleteCharacterContactsRequest : RouteModelBase<DeleteCharacterContactUriModel>
+        {
+            public DeleteCharacterContactsRequest(DeleteCharacterContactUriModel uriModel) : base(uriModel)
+            { }
+
+            public static DeleteCharacterContactsRequest Create(int characterId, int[] contactIds)
+            {
+                return new DeleteCharacterContactsRequest(new DeleteCharacterContactUriModel(characterId, contactIds));
+            }
+        }
+
+        internal class AllianceIdRouteRequest : RouteModelBase<AllianceIdModel>
+        {
+            public AllianceIdRouteRequest(AllianceIdModel uriModel) : base(uriModel)
+            { }
+
+            public static AllianceIdRouteRequest Create(int allianceId)
+            {
+                return new AllianceIdRouteRequest(new AllianceIdModel(allianceId));
+            }
+        }
+
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+
+        internal class PageBasedAllianceIdRouteRequest : RouteModelBase<PageBasedAllianceIdModel>
+        {
+            public PageBasedAllianceIdRouteRequest(PageBasedAllianceIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedAllianceIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedAllianceIdRouteRequest(new PageBasedAllianceIdModel(characterId, page));
+            }
+        }
+
+        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
+        {
+            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
+            }
+        }
+
+        internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
+        {
+            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationIdRouteRequest Create(int corporationId)
+            {
+                return new CorporationIdRouteRequest(new CorporationIdModel(corporationId));
+            }
+        }
+
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
             }
         }
     }
