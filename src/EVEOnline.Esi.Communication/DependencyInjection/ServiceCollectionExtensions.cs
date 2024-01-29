@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using EVEOnline.Esi.Communication.Configuration;
 using EVEOnline.Esi.Communication.Logic;
-using EVEOnline.Esi.Communication.Logic.Interfaces;
 using EVEOnline.Esi.Communication.DependencyInjection;
 using EVEOnline.Esi.Communication;
 using EVEOnline.Esi.Communication.Utilities.Stores;
@@ -67,7 +66,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IEsiLogicAccessor, EsiLogicAccessor>();
             services.TryAddTransient<IEsiContextFactory, EsiContextFactory>();
             services.TryAddTransient<IRequestPiplineBuilder, RequestPiplineBuilder>();
-            services.TryAddTransient<IEndpointPriorityProvider, EndpointPriorityProvider>();
             services.TryAddTransient(typeof(IEsiHttpClient<>), typeof(EsiHttpClient<>));
 
             services.AddLogics();

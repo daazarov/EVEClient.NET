@@ -1,4 +1,4 @@
-﻿namespace EVEOnline.Esi.Communication.Logic.Interfaces
+﻿namespace EVEOnline.Esi.Communication
 {
     public interface IEsiLogicAccessor
     {

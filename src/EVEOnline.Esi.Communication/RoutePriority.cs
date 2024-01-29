@@ -6,9 +6,6 @@
         public int Order { get; set; }
         public bool Enable { get; set; } = true;
 
-        public static RoutePriority Dev => new RoutePriority { Version = EndpointVersion.Dev };
-        public static RoutePriority Latest => new RoutePriority { Version = EndpointVersion.Latest };
-
         public static bool operator < (RoutePriority left, RoutePriority right) 
         {
             if (left.Enable && !right.Enable) return true;

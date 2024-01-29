@@ -11,12 +11,15 @@ namespace EVEOnline.Esi.Communication
     public class EsiResponse
     {
         private readonly string _eTag;
+        private readonly string _warning;
         private readonly Guid _requestId;
         private readonly HttpResponseMessage _httpResponseMessage;
         private readonly HttpStatusCode _statusCode;
         private readonly DateTime? _date;
         private readonly DateTime? _expires;
         private readonly DateTime? _lastModified;
+        private readonly int _errorLimitRemain;
+        private readonly TimeSpan _errorLimitReset;
         private readonly IEnumerable<string> _errors;
 
         protected Exception _exception;
@@ -31,6 +34,17 @@ namespace EVEOnline.Esi.Communication
         public Exception Exception => _exception;
         public IEnumerable<string> Errors => _errors;
         public bool Success => !Errors.Any() && Exception == null;
+        public string Warning => _warning;
+
+        /// <summary>
+        /// How many more errors you can make within the window of time <see cref="ErrorLimitRemain"/>
+        /// </summary>
+        public int ErrorLimitRemain => _errorLimitRemain;
+
+        /// <summary>
+        /// Number of seconds until the end of the current error window.
+        /// </summary>
+        public TimeSpan ErrorLimitReset => _errorLimitReset;
 
         public EsiResponse(Exception exception)
         {
@@ -62,6 +76,18 @@ namespace EVEOnline.Esi.Communication
                 if (response.Content.Headers.Contains("Date"))
                 {
                     _date = DateTime.Parse(response.Content.Headers.GetValues("Date").First());
+                }
+                if (response.Content.Headers.Contains("Warning"))
+                {
+                    _warning = response.Headers.GetValues("Warning").First();
+                }
+                if (response.Content.Headers.Contains("X-ESI-Error-Limit-Remain"))
+                {
+                    _errorLimitRemain = int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Remain").First());
+                }
+                if (response.Content.Headers.Contains("X-ESI-Error-Limit-Reset"))
+                {
+                    _errorLimitReset = TimeSpan.FromSeconds(int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Reset").First()));
                 }
 
                 _statusCode = response.StatusCode;

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using EVEOnline.Esi.Communication.Attributes;
 using EVEOnline.Esi.Communication.DataContract;
 
-namespace EVEOnline.Esi.Communication.Logic.Interfaces
+namespace EVEOnline.Esi.Communication
 {
     public interface ICalendarLogic
     {
@@ -18,8 +18,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         [ProtectedEndpoint(RequiredScope = "esi-calendar.read_calendar_events.v1")]
         [Route("/latest/characters/{character_id}/calendar/", Version = EndpointVersion.Latest)]
         [Route("/legacy/characters/{character_id}/calendar/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/characters/{character_id}/calendar/", Version = EndpointVersion.V1)]
-        [Route("/v2/characters/{character_id}/calendar/", Version = EndpointVersion.V2)]
+        [Route("/v1/characters/{character_id}/calendar/", Version = EndpointVersion.V1, Preferred = true)]
+        [Route("/v2/characters/{character_id}/calendar/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/calendar/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<CharacterCalendarItem>>> GetCharacterSummaryCalendarEventsAsync(int characterId, int? fromEventId = null);
 
@@ -31,8 +31,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         [ProtectedEndpoint(RequiredScope = "esi-calendar.read_calendar_events.v1")]
         [Route("/latest/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Latest)]
         [Route("/legacy/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Legacy)]
-        [Route("/v3/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V3)]
-        [Route("/v4/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V4)]
+        [Route("/v3/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V3, Preferred = true)]
+        [Route("/v4/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<CharacterCalendarEvent>> GetCharacterCalendarEventAsync(int characterId, int eventId);
 
@@ -45,8 +45,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         [ProtectedEndpoint(RequiredScope = "esi-calendar.respond_calendar_events.v1")]
         [Route("/latest/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Latest)]
         [Route("/legacy/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Legacy)]
-        [Route("/v3/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V3)]
-        [Route("/v4/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V4)]
+        [Route("/v3/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V3, Preferred = true)]
+        [Route("/v4/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Dev)]
         Task<EsiResponse> RespondCaracterEventAsync(int characterId, int eventId, EventResponse eventResponse);
 
@@ -58,8 +58,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         [ProtectedEndpoint(RequiredScope = "esi-calendar.read_calendar_events.v1")]
         [Route("/latest/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Latest)]
         [Route("/legacy/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.V1)]
-        [Route("/v2/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.V2)]
+        [Route("/v1/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.V1, Preferred = true)]
+        [Route("/v2/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<Attendee>>> GetCalendarEventAttendeesAsync(int characterId, int eventId);
     }

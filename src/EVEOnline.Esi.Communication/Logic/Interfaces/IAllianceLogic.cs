@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using EVEOnline.Esi.Communication.Attributes;
 using EVEOnline.Esi.Communication.DataContract;
 
-namespace EVEOnline.Esi.Communication.Logic.Interfaces
+namespace EVEOnline.Esi.Communication
 {
     public interface IAllianceLogic
     {
@@ -13,8 +13,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         /// </summary>
         [PublicEndpoint]
         [Route("/latest/alliances/", Version = EndpointVersion.Latest)]
-        [Route("/v1/alliances/", Version = EndpointVersion.V1)]
-        [Route("/v2/alliances/", Version = EndpointVersion.V2)]
+        [Route("/v1/alliances/", Version = EndpointVersion.V1, Preferred = true)]
+        [Route("/v2/alliances/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/legacy/alliances/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<int>>> GetAlliancesAsync();
@@ -25,8 +25,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         /// <param name="allianceId">An EVE alliance ID</param>
         [PublicEndpoint]
         [Route("/latest/alliances/{alliance_id}/", Version = EndpointVersion.Latest)]
-        [Route("/v3/alliances/{alliance_id}/", Version = EndpointVersion.V3)]
-        [Route("/v4/alliances/{alliance_id}/", Version = EndpointVersion.V4)]
+        [Route("/v3/alliances/{alliance_id}/", Version = EndpointVersion.V3, Preferred = true)]
+        [Route("/v4/alliances/{alliance_id}/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/legacy/alliances/{alliance_id}/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/{alliance_id}/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<Alliance>> GetAlliancePublicInformationAsync(int allianceId);
@@ -37,8 +37,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         /// <param name="allianceId">An EVE alliance ID</param>
         [PublicEndpoint]
         [Route("/latest/alliances/{alliance_id}/corporations/", Version = EndpointVersion.Latest)]
-        [Route("/v1/alliances/{alliance_id}/corporations/", Version = EndpointVersion.V1)]
-        [Route("/v2/alliances/{alliance_id}/corporations/", Version = EndpointVersion.V2)]
+        [Route("/v1/alliances/{alliance_id}/corporations/", Version = EndpointVersion.V1, Preferred = true)]
+        [Route("/v2/alliances/{alliance_id}/corporations/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/legacy/alliances/{alliance_id}/corporations/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/{alliance_id}/corporations/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<int>>> GetAllianceCorporationsAsync(int allianceId);
@@ -49,8 +49,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         /// <param name="allianceId">An EVE alliance ID</param>
         /// <returns></returns>
         [PublicEndpoint]
-        [Route("/latest/alliances/{alliance_id}/icons/", Version = EndpointVersion.Latest, Default = true)]
-        [Route("/v1/alliances/{alliance_id}/icons/", Version = EndpointVersion.V1)]
+        [Route("/latest/alliances/{alliance_id}/icons/", Version = EndpointVersion.Latest)]
+        [Route("/v1/alliances/{alliance_id}/icons/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/legacy/alliances/{alliance_id}/icons/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/{alliance_id}/icons/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<AllianceIcon>> GetAllianceIconAsync(int allianceId);
