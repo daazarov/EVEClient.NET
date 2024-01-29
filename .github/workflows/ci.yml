@@ -6,10 +6,6 @@ name: CI
 on:
   push:
     branches: [ "release/**" ]
-    paths: 
-    - '**.cs'
-    - '**.csproj'
-    - '**.sln'
   pull_request:
     branches: [ "main" ]
     paths: 
