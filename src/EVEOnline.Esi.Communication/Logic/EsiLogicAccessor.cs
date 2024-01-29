@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
-using EVEOnline.Esi.Communication.Logic.Interfaces;
 
 namespace EVEOnline.Esi.Communication.Logic
 {

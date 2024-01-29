@@ -20,7 +20,7 @@ namespace EVEOnline.Esi.Communication.Utilities
 
         public static string BuildQueryString(string url, NameValueCollection collection)
         {
-            if (collection.Count <= 0)
+            if (collection.Count == 0)
             {
                 return url;
             }

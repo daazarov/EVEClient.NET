@@ -24,7 +24,7 @@ namespace EVEOnline.Esi.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(Esi.EsiClientMethodNames.DeleteNoContentRequest, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.DeleteNoContentRequest, memberName),
                 getter: key => _piplineBuilder.UseDeletePipline().Build()
             );
 
@@ -46,7 +46,7 @@ namespace EVEOnline.Esi.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(Esi.EsiClientMethodNames.GetPaginationRequestWithouRequestParameters, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.GetPaginationRequestWithouRequestParameters, memberName),
                 getter: key => _piplineBuilder.UseGetPiplineWithoutRequestParameters().Build()
             );
 
@@ -68,7 +68,7 @@ namespace EVEOnline.Esi.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(Esi.EsiClientMethodNames.GetPaginationRequest, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.GetPaginationRequest, memberName),
                 getter: key => _piplineBuilder.UseGetPipline().Build()
             );
 
@@ -90,7 +90,7 @@ namespace EVEOnline.Esi.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(Esi.EsiClientMethodNames.GetRequestWithouRequestParameters, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.GetRequestWithouRequestParameters, memberName),
                 getter: key => _piplineBuilder.UseGetPiplineWithoutRequestParameters().Build()
             );
 
@@ -112,7 +112,7 @@ namespace EVEOnline.Esi.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(Esi.EsiClientMethodNames.GetRequest, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.GetRequest, memberName),
                 getter: key => _piplineBuilder.UseGetPipline().Build()
             );
 
@@ -134,7 +134,7 @@ namespace EVEOnline.Esi.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(Esi.EsiClientMethodNames.PostNoContentRequest, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.PostNoContentRequest, memberName),
                 getter: key => _piplineBuilder.UsePostPipline().Build()
             );
 
@@ -156,7 +156,7 @@ namespace EVEOnline.Esi.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(Esi.EsiClientMethodNames.PostRequest, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.PostRequest, memberName),
                 getter: key => _piplineBuilder.UsePostPipline().Build()
             );
 
@@ -178,7 +178,7 @@ namespace EVEOnline.Esi.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(Esi.EsiClientMethodNames.PutNoContentRequest, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.PutNoContentRequest, memberName),
                 getter: key => _piplineBuilder.UsePostPipline().Build()
             );
 

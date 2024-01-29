@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using EVEOnline.Esi.Communication.Attributes;
 using EVEOnline.Esi.Communication.DataContract;
 
-namespace EVEOnline.Esi.Communication.Logic.Interfaces
+namespace EVEOnline.Esi.Communication
 {
     public interface IClonesLogic
     {
@@ -14,8 +14,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         /// <param name="characterId">An EVE character ID</param>
         [ProtectedEndpoint(RequiredScope = "esi-clones.read_clones.v1")]
         [Route("/latest/characters/{character_id}/clones/", Version = EndpointVersion.Latest)]
-        [Route("/v3/characters/{character_id}/clones/", Version = EndpointVersion.V3)]
-        [Route("/v4/characters/{character_id}/clones/", Version = EndpointVersion.V4)]
+        [Route("/v3/characters/{character_id}/clones/", Version = EndpointVersion.V3, Preferred = true)]
+        [Route("/v4/characters/{character_id}/clones/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/characters/{character_id}/clones/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<Clones>> GetCharacterClonesAsync(int characterId);
 
@@ -26,8 +26,8 @@ namespace EVEOnline.Esi.Communication.Logic.Interfaces
         [ProtectedEndpoint(RequiredScope = "esi-clones.read_implants.v1")]
         [Route("/latest/characters/{character_id}/implants/", Version = EndpointVersion.Latest)]
         [Route("/legacy/characters/{character_id}/implants/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/characters/{character_id}/implants/", Version = EndpointVersion.V1)]
-        [Route("/v2/characters/{character_id}/implants/", Version = EndpointVersion.V2)]
+        [Route("/v1/characters/{character_id}/implants/", Version = EndpointVersion.V1, Preferred = true)]
+        [Route("/v2/characters/{character_id}/implants/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/implants/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<int>>> GetCharacterCloneImplantsAsync(int characterId);
     }

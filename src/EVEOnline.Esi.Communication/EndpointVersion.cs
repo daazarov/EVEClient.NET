@@ -1,15 +1,18 @@
-﻿namespace EVEOnline.Esi.Communication
+﻿using System;
+
+namespace EVEOnline.Esi.Communication
 {
+    [Flags]
     public enum EndpointVersion
     {
-        Latest,
-        Dev,
-        Legacy,
-        V1,
-        V2,
-        V3,
-        V4,
-        V5,
-        V6
+        Latest = 1,
+        Dev = 2,
+        Legacy = 4,
+        V1 = 8,
+        V2 = 16,
+        V3 = 32,
+        V4 = 64,
+        V5 = 128,
+        V6 = 256
     }
 }
