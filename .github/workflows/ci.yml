@@ -5,7 +5,7 @@ name: CI
 
 on:
   push:
-    branches: [ "release/**" ]
+    branches: [ "main", "release/**" ]
   pull_request:
     branches: [ "main" ]
     paths: 
@@ -18,7 +18,8 @@ jobs:
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: '.\src\EVEOnline.Esi.Communication.sln'
-
+      UNIT_TESTS_PROJECT: '.\src\EVEOnline.Esi.Communication.UnitTests\EVEOnline.Esi.Communication.UnitTests.csproj'
+      
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -42,4 +43,4 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
       
     - name: Test
-      run: dotnet test $SOLUTION
+      run: dotnet test $UNIT_TESTS_PROJECT
