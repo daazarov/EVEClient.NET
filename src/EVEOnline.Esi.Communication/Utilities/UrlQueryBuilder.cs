@@ -28,7 +28,7 @@ namespace EVEOnline.Esi.Communication.Utilities
             return string.Concat(url, BuildQueryString(collection));
         }
 
-        public static string BuildQueryString(NameValueCollection collection)
+        private static string BuildQueryString(NameValueCollection collection)
         {
             var array = (
                 from key in collection.AllKeys

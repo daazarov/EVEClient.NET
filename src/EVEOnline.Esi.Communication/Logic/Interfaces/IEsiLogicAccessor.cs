@@ -9,5 +9,6 @@
         ICalendarLogic CalendarLogic { get; }
         IClonesLogic ClonesLogic { get; }
         IContactsLogic ContactsLogic { get; }
+        IContractsLogic ContractsLogic { get; }
     }
 }
