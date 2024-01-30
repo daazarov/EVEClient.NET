@@ -114,6 +114,19 @@
                 public const string CorporationContactList = "get_corporations_corporation_id_contacts";
                 public const string CorporationContactLabelList = "get_corporations_corporation_id_contacts_labels";
             }
+
+            public static class Contracts
+            {
+                public const string CharacterContracts = "get_characters_character_id_contracts";
+                public const string CharacterContractBids = "get_characters_character_id_contracts_contract_id_bids";
+                public const string CharacterContractItems = "get_characters_character_id_contracts_contract_id_items";
+                public const string PublicContracts = "get_contracts_public_region_id";
+                public const string PublicContractBids = "get_contracts_public_bids_contract_id";
+                public const string PublicContractItems = "get_contracts_public_items_contract_id";
+                public const string CorporationContracts = "get_corporations_corporation_id_contracts";
+                public const string CorporationContractBids = "get_corporations_corporation_id_contracts_contract_id_bids";
+                public const string CorporationContractItems = "get_corporations_corporation_id_contracts_contract_id_items";
+            }
         }
     }
 }

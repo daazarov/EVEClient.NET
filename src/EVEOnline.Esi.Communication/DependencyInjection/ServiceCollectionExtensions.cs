@@ -94,6 +94,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<ICalendarLogic, CalendarLogic>();
             services.TryAddTransient<IClonesLogic, ClonesLogic>();
             services.TryAddTransient<IContactsLogic, ContactsLogic>();
+            services.TryAddTransient<IContractsLogic, ContractsLogic>();
 
             return services;
         }

@@ -263,4 +263,84 @@
             }
         }
     }
+
+    internal class ContractRequests
+    {
+        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
+        {
+            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
+            }
+        }
+
+        internal class CharacterContractRouteRequest : RouteModelBase<CharacterContractRouteModel>
+        {
+            public CharacterContractRouteRequest(CharacterContractRouteModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterContractRouteRequest Create(int characterId, int contractId)
+            {
+                return new CharacterContractRouteRequest(new CharacterContractRouteModel(characterId, contractId));
+            }
+        }
+
+        internal class PageBasedRegionIdRouteRequest : RouteModelBase<PageBasedRegionIdModel>
+        {
+            public PageBasedRegionIdRouteRequest(PageBasedRegionIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedRegionIdRouteRequest Create(int regionId, int page)
+            {
+                return new PageBasedRegionIdRouteRequest(new PageBasedRegionIdModel(regionId, page));
+            }
+        }
+
+        internal class PageBasedContractIdRouteRequest : RouteModelBase<PageBasedContractIdModel>
+        {
+            public PageBasedContractIdRouteRequest(PageBasedContractIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedContractIdRouteRequest Create(int contractId, int page)
+            {
+                return new PageBasedContractIdRouteRequest(new PageBasedContractIdModel(contractId, page));
+            }
+        }
+
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
+            }
+        }
+
+        internal class CorporationContractRouteRequest : RouteModelBase<CorporationContractRouteModel>
+        {
+            public CorporationContractRouteRequest(CorporationContractRouteModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationContractRouteRequest Create(int corporationId, int contractId)
+            {
+                return new CorporationContractRouteRequest(new CorporationContractRouteModel(corporationId, contractId));
+            }
+        }
+
+        internal class PageBasedCorporationContractRouteRequest : RouteModelBase<CorporationContractPageBasedRouteModel>
+        {
+            public PageBasedCorporationContractRouteRequest(CorporationContractPageBasedRouteModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationContractRouteRequest Create(int corporationId, int contractId, int page)
+            {
+                return new PageBasedCorporationContractRouteRequest(new CorporationContractPageBasedRouteModel(corporationId, contractId, page));
+            }
+        }
+    }
 }

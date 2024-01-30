@@ -58,7 +58,18 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { nameof(IContactsLogic.UpdateCharacterContacts), ESI.Endpoints.Contacts.UpdateCharacterContacts },
                 { nameof(IContactsLogic.GetCharacterContactLabelsAsync), ESI.Endpoints.Contacts.CharacterContactLabelList },
                 { nameof(IContactsLogic.GetCorporationContactsAsync), ESI.Endpoints.Contacts.CorporationContactList },
-                { nameof(IContactsLogic.GetCorporationContactLabelsAsync), ESI.Endpoints.Contacts.CorporationContactLabelList }
+                { nameof(IContactsLogic.GetCorporationContactLabelsAsync), ESI.Endpoints.Contacts.CorporationContactLabelList },
+
+                { nameof(IContractsLogic.GetCharacterContractsAsync), ESI.Endpoints.Contracts.CharacterContracts },
+                { nameof(IContractsLogic.GetCharacterContractBidsAsync), ESI.Endpoints.Contracts.CharacterContractBids },
+                { nameof(IContractsLogic.GetCharacterContractItemsAsync), ESI.Endpoints.Contracts.CharacterContractItems },
+                { nameof(IContractsLogic.GetPublicContractsAsync), ESI.Endpoints.Contracts.PublicContracts },
+                { nameof(IContractsLogic.GetPublicContractBidsAsync), ESI.Endpoints.Contracts.PublicContractBids },
+                { nameof(IContractsLogic.GetPublicContractItemsAsync), ESI.Endpoints.Contracts.PublicContractItems },
+                { nameof(IContractsLogic.GetCorporationContractsAsync), ESI.Endpoints.Contracts.CorporationContracts },
+                { nameof(IContractsLogic.GetCorporationContractsBidsAsync), ESI.Endpoints.Contracts.CorporationContractBids },
+                { nameof(IContractsLogic.GetCorporationContractItemsAsync), ESI.Endpoints.Contracts.CorporationContractItems }
+
             };
         }
 
