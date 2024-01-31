@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -94,7 +93,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// Type of the contract
         /// </summary>
         [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public ContractType Type { get; set; }
 
         /// <summary>

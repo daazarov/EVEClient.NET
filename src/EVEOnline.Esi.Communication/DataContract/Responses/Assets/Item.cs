@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -39,7 +38,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// location_type string
         /// </summary>
         [JsonProperty("location_type")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public LocationType LocationType { get; set; }
 
         /// <summary>

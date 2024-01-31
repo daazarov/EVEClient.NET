@@ -2,18 +2,18 @@
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
-    public class Attendee
+    public class MemberTitle
     {
         /// <summary>
         /// character_id integer
         /// </summary>
         [JsonProperty("character_id")]
-        public int CharacterId { get; set; }
+        public int CharacterId {  get; set; }
 
         /// <summary>
-        /// event_response string
+        /// A list of title_id
         /// </summary>
-        [JsonProperty("event_response")]
-        public CalendarEventResponse EventResponse { get; set; }
+        [JsonProperty("titles")]
+        public int[] Titles { get; set; }
     }
 }

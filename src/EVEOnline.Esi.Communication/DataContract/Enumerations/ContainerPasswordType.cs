@@ -5,9 +5,9 @@ using System.Runtime.Serialization;
 namespace EVEOnline.Esi.Communication.DataContract
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum CloneLocationType
+    public enum ContainerPasswordType
     {
-        [EnumMember(Value = "station")] Station,
-        [EnumMember(Value = "structure")] Structure
+        [EnumMember(Value = "config")] Config,
+        [EnumMember(Value = "general")] General
     }
 }

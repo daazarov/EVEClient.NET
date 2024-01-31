@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -28,7 +27,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// sender_type string
         /// </summary>
         [JsonProperty("sender_type")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public SenderType SenderType { get; set; }
 
         /// <summary>
@@ -47,7 +45,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// type string
         /// </summary>
         [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public NotificationType Type { get; set; }
     }
 }

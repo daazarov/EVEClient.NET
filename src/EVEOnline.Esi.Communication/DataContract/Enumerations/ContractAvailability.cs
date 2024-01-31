@@ -1,7 +1,9 @@
-﻿using System.Runtime.Serialization;
+﻿using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ContractAvailability
     {
         [EnumMember(Value = "public")] Public,

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace EVEOnline.Esi.Communication.DataContract
@@ -40,7 +39,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// The character’s gender
         /// </summary>
         [JsonProperty("gender")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public Gender Gender { get; set; }
 
         /// <summary>

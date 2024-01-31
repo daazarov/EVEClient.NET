@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -46,7 +45,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// owner_type string
         /// </summary>
         [JsonProperty("owner_type")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public OwnerType OwnerType { get; set; }
 
         /// <summary>

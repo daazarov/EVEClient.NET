@@ -2,7 +2,7 @@
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
-    public class CharacterBlueprint
+    public class Blueprint
     {
         /// <summary>
         /// Unique ID for this item.
@@ -14,11 +14,10 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// Type of the location_id
         /// </summary>
         [JsonProperty("location_flag")]
-        public LocationFlag LocationFlag { get; set; }
+        public CorporationLocationType LocationFlag { get; set; }
 
         /// <summary>
         /// References a station, a ship or an item_id if this blueprint is located within a container.
-        /// If the return value is an item_id, then the Character AssetList API must be queried to find the container using the given item_id to determine the correct location of the Blueprint.
         /// </summary>
         [JsonProperty("location_id")]
         public long LocationId { get; set; }

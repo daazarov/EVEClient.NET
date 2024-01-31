@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -53,7 +52,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// status string
         /// </summary>
         [JsonProperty("status")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public Status Status { get; set; }
 
         /// <summary>
