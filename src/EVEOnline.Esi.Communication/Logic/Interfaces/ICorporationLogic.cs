@@ -1,10 +1,8 @@
-﻿using EVEOnline.Esi.Communication.Attributes;
-using EVEOnline.Esi.Communication.DataContract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
+using EVEOnline.Esi.Communication.Attributes;
+using EVEOnline.Esi.Communication.DataContract;
 
 namespace EVEOnline.Esi.Communication
 {
@@ -153,5 +151,93 @@ namespace EVEOnline.Esi.Communication
         [Route("/v2/corporations/{corporation_id}/roles/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/roles/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<MemberRole>>> GetCorporationMemberRolesAsync(int corporationId);
+
+        /// <summary>
+        /// Return how roles have changed for a coporation’s members, up to a month
+        /// </summary>
+        /// <param name="corporationId">An EVE corporation ID</param>
+        /// <param name="page">Which page of results to return. Default value: 1</param>
+        [ProtectedEndpoint(RequiredScope = "esi-corporations.read_corporation_membership.v1")]
+        [Route("/latest/corporations/{corporation_id}/roles/history/", Version = EndpointVersion.Latest)]
+        [Route("/v2/corporations/{corporation_id}/roles/history/", Version = EndpointVersion.V2, Preferred = true)]
+        [Route("/dev/corporations/{corporation_id}/roles/history/", Version = EndpointVersion.Dev)]
+        Task<EsiResponsePagination<List<MemberRoleHistory>>> GetCorporationMemberRolesHistoryAsync(int corporationId, int page = 1);
+
+        /// <summary>
+        /// Return the current shareholders of a corporation.
+        /// </summary>
+        /// <param name="corporationId">An EVE corporation ID</param>
+        /// <param name="page">Which page of results to return. Default value: 1</param>
+        [ProtectedEndpoint(RequiredScope = "esi-wallet.read_corporation_wallets.v1")]
+        [Route("/latest/corporations/{corporation_id}/shareholders/", Version = EndpointVersion.Latest)]
+        [Route("/legacy/corporations/{corporation_id}/shareholders/", Version = EndpointVersion.Legacy)]
+        [Route("/v1/corporations/{corporation_id}/shareholders/", Version = EndpointVersion.V1, Preferred = true)]
+        [Route("/dev/corporations/{corporation_id}/shareholders/", Version = EndpointVersion.Dev)]
+        Task<EsiResponsePagination<List<Shareholder>>> GetCorporationShareholdersAsync(int corporationId, int page = 1);
+
+        /// <summary>
+        /// Return corporation standings from agents, NPC corporations, and factions
+        /// </summary>
+        /// <param name="corporationId">An EVE corporation ID</param>
+        /// <param name="page">Which page of results to return. Default value: 1</param>
+        [ProtectedEndpoint(RequiredScope = "esi-corporations.read_standings.v1")]
+        [Route("/latest/corporations/{corporation_id}/standings/", Version = EndpointVersion.Latest)]
+        [Route("/v2/corporations/{corporation_id}/standings/", Version = EndpointVersion.V2, Preferred = true)]
+        [Route("/dev/corporations/{corporation_id}/standings/", Version = EndpointVersion.Dev)]
+        Task<EsiResponsePagination<List<CorporationStanding>>> GetCorporationStandingsAsync(int corporationId, int page = 1);
+
+        /// <summary>
+        /// Returns list of corporation starbases (POSes)
+        /// </summary>
+        /// <param name="corporationId">An EVE corporation ID</param>
+        /// <param name="page">Which page of results to return. Default value: 1</param>
+        [ProtectedEndpoint(RequiredScope = "esi-corporations.read_starbases.v1")]
+        [Route("/latest/corporations/{corporation_id}/starbases/", Version = EndpointVersion.Latest)]
+        [Route("/v2/corporations/{corporation_id}/starbases/", Version = EndpointVersion.V2, Preferred = true)]
+        [Route("/dev/corporations/{corporation_id}/starbases/", Version = EndpointVersion.Dev)]
+        Task<EsiResponsePagination<List<Starbase>>> GetCorporationStarbasesAsync(int corporationId, int page = 1);
+
+        /// <summary>
+        /// Returns various settings and fuels of a starbase (POS)
+        /// </summary>
+        /// <param name="corporationId">An EVE corporation ID</param>
+        /// <param name="starbaseId">An EVE starbase (POS) ID</param>
+        /// <param name="systemId">The solar system this starbase (POS) is located in</param>
+        [ProtectedEndpoint(RequiredScope = "esi-corporations.read_starbases.v1")]
+        [Route("/latest/corporations/{corporation_id}/starbases/{starbase_id}/", Version = EndpointVersion.Latest)]
+        [Route("/v2/corporations/{corporation_id}/starbases/{starbase_id}/", Version = EndpointVersion.V2, Preferred = true)]
+        [Route("/dev/corporations/{corporation_id}/starbases/{starbase_id}/", Version = EndpointVersion.Dev)]
+        Task<EsiResponse<StarbaseInfo>> GetStarbaseInfoAsync(int corporationId, long starbaseId, int systemId);
+
+        /// <summary>
+        /// Get a list of corporation structures.
+        /// This route’s version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th
+        /// </summary>
+        /// <param name="corporationId">An EVE corporation ID</param>
+        /// <param name="page">Which page of results to return. Default value: 1</param>
+        [ProtectedEndpoint(RequiredScope = "esi-corporations.read_structures.v1")]
+        [Route("/latest/corporations/{corporation_id}/structures/", Version = EndpointVersion.Latest)]
+        [Route("/v4/corporations/{corporation_id}/structures/", Version = EndpointVersion.V4, Preferred = true)]
+        [Route("/dev/corporations/{corporation_id}/structures/", Version = EndpointVersion.Dev)]
+        Task<EsiResponsePagination<List<Structure>>> GetCorporationStructuresAsync(int corporationId, int page = 1);
+
+        /// <summary>
+        /// Returns a corporation’s titles
+        /// </summary>
+        /// <param name="corporationId">An EVE corporation ID</param>
+        [ProtectedEndpoint(RequiredScope = "esi-corporations.read_titles.v1")]
+        [Route("/latest/corporations/{corporation_id}/titles/", Version = EndpointVersion.Latest)]
+        [Route("/v2/corporations/{corporation_id}/titles/", Version = EndpointVersion.V2, Preferred = true)]
+        [Route("/dev/corporations/{corporation_id}/titles/", Version = EndpointVersion.Dev)]
+        Task<EsiResponse<List<Title>>> GetCorporationTitlesAsync(int corporationId);
+
+        /// <summary>
+        /// Get a list of npc corporations
+        /// </summary>
+        [PublicEndpoint]
+        [Route("/latest/corporations/npccorps/", Version = EndpointVersion.Latest)]
+        [Route("/v2/corporations/npccorps/", Version = EndpointVersion.V2, Preferred = true)]
+        [Route("/dev/corporations/npccorps/", Version = EndpointVersion.Dev)]
+        Task<EsiResponse<List<int>>> GetNpcCorporationsAsync();
     }
 }

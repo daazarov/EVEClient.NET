@@ -2,7 +2,7 @@
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
-    public class CharacterStanding
+    public class CorporationStanding
     {
         /// <summary>
         /// from_id integer
