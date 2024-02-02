@@ -10,5 +10,6 @@
         IClonesLogic ClonesLogic { get; }
         IContactsLogic ContactsLogic { get; }
         IContractsLogic ContractsLogic { get; }
+        ICorporationLogic CorporationLogic { get; }
     }
 }

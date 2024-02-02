@@ -68,7 +68,30 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { nameof(IContractsLogic.GetPublicContractItemsAsync), ESI.Endpoints.Contracts.PublicContractItems },
                 { nameof(IContractsLogic.GetCorporationContractsAsync), ESI.Endpoints.Contracts.CorporationContracts },
                 { nameof(IContractsLogic.GetCorporationContractsBidsAsync), ESI.Endpoints.Contracts.CorporationContractBids },
-                { nameof(IContractsLogic.GetCorporationContractItemsAsync), ESI.Endpoints.Contracts.CorporationContractItems }
+                { nameof(IContractsLogic.GetCorporationContractItemsAsync), ESI.Endpoints.Contracts.CorporationContractItems },
+
+                { nameof(ICorporationLogic.GetCorporationInfoAsync), ESI.Endpoints.Corporation.Information },
+                { nameof(ICorporationLogic.GetCorporationAllianceHistoryAsync), ESI.Endpoints.Corporation.AllianceHistory },
+                { nameof(ICorporationLogic.GetCorporationBlueprintsAsync), ESI.Endpoints.Corporation.Blueprints },
+                { nameof(ICorporationLogic.GetCorporationContainerLogsAsync), ESI.Endpoints.Corporation.ContainersLogs },
+                { nameof(ICorporationLogic.GetCorporationDivisionsAsync), ESI.Endpoints.Corporation.Divisions },
+                { nameof(ICorporationLogic.GetCorporationFacilitiesAsync), ESI.Endpoints.Corporation.Facilities },
+                { nameof(ICorporationLogic.GetCorporationIconAsync), ESI.Endpoints.Corporation.Icons },
+                { nameof(ICorporationLogic.GetCorporationMedalsAsync), ESI.Endpoints.Corporation.Medals },
+                { nameof(ICorporationLogic.GetCorporationIssuedMedalsAsync), ESI.Endpoints.Corporation.IssuedMedals },
+                { nameof(ICorporationLogic.GetCorporationMembersAsync), ESI.Endpoints.Corporation.Members },
+                { nameof(ICorporationLogic.GetCorporationMemberLimitAsync), ESI.Endpoints.Corporation.MembersLimit },
+                { nameof(ICorporationLogic.GetCorporationMemberTitlesAsync), ESI.Endpoints.Corporation.MembersTitles },
+                { nameof(ICorporationLogic.GetCorporationMemberTrackingAsync), ESI.Endpoints.Corporation.MemberTracking },
+                { nameof(ICorporationLogic.GetCorporationMemberRolesAsync), ESI.Endpoints.Corporation.Roles },
+                { nameof(ICorporationLogic.GetCorporationMemberRolesHistoryAsync), ESI.Endpoints.Corporation.RolesHistory },
+                { nameof(ICorporationLogic.GetCorporationShareholdersAsync), ESI.Endpoints.Corporation.Shareholders },
+                { nameof(ICorporationLogic.GetCorporationStandingsAsync), ESI.Endpoints.Corporation.Standings },
+                { nameof(ICorporationLogic.GetCorporationStarbasesAsync), ESI.Endpoints.Corporation.Starbases },
+                { nameof(ICorporationLogic.GetStarbaseInfoAsync), ESI.Endpoints.Corporation.StarbaseInfo },
+                { nameof(ICorporationLogic.GetCorporationStructuresAsync), ESI.Endpoints.Corporation.Structures },
+                { nameof(ICorporationLogic.GetCorporationTitlesAsync), ESI.Endpoints.Corporation.Titles },
+                { nameof(ICorporationLogic.GetNpcCorporationsAsync), ESI.Endpoints.Corporation.NpcCorporations }
 
             };
         }
