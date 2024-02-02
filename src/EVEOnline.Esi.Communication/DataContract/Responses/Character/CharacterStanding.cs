@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -14,8 +13,7 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// <summary>
         /// from_type string
         /// </summary>
-        [JsonProperty("standing")]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty("from_type")]
         public StandingType StandingType { get; set; }
 
         /// <summary>

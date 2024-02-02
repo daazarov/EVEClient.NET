@@ -15,6 +15,7 @@ namespace EVEOnline.Esi.Communication.Logic
         private IClonesLogic _clonesLogic;
         private IContactsLogic _contactsLogic;
         private IContractsLogic _contractsLogic;
+        private ICorporationLogic _corporationLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -24,7 +25,7 @@ namespace EVEOnline.Esi.Communication.Logic
         public IClonesLogic ClonesLogic => GetOrSet<IClonesLogic>(ref _clonesLogic);
         public IContactsLogic ContactsLogic => GetOrSet<IContactsLogic>(ref _contactsLogic);
         public IContractsLogic ContractsLogic => GetOrSet<IContractsLogic>(ref _contractsLogic);
-
+        public ICorporationLogic CorporationLogic => GetOrSet<ICorporationLogic>(ref _corporationLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

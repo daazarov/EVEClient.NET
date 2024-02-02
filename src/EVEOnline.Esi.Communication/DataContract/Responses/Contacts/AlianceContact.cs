@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -16,7 +15,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// contact_type string
         /// </summary>
         [JsonProperty("contact_type")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public ContactType ContactType { get; set; }
 
         /// <summary>

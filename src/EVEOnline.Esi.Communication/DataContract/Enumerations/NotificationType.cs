@@ -1,5 +1,9 @@
-﻿namespace EVEOnline.Esi.Communication.DataContract
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace EVEOnline.Esi.Communication.DataContract
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum NotificationType
     {
         AcceptedAlly,

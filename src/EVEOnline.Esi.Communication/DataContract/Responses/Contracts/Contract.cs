@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -22,7 +21,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// To whom the contract is available
         /// </summary>
         [JsonProperty("availability")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public ContractAvailability Availability {  get; set; }
 
         /// <summary>
@@ -119,7 +117,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// Status of the the contract
         /// </summary>
         [JsonProperty("status")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public ContactStatus Status { get; set; }
 
         /// <summary>
@@ -132,7 +129,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// Type of the contract
         /// </summary>
         [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public ContractType Type { get; set; }
 
         /// <summary>

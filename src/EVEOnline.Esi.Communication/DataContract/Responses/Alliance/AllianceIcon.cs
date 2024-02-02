@@ -7,13 +7,13 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// <summary>
         /// px128x128 string
         /// </summary>
-        [JsonProperty("creator_corporation_id")]
+        [JsonProperty("px128x128")]
         public string px128x128 { get; set; }
 
         /// <summary>
         /// px64x64 string
         /// </summary>
-        [JsonProperty("creator_corporation_id")]
+        [JsonProperty("px64x64")]
         public string px64x64 { get; set; }
     }
 }

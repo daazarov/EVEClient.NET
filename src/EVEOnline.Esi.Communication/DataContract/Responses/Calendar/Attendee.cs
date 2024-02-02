@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -15,7 +14,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// event_response string
         /// </summary>
         [JsonProperty("event_response")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public CalendarEventResponse EventResponse { get; set; }
     }
 }

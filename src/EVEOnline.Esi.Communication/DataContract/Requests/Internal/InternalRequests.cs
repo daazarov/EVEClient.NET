@@ -343,4 +343,40 @@
             }
         }
     }
+
+    internal class CorporationRequests
+    {
+        internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
+        {
+            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationIdRouteRequest Create(int corporationId)
+            {
+                return new CorporationIdRouteRequest(new CorporationIdModel(corporationId));
+            }
+        }
+
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
+            }
+        }
+
+        internal class StarbaseInfoRequest : RouteModelBase<StarbaseInfoUriModel>
+        {
+            public StarbaseInfoRequest(StarbaseInfoUriModel uriModel) : base(uriModel)
+            { }
+
+            public static StarbaseInfoRequest Create(int corporationId, long starbaseId, int systemId)
+            {
+                return new StarbaseInfoRequest(new StarbaseInfoUriModel(corporationId, starbaseId, systemId));
+            }
+        }
+    }
 }

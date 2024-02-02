@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace EVEOnline.Esi.Communication.DataContract
 {
@@ -15,7 +14,6 @@ namespace EVEOnline.Esi.Communication.DataContract
         /// Type of the location_id
         /// </summary>
         [JsonProperty("location_flag")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public LocationFlag LocationFlag { get; set; }
 
         /// <summary>

@@ -127,6 +127,32 @@
                 public const string CorporationContractBids = "get_corporations_corporation_id_contracts_contract_id_bids";
                 public const string CorporationContractItems = "get_corporations_corporation_id_contracts_contract_id_items";
             }
+
+            public static class Corporation 
+            {
+                public const string Information = "get_corporations_corporation_id";
+                public const string AllianceHistory = "get_corporations_corporation_id_alliancehistory";
+                public const string Blueprints = "get_corporations_corporation_id_blueprints";
+                public const string ContainersLogs = "get_corporations_corporation_id_containers_logs";
+                public const string Divisions = "get_corporations_corporation_id_divisions";
+                public const string Facilities = "get_corporations_corporation_id_facilities";
+                public const string Icons = "get_corporations_corporation_id_icons";
+                public const string Medals = "get_corporations_corporation_id_medals";
+                public const string IssuedMedals = "get_corporations_corporation_id_medals_issued";
+                public const string Members = "get_corporations_corporation_id_members";
+                public const string MembersLimit = "get_corporations_corporation_id_members_limit";
+                public const string MembersTitles = "get_corporations_corporation_id_members_titles";
+                public const string MemberTracking = "get_corporations_corporation_id_membertracking";
+                public const string Roles = "get_corporations_corporation_id_roles";
+                public const string RolesHistory = "get_corporations_corporation_id_roles_history";
+                public const string Shareholders = "get_corporations_corporation_id_shareholders";
+                public const string Standings = "get_corporations_corporation_id_standings";
+                public const string Starbases = "get_corporations_corporation_id_starbases";
+                public const string StarbaseInfo = "get_corporations_corporation_id_starbases_starbase";
+                public const string Structures = "get_corporations_corporation_id_structures";
+                public const string Titles = "get_corporations_corporation_id_titles";
+                public const string NpcCorporations = "get_corporations_npccorps";
+            }
         }
     }
 }
