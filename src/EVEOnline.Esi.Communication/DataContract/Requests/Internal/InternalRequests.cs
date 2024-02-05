@@ -379,4 +379,40 @@
             }
         }
     }
+
+    internal class DogmaRequests
+    {
+        internal class AttributeIdRouteRequest : RouteModelBase<AttributeIdModel>
+        {
+            public AttributeIdRouteRequest(AttributeIdModel uriModel) : base(uriModel)
+            { }
+
+            public static AttributeIdRouteRequest Create(int attributeId)
+            {
+                return new AttributeIdRouteRequest(new AttributeIdModel(attributeId));
+            }
+        }
+
+        internal class EffectIdRouteRequest : RouteModelBase<EffectIdModel>
+        {
+            public EffectIdRouteRequest(EffectIdModel uriModel) : base(uriModel)
+            { }
+
+            public static EffectIdRouteRequest Create(int effectId)
+            {
+                return new EffectIdRouteRequest(new EffectIdModel(effectId));
+            }
+        }
+
+        internal class DynamicItemInfoRequest : RouteModelBase<DynamicItemInfoUriModel>
+        {
+            public DynamicItemInfoRequest(DynamicItemInfoUriModel uriModel) : base(uriModel)
+            { }
+
+            public static DynamicItemInfoRequest Create(long itemId, int typeId)
+            {
+                return new DynamicItemInfoRequest(new DynamicItemInfoUriModel(itemId, typeId));
+            }
+        }
+    }
 }

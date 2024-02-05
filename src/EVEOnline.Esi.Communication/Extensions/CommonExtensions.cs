@@ -1,11 +1,8 @@
-﻿using EVEOnline.Esi.Communication.Utilities.Hashing;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace EVEOnline.Esi.Communication.Extensions
@@ -32,16 +29,6 @@ namespace EVEOnline.Esi.Communication.Extensions
             return @this;
         }
 
-        public static string ArgumentStringNotNullOrEmpty(this string @this, string parameterName)
-        {
-            if (string.IsNullOrEmpty(@this) || string.IsNullOrWhiteSpace(@this))
-            {
-                throw new ArgumentNullException(parameterName);
-            }
-
-            return @this;
-        }
-
         public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T> @this)
         {
             if (@this == null)
@@ -52,25 +39,26 @@ namespace EVEOnline.Esi.Communication.Extensions
             return @this;
         }
 
-        public static NameValueCollection ToNameValueCollection<TKey, TValue>(this IDictionary<TKey, TValue> @this)
+        public static NameValueCollection AsNameValueCollection<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> @this)
         {
-            var nameValueCollection = new NameValueCollection();
+            var nv = new NameValueCollection();
 
             if (@this != null)
             {
                 foreach (var keyValuePair in @this)
                 {
                     string value = null;
+
                     if (keyValuePair.Value != null)
                     {
                         value = keyValuePair.Value.ToString();
                     }
 
-                    nameValueCollection.Add(keyValuePair.Key.ToString(), value);
+                    nv.Add(keyValuePair.Key.ToString(), value);
                 }
             }
 
-            return nameValueCollection;
+            return nv;
         }
 
         public static IDictionary<TKey, TValue> Merge<TKey, TValue>(this IDictionary<TKey, TValue> @this, Func<IDictionary<TKey, TValue>> getter)
@@ -105,16 +93,6 @@ namespace EVEOnline.Esi.Communication.Extensions
             }
 
             return @this;
-        }
-
-        public static string MD5(this string @this)
-        {
-            return HashingFactory.Instance.CreateHashingInstance(HashingAliases.MD5).GenerateHash(@this);
-        }
-
-        public static string SHA256(this string @this)
-        {
-            return HashingFactory.Instance.CreateHashingInstance(HashingAliases.SHA256).GenerateHash(@this);
         }
 
         public static string GetEnumMemberAttributeValue(this Enum @this)

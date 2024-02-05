@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
-using EVEOnline.Esi.Communication.Extensions;
+using EVEOnline.Esi.Communication.DependencyInjection;
 using EVEOnline.Esi.Communication.Utilities;
 using EVEOnline.Esi.Communication.Utilities.Stores;
 

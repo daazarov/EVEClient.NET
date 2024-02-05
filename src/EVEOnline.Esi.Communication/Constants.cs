@@ -46,20 +46,20 @@
         {
             public static class Characters
             {
-                public const string PublicInformation = "get_characters_character_id";
-                public const string Standings = "get_characters_character_id_standings";
-                public const string AgentsResearch = "get_characters_character_id_agents_research";
-                public const string Blueprints = "get_characters_character_id_blueprints";
-                public const string CorporationHistory = "get_characters_character_id_corporationhistory";
-                public const string CSPA = "post_characters_character_id_cspa";
-                public const string Fatigue = "get_characters_character_id_fatigue";
-                public const string Medals = "get_characters_character_id_medals";
-                public const string Notifications = "get_characters_character_id_notifications";
-                public const string ContactNotifications = "get_characters_character_id_notifications_contacts";
-                public const string Portrait = "get_characters_character_id_portrait";
-                public const string Roles = "get_characters_character_id_roles";
-                public const string Titles = "get_characters_character_id_titles";
-                public const string Affilation = "post_characters_affiliation";
+                public const string PublicInformation =     "get_characters_character_id";
+                public const string Standings =             "get_characters_character_id_standings";
+                public const string AgentsResearch =        "get_characters_character_id_agents_research";
+                public const string Blueprints =            "get_characters_character_id_blueprints";
+                public const string CorporationHistory =    "get_characters_character_id_corporationhistory";
+                public const string CSPA =                  "post_characters_character_id_cspa";
+                public const string Fatigue =               "get_characters_character_id_fatigue";
+                public const string Medals =                "get_characters_character_id_medals";
+                public const string Notifications =         "get_characters_character_id_notifications";
+                public const string ContactNotifications =  "get_characters_character_id_notifications_contacts";
+                public const string Portrait =              "get_characters_character_id_portrait";
+                public const string Roles =                 "get_characters_character_id_roles";
+                public const string Titles =                "get_characters_character_id_titles";
+                public const string Affilation =            "post_characters_affiliation";
             }
 
             public static class Alliances
@@ -152,6 +152,15 @@
                 public const string Structures = "get_corporations_corporation_id_structures";
                 public const string Titles = "get_corporations_corporation_id_titles";
                 public const string NpcCorporations = "get_corporations_npccorps";
+            }
+
+            public static class Dogma
+            {
+                public const string Attributes = "get_dogma_attributes";
+                public const string AttributeInfo = "get_dogma_attributes_attribute_id";
+                public const string DynamicItemInfo = "get_dogma_dynamic_items_type_id_item_id";
+                public const string Effects = "get_dogma_effects";
+                public const string EffectInfo = "get_dogma_effects_effect_id";
             }
         }
     }

@@ -91,8 +91,13 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { nameof(ICorporationLogic.GetStarbaseInfoAsync), ESI.Endpoints.Corporation.StarbaseInfo },
                 { nameof(ICorporationLogic.GetCorporationStructuresAsync), ESI.Endpoints.Corporation.Structures },
                 { nameof(ICorporationLogic.GetCorporationTitlesAsync), ESI.Endpoints.Corporation.Titles },
-                { nameof(ICorporationLogic.GetNpcCorporationsAsync), ESI.Endpoints.Corporation.NpcCorporations }
+                { nameof(ICorporationLogic.GetNpcCorporationsAsync), ESI.Endpoints.Corporation.NpcCorporations },
 
+                { nameof(IDogmaLogic.GetAttributesAsync), ESI.Endpoints.Dogma.Attributes },
+                { nameof(IDogmaLogic.GetAttributeInfoAsync), ESI.Endpoints.Dogma.AttributeInfo },
+                { nameof(IDogmaLogic.GetDynamicItemInfoAsync), ESI.Endpoints.Dogma.DynamicItemInfo },
+                { nameof(IDogmaLogic.GetDogmaEffectsAsync), ESI.Endpoints.Dogma.Effects },
+                { nameof(IDogmaLogic.GetDogmaEffectInfoAsync), ESI.Endpoints.Dogma.EffectInfo }
             };
         }
 

@@ -59,9 +59,9 @@ namespace EVEOnline.Esi.Communication.Handlers
 
         private string BuildUrlQuery(EsiContext context, string template)
         {
-            var url = UrlQueryBuilder.BuildRouteString(template, context.RequestContext.RouteParametersMap.ToNameValueCollection());
+            var url = UrlQueryBuilder.BuildRouteString(template, context.RequestContext.RouteParametersMap.AsNameValueCollection());
 
-            return UrlQueryBuilder.BuildQueryString(url, context.RequestContext.QueryParametersMap.ToNameValueCollection());
+            return UrlQueryBuilder.BuildQueryString(url, context.RequestContext.QueryParametersMap.AsNameValueCollection());
         }
     }
 }

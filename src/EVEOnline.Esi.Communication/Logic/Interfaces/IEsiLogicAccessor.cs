@@ -11,5 +11,6 @@
         IContactsLogic ContactsLogic { get; }
         IContractsLogic ContractsLogic { get; }
         ICorporationLogic CorporationLogic { get; }
+        IDogmaLogic DogmaLogic { get; }
     }
 }

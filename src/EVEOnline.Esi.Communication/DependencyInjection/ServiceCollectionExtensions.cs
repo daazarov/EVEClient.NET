@@ -96,6 +96,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IContactsLogic, ContactsLogic>();
             services.TryAddTransient<IContractsLogic, ContractsLogic>();
             services.TryAddTransient<ICorporationLogic, CorporationLogic>();
+            services.TryAddTransient<IDogmaLogic, DogmaLogic>();
 
             return services;
         }
