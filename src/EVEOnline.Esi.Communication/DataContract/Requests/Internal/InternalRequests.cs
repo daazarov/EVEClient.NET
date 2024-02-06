@@ -440,4 +440,40 @@
             }
         }
     }
+
+    internal class FittingsRequests
+    {
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+
+        internal class DeleteFittingRequest : RouteModelBase<DeleteFittingUriModel>
+        {
+            public DeleteFittingRequest(DeleteFittingUriModel uriModel) : base(uriModel)
+            { }
+
+            public static DeleteFittingRequest Create(int characterId, int fittingId)
+            {
+                return new DeleteFittingRequest(new DeleteFittingUriModel(characterId, fittingId));
+            }
+        }
+
+        internal class NewFittingRequest : RequestBase<CharacterIdModel, NewFittingBodyModel>
+        {
+            public NewFittingRequest(CharacterIdModel uriModel, NewFittingBodyModel bodyModel) : base(uriModel, bodyModel)
+            { }
+
+            public static NewFittingRequest Create(int characterId, NewFitting fitting)
+            {
+                return new NewFittingRequest(new CharacterIdModel(characterId), NewFittingBodyModel.FromExternalModel(fitting));
+            }
+        }
+    }
 }

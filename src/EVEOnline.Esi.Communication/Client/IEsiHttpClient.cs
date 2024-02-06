@@ -18,7 +18,7 @@ namespace EVEOnline.Esi.Communication
             where TRequest : IRequestModel;
         Task<EsiResponse> PutNoContentRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "")
             where TRequest : IRequestModel;
-        Task<EsiResponse> DeleteNoContentRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "")
+        Task<EsiResponse> DeleteRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "")
             where TRequest : IRequestModel;
     }
 }

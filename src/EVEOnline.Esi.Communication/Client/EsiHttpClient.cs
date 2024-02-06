@@ -20,11 +20,11 @@ namespace EVEOnline.Esi.Communication
             _contextFactory = contextFactory;
         }
 
-        public virtual async Task<EsiResponse> DeleteNoContentRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
+        public virtual async Task<EsiResponse> DeleteRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
             (
-                key: GetKey(ESI.EsiClientMethodNames.DeleteNoContentRequest, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.DeleteRequest, memberName),
                 getter: key => _piplineBuilder.UseDeletePipline().Build()
             );
 

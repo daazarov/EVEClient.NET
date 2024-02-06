@@ -13,5 +13,6 @@
         ICorporationLogic CorporationLogic { get; }
         IDogmaLogic DogmaLogic { get; }
         IFactionWarfareLogic FactionWarfareLogic { get; }
+        IFittingsLogic FittingsLogic { get; }
     }
 }

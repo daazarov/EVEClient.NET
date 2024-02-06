@@ -106,7 +106,11 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { nameof(IFactionWarfareLogic.GetCaractersLeaderboardAsync), ESI.Endpoints.FactionWarfare.CaractersLeaderboard},
                 { nameof(IFactionWarfareLogic.GetFactionsStatsAsync), ESI.Endpoints.FactionWarfare.FactionsStats},
                 { nameof(IFactionWarfareLogic.OwnershipSystemOverviewAsync), ESI.Endpoints.FactionWarfare.OwnershipSystemOverview},
-                { nameof(IFactionWarfareLogic.GetWarsAsync), ESI.Endpoints.FactionWarfare.Wars}
+                { nameof(IFactionWarfareLogic.GetWarsAsync), ESI.Endpoints.FactionWarfare.Wars},
+
+                { nameof(IFittingsLogic.GetCharacterFittingsAsync), ESI.Endpoints.Fittings.GetFittings },
+                { nameof(IFittingsLogic.NewCharacterFittingAsync), ESI.Endpoints.Fittings.NewFitting },
+                { nameof(IFittingsLogic.DeleteCharacterFittingAsync), ESI.Endpoints.Fittings.DeleteFitting }
             };
         }
 
