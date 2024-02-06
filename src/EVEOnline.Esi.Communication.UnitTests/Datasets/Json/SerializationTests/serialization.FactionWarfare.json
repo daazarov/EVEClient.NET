@@ -1,0 +1,193 @@
+{
+  "War": {
+    "against_id": 500002,
+    "faction_id": 500001
+  },
+
+  "FactionWarfareSystem": {
+    "contested": "uncontested",
+    "occupier_faction_id": 500001,
+    "owner_faction_id": 500001,
+    "solar_system_id": 30002096,
+    "victory_points": 60,
+    "victory_points_threshold": 3000
+  },
+
+  "FactionStats": {
+    "faction_id": 500001,
+    "kills": {
+      "last_week": 893,
+      "total": 684350,
+      "yesterday": 136
+    },
+    "pilots": 28863,
+    "systems_controlled": 20,
+    "victory_points": {
+      "last_week": 102640,
+      "total": 52658260,
+      "yesterday": 15980
+    }
+  },
+
+  "CharacterStats": {
+    "current_rank": 125,
+    "enlisted_on": "2017-10-17T00:00:00Z",
+    "faction_id": 500001,
+    "highest_rank": 95,
+    "kills": {
+      "last_week": 893,
+      "total": 684350,
+      "yesterday": 136
+    },
+    "victory_points": {
+      "last_week": 102640,
+      "total": 52658260,
+      "yesterday": 15980
+    }
+  },
+
+  "CorporationStats": {
+    "enlisted_on": "2017-10-17T00:00:00Z",
+    "faction_id": 500001,
+    "kills": {
+      "last_week": 893,
+      "total": 684350,
+      "yesterday": 136
+    },
+    "pilots": 28863,
+    "victory_points": {
+      "last_week": 102640,
+      "total": 52658260,
+      "yesterday": 15980
+    }
+  },
+
+  "FactionLeaderboards": {
+    "kills": {
+      "active_total": [
+        {
+          "amount": 832273,
+          "faction_id": 500004
+        }
+      ],
+      "last_week": [
+        {
+          "amount": 730,
+          "faction_id": 500001
+        }
+      ],
+      "yesterday": [
+        {
+          "amount": 100,
+          "faction_id": 500001
+        }
+      ]
+    },
+    "victory_points": {
+      "active_total": [
+        {
+          "amount": 53130500,
+          "faction_id": 500001
+        }
+      ],
+      "last_week": [
+        {
+          "amount": 97360,
+          "faction_id": 500001
+        }
+      ],
+      "yesterday": [
+        {
+          "amount": 5000,
+          "faction_id": 500002
+        }
+      ]
+    }
+  },
+
+  "CharacterLeaderboards": {
+    "kills": {
+      "active_total": [
+        {
+          "amount": 10000,
+          "character_id": 2112625428
+        }
+      ],
+      "last_week": [
+        {
+          "amount": 100,
+          "character_id": 2112625428
+        }
+      ],
+      "yesterday": [
+        {
+          "amount": 34,
+          "character_id": 2112625428
+        }
+      ]
+    },
+    "victory_points": {
+      "active_total": [
+        {
+          "amount": 1239158,
+          "character_id": 2112625428
+        }
+      ],
+      "last_week": [
+        {
+          "amount": 2660,
+          "character_id": 2112625428
+        }
+      ],
+      "yesterday": [
+        {
+          "amount": 620,
+          "character_id": 2112625428
+        }
+      ]
+    }
+  },
+
+  "CorporationLeaderboards": {
+    "kills": {
+      "active_total": [
+        {
+          "amount": 81692,
+          "corporation_id": 1000180
+        }
+      ],
+      "last_week": [
+        {
+          "amount": 290,
+          "corporation_id": 1000180
+        }
+      ],
+      "yesterday": [
+        {
+          "amount": 51,
+          "corporation_id": 1000180
+        }
+      ]
+    },
+    "victory_points": {
+      "active_total": [
+        {
+          "amount": 18640927,
+          "corporation_id": 1000180
+        }
+      ],
+      "last_week": [
+        {
+          "amount": 91980,
+          "corporation_id": 1000180
+        }
+      ],
+      "yesterday": [
+        {
+          "amount": 12600,
+          "corporation_id": 1000180
+        }
+      ]
+    }
+  }
+}

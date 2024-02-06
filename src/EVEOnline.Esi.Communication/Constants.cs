@@ -162,6 +162,18 @@
                 public const string Effects = "get_dogma_effects";
                 public const string EffectInfo = "get_dogma_effects_effect_id";
             }
+
+            public static class FactionWarfare
+            {
+                public const string CharacterStats = "get_characters_character_id_fw_stats";
+                public const string CorporationStats = "get_corporations_corporation_id_fw_stats";
+                public const string FactionsLeaderboard = "get_fw_leaderboards";
+                public const string CaractersLeaderboard = "get_fw_leaderboards_characters";
+                public const string CorporationsLeaderboard = "get_fw_leaderboards_corporations";
+                public const string FactionsStats = "get_fw_stats";
+                public const string OwnershipSystemOverview = "get_fw_systems";
+                public const string Wars = "get_fw_wars";
+            }
         }
     }
 }

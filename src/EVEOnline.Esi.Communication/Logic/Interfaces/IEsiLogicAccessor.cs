@@ -12,5 +12,6 @@
         IContractsLogic ContractsLogic { get; }
         ICorporationLogic CorporationLogic { get; }
         IDogmaLogic DogmaLogic { get; }
+        IFactionWarfareLogic FactionWarfareLogic { get; }
     }
 }
