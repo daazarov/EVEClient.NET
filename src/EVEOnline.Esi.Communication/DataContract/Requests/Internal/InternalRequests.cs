@@ -415,4 +415,29 @@
             }
         }
     }
+
+    internal class FactionWarfareRequests
+    {
+        internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
+        {
+            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationIdRouteRequest Create(int corporationId)
+            {
+                return new CorporationIdRouteRequest(new CorporationIdModel(corporationId));
+            }
+        }
+
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+    }
 }

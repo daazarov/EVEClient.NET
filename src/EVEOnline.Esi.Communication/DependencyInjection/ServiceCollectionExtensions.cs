@@ -97,6 +97,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IContractsLogic, ContractsLogic>();
             services.TryAddTransient<ICorporationLogic, CorporationLogic>();
             services.TryAddTransient<IDogmaLogic, DogmaLogic>();
+            services.TryAddTransient<IFactionWarfareLogic, FactionWarfareLogic>();
 
             return services;
         }

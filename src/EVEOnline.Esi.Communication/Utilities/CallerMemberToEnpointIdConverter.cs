@@ -97,7 +97,16 @@ namespace EVEOnline.Esi.Communication.Utilities
                 { nameof(IDogmaLogic.GetAttributeInfoAsync), ESI.Endpoints.Dogma.AttributeInfo },
                 { nameof(IDogmaLogic.GetDynamicItemInfoAsync), ESI.Endpoints.Dogma.DynamicItemInfo },
                 { nameof(IDogmaLogic.GetDogmaEffectsAsync), ESI.Endpoints.Dogma.Effects },
-                { nameof(IDogmaLogic.GetDogmaEffectInfoAsync), ESI.Endpoints.Dogma.EffectInfo }
+                { nameof(IDogmaLogic.GetDogmaEffectInfoAsync), ESI.Endpoints.Dogma.EffectInfo },
+
+                { nameof(IFactionWarfareLogic.GetCharacterStatsAsync), ESI.Endpoints.FactionWarfare.CharacterStats},
+                { nameof(IFactionWarfareLogic.GetCorporationStatsAsync), ESI.Endpoints.FactionWarfare.CorporationStats},
+                { nameof(IFactionWarfareLogic.GetFactionsLeaderboardAsync), ESI.Endpoints.FactionWarfare.FactionsLeaderboard},
+                { nameof(IFactionWarfareLogic.GetCorporationsLeaderboardAsync), ESI.Endpoints.FactionWarfare.CorporationsLeaderboard},
+                { nameof(IFactionWarfareLogic.GetCaractersLeaderboardAsync), ESI.Endpoints.FactionWarfare.CaractersLeaderboard},
+                { nameof(IFactionWarfareLogic.GetFactionsStatsAsync), ESI.Endpoints.FactionWarfare.FactionsStats},
+                { nameof(IFactionWarfareLogic.OwnershipSystemOverviewAsync), ESI.Endpoints.FactionWarfare.OwnershipSystemOverview},
+                { nameof(IFactionWarfareLogic.GetWarsAsync), ESI.Endpoints.FactionWarfare.Wars}
             };
         }
 
