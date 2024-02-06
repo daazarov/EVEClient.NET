@@ -1,30 +1,25 @@
 ﻿using EVEOnline.Esi.Communication.DataContract;
 using EVEOnline.Esi.Communication.UnitTests.Datasets.Providers;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EVEOnline.Esi.Communication.UnitTests.SerializationTests.FactionWarfare
+namespace EVEOnline.Esi.Communication.UnitTests.DeserializationTests.FactionWarfare
 {
     [TestFixture]
-    public class SerializationTests
+    public class DeserializationTests
     {
-        private const string FileName = "serialization.FactionWarfare.json";
+        private const string FileName = "deserialization.factionwarfare.json";
         private const string CustomSectionName = "";
 
-        [TestCaseSource(typeof(SerializationTestCaseSourceProvider<War>), nameof(SerializationTestCaseSourceProvider<War>.GetTestData), new object[] { FileName, CustomSectionName })]
-        public void Serialization_FactionWarfare_War(War model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<War>), nameof(DeserializationTestCaseSourceProvider<War>.GetTestData), new object[] { FileName, CustomSectionName })]
+        public void Deserialization_FactionWarfare_War(War model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.AgainstId, Is.EqualTo(500002));
             Assert.That(model.FactionId, Is.EqualTo(500001));
         }
 
-        [TestCaseSource(typeof(SerializationTestCaseSourceProvider<FactionWarfareSystem>), nameof(SerializationTestCaseSourceProvider<FactionWarfareSystem>.GetTestData), new object[] { FileName, CustomSectionName })]
-        public void Serialization_FactionWarfare_FactionWarfareSystem(FactionWarfareSystem model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<FactionWarfareSystem>), nameof(DeserializationTestCaseSourceProvider<FactionWarfareSystem>.GetTestData), new object[] { FileName, CustomSectionName })]
+        public void Deserialization_FactionWarfare_FactionWarfareSystem(FactionWarfareSystem model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.Contested, Is.EqualTo(Contested.Uncontested));
@@ -35,8 +30,8 @@ namespace EVEOnline.Esi.Communication.UnitTests.SerializationTests.FactionWarfar
             Assert.That(model.SolarSystemId, Is.EqualTo(30002096));
         }
 
-        [TestCaseSource(typeof(SerializationTestCaseSourceProvider<FactionStats>), nameof(SerializationTestCaseSourceProvider<FactionStats>.GetTestData), new object[] { FileName, CustomSectionName })]
-        public void Serialization_FactionWarfare_FactionStats(FactionStats model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<FactionStats>), nameof(DeserializationTestCaseSourceProvider<FactionStats>.GetTestData), new object[] { FileName, CustomSectionName })]
+        public void Deserialization_FactionWarfare_FactionStats(FactionStats model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.Kills, Is.Not.Null);
@@ -52,8 +47,8 @@ namespace EVEOnline.Esi.Communication.UnitTests.SerializationTests.FactionWarfar
             Assert.That(model.VictoryPoints.Yesterday, Is.EqualTo(15980));
         }
 
-        [TestCaseSource(typeof(SerializationTestCaseSourceProvider<CharacterStats>), nameof(SerializationTestCaseSourceProvider<CharacterStats>.GetTestData), new object[] { FileName, CustomSectionName })]
-        public void Serialization_FactionWarfare_CharacterStats(CharacterStats model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<CharacterStats>), nameof(DeserializationTestCaseSourceProvider<CharacterStats>.GetTestData), new object[] { FileName, CustomSectionName })]
+        public void Deserialization_FactionWarfare_CharacterStats(CharacterStats model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.Kills, Is.Not.Null);
@@ -71,8 +66,8 @@ namespace EVEOnline.Esi.Communication.UnitTests.SerializationTests.FactionWarfar
             Assert.That(model.VictoryPoints.Yesterday, Is.EqualTo(15980));
         }
 
-        [TestCaseSource(typeof(SerializationTestCaseSourceProvider<CorporationStats>), nameof(SerializationTestCaseSourceProvider<CorporationStats>.GetTestData), new object[] { FileName, CustomSectionName })]
-        public void Serialization_FactionWarfare_CorporationStats(CorporationStats model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<CorporationStats>), nameof(DeserializationTestCaseSourceProvider<CorporationStats>.GetTestData), new object[] { FileName, CustomSectionName })]
+        public void Deserialization_FactionWarfare_CorporationStats(CorporationStats model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.Kills, Is.Not.Null);
@@ -89,8 +84,8 @@ namespace EVEOnline.Esi.Communication.UnitTests.SerializationTests.FactionWarfar
             Assert.That(model.VictoryPoints.Yesterday, Is.EqualTo(15980));
         }
 
-        [TestCaseSource(typeof(SerializationTestCaseSourceProvider<Leaderboards<FactionTotal>>), nameof(SerializationTestCaseSourceProvider<Leaderboards<FactionTotal>>.GetTestData), new object[] { FileName, "FactionLeaderboards" })]
-        public void Serialization_FactionWarfare_FactionLeaderboards(Leaderboards<FactionTotal> model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<Leaderboards<FactionTotal>>), nameof(DeserializationTestCaseSourceProvider<Leaderboards<FactionTotal>>.GetTestData), new object[] { FileName, "FactionLeaderboards" })]
+        public void Deserialization_FactionWarfare_FactionLeaderboards(Leaderboards<FactionTotal> model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.Kills, Is.Not.Null);
@@ -121,8 +116,8 @@ namespace EVEOnline.Esi.Communication.UnitTests.SerializationTests.FactionWarfar
             Assert.That(model.VictoryPoints.Yesterday.First().Amount, Is.EqualTo(5000));
         }
 
-        [TestCaseSource(typeof(SerializationTestCaseSourceProvider<Leaderboards<CharacterTotal>>), nameof(SerializationTestCaseSourceProvider<Leaderboards<CharacterTotal>>.GetTestData), new object[] { FileName, "CharacterLeaderboards" })]
-        public void Serialization_FactionWarfare_CharacterLeaderboards(Leaderboards<CharacterTotal> model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<Leaderboards<CharacterTotal>>), nameof(DeserializationTestCaseSourceProvider<Leaderboards<CharacterTotal>>.GetTestData), new object[] { FileName, "CharacterLeaderboards" })]
+        public void Deserialization_FactionWarfare_CharacterLeaderboards(Leaderboards<CharacterTotal> model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.Kills, Is.Not.Null);
@@ -153,8 +148,8 @@ namespace EVEOnline.Esi.Communication.UnitTests.SerializationTests.FactionWarfar
             Assert.That(model.VictoryPoints.Yesterday.First().Amount, Is.EqualTo(620));
         }
 
-        [TestCaseSource(typeof(SerializationTestCaseSourceProvider<Leaderboards<CorporationTotal>>), nameof(SerializationTestCaseSourceProvider<Leaderboards<CorporationTotal>>.GetTestData), new object[] { FileName, "CorporationLeaderboards" })]
-        public void Serialization_FactionWarfare_CorporationLeaderboards(Leaderboards<CorporationTotal> model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<Leaderboards<CorporationTotal>>), nameof(DeserializationTestCaseSourceProvider<Leaderboards<CorporationTotal>>.GetTestData), new object[] { FileName, "CorporationLeaderboards" })]
+        public void Deserialization_FactionWarfare_CorporationLeaderboards(Leaderboards<CorporationTotal> model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.Kills, Is.Not.Null);

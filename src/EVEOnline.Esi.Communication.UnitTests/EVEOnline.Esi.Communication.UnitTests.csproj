@@ -10,11 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Datasets\Json\DeserializationTests\deserialization.fitting.json" />
     <None Remove="Datasets\Json\serialization.FactionWarfare.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Datasets\Json\SerializationTests\serialization.FactionWarfare.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.factionwarfare.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.fitting.json" />
   </ItemGroup>
 
   <ItemGroup>

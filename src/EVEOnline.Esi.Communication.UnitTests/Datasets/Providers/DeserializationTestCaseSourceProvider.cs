@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 
 namespace EVEOnline.Esi.Communication.UnitTests.Datasets.Providers
 {
-    public class SerializationTestCaseSourceProvider<T>
+    public class DeserializationTestCaseSourceProvider<T>
     {
-        private static string _dataFilesSubFolder => "Datasets/Json/SerializationTests";
+        private static string _dataFilesSubFolder => "Datasets/Json/DeserializationTests";
         private static string _fileName;
         private static string _customSectionName;
 
@@ -25,12 +25,12 @@ namespace EVEOnline.Esi.Communication.UnitTests.Datasets.Providers
             return item;
         }
 
-        public static IEnumerable GetTestData(string fileName, string customSectionName)
+        public static IEnumerable<T> GetTestData(string fileName, string customSectionName)
         {
             _fileName = fileName;
             _customSectionName = customSectionName;
 
-            yield return new object[] { Item() };
+            yield return Item();
         }
     }
 }
