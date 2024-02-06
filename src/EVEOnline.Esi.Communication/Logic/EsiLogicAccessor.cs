@@ -18,6 +18,7 @@ namespace EVEOnline.Esi.Communication.Logic
         private ICorporationLogic _corporationLogic;
         private IDogmaLogic _dogmaLogic;
         private IFactionWarfareLogic _factionWarfareLogic;
+        private IFittingsLogic _fittingsLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -30,6 +31,7 @@ namespace EVEOnline.Esi.Communication.Logic
         public ICorporationLogic CorporationLogic => GetOrSet<ICorporationLogic>(ref _corporationLogic);
         public IDogmaLogic DogmaLogic => GetOrSet<IDogmaLogic>(ref _dogmaLogic);
         public IFactionWarfareLogic FactionWarfareLogic => GetOrSet<IFactionWarfareLogic>(ref _factionWarfareLogic);
+        public IFittingsLogic FittingsLogic => GetOrSet<IFittingsLogic>(ref _fittingsLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

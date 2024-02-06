@@ -23,7 +23,7 @@ namespace EVEOnline.Esi.Communication.Logic
             _esiClient.PutNoContentRequestAsync<AddUpdateCharacterContactRequest>(AddUpdateCharacterContactRequest.Create(characterId, contactIds, standing, labelIds, watched));
 
         public Task<EsiResponse> DeleteCharacterContactsAsync(int characterId, int[] contactIds) =>
-            _esiClient.DeleteNoContentRequestAsync<DeleteCharacterContactsRequest>(DeleteCharacterContactsRequest.Create(characterId, contactIds));
+            _esiClient.DeleteRequestAsync<DeleteCharacterContactsRequest>(DeleteCharacterContactsRequest.Create(characterId, contactIds));
 
         public Task<EsiResponse<List<ContactLabel>>> GetAllianceContactLabelsAsync(int allianceId) =>
             _esiClient.GetRequestAsync<AllianceIdRouteRequest, List<ContactLabel>>(AllianceIdRouteRequest.Create(allianceId));

@@ -11,7 +11,7 @@
             public const string PostRequest = "PostRequest";
             public const string PostNoContentRequest = "PostNoContentRequest";
             public const string PutNoContentRequest = "PutNoContentRequest";
-            public const string DeleteNoContentRequest = "DeleteNoContentRequest";
+            public const string DeleteRequest = "DeleteRequest";
         }
 
         //internal static class AvailableRoutes
@@ -173,6 +173,13 @@
                 public const string FactionsStats = "get_fw_stats";
                 public const string OwnershipSystemOverview = "get_fw_systems";
                 public const string Wars = "get_fw_wars";
+            }
+
+            public static class Fittings
+            {
+                public const string GetFittings = "get_characters_character_id_fittings";
+                public const string DeleteFitting = "delete_characters_character_id_fitting_id_fittings";
+                public const string NewFitting = "post_characters_character_id_fittings";
             }
         }
     }
