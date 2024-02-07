@@ -28,7 +28,7 @@ namespace EVEOnline.Esi.Communication.Handlers
 
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            if (TryConfigureProtectionHeader(context))
+            if (await TryConfigureProtectionHeader(context))
             {
                 ConfigureDefaultHttpClientHeaders(context);
 
@@ -48,7 +48,7 @@ namespace EVEOnline.Esi.Communication.Handlers
             context.HttpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
         }
 
-        private bool TryConfigureProtectionHeader(EsiContext context)
+        private async Task<bool> TryConfigureProtectionHeader(EsiContext context)
         {
             var isPublic = IsPublicEndpoint(context);
 
@@ -57,7 +57,7 @@ namespace EVEOnline.Esi.Communication.Handlers
                 var protectedEnpointAttribute = ReflectionCacheAttributeAccessor.Instance.GetAttribute<ProtectedEndpointAttribute>(context.CallingContext.MethodInfo) ??
                     throw new InvalidOperationException($"Missing {nameof(ProtectedEndpointAttribute)} in the {context.CallingContext.MethodInfo.Name} method of {context.CallingContext.MethodInfo.DeclaringType.Name} type.");
 
-                var token = _accessTokenProvider.GetAccessToken();
+                var token = await _accessTokenProvider.GetAccessToken();
 
                 if (string.IsNullOrEmpty(token))
                 {

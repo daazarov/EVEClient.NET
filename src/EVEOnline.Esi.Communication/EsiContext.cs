@@ -42,6 +42,12 @@ namespace EVEOnline.Esi.Communication
             get => _httpResponseMessage;
         }
 
+        public EsiContext(string endpointId, HttpClient httpClient, CallingContext callingContext, IRequestModel requestModel)
+            : this(endpointId, httpClient, callingContext)
+        {
+            _requestModel = requestModel.ArgumentNotNull(nameof(httpClient));
+        }
+
         public EsiContext(string endpointId, HttpClient httpClient, CallingContext callingContext)
         {
             _httpClient = httpClient.ArgumentNotNull(nameof(httpClient));
@@ -49,12 +55,6 @@ namespace EVEOnline.Esi.Communication
             _endpointId = endpointId.ArgumentStringNotNullOrEmpty(nameof(endpointId));
 
             _request = new RequestContext();
-        }
-
-        public EsiContext(string endpointId, HttpClient httpClient, CallingContext callingContext, IRequestModel requestModel) 
-            : this(endpointId, httpClient, callingContext)
-        {
-            _requestModel = requestModel.ArgumentNotNull(nameof(httpClient));
         }
 
         public void SetHttpResponseMessage(HttpResponseMessage httpResponseMessage)

@@ -1,7 +1,11 @@
-﻿namespace EVEOnline.Esi.Communication
+﻿using System.Collections.Generic;
+
+namespace EVEOnline.Esi.Communication
 {
     public class ESI
     {
+        internal const string HttpClientName = "EsiHttpClient";
+        
         internal static class EsiClientMethodNames
         {
             public const string GetRequest = "GetRequest";
@@ -14,172 +18,162 @@
             public const string DeleteRequest = "DeleteRequest";
         }
 
-        //internal static class AvailableRoutes
-        //{
-        //    private static Dictionary<string, EndpointVersion> _dataset;
-
-        //    internal static Dictionary<string, EndpointVersion> Routes => _dataset;
-            
-        //    static AvailableRoutes()
-        //    {
-        //        _dataset = new Dictionary<string, EndpointVersion>
-        //        {
-        //            { ESI.Endpoints.Characters.PublicInformation, EndpointVersion.V5 | EndpointVersion.Latest | EndpointVersion.Legacy | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Standings, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.AgentsResearch, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Blueprints, EndpointVersion.Latest | EndpointVersion.V3 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.CorporationHistory, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.CSPA, EndpointVersion.Latest | EndpointVersion.V5 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Fatigue, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Medals, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Notifications, EndpointVersion.Latest | EndpointVersion.V5 | EndpointVersion.V6 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.ContactNotifications, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Portrait, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.V3 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Roles, EndpointVersion.Latest | EndpointVersion.V3 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Titles, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-        //            { ESI.Endpoints.Characters.Affilation, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev }
-        //        };
-        //    }
-        //}
+        internal static Dictionary<string, EndpointVersion> AvailableRoutes = new Dictionary<string, EndpointVersion>
+        {
+            { Endpoints.Characters.PublicInformation, EndpointVersion.V5 | EndpointVersion.Latest | EndpointVersion.Legacy | EndpointVersion.Dev },
+            { Endpoints.Characters.Standings, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
+            { Endpoints.Characters.AgentsResearch, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
+            { Endpoints.Characters.Blueprints, EndpointVersion.Latest | EndpointVersion.V3 | EndpointVersion.Dev },
+            { Endpoints.Characters.CorporationHistory, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
+            { Endpoints.Characters.CSPA, EndpointVersion.Latest | EndpointVersion.V5 | EndpointVersion.Dev },
+            { Endpoints.Characters.Fatigue, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
+            { Endpoints.Characters.Medals, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
+            { Endpoints.Characters.Notifications, EndpointVersion.Latest | EndpointVersion.V5 | EndpointVersion.V6 | EndpointVersion.Dev },
+            { Endpoints.Characters.ContactNotifications, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
+            { Endpoints.Characters.Portrait, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.V3 | EndpointVersion.Dev },
+            { Endpoints.Characters.Roles, EndpointVersion.Latest | EndpointVersion.V3 | EndpointVersion.Dev },
+            { Endpoints.Characters.Titles, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
+            { Endpoints.Characters.Affilation, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev }
+        };
 
         public static class Endpoints
         {
             public static class Characters
             {
-                public const string PublicInformation =     "get_characters_character_id";
-                public const string Standings =             "get_characters_character_id_standings";
-                public const string AgentsResearch =        "get_characters_character_id_agents_research";
-                public const string Blueprints =            "get_characters_character_id_blueprints";
-                public const string CorporationHistory =    "get_characters_character_id_corporationhistory";
-                public const string CSPA =                  "post_characters_character_id_cspa";
-                public const string Fatigue =               "get_characters_character_id_fatigue";
-                public const string Medals =                "get_characters_character_id_medals";
-                public const string Notifications =         "get_characters_character_id_notifications";
-                public const string ContactNotifications =  "get_characters_character_id_notifications_contacts";
-                public const string Portrait =              "get_characters_character_id_portrait";
-                public const string Roles =                 "get_characters_character_id_roles";
-                public const string Titles =                "get_characters_character_id_titles";
-                public const string Affilation =            "post_characters_affiliation";
+                public const string PublicInformation =               "get_characters_character_id";
+                public const string Standings =                       "get_characters_character_id_standings";
+                public const string AgentsResearch =                  "get_characters_character_id_agents_research";
+                public const string Blueprints =                      "get_characters_character_id_blueprints";
+                public const string CorporationHistory =              "get_characters_character_id_corporationhistory";
+                public const string CSPA =                            "post_characters_character_id_cspa";
+                public const string Fatigue =                         "get_characters_character_id_fatigue";
+                public const string Medals =                          "get_characters_character_id_medals";
+                public const string Notifications =                   "get_characters_character_id_notifications";
+                public const string ContactNotifications =            "get_characters_character_id_notifications_contacts";
+                public const string Portrait =                        "get_characters_character_id_portrait";
+                public const string Roles =                           "get_characters_character_id_roles";
+                public const string Titles =                          "get_characters_character_id_titles";
+                public const string Affilation =                      "post_characters_affiliation";
             }
 
             public static class Alliances
             {
-                public const string AllianceList = "get_alliance";
-                public const string PublicInformation = "get_alliances_alliance_id";
-                public const string CorporationsInAlliance = "get_alliances_alliance_id_corporations";
-                public const string AllianceIcon = "get_alliances_alliance_id_icons";
+                public const string AllianceList =                    "get_alliance";
+                public const string PublicInformation =               "get_alliances_alliance_id";
+                public const string CorporationsInAlliance =          "get_alliances_alliance_id_corporations";
+                public const string AllianceIcon =                    "get_alliances_alliance_id_icons";
             }
 
             public static class Assets 
             {
-                public const string CharacterAssetList = "get_characters_character_id_assets";
-                public const string LocationAssets = "post_characters_character_id_assets_locations";
-                public const string AssetItemNames = "post_characters_character_id_assets_names";
-                public const string CorporationAssetList = "get_corporations_corporation_id_assets";
-                public const string CorporationLocationAssets = "post_corporations_corporation_id_assets_locations";
-                public const string CorporationAssetItemNames = "post_corporations_corporation_id_assets_names";
+                public const string CharacterAssetList =              "get_characters_character_id_assets";
+                public const string LocationAssets =                  "post_characters_character_id_assets_locations";
+                public const string AssetItemNames =                  "post_characters_character_id_assets_names";
+                public const string CorporationAssetList =            "get_corporations_corporation_id_assets";
+                public const string CorporationLocationAssets =       "post_corporations_corporation_id_assets_locations";
+                public const string CorporationAssetItemNames =       "post_corporations_corporation_id_assets_names";
             }
 
             public static class Bookmarks 
             {
-                public const string CharacterBookmarkList = "get_characters_character_id_bookmarks";
-                public const string CharacterBookmarkFolderList = "get_characters_character_id_bookmarks_folders";
-                public const string CorporationBookmarkList = "get_corporations_corporation_id_bookmarks";
-                public const string CorporationBookmarkFolderList = "get_corporations_corporation_id_bookmarks_folders";
+                public const string CharacterBookmarkList =           "get_characters_character_id_bookmarks";
+                public const string CharacterBookmarkFolderList =     "get_characters_character_id_bookmarks_folders";
+                public const string CorporationBookmarkList =         "get_corporations_corporation_id_bookmarks";
+                public const string CorporationBookmarkFolderList =   "get_corporations_corporation_id_bookmarks_folders";
             }
 
             public static class Calendar
             {
-                public const string CalendarItems = "get_characters_character_id_calendar";
-                public const string CalendarEvent = "get_characters_character_id_calendar_event_id";
-                public const string RespondeEvent = "put_characters_character_id_calendar_event_id";
-                public const string EventAttendees = "get_characters_character_id_calendar_event_id_attendees";
+                public const string CalendarItems =                   "get_characters_character_id_calendar";
+                public const string CalendarEvent =                   "get_characters_character_id_calendar_event_id";
+                public const string RespondeEvent =                   "put_characters_character_id_calendar_event_id";
+                public const string EventAttendees =                  "get_characters_character_id_calendar_event_id_attendees";
             }
 
             public static class Clones
             {
-                public const string CloneList = "get_characters_character_id_clones";
-                public const string CloneImplants = "get_characters_character_id_implants";
+                public const string CloneList =                       "get_characters_character_id_clones";
+                public const string CloneImplants =                   "get_characters_character_id_implants";
             }
 
             public static class Contacts
             {
-                public const string AllianceContactList = "get_alliances_alliance_id_contacts";
-                public const string AllianceContactLabelList = "get_alliances_alliance_id_contacts_labels";
-                public const string DeleteCharacterContacts = "delete_characters_character_id_contacts";
-                public const string CharacterContactList = "get_characters_character_id_contacts";
-                public const string AddCharacterContacts = "post_characters_character_id_contacts";
-                public const string UpdateCharacterContacts = "put_characters_character_id_contacts";
-                public const string CharacterContactLabelList = "get_characters_character_id_contacts_labels";
-                public const string CorporationContactList = "get_corporations_corporation_id_contacts";
-                public const string CorporationContactLabelList = "get_corporations_corporation_id_contacts_labels";
+                public const string AllianceContactList =             "get_alliances_alliance_id_contacts";
+                public const string AllianceContactLabelList =        "get_alliances_alliance_id_contacts_labels";
+                public const string DeleteCharacterContacts =         "delete_characters_character_id_contacts";
+                public const string CharacterContactList =            "get_characters_character_id_contacts";
+                public const string AddCharacterContacts =            "post_characters_character_id_contacts";
+                public const string UpdateCharacterContacts =         "put_characters_character_id_contacts";
+                public const string CharacterContactLabelList =       "get_characters_character_id_contacts_labels";
+                public const string CorporationContactList =          "get_corporations_corporation_id_contacts";
+                public const string CorporationContactLabelList =     "get_corporations_corporation_id_contacts_labels";
             }
 
             public static class Contracts
             {
-                public const string CharacterContracts = "get_characters_character_id_contracts";
-                public const string CharacterContractBids = "get_characters_character_id_contracts_contract_id_bids";
-                public const string CharacterContractItems = "get_characters_character_id_contracts_contract_id_items";
-                public const string PublicContracts = "get_contracts_public_region_id";
-                public const string PublicContractBids = "get_contracts_public_bids_contract_id";
-                public const string PublicContractItems = "get_contracts_public_items_contract_id";
-                public const string CorporationContracts = "get_corporations_corporation_id_contracts";
-                public const string CorporationContractBids = "get_corporations_corporation_id_contracts_contract_id_bids";
-                public const string CorporationContractItems = "get_corporations_corporation_id_contracts_contract_id_items";
+                public const string CharacterContracts =              "get_characters_character_id_contracts";
+                public const string CharacterContractBids =           "get_characters_character_id_contracts_contract_id_bids";
+                public const string CharacterContractItems =          "get_characters_character_id_contracts_contract_id_items";
+                public const string PublicContracts =                 "get_contracts_public_region_id";
+                public const string PublicContractBids =              "get_contracts_public_bids_contract_id";
+                public const string PublicContractItems =             "get_contracts_public_items_contract_id";
+                public const string CorporationContracts =            "get_corporations_corporation_id_contracts";
+                public const string CorporationContractBids =         "get_corporations_corporation_id_contracts_contract_id_bids";
+                public const string CorporationContractItems =        "get_corporations_corporation_id_contracts_contract_id_items";
             }
 
             public static class Corporation 
             {
-                public const string Information = "get_corporations_corporation_id";
-                public const string AllianceHistory = "get_corporations_corporation_id_alliancehistory";
-                public const string Blueprints = "get_corporations_corporation_id_blueprints";
-                public const string ContainersLogs = "get_corporations_corporation_id_containers_logs";
-                public const string Divisions = "get_corporations_corporation_id_divisions";
-                public const string Facilities = "get_corporations_corporation_id_facilities";
-                public const string Icons = "get_corporations_corporation_id_icons";
-                public const string Medals = "get_corporations_corporation_id_medals";
-                public const string IssuedMedals = "get_corporations_corporation_id_medals_issued";
-                public const string Members = "get_corporations_corporation_id_members";
-                public const string MembersLimit = "get_corporations_corporation_id_members_limit";
-                public const string MembersTitles = "get_corporations_corporation_id_members_titles";
-                public const string MemberTracking = "get_corporations_corporation_id_membertracking";
-                public const string Roles = "get_corporations_corporation_id_roles";
-                public const string RolesHistory = "get_corporations_corporation_id_roles_history";
-                public const string Shareholders = "get_corporations_corporation_id_shareholders";
-                public const string Standings = "get_corporations_corporation_id_standings";
-                public const string Starbases = "get_corporations_corporation_id_starbases";
-                public const string StarbaseInfo = "get_corporations_corporation_id_starbases_starbase";
-                public const string Structures = "get_corporations_corporation_id_structures";
-                public const string Titles = "get_corporations_corporation_id_titles";
-                public const string NpcCorporations = "get_corporations_npccorps";
+                public const string Information =                     "get_corporations_corporation_id";
+                public const string AllianceHistory =                 "get_corporations_corporation_id_alliancehistory";
+                public const string Blueprints =                      "get_corporations_corporation_id_blueprints";
+                public const string ContainersLogs =                  "get_corporations_corporation_id_containers_logs";
+                public const string Divisions =                       "get_corporations_corporation_id_divisions";
+                public const string Facilities =                      "get_corporations_corporation_id_facilities";
+                public const string Icons =                           "get_corporations_corporation_id_icons";
+                public const string Medals =                          "get_corporations_corporation_id_medals";
+                public const string IssuedMedals =                    "get_corporations_corporation_id_medals_issued";
+                public const string Members =                         "get_corporations_corporation_id_members";
+                public const string MembersLimit =                    "get_corporations_corporation_id_members_limit";
+                public const string MembersTitles =                   "get_corporations_corporation_id_members_titles";
+                public const string MemberTracking =                  "get_corporations_corporation_id_membertracking";
+                public const string Roles =                           "get_corporations_corporation_id_roles";
+                public const string RolesHistory =                    "get_corporations_corporation_id_roles_history";
+                public const string Shareholders =                    "get_corporations_corporation_id_shareholders";
+                public const string Standings =                       "get_corporations_corporation_id_standings";
+                public const string Starbases =                       "get_corporations_corporation_id_starbases";
+                public const string StarbaseInfo =                    "get_corporations_corporation_id_starbases_starbase";
+                public const string Structures =                      "get_corporations_corporation_id_structures";
+                public const string Titles =                          "get_corporations_corporation_id_titles";
+                public const string NpcCorporations =                 "get_corporations_npccorps";
             }
 
             public static class Dogma
             {
-                public const string Attributes = "get_dogma_attributes";
-                public const string AttributeInfo = "get_dogma_attributes_attribute_id";
-                public const string DynamicItemInfo = "get_dogma_dynamic_items_type_id_item_id";
-                public const string Effects = "get_dogma_effects";
-                public const string EffectInfo = "get_dogma_effects_effect_id";
+                public const string Attributes =                      "get_dogma_attributes";
+                public const string AttributeInfo =                   "get_dogma_attributes_attribute_id";
+                public const string DynamicItemInfo =                 "get_dogma_dynamic_items_type_id_item_id";
+                public const string Effects =                         "get_dogma_effects";
+                public const string EffectInfo =                      "get_dogma_effects_effect_id";
             }
 
             public static class FactionWarfare
             {
-                public const string CharacterStats = "get_characters_character_id_fw_stats";
-                public const string CorporationStats = "get_corporations_corporation_id_fw_stats";
-                public const string FactionsLeaderboard = "get_fw_leaderboards";
-                public const string CaractersLeaderboard = "get_fw_leaderboards_characters";
-                public const string CorporationsLeaderboard = "get_fw_leaderboards_corporations";
-                public const string FactionsStats = "get_fw_stats";
-                public const string OwnershipSystemOverview = "get_fw_systems";
-                public const string Wars = "get_fw_wars";
+                public const string CharacterStats =                  "get_characters_character_id_fw_stats";
+                public const string CorporationStats =                "get_corporations_corporation_id_fw_stats";
+                public const string FactionsLeaderboard =             "get_fw_leaderboards";
+                public const string CaractersLeaderboard =            "get_fw_leaderboards_characters";
+                public const string CorporationsLeaderboard =         "get_fw_leaderboards_corporations";
+                public const string FactionsStats =                   "get_fw_stats";
+                public const string OwnershipSystemOverview =         "get_fw_systems";
+                public const string Wars =                            "get_fw_wars";
             }
 
             public static class Fittings
             {
-                public const string GetFittings = "get_characters_character_id_fittings";
-                public const string DeleteFitting = "delete_characters_character_id_fitting_id_fittings";
-                public const string NewFitting = "post_characters_character_id_fittings";
+                public const string GetFittings =                     "get_characters_character_id_fittings";
+                public const string DeleteFitting =                   "delete_characters_character_id_fitting_id_fittings";
+                public const string NewFitting =                      "post_characters_character_id_fittings";
             }
         }
     }

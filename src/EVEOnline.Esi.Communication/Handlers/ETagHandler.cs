@@ -6,7 +6,6 @@ using EVEOnline.Esi.Communication.Configuration;
 using EVEOnline.Esi.Communication.Extensions;
 using EVEOnline.Esi.Communication.Utilities;
 
-
 namespace EVEOnline.Esi.Communication.Handlers
 {
     internal class ETagHandler : IHandler

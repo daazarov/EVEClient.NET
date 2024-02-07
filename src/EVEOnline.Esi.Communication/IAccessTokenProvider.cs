@@ -1,7 +1,9 @@
-﻿namespace EVEOnline.Esi.Communication
+﻿using System.Threading.Tasks;
+
+namespace EVEOnline.Esi.Communication
 {
     public interface IAccessTokenProvider
     {
-        string GetAccessToken();
+        Task<string> GetAccessToken();
     }
 }

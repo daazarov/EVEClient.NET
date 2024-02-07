@@ -70,7 +70,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddLogics();
 
-            services.AddHttpClient("EsiHttpClient", httpClient => httpClient.BaseAddress = new Uri(configuration.BaseUrl))
+            services.AddHttpClient(ESI.HttpClientName, httpClient => httpClient.BaseAddress = new Uri(configuration.BaseUrl))
                     .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
 
             if (configuration.EnableETag)
