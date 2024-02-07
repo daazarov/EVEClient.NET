@@ -17,8 +17,8 @@ jobs:
   build-and-test:
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: '.\src\EVEOnline.Esi.Communication.sln'
-      UNIT_TESTS_PROJECT: '.\src\EVEOnline.Esi.Communication.UnitTests\EVEOnline.Esi.Communication.UnitTests.csproj'
+      SOLUTION: '.\src\EVEOnline.ESI.Communication.sln'
+      UNIT_TESTS_PROJECT: '.\src\EVEOnline.ESI.Communication.UnitTests\EVEOnline.ESI.Communication.UnitTests.csproj'
       
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
