@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EVEOnline.Esi.Communication.Attributes
+namespace EVEOnline.ESI.Communication.Attributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     internal class UrlParameterAttribute : Attribute

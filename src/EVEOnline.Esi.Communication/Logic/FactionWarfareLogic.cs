@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.DataContract;
+using EVEOnline.ESI.Communication.DataContract;
 
-using static EVEOnline.Esi.Communication.DataContract.Requests.Internal.FactionWarfareRequests;
+using static EVEOnline.ESI.Communication.Models.FactionWarfareRequests;
 
-namespace EVEOnline.Esi.Communication.Logic
+namespace EVEOnline.ESI.Communication.Logic
 {
     internal class FactionWarfareLogic : IFactionWarfareLogic
     {

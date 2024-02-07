@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     public class EsiResponsePagination<T> : EsiResponse<T>
     {

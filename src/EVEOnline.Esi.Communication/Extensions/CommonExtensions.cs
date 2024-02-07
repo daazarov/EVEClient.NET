@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-namespace EVEOnline.Esi.Communication.Extensions
+namespace EVEOnline.ESI.Communication.Extensions
 {
     internal static class CommonExtensions
     {

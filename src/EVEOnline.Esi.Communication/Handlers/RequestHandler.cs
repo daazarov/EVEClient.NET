@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using EVEOnline.Esi.Communication.Extensions;
+using EVEOnline.ESI.Communication.Extensions;
 
-namespace EVEOnline.Esi.Communication.Handlers
+namespace EVEOnline.ESI.Communication.Handlers
 {
     internal abstract class RequestBaseHandler : IHandler
     {

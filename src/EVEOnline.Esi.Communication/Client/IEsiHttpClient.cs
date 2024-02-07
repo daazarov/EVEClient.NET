@@ -1,8 +1,8 @@
-﻿using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
+﻿using EVEOnline.ESI.Communication.Models;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     internal interface IEsiHttpClient<T>
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace EVEOnline.Esi.Communication.DataContract
+namespace EVEOnline.ESI.Communication.DataContract
 {
     public class Structure
     {

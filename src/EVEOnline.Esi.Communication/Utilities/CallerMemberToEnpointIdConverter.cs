@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EVEOnline.Esi.Communication.Utilities
+namespace EVEOnline.ESI.Communication.Utilities
 {
     internal static class CallerMemberToEnpointIdConverter
     {

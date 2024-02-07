@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
 
-namespace EVEOnline.Esi.Communication.Utilities.Stores
+namespace EVEOnline.ESI.Communication.Utilities.Stores
 {
     internal class DefaultInMemoryETagThreadSaveStore : IETagStorage
     {

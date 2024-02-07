@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 
-using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
+using EVEOnline.ESI.Communication.Models;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     internal class EsiContextFactory : IEsiContextFactory
     {

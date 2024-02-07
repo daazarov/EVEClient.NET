@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.DataContract;
+using EVEOnline.ESI.Communication.DataContract;
 
-using static EVEOnline.Esi.Communication.DataContract.Requests.Internal.CorporationRequests;
+using static EVEOnline.ESI.Communication.Models.CorporationRequests;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     internal class CorporationLogic : ICorporationLogic
     {

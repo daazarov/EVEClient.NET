@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.DataContract;
+using EVEOnline.ESI.Communication.DataContract;
+using EVEOnline.ESI.Communication.Extensions;
 
-using static EVEOnline.Esi.Communication.DataContract.Requests.Internal.CalendarRequests;
+using static EVEOnline.ESI.Communication.Models.CalendarRequests;
 
-namespace EVEOnline.Esi.Communication.Logic
+namespace EVEOnline.ESI.Communication.Logic
 {
     internal class CalendarLogic : ICalendarLogic
     {
@@ -26,6 +27,6 @@ namespace EVEOnline.Esi.Communication.Logic
             _esiClient.GetRequestAsync<SummaryCalendarEventsRequest, List<CharacterCalendarItem>>(SummaryCalendarEventsRequest.Create(characterId, fromEventId));
 
         public Task<EsiResponse> RespondCaracterEventAsync(int characterId, int eventId, EventResponse eventResponse) =>
-            _esiClient.PutNoContentRequestAsync<CalendarRespondeRequest>(CalendarRespondeRequest.Create(characterId, eventId, eventResponse));
+            _esiClient.PutNoContentRequestAsync<CalendarRespondeRequest>(CalendarRespondeRequest.Create(characterId, eventId, eventResponse.GetEnumMemberAttributeValue()));
     }
 }

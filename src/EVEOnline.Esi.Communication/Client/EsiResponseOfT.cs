@@ -1,10 +1,10 @@
-﻿using EVEOnline.Esi.Communication.Extensions;
+﻿using EVEOnline.ESI.Communication.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Net.Http;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     public class EsiResponse<T> : EsiResponse
     {

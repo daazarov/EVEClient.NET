@@ -3,7 +3,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace EVEOnline.Esi.Communication.DependencyInjection
+namespace EVEOnline.ESI.Communication.DependencyInjection
 {
     public static partial class EsiClientConfigurationBuilderExtensions
     {

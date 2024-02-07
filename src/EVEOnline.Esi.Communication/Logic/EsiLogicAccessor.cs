@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EVEOnline.Esi.Communication.Logic
+namespace EVEOnline.ESI.Communication.Logic
 {
     internal class EsiLogicAccessor : IEsiLogicAccessor
     {

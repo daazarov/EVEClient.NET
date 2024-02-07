@@ -1,7 +1,7 @@
-﻿using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
+﻿using EVEOnline.ESI.Communication.Models;
 using System;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     internal interface IEsiContextFactory
     {

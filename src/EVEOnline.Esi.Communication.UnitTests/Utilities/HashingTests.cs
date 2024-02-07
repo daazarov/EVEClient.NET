@@ -1,7 +1,7 @@
-﻿using EVEOnline.Esi.Communication.Utilities.Hashing;
+﻿using EVEOnline.ESI.Communication.Utilities.Hashing;
 using NUnit.Framework;
 
-namespace EVEOnline.Esi.Communication.UnitTests.Utilities
+namespace EVEOnline.ESI.Communication.UnitTests.Utilities
 {
     public class HashingTests
     {

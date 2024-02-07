@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
 
-using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
-using EVEOnline.Esi.Communication.Extensions;
+using EVEOnline.ESI.Communication.Models;
+using EVEOnline.ESI.Communication.Extensions;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     internal class EsiContext
     {

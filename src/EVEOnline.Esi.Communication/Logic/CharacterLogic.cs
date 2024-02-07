@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.DataContract;
-using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
+using EVEOnline.ESI.Communication.DataContract;
+using EVEOnline.ESI.Communication.Models;
 
-using static EVEOnline.Esi.Communication.DataContract.Requests.Internal.CharactersRequests;
+using static EVEOnline.ESI.Communication.Models.CharactersRequests;
 
-namespace EVEOnline.Esi.Communication.Logic
+namespace EVEOnline.ESI.Communication.Logic
 {
     internal class CharacterLogic : ICharacterLogic
     {

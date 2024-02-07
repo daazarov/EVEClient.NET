@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using EVEOnline.Esi.Communication.Extensions;
+using EVEOnline.ESI.Communication.Extensions;
 
-namespace EVEOnline.Esi.Communication.Utilities
+namespace EVEOnline.ESI.Communication.Utilities
 {
     public abstract class AttributeAccessor
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EVEOnline.Esi.Communication.Utilities.Stores
+namespace EVEOnline.ESI.Communication.Utilities.Stores
 {
     internal static class AttributeThreadSaveStore<T> where T : Attribute
     {

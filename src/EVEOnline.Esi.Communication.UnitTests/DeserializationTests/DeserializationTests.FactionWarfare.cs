@@ -1,8 +1,8 @@
-﻿using EVEOnline.Esi.Communication.DataContract;
-using EVEOnline.Esi.Communication.UnitTests.Datasets.Providers;
+﻿using EVEOnline.ESI.Communication.DataContract;
+using EVEOnline.ESI.Communication.UnitTests.Datasets.Providers;
 using NUnit.Framework;
 
-namespace EVEOnline.Esi.Communication.UnitTests.DeserializationTests.FactionWarfare
+namespace EVEOnline.ESI.Communication.UnitTests.DeserializationTests.FactionWarfare
 {
     [TestFixture]
     public class DeserializationTests

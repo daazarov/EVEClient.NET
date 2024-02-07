@@ -2,7 +2,7 @@
 using System.Web;
 using System.Collections.Specialized;
 
-namespace EVEOnline.Esi.Communication.Utilities
+namespace EVEOnline.ESI.Communication.Utilities
 {
     internal class UrlQueryBuilder
     {

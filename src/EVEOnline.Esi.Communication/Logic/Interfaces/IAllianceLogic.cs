@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.Attributes;
-using EVEOnline.Esi.Communication.DataContract;
+using EVEOnline.ESI.Communication.Attributes;
+using EVEOnline.ESI.Communication.DataContract;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     public interface IAllianceLogic
     {

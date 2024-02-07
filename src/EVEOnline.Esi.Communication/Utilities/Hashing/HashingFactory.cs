@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EVEOnline.Esi.Communication.Utilities.Hashing
+namespace EVEOnline.ESI.Communication.Utilities.Hashing
 {
     internal class HashingFactory
     {

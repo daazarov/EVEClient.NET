@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System.Runtime.Serialization;
 
-namespace EVEOnline.Esi.Communication.DataContract
+namespace EVEOnline.ESI.Communication.DataContract
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ShareholderType

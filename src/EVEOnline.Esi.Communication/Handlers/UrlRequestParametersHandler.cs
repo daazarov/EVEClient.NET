@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.Attributes;
-using EVEOnline.Esi.Communication.Configuration;
-using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
-using EVEOnline.Esi.Communication.Extensions;
-using EVEOnline.Esi.Communication.Utilities;
+using EVEOnline.ESI.Communication.Attributes;
+using EVEOnline.ESI.Communication.Configuration;
+using EVEOnline.ESI.Communication.Models;
+using EVEOnline.ESI.Communication.Extensions;
+using EVEOnline.ESI.Communication.Utilities;
 using Microsoft.Extensions.Options;
 
-namespace EVEOnline.Esi.Communication.Handlers
+namespace EVEOnline.ESI.Communication.Handlers
 {
     internal class UrlRequestParametersHandler : IHandler
     {

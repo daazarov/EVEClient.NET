@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EVEOnline.Esi.Communication.DataContract
+namespace EVEOnline.ESI.Communication.DataContract
 {
     public class NewFitting
     {

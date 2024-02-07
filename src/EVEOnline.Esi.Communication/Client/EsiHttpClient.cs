@@ -2,12 +2,12 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
-using EVEOnline.Esi.Communication.DependencyInjection;
-using EVEOnline.Esi.Communication.Utilities;
-using EVEOnline.Esi.Communication.Utilities.Stores;
+using EVEOnline.ESI.Communication.Models;
+using EVEOnline.ESI.Communication.DependencyInjection;
+using EVEOnline.ESI.Communication.Utilities;
+using EVEOnline.ESI.Communication.Utilities.Stores;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     internal class EsiHttpClient<T> : IEsiHttpClient<T>
     {

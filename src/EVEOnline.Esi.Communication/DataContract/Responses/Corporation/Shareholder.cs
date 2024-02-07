@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EVEOnline.Esi.Communication.DataContract
+namespace EVEOnline.ESI.Communication.DataContract
 {
     public class Shareholder
     {

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EVEOnline.Esi.Communication\EVEOnline.Esi.Communication.csproj" />
+    <ProjectReference Include="..\EVEOnline.ESI.Communication\EVEOnline.ESI.Communication.csproj" />
   </ItemGroup>
 
 </Project>

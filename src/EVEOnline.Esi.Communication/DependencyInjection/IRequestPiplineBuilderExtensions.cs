@@ -1,8 +1,8 @@
-﻿using EVEOnline.Esi.Communication.Extensions;
-using EVEOnline.Esi.Communication.Handlers;
+﻿using EVEOnline.ESI.Communication.Extensions;
+using EVEOnline.ESI.Communication.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EVEOnline.Esi.Communication.DependencyInjection
+namespace EVEOnline.ESI.Communication.DependencyInjection
 {
     internal static class IRequestPiplineBuilderExtensions
     {

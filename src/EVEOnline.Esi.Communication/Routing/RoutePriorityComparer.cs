@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     internal class RoutePriorityComparer : IComparer<RoutePriority>
     {

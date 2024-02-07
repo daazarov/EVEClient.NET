@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace EVEOnline.Esi.Communication.Attributes
+namespace EVEOnline.ESI.Communication.Attributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     internal class RouteParameterAttribute : UrlParameterAttribute

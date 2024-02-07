@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace EVEOnline.Esi.Communication.DataContract
+namespace EVEOnline.ESI.Communication.DataContract
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum NotificationType

@@ -1,4 +1,4 @@
-﻿namespace EVEOnline.Esi.Communication.Configuration
+﻿namespace EVEOnline.ESI.Communication.Configuration
 {
     public class EsiClientConfiguration
     {

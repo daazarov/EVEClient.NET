@@ -2,9 +2,9 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.DataContract.Requests.Internal;
+using EVEOnline.ESI.Communication.Models;
 
-namespace EVEOnline.Esi.Communication.Handlers
+namespace EVEOnline.ESI.Communication.Handlers
 {
     internal class BodyRequestParametersHandler : IHandler
     {

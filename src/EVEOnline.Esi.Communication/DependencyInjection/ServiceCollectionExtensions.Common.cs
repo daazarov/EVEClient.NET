@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EVEOnline.Esi.Communication.DependencyInjection
+namespace EVEOnline.ESI.Communication.DependencyInjection
 {
     internal static partial class ServiceCollectionExtensions
     {

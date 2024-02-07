@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     internal interface IHandler
     {

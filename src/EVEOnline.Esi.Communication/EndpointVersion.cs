@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EVEOnline.Esi.Communication
+namespace EVEOnline.ESI.Communication
 {
     [Flags]
     public enum EndpointVersion

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace EVEOnline.Esi.Communication.UnitTests.Datasets
+namespace EVEOnline.ESI.Communication.UnitTests.Datasets
 {
     public static class EmbeddedResourceUtility
     {

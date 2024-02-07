@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.DataContract;
+using EVEOnline.ESI.Communication.DataContract;
+using EVEOnline.ESI.Communication.Models;
 
-using static EVEOnline.Esi.Communication.DataContract.Requests.Internal.FittingsRequests;
+using static EVEOnline.ESI.Communication.Models.FittingsRequests;
 
-namespace EVEOnline.Esi.Communication.Logic
+namespace EVEOnline.ESI.Communication.Logic
 {
     internal class FittingsLogic : IFittingsLogic
     {
@@ -23,6 +24,6 @@ namespace EVEOnline.Esi.Communication.Logic
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<Fitting>>(CharacterIdRouteRequest.Create(characterId));
 
         public Task<EsiResponse<NewFittingResponse>> NewCharacterFittingAsync(int characterId, NewFitting fitting) =>
-            _esiClient.PostRequestAsync<NewFittingRequest, NewFittingResponse>(NewFittingRequest.Create(characterId, fitting));
+            _esiClient.PostRequestAsync<NewFittingRequest, NewFittingResponse>(NewFittingRequest.Create(characterId, NewFittingBodyModel.FromExternalModel(fitting)));
     }
 }

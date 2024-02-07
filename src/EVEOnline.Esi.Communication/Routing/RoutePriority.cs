@@ -1,4 +1,4 @@
-﻿namespace EVEOnline.Esi.Communication
+﻿namespace EVEOnline.ESI.Communication
 {
     public class RoutePriority
     {

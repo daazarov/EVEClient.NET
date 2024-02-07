@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
-using EVEOnline.Esi.Communication.Attributes;
-using EVEOnline.Esi.Communication.Configuration;
-using EVEOnline.Esi.Communication.Utilities;
+using EVEOnline.ESI.Communication.Attributes;
+using EVEOnline.ESI.Communication.Configuration;
+using EVEOnline.ESI.Communication.Utilities;
 
-namespace EVEOnline.Esi.Communication.Handlers
+namespace EVEOnline.ESI.Communication.Handlers
 {
     internal class RequestHeadersHandler : IHandler
     {

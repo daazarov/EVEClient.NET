@@ -2,7 +2,7 @@
 using System.Text;
 using System.Security.Cryptography;
 
-namespace EVEOnline.Esi.Communication.Utilities.Hashing
+namespace EVEOnline.ESI.Communication.Utilities.Hashing
 {
     internal class Md5Hashing : IHashing
     {

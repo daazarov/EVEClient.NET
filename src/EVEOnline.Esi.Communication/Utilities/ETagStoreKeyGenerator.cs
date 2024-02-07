@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using System.Collections.Specialized;
 
-using EVEOnline.Esi.Communication.Extensions;
+using EVEOnline.ESI.Communication.Extensions;
 
-namespace EVEOnline.Esi.Communication.Utilities
+namespace EVEOnline.ESI.Communication.Utilities
 {
     internal class ETagStoreKeyGenerator
     {

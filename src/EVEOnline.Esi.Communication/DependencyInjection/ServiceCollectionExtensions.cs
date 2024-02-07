@@ -5,11 +5,11 @@ using System.Net.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-using EVEOnline.Esi.Communication.Configuration;
-using EVEOnline.Esi.Communication.Logic;
-using EVEOnline.Esi.Communication.DependencyInjection;
-using EVEOnline.Esi.Communication;
-using EVEOnline.Esi.Communication.Utilities.Stores;
+using EVEOnline.ESI.Communication.Configuration;
+using EVEOnline.ESI.Communication.Logic;
+using EVEOnline.ESI.Communication.DependencyInjection;
+using EVEOnline.ESI.Communication;
+using EVEOnline.ESI.Communication.Utilities.Stores;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

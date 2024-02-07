@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using EVEOnline.Esi.Communication.DataContract;
+using EVEOnline.ESI.Communication.DataContract;
 
-using static EVEOnline.Esi.Communication.DataContract.Requests.Internal.AssetsRequests;
+using static EVEOnline.ESI.Communication.Models.AssetsRequests;
 
-namespace EVEOnline.Esi.Communication.Logic
+namespace EVEOnline.ESI.Communication.Logic
 {
     internal class AssetsLogic : IAssetsLogic
     {

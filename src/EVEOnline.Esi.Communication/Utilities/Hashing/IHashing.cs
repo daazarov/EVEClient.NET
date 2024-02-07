@@ -1,4 +1,4 @@
-﻿namespace EVEOnline.Esi.Communication.Utilities.Hashing
+﻿namespace EVEOnline.ESI.Communication.Utilities.Hashing
 {
     internal interface IHashing
     {

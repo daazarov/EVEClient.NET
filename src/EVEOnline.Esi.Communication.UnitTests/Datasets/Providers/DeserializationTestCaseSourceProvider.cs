@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-namespace EVEOnline.Esi.Communication.UnitTests.Datasets.Providers
+namespace EVEOnline.ESI.Communication.UnitTests.Datasets.Providers
 {
     public class DeserializationTestCaseSourceProvider<T>
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 
-using EVEOnline.Esi.Communication.Utilities.Hashing;
+using EVEOnline.ESI.Communication.Utilities.Hashing;
 
-namespace EVEOnline.Esi.Communication.Extensions
+namespace EVEOnline.ESI.Communication.Extensions
 {
     internal static class StringExtensions
     {

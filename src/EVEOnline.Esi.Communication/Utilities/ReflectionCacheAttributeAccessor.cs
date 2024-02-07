@@ -1,6 +1,6 @@
-﻿using EVEOnline.Esi.Communication.Utilities.Stores;
+﻿using EVEOnline.ESI.Communication.Utilities.Stores;
 
-namespace EVEOnline.Esi.Communication.Utilities
+namespace EVEOnline.ESI.Communication.Utilities
 {
     internal class ReflectionCacheAttributeAccessor : AttributeAccessor
     {

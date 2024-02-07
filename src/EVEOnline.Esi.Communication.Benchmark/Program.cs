@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 
-namespace EVEOnline.Esi.Communication.Benchmark
+namespace EVEOnline.ESI.Communication.Benchmark
 {
     public class Program
     {

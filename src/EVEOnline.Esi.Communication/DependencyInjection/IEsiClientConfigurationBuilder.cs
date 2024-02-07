@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using EVEOnline.Esi.Communication.Configuration;
+using EVEOnline.ESI.Communication.Configuration;
 
-namespace EVEOnline.Esi.Communication.DependencyInjection
+namespace EVEOnline.ESI.Communication.DependencyInjection
 {
     public interface IEsiClientConfigurationBuilder
     {
