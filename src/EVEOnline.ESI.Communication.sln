@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVEOnline.ESI.Communication", "EVEOnline.ESI.Communication\EVEOnline.ESI.Communication.csproj", "{C640C057-328B-461C-B1BE-383D4D42420A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{144F8E83-E1B8-44E0-81C0-3A29BDFFCC32}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVEOnline.ESI.Communication.Benchmark", "EVEOnline.ESI.Communication.Benchmark\EVEOnline.ESI.Communication.Benchmark.csproj", "{52DD23D9-C6D1-4747-88C4-754A7F2C1904}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVEOnline.ESI.Communication.UnitTests", "EVEOnline.ESI.Communication.UnitTests\EVEOnline.ESI.Communication.UnitTests.csproj", "{595E0108-9043-44D7-8285-0B0D32B07EC3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVEOnline.ESI.Communication.IntegrationTests", "EVEOnline.Esi.Communication.IntegrationTests\EVEOnline.ESI.Communication.IntegrationTests.csproj", "{8E6C05ED-4AD5-4793-B86B-00C88187FC99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C640C057-328B-461C-B1BE-383D4D42420A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C640C057-328B-461C-B1BE-383D4D42420A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C640C057-328B-461C-B1BE-383D4D42420A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C640C057-328B-461C-B1BE-383D4D42420A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DD23D9-C6D1-4747-88C4-754A7F2C1904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DD23D9-C6D1-4747-88C4-754A7F2C1904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DD23D9-C6D1-4747-88C4-754A7F2C1904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DD23D9-C6D1-4747-88C4-754A7F2C1904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595E0108-9043-44D7-8285-0B0D32B07EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595E0108-9043-44D7-8285-0B0D32B07EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595E0108-9043-44D7-8285-0B0D32B07EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595E0108-9043-44D7-8285-0B0D32B07EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E6C05ED-4AD5-4793-B86B-00C88187FC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E6C05ED-4AD5-4793-B86B-00C88187FC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E6C05ED-4AD5-4793-B86B-00C88187FC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E6C05ED-4AD5-4793-B86B-00C88187FC99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C54EAE1C-93F3-467E-839B-C55710B3BDA6}
+	EndGlobalSection
+EndGlobal

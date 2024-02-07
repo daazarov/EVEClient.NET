@@ -1,0 +1,16 @@
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
+
+namespace EVEOnline.ESI.Communication.DataContract
+{
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum ContractType
+    {
+        [EnumMember(Value = "unknown")] Unknown,
+        [EnumMember(Value = "item_exchange")] ItemExchange,
+        [EnumMember(Value = "auction")] Auction,
+        [EnumMember(Value = "courier")] Courier,
+        [EnumMember(Value = "loan")] Loan
+    }
+}
