@@ -1,6 +1,0 @@
-﻿1. add config validation
-2. add post priority configuration
-3. add post priority validation
-6. double check services scope
-7. UrlRequestParametersHandler dynmicMethod
-8. Code behind endpoint priority configuration
