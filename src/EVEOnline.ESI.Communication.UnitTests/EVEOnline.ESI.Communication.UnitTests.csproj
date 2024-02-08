@@ -11,12 +11,14 @@
 
   <ItemGroup>
     <None Remove="Datasets\Json\DeserializationTests\deserialization.fitting.json" />
+    <None Remove="Datasets\Json\DeserializationTests\deserialization.fleets.json" />
     <None Remove="Datasets\Json\serialization.FactionWarfare.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.factionwarfare.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.fitting.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.fleets.json" />
   </ItemGroup>
 
   <ItemGroup>

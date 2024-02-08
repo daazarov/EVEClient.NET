@@ -17,9 +17,9 @@
             public GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
             { }
         }
-        internal class PostCharacterCspaRequest : RequestBase<FleetIdModel, CharacterIdsBodyModel>
+        internal class PostCharacterCspaRequest : RequestBase<CharacterIdModel, CharacterIdsBodyModel>
         {
-            public PostCharacterCspaRequest(FleetIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
+            public PostCharacterCspaRequest(CharacterIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
             { }
         }
         internal class PostCharacterAffilationRequest : BodyModelBase<CharacterIdsBodyModel>
