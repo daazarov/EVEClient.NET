@@ -110,7 +110,22 @@ namespace EVEOnline.ESI.Communication.Utilities
 
                 { nameof(IFittingsLogic.GetCharacterFittingsAsync), ESI.Endpoints.Fittings.GetFittings },
                 { nameof(IFittingsLogic.NewCharacterFittingAsync), ESI.Endpoints.Fittings.NewFitting },
-                { nameof(IFittingsLogic.DeleteCharacterFittingAsync), ESI.Endpoints.Fittings.DeleteFitting }
+                { nameof(IFittingsLogic.DeleteCharacterFittingAsync), ESI.Endpoints.Fittings.DeleteFitting },
+
+                { nameof(IFleetsLogic.GetCharacterFleetAsync), ESI.Endpoints.Fleets.FleetInfo },
+                { nameof(IFleetsLogic.GetFleetSettingsAsync), ESI.Endpoints.Fleets.FleetSettings },
+                { nameof(IFleetsLogic.GetFleetMembersAsync), ESI.Endpoints.Fleets.FleetMembers },
+                { nameof(IFleetsLogic.GetFleetWingsAsync), ESI.Endpoints.Fleets.InviteMember },
+                { nameof(IFleetsLogic.CreateFleetWingAsync), ESI.Endpoints.Fleets.NewWing },
+                { nameof(IFleetsLogic.CreateSquadAsync), ESI.Endpoints.Fleets.NewSquad },
+                { nameof(IFleetsLogic.DeleteFleetWingAsync), ESI.Endpoints.Fleets.DeleteWing },
+                { nameof(IFleetsLogic.DeleteSquadAsync), ESI.Endpoints.Fleets.DeleteSquad },
+                { nameof(IFleetsLogic.RenameFleetWingAsync), ESI.Endpoints.Fleets.RenameWing },
+                { nameof(IFleetsLogic.RenameSquadAsync), ESI.Endpoints.Fleets.RenameSquad },
+                { nameof(IFleetsLogic.UpdateFleetSettingsAsync), ESI.Endpoints.Fleets.UpdateFleetSettings },
+                { nameof(IFleetsLogic.MoveMemberAsync), ESI.Endpoints.Fleets.MoveMember },
+                { nameof(IFleetsLogic.KickMemberAsync), ESI.Endpoints.Fleets.KickMember },
+                { nameof(IFleetsLogic.InviteMemberAsync), ESI.Endpoints.Fleets.InviteMember }
             };
         }
 

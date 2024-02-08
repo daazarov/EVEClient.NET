@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication.Models
 {
-    internal class PageBasedCharacterIdModel : CharacterIdModel
+    internal class PageBasedCharacterIdModel : FleetIdModel
     {
         public PageBasedCharacterIdModel(int characterId, int page) : base(characterId)
         {

@@ -14,7 +14,7 @@ namespace EVEOnline.ESI.Communication
             public const string GetPaginationRequestWithouRequestParameters = "GetPaginationRequestWithouRequestParameters";
             public const string PostRequest = "PostRequest";
             public const string PostNoContentRequest = "PostNoContentRequest";
-            public const string PutNoContentRequest = "PutNoContentRequest";
+            public const string PutRequest = "PutRequest";
             public const string DeleteRequest = "DeleteRequest";
         }
 
@@ -174,6 +174,24 @@ namespace EVEOnline.ESI.Communication
                 public const string GetFittings =                     "get_characters_character_id_fittings";
                 public const string DeleteFitting =                   "delete_characters_character_id_fitting_id_fittings";
                 public const string NewFitting =                      "post_characters_character_id_fittings";
+            }
+
+            public static class Fleets
+            {
+                public const string FleetInfo =                       "get_characters_character_id_fleet";
+                public const string FleetSettings =                   "get_fleets_fleet_id";
+                public const string UpdateFleetSettings =             "put_fleets_fleet_id";
+                public const string FleetMembers =                    "get_fleets_fleet_id_members";
+                public const string InviteMember =                    "post_fleets_fleet_id_members";
+                public const string KickMember =                      "delete_fleets_fleet_id_members_member_id";
+                public const string MoveMember =                      "put_fleets_fleet_id_members_member_id";
+                public const string DeleteSquad =                     "delete_fleets_fleet_id_squads_squad_id";
+                public const string RenameSquad =                     "put_fleets_fleet_id_squads_squad_id";
+                public const string FleetWings =                      "get_fleets_fleet_id_wings";
+                public const string NewWing =                         "post_fleets_fleet_id_wings";
+                public const string DeleteWing =                      "delete_fleets_fleet_id_wings_wing_id";
+                public const string RenameWing =                      "put_fleets_fleet_id_wings_wing_id";
+                public const string NewSquad =                        "post_fleets_fleet_id_wings_wing_id_squads";
             }
         }
     }

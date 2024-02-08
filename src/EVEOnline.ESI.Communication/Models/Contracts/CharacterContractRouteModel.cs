@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication.Models
 {
-    internal class CharacterContractRouteModel : CharacterIdModel
+    internal class CharacterContractRouteModel : FleetIdModel
     {
         public CharacterContractRouteModel(int characterId, int contractId) : base(characterId)
         {

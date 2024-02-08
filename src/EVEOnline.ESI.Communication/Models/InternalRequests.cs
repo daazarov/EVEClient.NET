@@ -17,9 +17,9 @@
             public GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
             { }
         }
-        internal class PostCharacterCspaRequest : RequestBase<CharacterIdModel, CharacterIdsBodyModel>
+        internal class PostCharacterCspaRequest : RequestBase<FleetIdModel, CharacterIdsBodyModel>
         {
-            public PostCharacterCspaRequest(CharacterIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
+            public PostCharacterCspaRequest(FleetIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
             { }
         }
         internal class PostCharacterAffilationRequest : BodyModelBase<CharacterIdsBodyModel>
@@ -473,6 +473,119 @@
             public static NewFittingRequest Create(int characterId, NewFittingBodyModel fitting)
             {
                 return new NewFittingRequest(new CharacterIdModel(characterId), fitting);
+            }
+        }
+    }
+
+    internal class FleetsRequests
+    {
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+
+        internal class FleetIdRouteRequest : RouteModelBase<FleetIdModel>
+        {
+            public FleetIdRouteRequest(FleetIdModel uriModel) : base(uriModel)
+            { }
+
+            public static FleetIdRouteRequest Create(long fleetId)
+            {
+                return new FleetIdRouteRequest(new FleetIdModel(fleetId));
+            }
+        }
+
+        internal class InviteFleetMemberRequest : RequestBase<FleetIdModel, InviteFleetMemberBodyModel>
+        {
+            public InviteFleetMemberRequest(FleetIdModel uriModel, InviteFleetMemberBodyModel body) : base(uriModel, body)
+            { }
+
+            public static InviteFleetMemberRequest Create(long fleetId, int characterId, string role, long? squadId, long? wingId)
+            {
+                return new InviteFleetMemberRequest(new FleetIdModel(fleetId), new InviteFleetMemberBodyModel(characterId, role, squadId, wingId));
+            }
+        }
+
+        internal class UpdateFleetSettingsRequest : RequestBase<FleetIdModel, FleetSettingsBodyModel>
+        {
+            public UpdateFleetSettingsRequest(FleetIdModel uriModel, FleetSettingsBodyModel body) : base(uriModel, body)
+            { }
+
+            public static UpdateFleetSettingsRequest Create(long fleetId, bool? isFreeMove, string motd)
+            {
+                return new UpdateFleetSettingsRequest(new FleetIdModel(fleetId), new FleetSettingsBodyModel(isFreeMove, motd));
+            }
+        }
+
+        internal class FleetMemberRouteRequest : RouteModelBase<FleetMemberUriModel>
+        {
+            public FleetMemberRouteRequest(FleetMemberUriModel uriModel) : base(uriModel)
+            { }
+
+            public static FleetMemberRouteRequest Create(long fleetId, int memberId)
+            {
+                return new FleetMemberRouteRequest(new FleetMemberUriModel(fleetId, memberId));
+            }
+        }
+
+        internal class MoveFleetMemberRequest : RequestBase<FleetMemberUriModel, MoveFleetMemberBodyModel>
+        {
+            public MoveFleetMemberRequest(FleetMemberUriModel uriModel, MoveFleetMemberBodyModel body) : base(uriModel, body)
+            { }
+
+            public static MoveFleetMemberRequest Create(long fleetId, int memberId, string role, long? squadId, long? wingId)
+            {
+                return new MoveFleetMemberRequest(new FleetMemberUriModel(fleetId, memberId), new MoveFleetMemberBodyModel(role, squadId, wingId));
+            }
+        }
+
+        internal class FleetWingRouteRequest : RouteModelBase<FleetWingUriModel>
+        {
+            public FleetWingRouteRequest(FleetWingUriModel uriModel) : base(uriModel)
+            { }
+
+            public static FleetWingRouteRequest Create(long fleetId, long wingId)
+            {
+                return new FleetWingRouteRequest(new FleetWingUriModel(fleetId, wingId));
+            }
+        }
+
+        internal class FleetSquadRouteRequest : RouteModelBase<FleetSquadUriModel>
+        {
+            public FleetSquadRouteRequest(FleetSquadUriModel uriModel) : base(uriModel)
+            { }
+
+            public static FleetSquadRouteRequest Create(long fleetId, long squadId)
+            {
+                return new FleetSquadRouteRequest(new FleetSquadUriModel(fleetId, squadId));
+            }
+        }
+
+        internal class RenameSquadRequest : RequestBase<FleetSquadUriModel, RenameBodyModel>
+        {
+            public RenameSquadRequest(FleetSquadUriModel uriModel, RenameBodyModel body) : base(uriModel, body)
+            { }
+
+            public static RenameSquadRequest Create(long fleetId, long squadId, string name)
+            {
+                return new RenameSquadRequest(new FleetSquadUriModel(fleetId, squadId), new RenameBodyModel(name));
+            }
+        }
+
+        internal class RenameWingRequest : RequestBase<FleetWingUriModel, RenameBodyModel>
+        {
+            public RenameWingRequest(FleetWingUriModel uriModel, RenameBodyModel body) : base(uriModel, body)
+            { }
+
+            public static RenameWingRequest Create(long fleetId, long wingId, string name)
+            {
+                return new RenameWingRequest(new FleetWingUriModel(fleetId, wingId), new RenameBodyModel(name));
             }
         }
     }
