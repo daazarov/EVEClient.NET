@@ -15,5 +15,6 @@
         IFactionWarfareLogic FactionWarfareLogic { get; }
         IFittingsLogic FittingsLogic { get; }
         IFleetsLogic FleetsLogic { get; }
+        IIncursionsLogic IncursionsLogic { get; }
     }
 }
