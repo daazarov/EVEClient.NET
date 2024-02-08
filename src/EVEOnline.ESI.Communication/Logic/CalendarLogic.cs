@@ -27,6 +27,6 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient.GetRequestAsync<SummaryCalendarEventsRequest, List<CharacterCalendarItem>>(SummaryCalendarEventsRequest.Create(characterId, fromEventId));
 
         public Task<EsiResponse> RespondCaracterEventAsync(int characterId, int eventId, EventResponse eventResponse) =>
-            _esiClient.PutNoContentRequestAsync<CalendarRespondeRequest>(CalendarRespondeRequest.Create(characterId, eventId, eventResponse.GetEnumMemberAttributeValue()));
+            _esiClient.PutRequestAsync<CalendarRespondeRequest>(CalendarRespondeRequest.Create(characterId, eventId, eventResponse.GetEnumMemberAttributeValue()));
     }
 }

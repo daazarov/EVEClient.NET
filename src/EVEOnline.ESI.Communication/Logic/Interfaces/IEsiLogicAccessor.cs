@@ -14,5 +14,6 @@
         IDogmaLogic DogmaLogic { get; }
         IFactionWarfareLogic FactionWarfareLogic { get; }
         IFittingsLogic FittingsLogic { get; }
+        IFleetsLogic FleetsLogic { get; }
     }
 }

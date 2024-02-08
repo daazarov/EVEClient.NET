@@ -1,0 +1,47 @@
+{
+  "FleetInfo": {
+    "fleet_id": 1234567890,
+    "role": "fleet_commander",
+    "squad_id": -1,
+    "wing_id": -1
+  },
+
+  "FleetSettings": {
+    "is_free_move": true,
+    "is_registered": true,
+    "is_voice_enabled": true,
+    "motd": "This is an <b>awesome</b> fleet!"
+  },
+
+  "FleetMember": {
+    "character_id": 93265215,
+    "join_time": "2016-04-29T12:34:56Z",
+    "role": "squad_commander",
+    "role_name": "Squad Commander (Boss)",
+    "ship_type_id": 33328,
+    "solar_system_id": 30003729,
+    "squad_id": 3129411261968,
+    "station_id": 61000180,
+    "takes_fleet_warp": true,
+    "wing_id": 2073711261968
+  },
+
+  "Wing": {
+    "id": 2073711261968,
+    "name": "Wing 1",
+    "squads": [
+      {
+        "id": 3129411261968,
+        "name": "Squad 1"
+      }
+    ]
+  },
+
+  "NewSquad": {
+    "squad_id": 123
+  },
+
+  "NewWing": {
+    "wing_id": 123
+  }
+}

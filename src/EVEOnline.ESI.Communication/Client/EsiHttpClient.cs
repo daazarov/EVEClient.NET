@@ -174,12 +174,12 @@ namespace EVEOnline.ESI.Communication
             }
         }
 
-        public virtual async Task<EsiResponse> PutNoContentRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
+        public virtual async Task<EsiResponse> PutRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
             (
-                key: GetKey(ESI.EsiClientMethodNames.PutNoContentRequest, memberName),
-                getter: key => _piplineBuilder.UsePostPipline().Build()
+                key: GetKey(ESI.EsiClientMethodNames.PutRequest, memberName),
+                getter: key => _piplineBuilder.UsePutPipline().Build()
             );
 
             try

@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 using EVEOnline.ESI.Communication.Models;
@@ -10,9 +11,14 @@ namespace EVEOnline.ESI.Communication.Handlers
     {
         private readonly JsonSerializerOptions _options;
 
-        public BodyRequestParametersHandler(JsonSerializerOptions options = null) 
+        public BodyRequestParametersHandler() : this(new JsonSerializerOptions())
+        { }
+
+        public BodyRequestParametersHandler(JsonSerializerOptions options) 
         {
             _options = options;
+
+            _options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         }
 
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
