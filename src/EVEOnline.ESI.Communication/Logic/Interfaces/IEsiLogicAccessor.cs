@@ -16,5 +16,6 @@
         IFittingsLogic FittingsLogic { get; }
         IFleetsLogic FleetsLogic { get; }
         IIncursionsLogic IncursionsLogic { get; }
+        IIndustryLogic IndustryLogic { get; }
     }
 }

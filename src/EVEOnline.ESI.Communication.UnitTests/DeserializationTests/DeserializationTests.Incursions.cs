@@ -17,7 +17,7 @@ namespace EVEOnline.ESI.Communication.UnitTests.DeserializationTests.Incursions
             Assert.That(model.ConstellationId, Is.EqualTo(20000607));
             Assert.That(model.FactionId, Is.EqualTo(500019));
             Assert.That(model.HasBoss, Is.True);
-            Assert.That(model.Influence, Is.EqualTo(0.9));
+            Assert.That(model.Influence, Is.EqualTo(0.9f));
             Assert.That(model.StagingSolarSystemId, Is.EqualTo(30004154));
             Assert.That(model.State, Is.EqualTo(IncursionState.Mobilizing));
             Assert.That(model.Type, Is.EqualTo("Incursion"));

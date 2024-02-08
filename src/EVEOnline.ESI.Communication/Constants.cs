@@ -193,6 +193,23 @@ namespace EVEOnline.ESI.Communication
                 public const string RenameWing =                      "put_fleets_fleet_id_wings_wing_id";
                 public const string NewSquad =                        "post_fleets_fleet_id_wings_wing_id_squads";
             }
+
+            public static class Incursions
+            {
+                public const string IncursionList =                   "get_incursions";
+            }
+
+            public static class Industry
+            {
+                public const string CharacterJobs =                   "get_characters_character_id_industry_jobs";
+                public const string CharacterMiningLedger =           "get_characters_character_id_mining";
+                public const string ExtractionTimers =                "get_corporation_corporation_id_mining_extractions";
+                public const string CorporationObservers =            "get_corporation_corporation_id_mining_observers";
+                public const string ObserverInfo =                    "get_corporation_corporation_id_mining_observers_observer_id";
+                public const string CorporationJobs =                 "get_corporations_corporation_id_industry_jobs";
+                public const string Facilities =                      "get_industry_facilities";
+                public const string SolarSystems =                    "get_industry_systems";
+            }
         }
     }
 }
