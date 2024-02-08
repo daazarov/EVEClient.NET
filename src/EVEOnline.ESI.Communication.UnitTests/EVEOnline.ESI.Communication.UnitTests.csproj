@@ -12,6 +12,8 @@
   <ItemGroup>
     <None Remove="Datasets\Json\DeserializationTests\deserialization.fitting.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.fleets.json" />
+    <None Remove="Datasets\Json\DeserializationTests\deserialization.incursions.json" />
+    <None Remove="Datasets\Json\DeserializationTests\deserialization.industry.json" />
     <None Remove="Datasets\Json\serialization.FactionWarfare.json" />
   </ItemGroup>
 
@@ -19,6 +21,8 @@
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.factionwarfare.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.fitting.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.fleets.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.incursions.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.industry.json" />
   </ItemGroup>
 
   <ItemGroup>

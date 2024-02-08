@@ -20,6 +20,8 @@ namespace EVEOnline.ESI.Communication.Logic
         private IFactionWarfareLogic _factionWarfareLogic;
         private IFittingsLogic _fittingsLogic;
         private IFleetsLogic _fleetsLogic;
+        private IIncursionsLogic _incursionsLogic;
+        private IIndustryLogic _industryLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -34,6 +36,8 @@ namespace EVEOnline.ESI.Communication.Logic
         public IFactionWarfareLogic FactionWarfareLogic => GetOrSet<IFactionWarfareLogic>(ref _factionWarfareLogic);
         public IFittingsLogic FittingsLogic => GetOrSet<IFittingsLogic>(ref _fittingsLogic);
         public IFleetsLogic FleetsLogic => GetOrSet<IFleetsLogic>(ref _fleetsLogic);
+        public IIncursionsLogic IncursionsLogic => GetOrSet<IIncursionsLogic>(ref _incursionsLogic);
+        public IIndustryLogic IndustryLogic => GetOrSet<IIndustryLogic>(ref _industryLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

@@ -100,6 +100,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IFactionWarfareLogic, FactionWarfareLogic>();
             services.TryAddTransient<IFittingsLogic, FittingsLogic>();
             services.TryAddTransient<IFleetsLogic, FleetsLogic>();
+            services.TryAddTransient<IIncursionsLogic, IncursionsLogic>();
+            services.TryAddTransient<IIndustryLogic, IndustryLogic>();
 
             return services;
         }

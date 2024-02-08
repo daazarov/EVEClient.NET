@@ -589,4 +589,62 @@
             }
         }
     }
+
+    internal class IndustryRequests
+    {
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
+            }
+        }
+
+        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
+        {
+            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
+            }
+        }
+
+        internal class CorporationObserverRequest : RouteModelBase<CorporationObserverUriModel>
+        {
+            public CorporationObserverRequest(CorporationObserverUriModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationObserverRequest Create(int corporationId, long observerId, int page)
+            {
+                return new CorporationObserverRequest(new CorporationObserverUriModel(corporationId, observerId, page));
+            }
+        }
+
+        internal class CharacterJobsRequest : RouteModelBase<CharacterJobsUriModel>
+        {
+            public CharacterJobsRequest(CharacterJobsUriModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterJobsRequest Create(int characterId, bool includeCompleted)
+            {
+                return new CharacterJobsRequest(new CharacterJobsUriModel(characterId, includeCompleted));
+            }
+        }
+
+        internal class CorporationJobsRequest : RouteModelBase<CorporationJobsUriModel>
+        {
+            public CorporationJobsRequest(CorporationJobsUriModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationJobsRequest Create(int corporation, bool includeCompleted, int page)
+            {
+                return new CorporationJobsRequest(new CorporationJobsUriModel(corporation, includeCompleted, page));
+            }
+        }
+    }
 }

@@ -1,0 +1,99 @@
+{
+  "CharacterIndustryJob": {
+    "activity_id": 1,
+    "blueprint_id": 1015116533326,
+    "blueprint_location_id": 60006382,
+    "blueprint_type_id": 2047,
+    "cost": 118.01,
+    "duration": 548,
+    "end_date": "2014-07-19T15:56:14Z",
+    "facility_id": 60006382,
+    "installer_id": 498338451,
+    "job_id": 229136101,
+    "licensed_runs": 200,
+    "output_location_id": 60006382,
+    "runs": 1,
+    "start_date": "2014-07-19T15:47:06Z",
+    "station_id": 60006382,
+    "status": "active",
+    "completed_character_id": 6516145,
+    "completed_date": "2015-07-19T15:47:06Z",
+    "pause_date": "2014-07-19T15:47:06Z",
+    "probability": 87.2,
+    "product_type_id": 6161,
+    "successful_runs": 10
+  },
+
+  "Mining": {
+    "date": "2017-09-19",
+    "quantity": 7004,
+    "solar_system_id": 30003707,
+    "type_id": 17471
+  },
+
+  "Extraction": {
+    "chunk_arrival_time": "2017-10-17T11:00:59Z",
+    "extraction_start_time": "2018-10-11T10:37:04Z",
+    "moon_id": 40307229,
+    "natural_decay_time": "2019-10-17T14:00:59Z",
+    "structure_id": 1000000010579
+  },
+
+  "Observer": {
+    "last_updated": "2017-09-19",
+    "observer_id": 1,
+    "observer_type": "structure"
+  },
+
+  "ObserverInfo": {
+    "character_id": 95465499,
+    "last_updated": "2017-09-19",
+    "quantity": 500,
+    "recorded_corporation_id": 109299958,
+    "type_id": 1230
+  },
+
+  "CorporationIndustryJob": {
+    "activity_id": 1,
+    "blueprint_id": 1015116533326,
+    "blueprint_location_id": 60006382,
+    "blueprint_type_id": 2047,
+    "cost": 118.01,
+    "duration": 548,
+    "end_date": "2014-07-19T15:56:14Z",
+    "facility_id": 60006382,
+    "installer_id": 498338451,
+    "job_id": 229136101,
+    "licensed_runs": 200,
+    "output_location_id": 60006382,
+    "runs": 1,
+    "start_date": "2014-07-19T15:47:06Z",
+    "location_id": 60006382,
+    "status": "active",
+    "completed_character_id": 6516145,
+    "completed_date": "2015-07-19T15:47:06Z",
+    "pause_date": "2014-07-19T15:47:06Z",
+    "probability": 87.2,
+    "product_type_id": 6161,
+    "successful_runs": 10
+  },
+
+  "IndustryFacility": {
+    "facility_id": 60012544,
+    "owner_id": 1000126,
+    "region_id": 10000001,
+    "solar_system_id": 30000032,
+    "tax": 0.1,
+    "type_id": 2502
+  },
+
+  "SolarSystem": {
+    "cost_indices": [
+      {
+        "activity": "invention",
+        "cost_index": 0.0048
+      }
+    ],
+    "solar_system_id": 30011392
+  }
+}

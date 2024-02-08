@@ -125,7 +125,18 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(IFleetsLogic.UpdateFleetSettingsAsync), ESI.Endpoints.Fleets.UpdateFleetSettings },
                 { nameof(IFleetsLogic.MoveMemberAsync), ESI.Endpoints.Fleets.MoveMember },
                 { nameof(IFleetsLogic.KickMemberAsync), ESI.Endpoints.Fleets.KickMember },
-                { nameof(IFleetsLogic.InviteMemberAsync), ESI.Endpoints.Fleets.InviteMember }
+                { nameof(IFleetsLogic.InviteMemberAsync), ESI.Endpoints.Fleets.InviteMember },
+
+                { nameof(IIncursionsLogic.GetIncursions), ESI.Endpoints.Incursions.IncursionList },
+
+                { nameof(IIndustryLogic.GetCharacterInductryJobsAsync), ESI.Endpoints.Industry.CharacterJobs },
+                { nameof(IIndustryLogic.GetCharacterMiningLedgerAsync), ESI.Endpoints.Industry.CharacterMiningLedger },
+                { nameof(IIndustryLogic.GetCorporationExtractionTimersAsync), ESI.Endpoints.Industry.ExtractionTimers },
+                { nameof(IIndustryLogic.GetCorporationInductryJobsAsync), ESI.Endpoints.Industry.CorporationJobs },
+                { nameof(IIndustryLogic.GetCorporationObserverInfoAsync), ESI.Endpoints.Industry.ObserverInfo },
+                { nameof(IIndustryLogic.GetCorporationObserversAsync), ESI.Endpoints.Industry.CorporationObservers },
+                { nameof(IIndustryLogic.GetIndustryFacilitiesAsync), ESI.Endpoints.Industry.Facilities },
+                { nameof(IIndustryLogic.GetSolarSystemCostIndicesAsync), ESI.Endpoints.Industry.SolarSystems }
             };
         }
 
