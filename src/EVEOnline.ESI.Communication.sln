@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVEOnline.ESI.Communication
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVEOnline.ESI.Communication.UnitTests", "EVEOnline.ESI.Communication.UnitTests\EVEOnline.ESI.Communication.UnitTests.csproj", "{595E0108-9043-44D7-8285-0B0D32B07EC3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVEOnline.ESI.Communication.IntegrationTests", "EVEOnline.Esi.Communication.IntegrationTests\EVEOnline.ESI.Communication.IntegrationTests.csproj", "{8E6C05ED-4AD5-4793-B86B-00C88187FC99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVEOnline.ESI.Communication.IntegrationTests", "EVEOnline.ESI.Communication.IntegrationTests\EVEOnline.ESI.Communication.IntegrationTests.csproj", "{8E6C05ED-4AD5-4793-B86B-00C88187FC99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
