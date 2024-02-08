@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication.Models
 {
-    internal class SummaryCalendarEventsUriModel : FleetIdModel
+    internal class SummaryCalendarEventsUriModel : CharacterIdModel
     {
         public SummaryCalendarEventsUriModel(int characterId, int? eventId) : base(characterId)
         {

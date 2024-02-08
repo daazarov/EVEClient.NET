@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication.Models
 {
-    internal class DeleteCharacterContactUriModel : FleetIdModel
+    internal class DeleteCharacterContactUriModel : CharacterIdModel
     {
         public DeleteCharacterContactUriModel(int characterId, int[] contactIds) : base(characterId)
         {

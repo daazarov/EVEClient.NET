@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication.Models
 {
-    internal class AddUpdateCharacterContactUriModel : FleetIdModel
+    internal class AddUpdateCharacterContactUriModel : CharacterIdModel
     {
         public AddUpdateCharacterContactUriModel(int characterId, float standing, int[] labelIds, bool watched)
             : base(characterId)
