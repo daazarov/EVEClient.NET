@@ -1,7 +1,9 @@
-﻿namespace EVEOnline.ESI.Communication
+﻿using System.Threading.Tasks;
+
+namespace EVEOnline.ESI.Communication
 {
     public interface IScopeAccessValidator
     {
-        public bool VerifyScopeAccess(string scope);
+        public Task<bool> VerifyScopeAccess(string scope);
     }
 }

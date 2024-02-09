@@ -15,5 +15,15 @@ namespace EVEOnline.ESI.Communication.Models
 
         [JsonProperty("motd")]
         public string Motd {  get; set; }
+
+        public bool ShouldSerializeIsFreeMove() // todo -- make a test
+        {
+            return IsFreeMove.HasValue;
+        }
+
+        public bool ShouldSerializeMotd()
+        {
+            return !string.IsNullOrEmpty(Motd);
+        }
     }
 }

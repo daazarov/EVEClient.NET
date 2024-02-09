@@ -95,7 +95,7 @@ namespace EVEOnline.ESI.Communication.Extensions
             return @this;
         }
 
-        public static string GetEnumMemberAttributeValue(this Enum @this)
+        public static string ToEsiString(this Enum @this)
         {
             var type = @this.GetType();
             var typeInfo = type.GetTypeInfo();

@@ -72,7 +72,7 @@ namespace EVEOnline.ESI.Communication.Handlers
 
                 if (_scopeAccessValidator != null && !string.IsNullOrEmpty(protectedEnpointAttribute.RequiredScope))
                 {
-                    var isAuthorized = _scopeAccessValidator.VerifyScopeAccess(protectedEnpointAttribute.RequiredScope);
+                    var isAuthorized = await _scopeAccessValidator.VerifyScopeAccess(protectedEnpointAttribute.RequiredScope);
 
                     if (!isAuthorized)
                     {

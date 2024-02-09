@@ -30,13 +30,13 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient.GetRequestAsync<FleetIdRouteRequest, List<FleetMember>>(FleetIdRouteRequest.Create(fleetId));
 
         public Task<EsiResponse> InviteMemberAsync(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null) =>
-            _esiClient.PostNoContentRequestAsync<InviteFleetMemberRequest>(InviteFleetMemberRequest.Create(fleetId, characterId, role.GetEnumMemberAttributeValue(), squadId, wingId));
+            _esiClient.PostNoContentRequestAsync<InviteFleetMemberRequest>(InviteFleetMemberRequest.Create(fleetId, characterId, role.ToEsiString(), squadId, wingId));
 
         public Task<EsiResponse> KickMemberAsync(long fleetId, int memberId) =>
             _esiClient.DeleteRequestAsync<FleetMemberRouteRequest>(FleetMemberRouteRequest.Create(fleetId, memberId));
 
         public Task<EsiResponse> MoveMemberAsync(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null) =>
-            _esiClient.PutRequestAsync<MoveFleetMemberRequest>(MoveFleetMemberRequest.Create(fleetId, memberId, role.GetEnumMemberAttributeValue(), squadId, wingId));
+            _esiClient.PutRequestAsync<MoveFleetMemberRequest>(MoveFleetMemberRequest.Create(fleetId, memberId, role.ToEsiString(), squadId, wingId));
 
         public Task<EsiResponse> DeleteSquadAsync(long fleetId, long squadId) =>
             _esiClient.DeleteRequestAsync<FleetSquadRouteRequest>(FleetSquadRouteRequest.Create(fleetId, squadId));
