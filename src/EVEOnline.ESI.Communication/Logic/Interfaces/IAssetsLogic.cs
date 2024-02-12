@@ -17,7 +17,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/characters/{character_id}/assets/", Version = EndpointVersion.Latest)]
         [Route("/v5/characters/{character_id}/assets/", Version = EndpointVersion.V5, Preferred = true)]
         [Route("/dev/characters/{character_id}/assets/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Item>>> GetCharacterAssets(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<AssetItem>>> GetCharacterAssets(int characterId, int page = 1);
 
         /// <summary>
         /// Return locations for a set of item ids, which you can get from character assets endpoint.
@@ -55,7 +55,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/corporations/{corporation_id}/assets/", Version = EndpointVersion.Latest)]
         [Route("/v5/corporations/{corporation_id}/assets/", Version = EndpointVersion.V5, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/assets/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Item>>> GetCorporationAssets(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<AssetItem>>> GetCorporationAssets(int corporationId, int page = 1);
 
         /// <summary>
         /// Return locations for a set of item ids, which you can get from corporation assets endpoint.

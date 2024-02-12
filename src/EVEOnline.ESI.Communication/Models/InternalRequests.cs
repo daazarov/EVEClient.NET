@@ -647,4 +647,40 @@
             }
         }
     }
+
+    internal class KillmailsRequests
+    {
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
+            }
+        }
+
+        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
+        {
+            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
+            }
+        }
+
+        internal class KillmailInfoRequest : RouteModelBase<KillmailInfoUriModel>
+        {
+            public KillmailInfoRequest(KillmailInfoUriModel uriModel) : base(uriModel)
+            { }
+
+            public static KillmailInfoRequest Create(int killmailId, string killmailHash)
+            {
+                return new KillmailInfoRequest(new KillmailInfoUriModel(killmailId, killmailHash));
+            }
+        }
+    }
 }

@@ -138,7 +138,11 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(IIndustryLogic.GetIndustryFacilitiesAsync), ESI.Endpoints.Industry.Facilities },
                 { nameof(IIndustryLogic.GetSolarSystemCostIndicesAsync), ESI.Endpoints.Industry.SolarSystems },
 
-                { nameof(IInsuranceLogic.GetInsuranceLevelsAsync), ESI.Endpoints.Insurence.InsuranceLevels }
+                { nameof(IInsuranceLogic.GetInsuranceLevelsAsync), ESI.Endpoints.Insurence.InsuranceLevels },
+
+                { nameof(IKillmailsLogic.GetCharacterKillmails), ESI.Endpoints.Killmails.CharacterKillmails },
+                { nameof(IKillmailsLogic.GetCorporationKillmails), ESI.Endpoints.Killmails.CorporationKillmails },
+                { nameof(IKillmailsLogic.GetKillmainInfo), ESI.Endpoints.Killmails.KillmailInfo }
             };
         }
 

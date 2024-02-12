@@ -215,6 +215,13 @@ namespace EVEOnline.ESI.Communication
             {
                 public const string InsuranceLevels =                 "get_insurance_prices";
             }
+
+            public static class Killmails
+            {
+                public const string CharacterKillmails =              "get_characters_character_id_killmails_recent";
+                public const string CorporationKillmails =            "get_corporations_corporation_id_killmails_recent";
+                public const string KillmailInfo =                    "get_killmails_killmail_id_killmail_hash";
+            }
         }
     }
 }

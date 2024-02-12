@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication.DataContract
 {
-    public class Item
+    public class AssetItem
     {
         /// <summary>
         /// is_blueprint_copy boolean

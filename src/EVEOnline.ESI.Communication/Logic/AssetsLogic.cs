@@ -16,11 +16,11 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponsePagination<List<Item>>> GetCharacterAssets(int characterId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<Item>>(PageBasedCharacterIdRouteRequest.Create(characterId, page));
+        public Task<EsiResponsePagination<List<AssetItem>>> GetCharacterAssets(int characterId, int page = 1) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<AssetItem>>(PageBasedCharacterIdRouteRequest.Create(characterId, page));
 
-        public Task<EsiResponsePagination<List<Item>>> GetCorporationAssets(int corporationId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<Item>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
+        public Task<EsiResponsePagination<List<AssetItem>>> GetCorporationAssets(int corporationId, int page = 1) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<AssetItem>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
         public Task<EsiResponse<List<ItemLocation>>> PostCharacterLocationAssets(int characterId, long[] itemIds) =>
             _esiClient.PostRequestAsync<CharacterItemsPostRequest, List<ItemLocation>>(CharacterItemsPostRequest.Create(characterId, itemIds));
