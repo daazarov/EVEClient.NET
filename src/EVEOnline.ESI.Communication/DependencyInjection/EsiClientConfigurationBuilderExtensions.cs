@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Reflection;
-using EVEOnline.ESI.Communication.Handlers;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using EVEOnline.ESI.Communication;
+using EVEOnline.ESI.Communication.DependencyInjection;
+using EVEOnline.ESI.Communication.Handlers;
 
-namespace EVEOnline.ESI.Communication.DependencyInjection
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static partial class EsiClientConfigurationBuilderExtensions
     {
