@@ -136,7 +136,9 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(IIndustryLogic.GetCorporationObserverInfoAsync), ESI.Endpoints.Industry.ObserverInfo },
                 { nameof(IIndustryLogic.GetCorporationObserversAsync), ESI.Endpoints.Industry.CorporationObservers },
                 { nameof(IIndustryLogic.GetIndustryFacilitiesAsync), ESI.Endpoints.Industry.Facilities },
-                { nameof(IIndustryLogic.GetSolarSystemCostIndicesAsync), ESI.Endpoints.Industry.SolarSystems }
+                { nameof(IIndustryLogic.GetSolarSystemCostIndicesAsync), ESI.Endpoints.Industry.SolarSystems },
+
+                { nameof(IInsuranceLogic.GetInsuranceLevelsAsync), ESI.Endpoints.Insurence.InsuranceLevels }
             };
         }
 

@@ -17,5 +17,6 @@
         IFleetsLogic FleetsLogic { get; }
         IIncursionsLogic IncursionsLogic { get; }
         IIndustryLogic IndustryLogic { get; }
+        IInsuranceLogic InsuranceLogic { get; }
     }
 }

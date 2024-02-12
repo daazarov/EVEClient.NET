@@ -210,6 +210,11 @@ namespace EVEOnline.ESI.Communication
                 public const string Facilities =                      "get_industry_facilities";
                 public const string SolarSystems =                    "get_industry_systems";
             }
+
+            public static class Insurence
+            {
+                public const string InsuranceLevels =                 "get_insurance_prices";
+            }
         }
     }
 }

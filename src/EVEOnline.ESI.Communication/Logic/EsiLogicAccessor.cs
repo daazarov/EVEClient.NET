@@ -22,6 +22,7 @@ namespace EVEOnline.ESI.Communication.Logic
         private IFleetsLogic _fleetsLogic;
         private IIncursionsLogic _incursionsLogic;
         private IIndustryLogic _industryLogic;
+        private IInsuranceLogic _insuranceLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -38,6 +39,7 @@ namespace EVEOnline.ESI.Communication.Logic
         public IFleetsLogic FleetsLogic => GetOrSet<IFleetsLogic>(ref _fleetsLogic);
         public IIncursionsLogic IncursionsLogic => GetOrSet<IIncursionsLogic>(ref _incursionsLogic);
         public IIndustryLogic IndustryLogic => GetOrSet<IIndustryLogic>(ref _industryLogic);
+        public IInsuranceLogic InsuranceLogic => GetOrSet<IInsuranceLogic>(ref _insuranceLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {
