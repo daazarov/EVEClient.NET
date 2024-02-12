@@ -7,7 +7,7 @@ using EVEOnline.ESI.Communication.Utilities;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {
-    internal class EndpointHandler : IHandler
+    public class EndpointHandler : IHandler
     {
         private readonly ICustomEndpointRoutePriorityProvider _endpointRoutePriorityProvider;
 

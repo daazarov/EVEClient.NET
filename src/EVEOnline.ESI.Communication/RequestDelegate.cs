@@ -2,5 +2,5 @@
 
 namespace EVEOnline.ESI.Communication
 {
-    internal delegate Task RequestDelegate(EsiContext context);
+    public delegate Task RequestDelegate(EsiContext context);
 }

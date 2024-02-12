@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication
 {
-    internal interface IHandler
+    public interface IHandler
     {
         Task HandleAsync(EsiContext context, RequestDelegate next);
     }

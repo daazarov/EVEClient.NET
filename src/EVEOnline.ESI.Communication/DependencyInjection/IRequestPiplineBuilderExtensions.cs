@@ -6,7 +6,7 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
 {
     internal static class IRequestPiplineBuilderExtensions
     {
-        public static IRequestPiplineBuilder UseHandler<THandler>(this IRequestPiplineBuilder builder, params object[] args) where THandler : IHandler
+        public static IRequestPiplineBuilder UseHandler<THandler>(this IRequestPiplineBuilder builder) where THandler : IHandler
         {
             builder.ArgumentNotNull(nameof(builder));
 
@@ -14,7 +14,7 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
             {
                 return context =>
                 {
-                    var instance = ActivatorUtilities.CreateInstance<THandler>(builder.ServiceProvider, args);
+                    var instance = builder.ServiceProvider.GetRequiredService<THandler>();
 
                     return instance.HandleAsync(context, next);
                 };
@@ -25,7 +25,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            return builder.UseHandler<RequestHeadersHandler>()
+            return builder.UseHandler<ProtectionHandler>()
+                          .UseHandler<RequestHeadersHandler>()
                           .UseHandler<UrlRequestParametersHandler>()
                           .UseHandler<EndpointHandler>()
                           .UseHandler<RequestDeleteHandler>();
@@ -35,7 +36,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            return builder.UseHandler<RequestHeadersHandler>()
+            return builder.UseHandler<ProtectionHandler>()
+                          .UseHandler<RequestHeadersHandler>()
                           .UseHandler<EndpointHandler>()
                           .UseHandler<ETagHandler>()
                           .UseHandler<RequestGetHandler>();
@@ -45,7 +47,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            return builder.UseHandler<RequestHeadersHandler>()
+            return builder.UseHandler<ProtectionHandler>()
+                          .UseHandler<RequestHeadersHandler>()
                           .UseHandler<UrlRequestParametersHandler>()
                           .UseHandler<EndpointHandler>()
                           .UseHandler<ETagHandler>()
@@ -56,7 +59,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            return builder.UseHandler<RequestHeadersHandler>()
+            return builder.UseHandler<ProtectionHandler>()
+                          .UseHandler<RequestHeadersHandler>()
                           .UseHandler<UrlRequestParametersHandler>()
                           .UseHandler<BodyRequestParametersHandler>()
                           .UseHandler<EndpointHandler>()
@@ -67,7 +71,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            return builder.UseHandler<RequestHeadersHandler>()
+            return builder.UseHandler<ProtectionHandler>()
+                          .UseHandler<RequestHeadersHandler>()
                           .UseHandler<UrlRequestParametersHandler>()
                           .UseHandler<BodyRequestParametersHandler>()
                           .UseHandler<EndpointHandler>()

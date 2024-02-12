@@ -6,7 +6,7 @@ using EVEOnline.ESI.Communication.Models;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {
-    internal class BodyRequestParametersHandler : IHandler
+    public class BodyRequestParametersHandler : IHandler
     {
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {

@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication
 {
-    internal class RouteQueue
+    public class RouteQueue
     {
         private readonly PriorityQueue<string, RoutePriority> _routeQueue;
 

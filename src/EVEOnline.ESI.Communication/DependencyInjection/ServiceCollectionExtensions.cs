@@ -10,6 +10,7 @@ using EVEOnline.ESI.Communication.Logic;
 using EVEOnline.ESI.Communication.DependencyInjection;
 using EVEOnline.ESI.Communication;
 using EVEOnline.ESI.Communication.Utilities.Stores;
+using EVEOnline.ESI.Communication.Handlers;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -17,31 +18,11 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IEsiClientConfigurationBuilder AddEVEOnlineEsiClient(this IServiceCollection services, IConfiguration configuration, string sectionName = null)
         {
-            if (services == null)
-            { 
-                throw new ArgumentNullException(nameof(services));
-            }
-
-            if (configuration == null)
-            {
-                throw new ArgumentNullException(nameof(configuration));
-            }
-
             return services.AddEVEOnlineEsiClient(configuration.GetRequiredSection(string.IsNullOrEmpty(sectionName) ? EsiClientConfiguration.DefaultEsiConfigurationSectionName : sectionName));
         }
 
         public static IEsiClientConfigurationBuilder AddEVEOnlineEsiClient(this IServiceCollection services, Action<EsiClientConfiguration> configure)
         {
-            if (services == null)
-            {
-                throw new ArgumentNullException(nameof(services));
-            }
-
-            if (configure == null)
-            {
-                throw new ArgumentNullException(nameof(configure));
-            }
-
             var options = new EsiClientConfiguration();
             configure(options);
 
@@ -69,6 +50,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient(typeof(IEsiHttpClient<>), typeof(EsiHttpClient<>));
 
             services.AddLogics();
+            services.AddDefaultRequestPiplineHandlers();
 
             services.AddHttpClient(ESI.HttpClientName, httpClient => httpClient.BaseAddress = new Uri(configuration.BaseUrl))
                     .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
@@ -102,6 +84,22 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IFleetsLogic, FleetsLogic>();
             services.TryAddTransient<IIncursionsLogic, IncursionsLogic>();
             services.TryAddTransient<IIndustryLogic, IndustryLogic>();
+
+            return services;
+        }
+
+        private static IServiceCollection AddDefaultRequestPiplineHandlers(this IServiceCollection services)
+        {
+            services.TryAddTransient<RequestHeadersHandler>();
+            services.TryAddTransient<UrlRequestParametersHandler>();
+            services.TryAddTransient<RequestGetHandler>();
+            services.TryAddTransient<RequestPostHandler>();
+            services.TryAddTransient<RequestDeleteHandler>();
+            services.TryAddTransient<RequestPutHandler>();
+            services.TryAddTransient<ETagHandler>();
+            services.TryAddTransient<EndpointHandler>();
+            services.TryAddTransient<ProtectionHandler>();
+            services.TryAddTransient<BodyRequestParametersHandler>();
 
             return services;
         }

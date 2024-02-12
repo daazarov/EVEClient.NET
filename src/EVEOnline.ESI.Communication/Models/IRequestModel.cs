@@ -1,15 +1,15 @@
 ﻿namespace EVEOnline.ESI.Communication.Models
 {
-    internal interface IRequestModel 
+    public interface IRequestModel 
     {
     }
 
-    internal interface IBodyModel : IRequestModel
+    public interface IBodyModel : IRequestModel
     {
         object Body { get; }
     }
 
-    internal interface IRoteModel : IRequestModel
+    public interface IRoteModel : IRequestModel
     {
         object QueryRoute { get; }
     }

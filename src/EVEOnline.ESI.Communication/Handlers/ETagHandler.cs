@@ -8,7 +8,7 @@ using EVEOnline.ESI.Communication.Utilities;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {
-    internal class ETagHandler : IHandler
+    public class ETagHandler : IHandler
     {
         private readonly IOptionsMonitor<EsiClientConfiguration> _options;
         private readonly IETagStorage _storage;
@@ -35,7 +35,7 @@ namespace EVEOnline.ESI.Communication.Handlers
             }
         }
 
-        private async Task SetupETagToHttpClient(EsiContext context)
+        protected virtual async Task SetupETagToHttpClient(EsiContext context)
         {
             if (await _storage.TryGetETagAsync(GetKey(context), out var eTag))
             {
@@ -43,7 +43,7 @@ namespace EVEOnline.ESI.Communication.Handlers
             }
         }
 
-        private async Task StoreETagFromResponse(EsiContext context)
+        protected virtual async Task StoreETagFromResponse(EsiContext context)
         {
             if (!context.Response.Headers.Contains("ETag"))
             {
@@ -55,7 +55,7 @@ namespace EVEOnline.ESI.Communication.Handlers
             await _storage.StoreETagAsync(GetKey(context), eTag);
         }
 
-        private string GetKey(EsiContext context) =>
+        protected virtual string GetKey(EsiContext context) =>
             ETagStoreKeyGenerator.GetKey(context.EndpointId, context.RequestContext.RouteParametersMap.AsNameValueCollection(), context.RequestContext.QueryParametersMap.AsNameValueCollection());
     }
 }

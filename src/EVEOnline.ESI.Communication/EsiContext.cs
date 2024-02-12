@@ -8,7 +8,7 @@ using EVEOnline.ESI.Communication.Extensions;
 
 namespace EVEOnline.ESI.Communication
 {
-    internal class EsiContext
+    public class EsiContext
     {
         private readonly IRequestModel _requestModel;
         private readonly HttpClient _httpClient;
@@ -68,7 +68,7 @@ namespace EVEOnline.ESI.Communication
         }
     }
 
-    internal class CallingContext
+    public class CallingContext
     {
         private readonly string _callingMemberName;
         private readonly Type _callingMemberType;
@@ -88,7 +88,7 @@ namespace EVEOnline.ESI.Communication
         }
     }
 
-    internal class RequestContext
+    public class RequestContext
     {
         public RouteQueue RouteQueue { get; set; }
         public HttpContent? Body { get; set; }

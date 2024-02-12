@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {
-    internal class UrlRequestParametersHandler : IHandler
+    public class UrlRequestParametersHandler : IHandler
     {
         private readonly IOptionsMonitor<EsiClientConfiguration> _options;
         

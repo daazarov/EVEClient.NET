@@ -5,7 +5,7 @@ using EVEOnline.ESI.Communication.Extensions;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {
-    internal abstract class RequestBaseHandler : IHandler
+    public abstract class RequestBaseHandler : IHandler
     {
         private readonly HttpStatusCode[] _unacceptableHttpStatusCodes = new HttpStatusCode[]
         {
@@ -48,7 +48,7 @@ namespace EVEOnline.ESI.Communication.Handlers
         }
     }
 
-    internal class RequestPutHandler : RequestBaseHandler
+    public class RequestPutHandler : RequestBaseHandler
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)
         {
@@ -56,7 +56,7 @@ namespace EVEOnline.ESI.Communication.Handlers
         }
     }
 
-    internal class RequestPostHandler : RequestBaseHandler
+    public class RequestPostHandler : RequestBaseHandler
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)
         {
@@ -64,7 +64,7 @@ namespace EVEOnline.ESI.Communication.Handlers
         }
     }
 
-    internal class RequestGetHandler : RequestBaseHandler
+    public class RequestGetHandler : RequestBaseHandler
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)
         {
@@ -72,7 +72,7 @@ namespace EVEOnline.ESI.Communication.Handlers
         }
     }
 
-    internal class RequestDeleteHandler : RequestBaseHandler
+    public class RequestDeleteHandler : RequestBaseHandler
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)
         {
