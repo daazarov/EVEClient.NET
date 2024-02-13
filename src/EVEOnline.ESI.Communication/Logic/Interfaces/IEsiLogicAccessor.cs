@@ -19,5 +19,6 @@
         IIndustryLogic IndustryLogic { get; }
         IInsuranceLogic InsuranceLogic { get; }
         IKillmailsLogic KillmailsLogic { get; }
+        ILocationLogic LocationLogic { get; }
     }
 }

@@ -16,6 +16,7 @@
     <None Remove="Datasets\Json\DeserializationTests\deserialization.industry.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.insurance.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.killmails.json" />
+    <None Remove="Datasets\Json\DeserializationTests\deserialization.location.json" />
     <None Remove="Datasets\Json\serialization.FactionWarfare.json" />
   </ItemGroup>
 
@@ -27,6 +28,7 @@
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.industry.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.insurance.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.killmails.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.location.json" />
   </ItemGroup>
 
   <ItemGroup>

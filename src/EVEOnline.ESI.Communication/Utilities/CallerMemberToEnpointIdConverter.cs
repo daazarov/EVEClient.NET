@@ -142,7 +142,11 @@ namespace EVEOnline.ESI.Communication.Utilities
 
                 { nameof(IKillmailsLogic.GetCharacterKillmails), ESI.Endpoints.Killmails.CharacterKillmails },
                 { nameof(IKillmailsLogic.GetCorporationKillmails), ESI.Endpoints.Killmails.CorporationKillmails },
-                { nameof(IKillmailsLogic.GetKillmainInfo), ESI.Endpoints.Killmails.KillmailInfo }
+                { nameof(IKillmailsLogic.GetKillmainInfo), ESI.Endpoints.Killmails.KillmailInfo },
+
+                { nameof(ILocationLogic.GetCharacterLocationAsync), ESI.Endpoints.Location.CurrentLocation },
+                { nameof(ILocationLogic.GetCharacterOnlineAsync), ESI.Endpoints.Location.Online },
+                { nameof(ILocationLogic.GetCharacterShipAsync), ESI.Endpoints.Location.CurrentShip }
             };
         }
 

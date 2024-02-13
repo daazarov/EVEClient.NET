@@ -683,4 +683,18 @@
             }
         }
     }
+
+    internal class LocationRequests
+    {
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+    }
 }

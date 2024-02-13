@@ -6,7 +6,7 @@ namespace EVEOnline.ESI.Communication
     {
         /// <summary>
         /// Returns a collection of routes that the client will attempt to execute the request.
-        /// "endpointId" - id from <see cref="ESI.Endpoints"/>
+        /// <paramref name="endpointId"/> is unique endpoint name from <see cref="ESI.Endpoints"/>
         /// </summary>
         IEnumerable<EndpointRoutePrioritySetting> GetRoutePrioritiesForEndpoint(string endpointId);
     }

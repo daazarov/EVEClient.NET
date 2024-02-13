@@ -386,11 +386,40 @@ namespace Microsoft.Extensions.DependencyInjection
             return builder;
         }
 
+        /// <summary>
+        /// Adds the specified <see cref="ICustomEndpointRoutePriorityProvider"/> as a <see cref="ServiceLifetime.Transient"/> service
+        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
+        /// </summary>
+        /// <typeparam name="T">The <see cref="ICustomEndpointRoutePriorityProvider"/> implementation.</typeparam>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
+        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
+        public static IEsiClientConfigurationBuilder UseEndpointRoutePriorityProvider<T>(this IEsiClientConfigurationBuilder builder)
+        {
+            return builder.UseEndpointRoutePriorityProvider(typeof(T));
+        }
+
+        /// <summary>
+        /// Adds the specified <see cref="ICustomEndpointRoutePriorityProvider"/> as a <see cref="ServiceLifetime.Transient"/> service
+        /// with the <paramref name="instanceType"/> implementation
+        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
+        /// </summary>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
+        /// <param name="instanceType">The implementation type of the service.</param>
+        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
+        public static IEsiClientConfigurationBuilder UseEndpointRoutePriorityProvider(this IEsiClientConfigurationBuilder builder, Type instanceType)
+        {
+            IsAssignableFrom(typeof(ICustomEndpointRoutePriorityProvider), instanceType);
+
+            builder.ServiceCollection.TryAddTransient(typeof(ICustomEndpointRoutePriorityProvider), instanceType);
+
+            return builder;
+        }
+
         private static void IsAssignableFrom(Type from, Type to)
         {
             if (!to.GetTypeInfo().IsAssignableFrom(from.GetTypeInfo()))
             {
-                throw new InvalidCastException(); // todo
+                throw new InvalidCastException($"{to.FullName} is not assignable from {from.FullName}");
             }
         }
     }

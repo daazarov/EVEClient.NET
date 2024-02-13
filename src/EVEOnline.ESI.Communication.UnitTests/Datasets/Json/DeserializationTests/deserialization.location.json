@@ -1,0 +1,20 @@
+{
+  "Location": {
+    "solar_system_id": 30002505,
+    "structure_id": 1000000016989,
+    "station_id": 651111114
+  },
+
+  "Activity": {
+    "last_login": "2018-01-02T03:04:05Z",
+    "last_logout": "2017-01-02T04:05:06Z",
+    "logins": 9001,
+    "online": true
+  },
+
+  "Ship": {
+    "ship_item_id": 1000000016991,
+    "ship_name": "SPACESHIPS!!!",
+    "ship_type_id": 1233
+  }
+}

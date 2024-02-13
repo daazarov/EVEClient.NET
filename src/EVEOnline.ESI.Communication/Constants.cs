@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace EVEOnline.ESI.Communication
 {
@@ -18,7 +19,7 @@ namespace EVEOnline.ESI.Communication
             public const string DeleteRequest = "DeleteRequest";
         }
 
-        internal static Dictionary<string, EndpointVersion> AvailableRoutes = new Dictionary<string, EndpointVersion>
+        public static ImmutableDictionary<string, EndpointVersion> AvailableRoutes => ImmutableDictionary.CreateRange(new Dictionary<string, EndpointVersion>
         {
             { Endpoints.Characters.PublicInformation, EndpointVersion.V5 | EndpointVersion.Latest | EndpointVersion.Legacy | EndpointVersion.Dev },
             { Endpoints.Characters.Standings, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
@@ -34,7 +35,7 @@ namespace EVEOnline.ESI.Communication
             { Endpoints.Characters.Roles, EndpointVersion.Latest | EndpointVersion.V3 | EndpointVersion.Dev },
             { Endpoints.Characters.Titles, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
             { Endpoints.Characters.Affilation, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev }
-        };
+        });
 
         public static class Endpoints
         {
@@ -221,6 +222,13 @@ namespace EVEOnline.ESI.Communication
                 public const string CharacterKillmails =              "get_characters_character_id_killmails_recent";
                 public const string CorporationKillmails =            "get_corporations_corporation_id_killmails_recent";
                 public const string KillmailInfo =                    "get_killmails_killmail_id_killmail_hash";
+            }
+
+            public static class Location
+            {
+                public const string CurrentLocation =                 "get_characters_character_id_location";
+                public const string Online =                          "get_characters_character_id_online";
+                public const string CurrentShip =                     "get_characters_character_id_ship";
             }
         }
     }
