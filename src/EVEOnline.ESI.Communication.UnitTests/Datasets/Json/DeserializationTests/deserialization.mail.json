@@ -1,0 +1,53 @@
+{
+  "Header": {
+    "from": 90000001,
+    "is_read": true,
+    "labels": [
+      3
+    ],
+    "mail_id": 7,
+    "recipients": [
+      {
+        "recipient_id": 90000002,
+        "recipient_type": "character"
+      }
+    ],
+    "subject": "Title for EVE Mail",
+    "timestamp": "2015-09-30T16:07:00Z"
+  },
+
+  "Message": {
+    "body": "blah blah blah",
+    "from": 90000001,
+    "labels": [
+      2,
+      32
+    ],
+    "read": true,
+    "recipients": [
+      {
+        "recipient_id": 90000002,
+        "recipient_type": "character"
+      }
+    ],
+    "subject": "test",
+    "timestamp": "2015-09-30T16:07:00Z"
+  },
+
+  "MailingList": {
+    "mailing_list_id": 1,
+    "name": "test_mailing_list"
+  },
+
+  "LabelCounts": {
+    "labels": [
+      {
+        "color": "#660066",
+        "label_id": 16,
+        "name": "PINK",
+        "unread_count": 4
+      }
+    ],
+    "total_unread_count": 5
+  }
+}

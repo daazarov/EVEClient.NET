@@ -21,5 +21,6 @@
         IKillmailsLogic KillmailsLogic { get; }
         ILocationLogic LocationLogic { get; }
         ILoyaltyLogic LoyaltyLogic { get; }
+        IMailLogic MailLogic { get; }
     }
 }

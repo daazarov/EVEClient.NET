@@ -722,4 +722,84 @@
             }
         }
     }
+
+    internal class MailRequests
+    {
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+
+        internal class GetMailHeaderseRequest : RouteModelBase<MailHeadersUriModel>
+        {
+            public GetMailHeaderseRequest(MailHeadersUriModel uriModel) : base(uriModel)
+            { }
+
+            public static GetMailHeaderseRequest Create(int characterId, int[] labels, int? lastMailId)
+            {
+                return new GetMailHeaderseRequest(new MailHeadersUriModel(characterId, labels, lastMailId));
+            }
+        }
+
+        internal class GetDeleteMailRequest : RouteModelBase<GetDeleteUpdateMailUriModel>
+        {
+            public GetDeleteMailRequest(GetDeleteUpdateMailUriModel uriModel) : base(uriModel)
+            { }
+
+            public static GetDeleteMailRequest Create(int characterId, int mailId)
+            {
+                return new GetDeleteMailRequest(new GetDeleteUpdateMailUriModel(characterId, mailId));
+            }
+        }
+
+        internal class DeleteLabelRequest : RouteModelBase<DeleteLabelUriModel>
+        {
+            public DeleteLabelRequest(DeleteLabelUriModel uriModel) : base(uriModel)
+            { }
+
+            public static DeleteLabelRequest Create(int characterId, int labelId)
+            {
+                return new DeleteLabelRequest(new DeleteLabelUriModel(characterId, labelId));
+            }
+        }
+
+        internal class NewLabelRequest : RequestBase<CharacterIdModel, NewLabelBodyModel>
+        {
+            public NewLabelRequest(CharacterIdModel uriModel, NewLabelBodyModel bodyModel) : base(uriModel, bodyModel)
+            { }
+
+            public static NewLabelRequest Create(int characterId, string color, string name)
+            {
+                return new NewLabelRequest(new CharacterIdModel(characterId), new NewLabelBodyModel(name, color));
+            }
+        }
+
+        internal class UpdateMailRequest : RequestBase<GetDeleteUpdateMailUriModel, UpdateMailBodyModel>
+        {
+            public UpdateMailRequest(GetDeleteUpdateMailUriModel uriModel, UpdateMailBodyModel bodyModel) : base(uriModel, bodyModel)
+            { }
+
+            public static UpdateMailRequest Create(int characterId, int mailId, int[] labels, bool? read)
+            {
+                return new UpdateMailRequest(new GetDeleteUpdateMailUriModel(characterId, mailId), new UpdateMailBodyModel(labels, read));
+            }
+        }
+
+        internal class NewMailRequest : RequestBase<CharacterIdModel, NewMailBodyModel>
+        {
+            public NewMailRequest(CharacterIdModel uriModel, NewMailBodyModel bodyModel) : base(uriModel, bodyModel)
+            { }
+
+            public static NewMailRequest Create(int characterId, NewMailBodyModel bodyModel)
+            {
+                return new NewMailRequest(new CharacterIdModel(characterId), bodyModel);
+            }
+        }
+    }
 }

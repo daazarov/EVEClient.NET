@@ -236,6 +236,19 @@ namespace EVEOnline.ESI.Communication
                 public const string LoyaltyPoints =                   "get_characters_character_id_loyalty_points";
                 public const string CorporationOffers =               "get_loyalty_stores_corporation_id_offers";
             }
+
+            public static class Mail
+            {
+                public const string MailHeaders =                     "get_characters_character_id_mail";
+                public const string SendMail =                        "post_characters_character_id_mail";
+                public const string DeleteMail =                      "delete_characters_character_id_mail_mail_id";
+                public const string GetMail =                         "get_characters_character_id_mail_mail_id";
+                public const string UpdateMail =                      "put_characters_character_id_mail_mail_id";
+                public const string GetLabels =                       "get_characters_character_id_mail_labels";
+                public const string CreateLabel =                     "post_characters_character_id_mail_labels";
+                public const string DeleteLabel =                     "delete_characters_character_id_mail_labels_label_id";
+                public const string MailingList =                     "get_characters_character_id_mail_lists";
+            }
         }
     }
 }

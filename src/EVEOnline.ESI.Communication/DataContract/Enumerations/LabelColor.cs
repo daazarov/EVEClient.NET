@@ -13,7 +13,7 @@ namespace EVEOnline.ESI.Communication.DataContract
         [EnumMember(Value = "#00ff33")] LightGreen,
         [EnumMember(Value = "#01ffff")] Aqua,
         [EnumMember(Value = "#349800")] LaPalma,
-        [EnumMember(Value = "#660066")] Purple,
+        [EnumMember(Value = "#660066")] Pink,
         [EnumMember(Value = "#666666")] Gray,
         [EnumMember(Value = "#999999")] LightGray,
         [EnumMember(Value = "#99ffff")] ElectricBlue,

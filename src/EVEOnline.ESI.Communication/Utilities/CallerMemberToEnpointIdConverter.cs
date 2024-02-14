@@ -149,7 +149,17 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(ILocationLogic.GetCharacterShipAsync), ESI.Endpoints.Location.CurrentShip },
 
                 { nameof(ILoyaltyLogic.GetLoyaltyPoints), ESI.Endpoints.Loyalty.LoyaltyPoints },
-                { nameof(ILoyaltyLogic.GetCorporationOffers), ESI.Endpoints.Loyalty.CorporationOffers }
+                { nameof(ILoyaltyLogic.GetCorporationOffers), ESI.Endpoints.Loyalty.CorporationOffers },
+
+                { nameof(IMailLogic.GetCharacterMailHeaders), ESI.Endpoints.Mail.MailHeaders },
+                { nameof(IMailLogic.SendMail), ESI.Endpoints.Mail.SendMail },
+                { nameof(IMailLogic.GetMail), ESI.Endpoints.Mail.GetMail },
+                { nameof(IMailLogic.UpdateMail), ESI.Endpoints.Mail.UpdateMail },
+                { nameof(IMailLogic.DeleteMail), ESI.Endpoints.Mail.DeleteMail },
+                { nameof(IMailLogic.GetCharacterMailLabels), ESI.Endpoints.Mail.GetLabels },
+                { nameof(IMailLogic.NewMailLabel), ESI.Endpoints.Mail.CreateLabel },
+                { nameof(IMailLogic.DeleteLabel), ESI.Endpoints.Mail.DeleteLabel },
+                { nameof(IMailLogic.GetCharacterMailingList), ESI.Endpoints.Mail.MailingList }
             };
         }
 
