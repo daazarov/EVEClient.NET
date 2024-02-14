@@ -25,6 +25,7 @@ namespace EVEOnline.ESI.Communication.Logic
         private IInsuranceLogic _insuranceLogic;
         private IKillmailsLogic _killmailsLogic;
         private ILocationLogic _locationLogic;
+        private ILoyaltyLogic _loyaltyLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -44,6 +45,7 @@ namespace EVEOnline.ESI.Communication.Logic
         public IInsuranceLogic InsuranceLogic => GetOrSet<IInsuranceLogic>(ref _insuranceLogic);
         public IKillmailsLogic KillmailsLogic => GetOrSet<IKillmailsLogic>(ref _killmailsLogic);
         public ILocationLogic LocationLogic => GetOrSet<ILocationLogic>(ref _locationLogic);
+        public ILoyaltyLogic LoyaltyLogic => GetOrSet<ILoyaltyLogic>(ref _loyaltyLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

@@ -87,6 +87,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IInsuranceLogic, InsuranceLogic>();
             services.TryAddTransient<IKillmailsLogic, KillmailsLogic>();
             services.TryAddTransient<ILocationLogic, LocationLogic>();
+            services.TryAddTransient<ILoyaltyLogic, LoyaltyLogic>();
 
             return services;
         }

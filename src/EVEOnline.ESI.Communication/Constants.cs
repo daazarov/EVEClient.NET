@@ -230,6 +230,12 @@ namespace EVEOnline.ESI.Communication
                 public const string Online =                          "get_characters_character_id_online";
                 public const string CurrentShip =                     "get_characters_character_id_ship";
             }
+
+            public static class Loyalty
+            {
+                public const string LoyaltyPoints =                   "get_characters_character_id_loyalty_points";
+                public const string CorporationOffers =               "get_loyalty_stores_corporation_id_offers";
+            }
         }
     }
 }

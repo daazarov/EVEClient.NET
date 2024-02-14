@@ -1,0 +1,21 @@
+{
+  "Points": {
+    "corporation_id": 123,
+    "loyalty_points": 100
+  },
+
+  "Offer": {
+    "ak_cost": 35000,
+    "isk_cost": 10,
+    "lp_cost": 100,
+    "offer_id": 1,
+    "quantity": 2,
+    "required_items": [
+      {
+        "quantity": 10,
+        "type_id": 1234
+      }
+    ],
+    "type_id": 123
+  }
+}

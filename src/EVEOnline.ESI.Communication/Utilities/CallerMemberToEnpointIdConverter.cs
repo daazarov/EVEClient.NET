@@ -146,7 +146,10 @@ namespace EVEOnline.ESI.Communication.Utilities
 
                 { nameof(ILocationLogic.GetCharacterLocationAsync), ESI.Endpoints.Location.CurrentLocation },
                 { nameof(ILocationLogic.GetCharacterOnlineAsync), ESI.Endpoints.Location.Online },
-                { nameof(ILocationLogic.GetCharacterShipAsync), ESI.Endpoints.Location.CurrentShip }
+                { nameof(ILocationLogic.GetCharacterShipAsync), ESI.Endpoints.Location.CurrentShip },
+
+                { nameof(ILoyaltyLogic.GetLoyaltyPoints), ESI.Endpoints.Loyalty.LoyaltyPoints },
+                { nameof(ILoyaltyLogic.GetCorporationOffers), ESI.Endpoints.Loyalty.CorporationOffers }
             };
         }
 
