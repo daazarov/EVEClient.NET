@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
 using EVEOnline.ESI.Communication.Attributes;
 using EVEOnline.ESI.Communication.Configuration;
 using EVEOnline.ESI.Communication.Models;
 using EVEOnline.ESI.Communication.Extensions;
 using EVEOnline.ESI.Communication.Utilities;
-using Microsoft.Extensions.Options;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {
@@ -46,10 +46,12 @@ namespace EVEOnline.ESI.Communication.Handlers
 
                 if (attribute != null)
                 {
-                    var value = ReflectionUtils.GetPropertyValueDelegate<string>(type, prop.Name).Invoke(model);
-                    if (!string.IsNullOrEmpty(value))
+                    var getter = DynamicMethodPropertyGetAccessor.Instance.CreateGet<object>(prop);
+                    var value = getter(model);
+
+                    if (value != null)
                     {
-                        result.Add(attribute.ParameterName, value);
+                        result.Add(attribute.ParameterName, (string)value);
                     }
                 }
             }
