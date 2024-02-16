@@ -9,7 +9,6 @@ namespace EVEOnline.ESI.Communication
         Task<EsiResponse<TResponse>> GetRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string memberName = "")
             where TRequest : IRequestModel;
         Task<EsiResponse<TResponse>> GetRequestAsync<TResponse>([CallerMemberName] string memberName = "");
-        Task<EsiResponsePagination<TResponse>> GetPaginationRequestAsync<TResponse>([CallerMemberName] string memberName = "");
         Task<EsiResponsePagination<TResponse>> GetPaginationRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string memberName = "")
             where TRequest : IRequestModel;
         Task<EsiResponse<TResponse>> PostRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string memberName = "")

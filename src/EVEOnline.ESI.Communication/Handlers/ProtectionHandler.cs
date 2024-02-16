@@ -63,7 +63,7 @@ namespace EVEOnline.ESI.Communication.Handlers
 
                 if (!allowed)
                 {
-                    UnauthorizedResponse(context, HttpStatusCode.Forbidden, $"The request endpoint requires the following scope: {protectedEnpointAttribute.RequiredScope}.");
+                    UnauthorizedResponse(context, HttpStatusCode.Forbidden, $"token is not valid for scope: {protectedEnpointAttribute.RequiredScope}");
                 }
             }
         }
@@ -92,6 +92,6 @@ namespace EVEOnline.ESI.Communication.Handlers
             });
         }
 
-        protected bool CanContinue(EsiContext context) => context.Response != null;
+        protected bool CanContinue(EsiContext context) => context.Response == null;
     }
 }

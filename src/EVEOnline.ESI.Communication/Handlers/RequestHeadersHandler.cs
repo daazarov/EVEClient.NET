@@ -18,12 +18,12 @@ namespace EVEOnline.ESI.Communication.Handlers
 
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            ConfigureDefaultHttpClientHeaders(context.HttpClient.DefaultRequestHeaders);
+            ConfigureHttpClientHeaders(context.HttpClient.DefaultRequestHeaders);
 
             await next.Invoke(context);
         }
 
-        protected virtual void ConfigureDefaultHttpClientHeaders(HttpRequestHeaders headers)
+        protected virtual void ConfigureHttpClientHeaders(HttpRequestHeaders headers)
         {
             headers.Add("X-User-Agent", _configuration.UserAgent.ArgumentStringNotNullOrEmpty(nameof(_configuration.UserAgent)));
             headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

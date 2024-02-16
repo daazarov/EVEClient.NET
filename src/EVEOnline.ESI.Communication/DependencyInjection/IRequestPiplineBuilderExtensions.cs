@@ -32,17 +32,6 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
                           .UseHandler<RequestDeleteHandler>();
         }
 
-        public static IRequestPiplineBuilder UseGetPiplineWithoutRequestParameters(this IRequestPiplineBuilder builder)
-        {
-            builder.ArgumentNotNull(nameof(builder));
-
-            return builder.UseHandler<ProtectionHandler>()
-                          .UseHandler<RequestHeadersHandler>()
-                          .UseHandler<EndpointHandler>()
-                          .UseHandler<ETagHandler>()
-                          .UseHandler<RequestGetHandler>();
-        }
-
         public static IRequestPiplineBuilder UseGetPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));

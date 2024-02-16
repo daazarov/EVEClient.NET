@@ -42,28 +42,6 @@ namespace EVEOnline.ESI.Communication
             }
         }
 
-        public virtual async Task<EsiResponsePagination<TResponse>> GetPaginationRequestAsync<TResponse>([CallerMemberName] string memberName = "")
-        {
-            var pipline = GetOrSet
-            (
-                key: GetKey(ESI.EsiClientMethodNames.GetPaginationRequestWithouRequestParameters, memberName),
-                getter: key => _piplineBuilder.UseGetPiplineWithoutRequestParameters().Build()
-            );
-
-            try
-            {
-                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(memberName);
-                var context = _contextFactory.CreateContext(endpointId, typeof(T), memberName);
-                var handledContext = await pipline.ExecuteAsync(context);
-
-                return new EsiResponsePagination<TResponse>(handledContext.Response);
-            }
-            catch (Exception ex)
-            {
-                return new EsiResponsePagination<TResponse>(ex);
-            };
-        }
-
         public virtual async Task<EsiResponsePagination<TResponse>> GetPaginationRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
@@ -91,7 +69,7 @@ namespace EVEOnline.ESI.Communication
             var pipline = GetOrSet
             (
                 key: GetKey(ESI.EsiClientMethodNames.GetRequestWithouRequestParameters, memberName),
-                getter: key => _piplineBuilder.UseGetPiplineWithoutRequestParameters().Build()
+                getter: key => _piplineBuilder.UseGetPipline().Build()
             );
 
             try
@@ -198,9 +176,12 @@ namespace EVEOnline.ESI.Communication
 
         private IRequestPipline GetOrSet(string key, Func<string, IRequestPipline> getter)
         {
-            return PiplineThreadSaveStore<T>.GetPipline(key, getter);
+            return PiplineThreadSaveStore.GetPipline(key, getter);
         }
 
-        private string GetKey(string methodName, string callingMemberName) => string.Concat(methodName, "-", callingMemberName);
+        private string GetKey(string methodName, string callingMemberName)
+        { 
+            return string.Concat(typeof(T).Name, "-", methodName, "-", callingMemberName);
+        }
     }
 }

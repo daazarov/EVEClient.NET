@@ -16,14 +16,16 @@ namespace EVEOnline.ESI.Communication.Handlers
             _endpointRoutePriorityProvider = endpointRoutePriorityProvider;
         }
 
+        protected virtual bool CustomPriorityEnabled => _endpointRoutePriorityProvider != null;
+
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            context.RequestContext.RouteQueue = (_endpointRoutePriorityProvider == null) ? SetupDefaultPriorityQueue(context) : SetupCustomPriorityQueue(context);
+            context.RequestContext.RouteQueue = CustomPriorityEnabled ? SetupCustomPriorityQueue(context) : SetupDefaultPriorityQueue(context);
 
             await next.Invoke(context);
         }
 
-        private RouteQueue SetupDefaultPriorityQueue(EsiContext context)
+        protected virtual RouteQueue SetupDefaultPriorityQueue(EsiContext context)
         {
             var routeQueue = new RouteQueue();
 
@@ -37,8 +39,7 @@ namespace EVEOnline.ESI.Communication.Handlers
             return routeQueue;
         }
 
-        // todo
-        private RouteQueue SetupCustomPriorityQueue(EsiContext context)
+        protected virtual RouteQueue SetupCustomPriorityQueue(EsiContext context)
         {
             var routeQueue = new RouteQueue();
             var availableRoutes = ReflectionCacheAttributeAccessor.Instance.GetAttributes<RouteAttribute>(context.CallingContext.MethodInfo);

@@ -14,10 +14,15 @@ namespace EVEOnline.ESI.Communication.Handlers
 
             if (bodyRequestModel != null) 
             {
-                context.RequestContext.Body = new StringContent(JsonConvert.SerializeObject(bodyRequestModel.Body));
+                context.RequestContext.Body = CreateHttpContent(bodyRequestModel.Body);
             }
 
             await next.Invoke(context);
+        }
+
+        protected virtual HttpContent? CreateHttpContent(object bodyModel)
+        { 
+            return new StringContent(JsonConvert.SerializeObject(bodyModel));
         }
     }
 }

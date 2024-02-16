@@ -27,11 +27,21 @@ namespace EVEOnline.ESI.Communication.Handlers
 
             if (routeModel != null)
             {
-                context.RequestContext.RouteParametersMap.Merge(() => GetUrlParameters<RouteParameterAttribute>(routeModel.QueryRoute));
-                context.RequestContext.QueryParametersMap.Merge(() => GetUrlParameters<QueryParameterAttribute>(routeModel.QueryRoute));
+                context.RequestContext.RouteParametersMap.Merge(() => PrepareRouteKeyPairValues(routeModel));
+                context.RequestContext.QueryParametersMap.Merge(() => PrepareQueryKeyPairValues(routeModel));
             }
             
             await next.Invoke(context);
+        }
+
+        protected virtual Dictionary<string, string> PrepareRouteKeyPairValues(IRoteModel routeModel)
+        {
+            return GetUrlParameters<RouteParameterAttribute>(routeModel.QueryRoute);
+        }
+
+        protected virtual Dictionary<string, string> PrepareQueryKeyPairValues(IRoteModel routeModel)
+        {
+            return GetUrlParameters<QueryParameterAttribute>(routeModel.QueryRoute);
         }
 
         private Dictionary<string, string> GetUrlParameters<T>(object model) where T : UrlParameterAttribute
