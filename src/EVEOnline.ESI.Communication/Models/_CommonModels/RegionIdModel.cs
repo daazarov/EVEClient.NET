@@ -9,7 +9,7 @@ namespace EVEOnline.ESI.Communication.Models
             RegionId = regionId;
         }
 
-        [RouteParameter("region_id")]
+        [PathParameter("region_id")]
         public int RegionId { get; set; }
     }
 }

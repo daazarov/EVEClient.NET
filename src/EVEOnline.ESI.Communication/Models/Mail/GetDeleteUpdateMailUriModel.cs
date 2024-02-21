@@ -10,10 +10,10 @@ namespace EVEOnline.ESI.Communication.Models
             MailId = mailId;
         }
 
-        [RouteParameter("character_id")]
+        [PathParameter("character_id")]
         public int CharacterId { get; private set; }
 
-        [RouteParameter("mail_id")]
+        [PathParameter("mail_id")]
         public int MailId { get; private set; }
     }
 }

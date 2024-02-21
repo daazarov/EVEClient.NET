@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Web;
 
 namespace EVEOnline.ESI.Communication.Extensions
 {
@@ -104,5 +105,22 @@ namespace EVEOnline.ESI.Communication.Extensions
 
             return attribute?.Value;
         }
+
+        //public static string PreparePathTemplate(this HttpUtility @this, string template, NameValueCollection replacement)
+        //{
+        //    if (replacement == null || replacement.Count == 0)
+        //    {
+        //        return template;
+        //    }
+
+        //    var path = string.Empty;
+
+        //    foreach (var key in replacement.AllKeys)
+        //    {
+        //        path = template.Replace($"{{{key}}}", replacement.Get(key));
+        //    }
+
+        //    return path;
+        //}
     }
 }

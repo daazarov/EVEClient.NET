@@ -27,7 +27,7 @@ namespace EVEOnline.ESI.Communication.Handlers
 
             if (routeModel != null)
             {
-                context.RequestContext.RouteParametersMap.Merge(() => PrepareRouteKeyPairValues(routeModel));
+                context.RequestContext.PathParametersMap.Merge(() => PrepareRouteKeyPairValues(routeModel));
                 context.RequestContext.QueryParametersMap.Merge(() => PrepareQueryKeyPairValues(routeModel));
             }
             
@@ -36,7 +36,7 @@ namespace EVEOnline.ESI.Communication.Handlers
 
         protected virtual Dictionary<string, string> PrepareRouteKeyPairValues(IRoteModel routeModel)
         {
-            return GetUrlParameters<RouteParameterAttribute>(routeModel.QueryRoute);
+            return GetUrlParameters<PathParameterAttribute>(routeModel.QueryRoute);
         }
 
         protected virtual Dictionary<string, string> PrepareQueryKeyPairValues(IRoteModel routeModel)

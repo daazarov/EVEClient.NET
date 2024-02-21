@@ -9,7 +9,7 @@ namespace EVEOnline.ESI.Communication.Models
             EventId = eventId;
         }
 
-        [RouteParameter("event_id")]
+        [PathParameter("event_id")]
         public int EventId { get; set; }
     }
 }

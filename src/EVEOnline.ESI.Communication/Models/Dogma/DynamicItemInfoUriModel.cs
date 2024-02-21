@@ -10,10 +10,10 @@ namespace EVEOnline.ESI.Communication.Models
             TypeId = typeId;
         }
 
-        [RouteParameter("item_id")]
+        [PathParameter("item_id")]
         public long ItemId { get; set; }
 
-        [RouteParameter("type_id")]
+        [PathParameter("type_id")]
         public int TypeId { get; set; }
     }
 }

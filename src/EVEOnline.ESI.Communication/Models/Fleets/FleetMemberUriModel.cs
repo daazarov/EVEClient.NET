@@ -10,10 +10,10 @@ namespace EVEOnline.ESI.Communication.Models
             MemberId = memberId;
         }
 
-        [RouteParameter("fleet_id")]
+        [PathParameter("fleet_id")]
         public long FleetId { get; set; }
 
-        [RouteParameter("member_id")]
+        [PathParameter("member_id")]
         public int MemberId { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace EVEOnline.ESI.Communication.Models
             AllianceId = allianceId;
         }
 
-        [RouteParameter("alliance_id")]
+        [PathParameter("alliance_id")]
         public int AllianceId { get; set; }
     }
 }

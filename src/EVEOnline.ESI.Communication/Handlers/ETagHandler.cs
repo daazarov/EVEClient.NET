@@ -56,6 +56,6 @@ namespace EVEOnline.ESI.Communication.Handlers
         }
 
         protected virtual string GetKey(EsiContext context) =>
-            ETagStoreKeyGenerator.GetKey(context.EndpointId, context.RequestContext.RouteParametersMap.AsNameValueCollection(), context.RequestContext.QueryParametersMap.AsNameValueCollection());
+            ETagStoreKeyGenerator.GetKey(context.EndpointId, context.RequestContext.PathParametersMap.AsNameValueCollection(), context.RequestContext.QueryParametersMap.AsNameValueCollection());
     }
 }

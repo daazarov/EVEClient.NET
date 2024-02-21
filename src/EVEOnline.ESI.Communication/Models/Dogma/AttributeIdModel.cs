@@ -9,7 +9,7 @@ namespace EVEOnline.ESI.Communication.Models
             AttributeId = attributeId;
         }
 
-        [RouteParameter("attribute_id")]
+        [PathParameter("attribute_id")]
         public int AttributeId { get; set; }
     }
 }

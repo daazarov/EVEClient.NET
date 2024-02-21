@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
-
+using System.Web;
 using EVEOnline.ESI.Communication.Attributes;
 using EVEOnline.ESI.Communication.Extensions;
 using EVEOnline.ESI.Communication.Utilities;
@@ -41,9 +42,15 @@ namespace EVEOnline.ESI.Communication.Handlers
 
         protected virtual RouteQueue SetupCustomPriorityQueue(EsiContext context)
         {
+            var endpointPrioritySetting = _endpointRoutePriorityProvider.GetRoutePrioritiesForEndpoint(context.EndpointId);
+
+            if (endpointPrioritySetting == null || !endpointPrioritySetting.Any())
+            {
+                return SetupDefaultPriorityQueue(context);
+            }
+
             var routeQueue = new RouteQueue();
             var availableRoutes = ReflectionCacheAttributeAccessor.Instance.GetAttributes<RouteAttribute>(context.CallingContext.MethodInfo);
-            var endpointPrioritySetting = _endpointRoutePriorityProvider.GetRoutePrioritiesForEndpoint(context.EndpointId);
 
             foreach (var setting in endpointPrioritySetting)
             {
@@ -60,9 +67,21 @@ namespace EVEOnline.ESI.Communication.Handlers
 
         private string BuildUrlQuery(EsiContext context, string template)
         {
-            var url = UrlQueryBuilder.BuildRouteString(template, context.RequestContext.RouteParametersMap.AsNameValueCollection());
+            var path = string.Empty;
+            var builder = new UriBuilder();
+            var query = HttpUtility.ParseQueryString(string.Empty);
 
-            return UrlQueryBuilder.BuildQueryString(url, context.RequestContext.QueryParametersMap.AsNameValueCollection());
+            foreach (var kvp in context.RequestContext.PathParametersMap)
+            {
+                path = template.Replace($"{{{kvp.Key}}}", kvp.Value);
+            }
+
+            foreach (var kvp in context.RequestContext.QueryParametersMap)
+            {
+                query[kvp.Key] = kvp.Value;
+            }
+
+            return string.Concat(path, "?", query.ToString());
         }
     }
 }

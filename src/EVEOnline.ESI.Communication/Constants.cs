@@ -249,6 +249,21 @@ namespace EVEOnline.ESI.Communication
                 public const string DeleteLabel =                     "delete_characters_character_id_mail_labels_label_id";
                 public const string MailingList =                     "get_characters_character_id_mail_lists";
             }
+
+            public static class Market
+            {
+                public const string CharacterOrders =                 "get_characters_character_id_orders";
+                public const string CharacterOrdersHistory =          "get_characters_character_id_orders_history";
+                public const string CorporationOrders =               "get_corporations_corporation_id_orders";
+                public const string CorporationOrdersHistory =        "get_corporations_corporation_id_orders_history";
+                public const string RegionStatistics =                "get_markets_region_id_history";
+                public const string RegionOrders =                    "get_markets_region_id_orders";
+                public const string ActiveRegionOrderTypes =          "get_markets_region_id_types";
+                public const string MarketGroups =                    "get_markets_groups";
+                public const string MarketGroupInfo =                 "get_markets_groups_market_group_id";
+                public const string TypePrices =                      "get_markets_prices";
+                public const string StructureOrders =                 "get_markets_structures_structure_id";
+            }
         }
     }
 }

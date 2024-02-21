@@ -4,9 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 namespace EVEOnline.ESI.Communication.Attributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    internal class RouteParameterAttribute : UrlParameterAttribute
+    internal class PathParameterAttribute : UrlParameterAttribute
     {
-        public RouteParameterAttribute(string parameterName)
+        public PathParameterAttribute(string parameterName)
         {
             ParameterName = parameterName;
         }

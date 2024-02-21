@@ -10,10 +10,10 @@ namespace EVEOnline.ESI.Communication.Models
             ContractId = contractId;
         }
 
-        [RouteParameter("contract_id")]
+        [PathParameter("contract_id")]
         public int ContractId { get; set; }
 
-        [RouteParameter("corporation_id")]
+        [PathParameter("corporation_id")]
         public int CorporationId { get; set; }
     }
 }

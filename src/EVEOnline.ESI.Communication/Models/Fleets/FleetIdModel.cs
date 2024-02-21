@@ -9,7 +9,7 @@ namespace EVEOnline.ESI.Communication.Models
             FleetId = fleetId;
         }
 
-        [RouteParameter("fleet_id")]
+        [PathParameter("fleet_id")]
         public long FleetId { get; set; }
     }
 }

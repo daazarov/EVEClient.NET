@@ -10,10 +10,10 @@ namespace EVEOnline.ESI.Communication.Models
             KillmailHash = killmailHash;
         }
 
-        [RouteParameter("killmail_id")]
+        [PathParameter("killmail_id")]
         public int KillmailId { get; set; }
 
-        [RouteParameter("killmail_hash")]
+        [PathParameter("killmail_hash")]
         public string KillmailHash { get; set; }
     }
 }

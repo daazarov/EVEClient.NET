@@ -10,10 +10,10 @@ namespace EVEOnline.ESI.Communication.Models
             FittingId = fittingId;
         }
 
-        [RouteParameter("character_id")]
+        [PathParameter("character_id")]
         public int CharacterId { get; set; }
 
-        [RouteParameter("fitting_id")]
+        [PathParameter("fitting_id")]
         public int FittingId { get; set;}
     }
 }

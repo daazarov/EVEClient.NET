@@ -9,7 +9,7 @@ namespace EVEOnline.ESI.Communication.Models
             EffectId = effectId;
         }
 
-        [RouteParameter("effect_id")]
+        [PathParameter("effect_id")]
         public int EffectId { get; set; }
     }
 }

@@ -92,7 +92,7 @@ namespace EVEOnline.ESI.Communication
     {
         public RouteQueue RouteQueue { get; set; }
         public HttpContent? Body { get; set; }
-        public Dictionary<string, string>? RouteParametersMap { get; set; }
+        public Dictionary<string, string>? PathParametersMap { get; set; }
         public Dictionary<string, string>? QueryParametersMap { get; set; }
     }
 }

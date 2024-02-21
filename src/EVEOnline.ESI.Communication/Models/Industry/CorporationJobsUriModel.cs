@@ -11,7 +11,7 @@ namespace EVEOnline.ESI.Communication.Models
             Page = page;
         }
 
-        [RouteParameter("character_id")]
+        [PathParameter("character_id")]
         public int CorporationId { get; set; }
 
         [QueryParameter("include_completed")]

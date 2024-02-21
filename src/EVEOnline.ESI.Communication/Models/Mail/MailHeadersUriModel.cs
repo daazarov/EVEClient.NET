@@ -16,7 +16,7 @@ namespace EVEOnline.ESI.Communication.Models
             }
         }
 
-        [RouteParameter("character_id")]
+        [PathParameter("character_id")]
         public int CharacterId { get; private set; }
 
         [QueryParameter("labels")]

@@ -802,4 +802,95 @@
             }
         }
     }
+
+    internal class MarketRequests
+    {
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+
+        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
+        {
+            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
+            }
+        }
+
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
+            }
+        }
+
+        internal class RegionStatisticsRouteRequest : RouteModelBase<RegionStatisticsUriModel>
+        {
+            public RegionStatisticsRouteRequest(RegionStatisticsUriModel uriModel) : base(uriModel)
+            { }
+
+            public static RegionStatisticsRouteRequest Create(int regionId, int typeId)
+            {
+                return new RegionStatisticsRouteRequest(new RegionStatisticsUriModel(regionId, typeId));
+            }
+        }
+
+        internal class MarketGroupInfoRequest : RouteModelBase<MarketGroupUriModel>
+        {
+            public MarketGroupInfoRequest(MarketGroupUriModel uriModel) : base(uriModel)
+            { }
+
+            public static MarketGroupInfoRequest Create(int marketGroupId)
+            {
+                return new MarketGroupInfoRequest(new MarketGroupUriModel(marketGroupId));
+            }
+        }
+
+        internal class PageBasedRegionIdRouteRequest : RouteModelBase<PageBasedRegionIdModel>
+        {
+            public PageBasedRegionIdRouteRequest(PageBasedRegionIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedRegionIdRouteRequest Create(int regionId, int page)
+            {
+                return new PageBasedRegionIdRouteRequest(new PageBasedRegionIdModel(regionId, page));
+            }
+        }
+
+        internal class PageBasedStructureIdRouteRequest : RouteModelBase<PageBasedStructureIdModel>
+        {
+            public PageBasedStructureIdRouteRequest(PageBasedStructureIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedStructureIdRouteRequest Create(long structureId, int page)
+            {
+                return new PageBasedStructureIdRouteRequest(new PageBasedStructureIdModel(structureId, page));
+            }
+        }
+
+        internal class RegionOrdersRequest : RouteModelBase<RegionOrdersUriModel>
+        {
+            public RegionOrdersRequest(RegionOrdersUriModel uriModel) : base(uriModel)
+            { }
+
+            public static RegionOrdersRequest Create(int regionId, string orderType, int? typeId, int page)
+            {
+                return new RegionOrdersRequest(new RegionOrdersUriModel(regionId, orderType, typeId, page));
+            }
+        }
+    }
 }

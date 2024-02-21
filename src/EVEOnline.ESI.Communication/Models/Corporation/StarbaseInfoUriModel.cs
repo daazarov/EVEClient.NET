@@ -11,10 +11,10 @@ namespace EVEOnline.ESI.Communication.Models
             SystemId = systemId;
         }
 
-        [RouteParameter("corporation_id")]
+        [PathParameter("corporation_id")]
         public int CorporationId { get; set; }
 
-        [RouteParameter("starbase_id ")]
+        [PathParameter("starbase_id ")]
         public long StarbaseId { get; set; }
 
         [QueryParameter("system_id ")]

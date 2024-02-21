@@ -22,5 +22,6 @@
         ILocationLogic LocationLogic { get; }
         ILoyaltyLogic LoyaltyLogic { get; }
         IMailLogic MailLogic { get; }
+        IMarketLogic MarketLogic { get; }
     }
 }

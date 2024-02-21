@@ -159,7 +159,19 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(IMailLogic.GetCharacterMailLabels), ESI.Endpoints.Mail.GetLabels },
                 { nameof(IMailLogic.NewMailLabel), ESI.Endpoints.Mail.CreateLabel },
                 { nameof(IMailLogic.DeleteLabel), ESI.Endpoints.Mail.DeleteLabel },
-                { nameof(IMailLogic.GetCharacterMailingList), ESI.Endpoints.Mail.MailingList }
+                { nameof(IMailLogic.GetCharacterMailingList), ESI.Endpoints.Mail.MailingList },
+
+                { nameof(IMarketLogic.GetCharacterOrders), ESI.Endpoints.Market.CharacterOrders },
+                { nameof(IMarketLogic.GetCharacterOrdersHistory), ESI.Endpoints.Market.CharacterOrdersHistory },
+                { nameof(IMarketLogic.GetCorporationOrders), ESI.Endpoints.Market.CorporationOrders },
+                { nameof(IMarketLogic.GetCorporationOrdersHistory), ESI.Endpoints.Market.CorporationOrdersHistory },
+                { nameof(IMarketLogic.GetRegionOrders), ESI.Endpoints.Market.RegionOrders },
+                { nameof(IMarketLogic.GetRegionStatistics), ESI.Endpoints.Market.RegionStatistics },
+                { nameof(IMarketLogic.GetStructureOrders), ESI.Endpoints.Market.StructureOrders },
+                { nameof(IMarketLogic.GetItemGroups), ESI.Endpoints.Market.MarketGroups },
+                { nameof(IMarketLogic.GetItemGroupInfo), ESI.Endpoints.Market.MarketGroupInfo },
+                { nameof(IMarketLogic.GetPrices), ESI.Endpoints.Market.TypePrices },
+                { nameof(IMarketLogic.GetActiveOrderTypes), ESI.Endpoints.Market.ActiveRegionOrderTypes },
             };
         }
 

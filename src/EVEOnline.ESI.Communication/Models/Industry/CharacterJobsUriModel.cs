@@ -10,7 +10,7 @@ namespace EVEOnline.ESI.Communication.Models
             IncludeCompleted = includeCompleted;
         }
 
-        [RouteParameter("character_id")]
+        [PathParameter("character_id")]
         public int CharacterId { get; set; }
 
         [QueryParameter("include_completed")]

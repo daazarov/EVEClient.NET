@@ -11,10 +11,10 @@ namespace EVEOnline.ESI.Communication.Models
             Page = page;
         }
 
-        [RouteParameter("observer_id")]
+        [PathParameter("observer_id")]
         public long ObserverId { get; set; }
 
-        [RouteParameter("corporation_id")]
+        [PathParameter("corporation_id")]
         public int CorporationId { get; set; }
 
         [QueryParameter("page")]

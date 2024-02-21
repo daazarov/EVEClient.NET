@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EVEOnline.ESI.Communication.Logic
+namespace EVEOnline.ESI.Communication
 {
     internal class EsiLogicAccessor : IEsiLogicAccessor
     {
@@ -27,6 +27,7 @@ namespace EVEOnline.ESI.Communication.Logic
         private ILocationLogic _locationLogic;
         private ILoyaltyLogic _loyaltyLogic;
         private IMailLogic _mailLogic;
+        private IMarketLogic _marketLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -48,6 +49,7 @@ namespace EVEOnline.ESI.Communication.Logic
         public ILocationLogic LocationLogic => GetOrSet<ILocationLogic>(ref _locationLogic);
         public ILoyaltyLogic LoyaltyLogic => GetOrSet<ILoyaltyLogic>(ref _loyaltyLogic);
         public IMailLogic MailLogic => GetOrSet<IMailLogic>(ref _mailLogic);
+        public IMarketLogic MarketLogic => GetOrSet<IMarketLogic>(ref _marketLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {
