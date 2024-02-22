@@ -178,6 +178,11 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(IOpportunitiesLogic.GetOpportunitiesGroupInfo), ESI.Endpoints.Opportunities.GroupInfo },
                 { nameof(IOpportunitiesLogic.GetOpportunitiesTasks), ESI.Endpoints.Opportunities.Tasks },
                 { nameof(IOpportunitiesLogic.GetOpportunitiesTaskInfo), ESI.Endpoints.Opportunities.TaskInfo },
+
+                { nameof(IPlanetaryInteractionLogic.GetCharacterColonies), ESI.Endpoints.PlanetaryInteraction.Colonies },
+                { nameof(IPlanetaryInteractionLogic.GetColonyInfo), ESI.Endpoints.PlanetaryInteraction.ColonyInfo },
+                { nameof(IPlanetaryInteractionLogic.GetCorporationCustomOffices), ESI.Endpoints.PlanetaryInteraction.CustomOffices },
+                { nameof(IPlanetaryInteractionLogic.GetSchematicInfo), ESI.Endpoints.PlanetaryInteraction.SchematicInfo },
             };
         }
 

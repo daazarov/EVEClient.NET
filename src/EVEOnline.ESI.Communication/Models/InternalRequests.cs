@@ -929,4 +929,51 @@
             }
         }
     }
+
+    internal class PlanetaryInteractionRequests
+    {
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
+            }
+        }
+
+        internal class ColonyInfoRequest : RouteModelBase<ColonyInfoUriModel>
+        {
+            public ColonyInfoRequest(ColonyInfoUriModel uriModel) : base(uriModel)
+            { }
+
+            public static ColonyInfoRequest Create(int characterId, int planetId)
+            {
+                return new ColonyInfoRequest(new ColonyInfoUriModel(characterId, planetId));
+            }
+        }
+
+        internal class SchematicInfoRequest : RouteModelBase<SchematicIdModel>
+        {
+            public SchematicInfoRequest(SchematicIdModel uriModel) : base(uriModel)
+            { }
+
+            public static SchematicInfoRequest Create(int schematicId)
+            {
+                return new SchematicInfoRequest(new SchematicIdModel(schematicId));
+            }
+        }
+    }
 }

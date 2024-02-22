@@ -24,5 +24,6 @@
         IMailLogic MailLogic { get; }
         IMarketLogic MarketLogic { get; }
         IOpportunitiesLogic OpportunitiesLogic { get; }
+        IPlanetaryInteractionLogic PlanetaryInteractionLogic { get; }
     }
 }

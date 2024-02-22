@@ -273,6 +273,14 @@ namespace EVEOnline.ESI.Communication
                 public const string Tasks =                           "get_opportunities_tasks";
                 public const string TaskInfo =                        "get_opportunities_tasks_task_id";
             }
+
+            public static class PlanetaryInteraction
+            {
+                public const string Colonies =                        "get_characters_character_id_planets";
+                public const string ColonyInfo =                      "get_characters_character_id_planets_planet_id";
+                public const string CustomOffices =                   "get_corporations_corporation_id_customs_offices";
+                public const string SchematicInfo =                   "get_universe_schematics_schematic_id";
+            }
         }
     }
 }

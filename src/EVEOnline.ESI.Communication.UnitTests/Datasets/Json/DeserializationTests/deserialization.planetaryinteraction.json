@@ -1,0 +1,89 @@
+{
+  "Colony": {
+    "last_update": "2016-11-28T16:42:51Z",
+    "num_pins": 1,
+    "owner_id": 90000001,
+    "planet_id": 40023691,
+    "planet_type": "plasma",
+    "solar_system_id": 30000379,
+    "upgrade_level": 1
+  },
+
+  "ColonyLayout": {
+    "links": [
+      {
+        "destination_pin_id": 1000000017022,
+        "link_level": 1,
+        "source_pin_id": 1000000017021
+      }
+    ],
+    "pins": [
+      {
+        "contents": [
+          {
+            "amount": 516651965,
+            "type_id": 2458
+          }
+        ],
+        "expiry_time": "2016-04-29T12:34:56Z",
+        "extractor_details": {
+          "cycle_time": 7852,
+          "head_radius": 21.5,
+          "heads": [
+            {
+              "head_id": 7,
+              "latitude": 3.5,
+              "longitude": 1.1
+            }
+          ],
+          "product_type_id": 3587,
+          "qty_per_cycle": 789654
+        },
+        "factory_details": {
+          "schematic_id": 7852463
+        },
+        "install_time": "2015-04-29T12:34:56Z",
+        "last_cycle_start": "2017-04-29T12:34:56Z",
+        "latitude": 1.55087844973,
+        "longitude": 0.717145933308,
+        "pin_id": 1000000017021,
+        "schematic_id": 7851469,
+        "type_id": 2254
+      }
+    ],
+    "routes": [
+      {
+        "content_type_id": 2393,
+        "destination_pin_id": 1000000017030,
+        "quantity": 20,
+        "route_id": 4,
+        "source_pin_id": 1000000017029,
+        "waypoints": [
+          6
+        ]
+      }
+    ]
+  },
+
+  "CustomOffice": {
+    "alliance_tax_rate": 0.1,
+    "allow_access_with_standings": true,
+    "allow_alliance_access": true,
+    "bad_standing_tax_rate": 0.2,
+    "corporation_tax_rate": 0.02,
+    "excellent_standing_tax_rate": 0.05,
+    "good_standing_tax_rate": 0.2,
+    "neutral_standing_tax_rate": 0.5,
+    "office_id": 1000000014530,
+    "reinforce_exit_end": 1,
+    "reinforce_exit_start": 23,
+    "standing_level": "neutral",
+    "system_id": 30003657,
+    "terrible_standing_tax_rate": 0.4
+  },
+
+  "SchematicInfo": {
+    "cycle_time": 1800,
+    "schematic_name": "Bacteria"
+  }
+}

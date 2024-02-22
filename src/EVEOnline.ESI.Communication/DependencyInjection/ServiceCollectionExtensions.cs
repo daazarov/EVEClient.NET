@@ -91,6 +91,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IMailLogic, MailLogic>();
             services.TryAddTransient<IMarketLogic, MarketLogic>();
             services.TryAddTransient<IOpportunitiesLogic, OpportunitiesLogic>();
+            services.TryAddTransient<IPlanetaryInteractionLogic, PlanetaryInteractionLogic>();
 
             return services;
         }
