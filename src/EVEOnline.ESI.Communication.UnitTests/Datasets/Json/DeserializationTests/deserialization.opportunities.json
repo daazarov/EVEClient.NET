@@ -1,0 +1,26 @@
+{
+  "ComplitedTask": {
+    "completed_at": "2016-04-29T12:34:56Z",
+    "task_id": 1
+  },
+
+  "OpportunitiesGroup": {
+    "connected_groups": [
+      100
+    ],
+    "description": "As a capsuleer...",
+    "group_id": 103,
+    "name": "Welcome to New Eden",
+    "notification": "Completed:<br>Welcome to New Eden",
+    "required_tasks": [
+      19
+    ]
+  },
+
+  "OpportunitiesTask": {
+    "description": "To use station services...",
+    "name": "Dock in the station",
+    "notification": "Completed:<br>Docked in a station!",
+    "task_id": 10
+  }
+}

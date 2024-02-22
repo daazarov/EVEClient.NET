@@ -23,5 +23,6 @@
         ILoyaltyLogic LoyaltyLogic { get; }
         IMailLogic MailLogic { get; }
         IMarketLogic MarketLogic { get; }
+        IOpportunitiesLogic OpportunitiesLogic { get; }
     }
 }

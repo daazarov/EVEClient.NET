@@ -12,7 +12,7 @@ namespace EVEOnline.ESI.Communication.Models
         public string Description { get; set; }
 
         [JsonProperty("items")]
-        public List<FittingItem> Items { get; set; }
+        public List<FittingItemBodyModel> Items { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -27,12 +27,12 @@ namespace EVEOnline.ESI.Communication.Models
                 Description = fitting.Description,
                 Name = fitting.Name,
                 ShipTypeId = fitting.ShipTypeId,
-                Items = fitting.Items.Select(x => FittingItem.FromDataContractModel(x)).ToList()
+                Items = fitting.Items.Select(x => FittingItemBodyModel.FromDataContractModel(x)).ToList()
             };
         }
     }
 
-    internal class FittingItem
+    internal class FittingItemBodyModel
     {
         [JsonProperty("type_id")]
         public int TypeId { get; set; }
@@ -43,9 +43,9 @@ namespace EVEOnline.ESI.Communication.Models
         [JsonProperty("quantity")]
         public int Quantity { get; set; }
 
-        public static FittingItem FromDataContractModel(DataContract.FittingItem item)
+        public static FittingItemBodyModel FromDataContractModel(FittingItem item)
         {
-            return new FittingItem
+            return new FittingItemBodyModel
             { 
                 TypeId = item.TypeId,
                 Quantity = item.Quantity,

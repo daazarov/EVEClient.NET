@@ -28,6 +28,7 @@ namespace EVEOnline.ESI.Communication
         private ILoyaltyLogic _loyaltyLogic;
         private IMailLogic _mailLogic;
         private IMarketLogic _marketLogic;
+        private IOpportunitiesLogic _opportunitiesLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -50,6 +51,7 @@ namespace EVEOnline.ESI.Communication
         public ILoyaltyLogic LoyaltyLogic => GetOrSet<ILoyaltyLogic>(ref _loyaltyLogic);
         public IMailLogic MailLogic => GetOrSet<IMailLogic>(ref _mailLogic);
         public IMarketLogic MarketLogic => GetOrSet<IMarketLogic>(ref _marketLogic);
+        public IOpportunitiesLogic OpportunitiesLogic => GetOrSet<IOpportunitiesLogic>(ref _opportunitiesLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

@@ -264,6 +264,15 @@ namespace EVEOnline.ESI.Communication
                 public const string TypePrices =                      "get_markets_prices";
                 public const string StructureOrders =                 "get_markets_structures_structure_id";
             }
+
+            public static class Opportunities
+            {
+                public const string CompletedTasks =                  "get_characters_character_id_opportunities";
+                public const string Groups =                          "get_opportunities_groups";
+                public const string GroupInfo =                       "get_opportunities_groups_group_id";
+                public const string Tasks =                           "get_opportunities_tasks";
+                public const string TaskInfo =                        "get_opportunities_tasks_task_id";
+            }
         }
     }
 }

@@ -893,4 +893,40 @@
             }
         }
     }
+
+    internal class OpportunitiesRequests
+    {
+        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
+        {
+            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CharacterIdRouteRequest Create(int characterId)
+            {
+                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
+            }
+        }
+
+        internal class GroupIdRouteRequest : RouteModelBase<OpportunitiesGroupIdModel>
+        {
+            public GroupIdRouteRequest(OpportunitiesGroupIdModel uriModel) : base(uriModel)
+            { }
+
+            public static GroupIdRouteRequest Create(int groupId)
+            {
+                return new GroupIdRouteRequest(new OpportunitiesGroupIdModel(groupId));
+            }
+        }
+
+        internal class TaskIdRouteRequest : RouteModelBase<OpportunitiesTaskIdModel>
+        {
+            public TaskIdRouteRequest(OpportunitiesTaskIdModel uriModel) : base(uriModel)
+            { }
+
+            public static TaskIdRouteRequest Create(int taskId)
+            {
+                return new TaskIdRouteRequest(new OpportunitiesTaskIdModel(taskId));
+            }
+        }
+    }
 }

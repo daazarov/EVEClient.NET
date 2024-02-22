@@ -15,7 +15,7 @@ namespace EVEOnline.ESI.Communication.Models
         public string Body { get; set; }
 
         [JsonProperty("recipients")]
-        public List<Recipient> Recipients { get; set; }
+        public List<RecipientBodyModel> Recipients { get; set; }
 
         [JsonProperty("subject")]
         public string Subject { get; set; }
@@ -32,12 +32,12 @@ namespace EVEOnline.ESI.Communication.Models
                 ApprovedCost = mail.ApprovedCost,
                 Body = mail.Body,
                 Subject = mail.Subject,
-                Recipients = mail.Recipients.Select(x => Recipient.FromDataContractModel(x)).ToList()
+                Recipients = mail.Recipients.Select(x => RecipientBodyModel.FromDataContractModel(x)).ToList()
             };
         }
     }
 
-    internal class Recipient
+    internal class RecipientBodyModel
     {
         /// <summary>
         /// recipient_id integer
@@ -51,9 +51,9 @@ namespace EVEOnline.ESI.Communication.Models
         [JsonProperty("recipient_type")]
         public string RecipientType { get; set; }
 
-        public static Recipient FromDataContractModel(DataContract.Recipient recipient)
+        public static RecipientBodyModel FromDataContractModel(Recipient recipient)
         {
-            return new Recipient
+            return new RecipientBodyModel
             {
                 RecipientId = recipient.RecipientId,
                 RecipientType = recipient.RecipientType.ToEsiString()

@@ -172,6 +172,12 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(IMarketLogic.GetItemGroupInfo), ESI.Endpoints.Market.MarketGroupInfo },
                 { nameof(IMarketLogic.GetPrices), ESI.Endpoints.Market.TypePrices },
                 { nameof(IMarketLogic.GetActiveOrderTypes), ESI.Endpoints.Market.ActiveRegionOrderTypes },
+
+                { nameof(IOpportunitiesLogic.GetCharacterComplitedTasks), ESI.Endpoints.Opportunities.CompletedTasks },
+                { nameof(IOpportunitiesLogic.GetOpportunitiesGroups), ESI.Endpoints.Opportunities.Groups },
+                { nameof(IOpportunitiesLogic.GetOpportunitiesGroupInfo), ESI.Endpoints.Opportunities.GroupInfo },
+                { nameof(IOpportunitiesLogic.GetOpportunitiesTasks), ESI.Endpoints.Opportunities.Tasks },
+                { nameof(IOpportunitiesLogic.GetOpportunitiesTaskInfo), ESI.Endpoints.Opportunities.TaskInfo },
             };
         }
 
