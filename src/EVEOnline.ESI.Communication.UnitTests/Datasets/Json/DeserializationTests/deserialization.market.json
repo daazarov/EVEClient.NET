@@ -1,0 +1,48 @@
+{
+  "OrderBase": {
+    "duration": 90,
+    "escrow": 6516.641,
+    "is_buy_order": true,
+    "is_corporation": true,
+    "issued": "2016-09-03T05:12:25Z",
+    "issued_by": 5116111,
+    "location_id": 60005599,
+    "min_volume": 1,
+    "order_id": 4623824223,
+    "price": 9.9,
+    "range": "region",
+    "system_id": 30000053,
+    "region_id": 1000001,
+    "state": "cancelled",
+    "type_id": 34,
+    "volume_remain": 1296000,
+    "volume_total": 2000000,
+    "wallet_division": 6
+  },
+
+  "MarketGroup": {
+    "description": "Small, fast vessels suited to a variety of purposes.",
+    "market_group_id": 5,
+    "name": "Standard Frigates",
+    "parent_group_id": 1361,
+    "types": [
+      582,
+      583
+    ]
+  },
+
+  "Price": {
+    "adjusted_price": 306988.09,
+    "average_price": 306292.67,
+    "type_id": 32772
+  },
+
+  "Statistic": {
+    "average": 5.25,
+    "date": "2015-05-01",
+    "highest": 5.27,
+    "lowest": 5.11,
+    "order_count": 2267,
+    "volume": 16276782035
+  }
+}
