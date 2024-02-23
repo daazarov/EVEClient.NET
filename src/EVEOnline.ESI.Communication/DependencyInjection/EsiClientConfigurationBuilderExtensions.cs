@@ -417,7 +417,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
         private static void IsAssignableFrom(Type from, Type to)
         {
-            if (!to.GetTypeInfo().IsAssignableFrom(from.GetTypeInfo()))
+            if (!(from.GetTypeInfo().IsAssignableFrom(to.GetTypeInfo())))
             {
                 throw new InvalidCastException($"{to.FullName} is not assignable from {from.FullName}");
             }

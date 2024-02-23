@@ -60,7 +60,13 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.TryAddSingleton<IETagStorage, DefaultInMemoryETagThreadSaveStore>();
             }
 
-            services.Configure<EsiClientConfiguration>(options => options = configuration);
+            services.Configure<EsiClientConfiguration>(options => 
+            {
+                options.Server = configuration.Server;
+                options.UserAgent = configuration.UserAgent;
+                options.EnableETag = configuration.EnableETag;
+                options.BaseUrl = configuration.BaseUrl;
+            });
 
             var builder = new EsiClientConfigurationBuilder(services, configuration);
 

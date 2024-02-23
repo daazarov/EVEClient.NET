@@ -10,12 +10,12 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         {
             builder.ArgumentNotNull(nameof(builder));
 
+            var instance = builder.ServiceProvider.GetService<THandler>();
+
             return builder.Use(next =>
             {
                 return context =>
                 {
-                    var instance = builder.ServiceProvider.GetRequiredService<THandler>();
-
                     return instance.HandleAsync(context, next);
                 };
             });
@@ -24,6 +24,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         public static IRequestPiplineBuilder UseDeletePipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
+
+            builder.Clear();
 
             return builder.UseHandler<ProtectionHandler>()
                           .UseHandler<RequestHeadersHandler>()
@@ -35,6 +37,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         public static IRequestPiplineBuilder UseGetPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
+
+            builder.Clear();
 
             return builder.UseHandler<ProtectionHandler>()
                           .UseHandler<RequestHeadersHandler>()
@@ -48,6 +52,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         {
             builder.ArgumentNotNull(nameof(builder));
 
+            builder.Clear();
+
             return builder.UseHandler<ProtectionHandler>()
                           .UseHandler<RequestHeadersHandler>()
                           .UseHandler<UrlRequestParametersHandler>()
@@ -59,6 +65,8 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         public static IRequestPiplineBuilder UsePutPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
+
+            builder.Clear();
 
             return builder.UseHandler<ProtectionHandler>()
                           .UseHandler<RequestHeadersHandler>()

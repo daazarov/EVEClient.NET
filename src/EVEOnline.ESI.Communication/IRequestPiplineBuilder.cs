@@ -7,6 +7,7 @@ namespace EVEOnline.ESI.Communication
         IServiceProvider ServiceProvider { get; }
 
         IRequestPiplineBuilder Use(Func<RequestDelegate, RequestDelegate> middleware);
+        IRequestPiplineBuilder Clear();
         IRequestPipline Build();
     }
 }

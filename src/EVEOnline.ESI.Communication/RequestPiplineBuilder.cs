@@ -35,5 +35,12 @@ namespace EVEOnline.ESI.Communication
 
             return this;
         }
+
+        public IRequestPiplineBuilder Clear()
+        {
+            _components.Clear();
+
+            return this;
+        }
     }
 }

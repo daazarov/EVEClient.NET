@@ -39,5 +39,13 @@ namespace EVEOnline.ESI.Communication.Utilities.Stores
 
             return Task.CompletedTask;
         }
+
+        /// <summary>
+        /// For tests porpouse only
+        /// </summary>
+        internal void Clear()
+        {
+            _store.Clear();
+        }
     }
 }

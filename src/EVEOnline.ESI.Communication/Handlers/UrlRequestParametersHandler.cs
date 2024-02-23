@@ -61,7 +61,7 @@ namespace EVEOnline.ESI.Communication.Handlers
 
                     if (value != null)
                     {
-                        result.Add(attribute.ParameterName, (string)value);
+                        result.Add(attribute.ParameterName, value.ToString());
                     }
                 }
             }

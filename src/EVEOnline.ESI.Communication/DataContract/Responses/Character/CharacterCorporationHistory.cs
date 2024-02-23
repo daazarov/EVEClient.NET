@@ -15,7 +15,7 @@ namespace EVEOnline.ESI.Communication.DataContract
         /// True if the corporation has been deleted
         /// </summary>
         [JsonProperty("is_deleted")]
-        public bool? IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         /// <summary>
         /// An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous

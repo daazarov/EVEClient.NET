@@ -16,6 +16,12 @@ namespace EVEOnline.ESI.Communication.Handlers
         private readonly IAccessTokenProvider _accessTokenProvider;
         private readonly IScopeAccessValidator _scopeAccessValidator;
 
+        public ProtectionHandler() : this(null, null)
+        { }
+
+        public ProtectionHandler(IAccessTokenProvider accessTokenProvider) : this(accessTokenProvider, null)
+        {}
+
         public ProtectionHandler(IAccessTokenProvider accessTokenProvider, IScopeAccessValidator scopeAccessValidator)
         {
             _accessTokenProvider = accessTokenProvider;

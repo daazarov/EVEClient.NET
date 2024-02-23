@@ -15,25 +15,23 @@ namespace EVEOnline.ESI.Communication
         private readonly Guid _requestId;
         private readonly HttpResponseMessage _httpResponseMessage;
         private readonly HttpStatusCode _statusCode;
-        private readonly DateTime? _date;
         private readonly DateTime? _expires;
         private readonly DateTime? _lastModified;
         private readonly int _errorLimitRemain;
         private readonly TimeSpan _errorLimitReset;
-        private readonly IEnumerable<string> _errors;
+        private readonly List<string> _errors;
 
         protected Exception _exception;
 
         public HttpStatusCode StatusCode => _statusCode;
-        public string ETag => _eTag;        
+        public string ETag => _eTag;
         public HttpResponseMessage HttpResponseMessage => _httpResponseMessage;
-        public DateTime? Date => _date;
         public DateTime? Expires => _expires;
         public DateTime? LastModified => _lastModified;
         public Guid RequestId => _requestId;
         public Exception Exception => _exception;
-        public IEnumerable<string> Errors => _errors;
-        public bool Success => !Errors.Any() && Exception == null;
+        public List<string> Errors => _errors;
+        public bool Success => Errors == null && Exception == null;
         public string Warning => _warning;
 
         /// <summary>
@@ -73,19 +71,15 @@ namespace EVEOnline.ESI.Communication
                 {
                     _lastModified = DateTime.Parse(response.Content.Headers.GetValues("Last-Modified").First());
                 }
-                if (response.Content.Headers.Contains("Date"))
-                {
-                    _date = DateTime.Parse(response.Content.Headers.GetValues("Date").First());
-                }
-                if (response.Content.Headers.Contains("Warning"))
+                if (response.Headers.Contains("Warning"))
                 {
                     _warning = response.Headers.GetValues("Warning").First();
                 }
-                if (response.Content.Headers.Contains("X-ESI-Error-Limit-Remain"))
+                if (response.Headers.Contains("X-ESI-Error-Limit-Remain"))
                 {
                     _errorLimitRemain = int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Remain").First());
                 }
-                if (response.Content.Headers.Contains("X-ESI-Error-Limit-Reset"))
+                if (response.Headers.Contains("X-ESI-Error-Limit-Reset"))
                 {
                     _errorLimitReset = TimeSpan.FromSeconds(int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Reset").First()));
                 }

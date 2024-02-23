@@ -13,6 +13,9 @@ namespace EVEOnline.ESI.Communication.Handlers
         private readonly IOptionsMonitor<EsiClientConfiguration> _options;
         private readonly IETagStorage _storage;
 
+        public ETagHandler(IOptionsMonitor<EsiClientConfiguration> options) : this(options, null)
+        { }
+
         public ETagHandler(IOptionsMonitor<EsiClientConfiguration> options, IETagStorage storage)
         { 
             _options = options;
@@ -39,7 +42,7 @@ namespace EVEOnline.ESI.Communication.Handlers
         {
             if (await _storage.TryGetETagAsync(GetKey(context), out var eTag))
             {
-                context.HttpClient.DefaultRequestHeaders.Add("If-None-Match", eTag);
+                context.HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("If-None-Match", eTag);
             }
         }
 

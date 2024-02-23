@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Web;
 
 namespace EVEOnline.ESI.Communication.Extensions
 {
@@ -64,15 +63,16 @@ namespace EVEOnline.ESI.Communication.Extensions
 
         public static IDictionary<TKey, TValue> Merge<TKey, TValue>(this IDictionary<TKey, TValue> @this, Func<IDictionary<TKey, TValue>> getter)
         {
+            if (@this == null)
+            {
+                throw new ArgumentNullException(nameof(@this));
+            }
+            
             var result = getter.Invoke();
 
             if (result == null)
             {
                 return @this;
-            }
-            else if (@this == null && result != null)
-            {
-                return result;
             }
             else
             {
@@ -82,14 +82,16 @@ namespace EVEOnline.ESI.Communication.Extensions
 
         public static IDictionary<TKey, TValue> ForEachMerge<TKey, TValue>(this IDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> target)
         {
-            if (@this != null)
+            if (@this == null)
             {
-                foreach (var keyValuePair in target)
+                throw new ArgumentNullException(nameof(@this));
+            }
+
+            foreach (var keyValuePair in target)
+            {
+                if (!@this.ContainsKey(keyValuePair.Key))
                 {
-                    if (!@this.ContainsKey(keyValuePair.Key))
-                    {
-                        @this[keyValuePair.Key] = keyValuePair.Value;
-                    }
+                    @this[keyValuePair.Key] = keyValuePair.Value;
                 }
             }
 

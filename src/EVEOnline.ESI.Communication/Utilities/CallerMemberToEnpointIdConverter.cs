@@ -20,7 +20,7 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(ICharacterLogic.GetCharacterMedalsAsync), ESI.Endpoints.Characters.Medals },
                 { nameof(ICharacterLogic.GetCharacterNotificationsAsync), ESI.Endpoints.Characters.Notifications },
                 { nameof(ICharacterLogic.GetCharacterContactNotificationsAsync), ESI.Endpoints.Characters.ContactNotifications },
-                { nameof(ICharacterLogic.GetCharacterPulicInformationAsync), ESI.Endpoints.Characters.Portrait },
+                { nameof(ICharacterLogic.GetCharacterPortraitAsync), ESI.Endpoints.Characters.Portrait },
                 { nameof(ICharacterLogic.GetCharacterRolesAsync), ESI.Endpoints.Characters.Roles },
                 { nameof(ICharacterLogic.GetCharacterTitlesAsync), ESI.Endpoints.Characters.Titles },
                 { nameof(ICharacterLogic.PostCharacterAffilationAsync), ESI.Endpoints.Characters.Affilation },

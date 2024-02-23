@@ -68,7 +68,7 @@ namespace EVEOnline.ESI.Communication
         {
             var pipline = GetOrSet
             (
-                key: GetKey(ESI.EsiClientMethodNames.GetRequestWithouRequestParameters, memberName),
+                key: GetKey(ESI.EsiClientMethodNames.GetRequestWithoutRequestParameters, memberName),
                 getter: key => _piplineBuilder.UseGetPipline().Build()
             );
 
@@ -181,7 +181,7 @@ namespace EVEOnline.ESI.Communication
 
         private string GetKey(string methodName, string callingMemberName)
         { 
-            return string.Concat(typeof(T).Name, "-", methodName, "-", callingMemberName);
+            return string.Concat(typeof(T).Name, "-", callingMemberName, "-", methodName);
         }
     }
 }

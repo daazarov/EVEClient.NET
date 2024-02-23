@@ -60,6 +60,6 @@ namespace EVEOnline.ESI.Communication
             _serviceProvider = serviceProvider;
         }
 
-        private T GetOrSet<T>(ref T instance) => instance ?? (instance = _serviceProvider.GetRequiredService<T>());
+        private T GetOrSet<T>(ref T instance) => instance ?? (instance = _serviceProvider.GetService<T>());
     }
 }

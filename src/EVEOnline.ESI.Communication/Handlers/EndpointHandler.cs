@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using EVEOnline.ESI.Communication.Attributes;
-using EVEOnline.ESI.Communication.Extensions;
 using EVEOnline.ESI.Communication.Utilities;
 
 namespace EVEOnline.ESI.Communication.Handlers
@@ -11,6 +10,9 @@ namespace EVEOnline.ESI.Communication.Handlers
     public class EndpointHandler : IHandler
     {
         private readonly ICustomEndpointRoutePriorityProvider _endpointRoutePriorityProvider;
+
+        public EndpointHandler() : this(null)
+        { }
 
         public EndpointHandler(ICustomEndpointRoutePriorityProvider endpointRoutePriorityProvider)
         {
