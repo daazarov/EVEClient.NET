@@ -68,7 +68,6 @@ namespace EVEOnline.ESI.Communication.Handlers
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)
         {
-            System.Diagnostics.Debug.WriteLine(url);
             return context.HttpClient.GetAsync(url);
         }
     }

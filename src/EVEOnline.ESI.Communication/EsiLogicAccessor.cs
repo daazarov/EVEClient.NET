@@ -30,6 +30,8 @@ namespace EVEOnline.ESI.Communication
         private IMarketLogic _marketLogic;
         private IOpportunitiesLogic _opportunitiesLogic;
         private IPlanetaryInteractionLogic _planetaryInteractionLogic;
+        private IRoutesLogic _routesLogic;
+        private ISearchLogic _searchLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -54,6 +56,8 @@ namespace EVEOnline.ESI.Communication
         public IMarketLogic MarketLogic => GetOrSet<IMarketLogic>(ref _marketLogic);
         public IOpportunitiesLogic OpportunitiesLogic => GetOrSet<IOpportunitiesLogic>(ref _opportunitiesLogic);
         public IPlanetaryInteractionLogic PlanetaryInteractionLogic => GetOrSet<IPlanetaryInteractionLogic>(ref _planetaryInteractionLogic);
+        public IRoutesLogic RoutesLogic => GetOrSet<IRoutesLogic>(ref _routesLogic);
+        public ISearchLogic SearchLogic => GetOrSet<ISearchLogic>(ref _searchLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

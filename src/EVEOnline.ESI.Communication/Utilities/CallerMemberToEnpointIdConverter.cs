@@ -183,6 +183,10 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { nameof(IPlanetaryInteractionLogic.GetColonyInfo), ESI.Endpoints.PlanetaryInteraction.ColonyInfo },
                 { nameof(IPlanetaryInteractionLogic.GetCorporationCustomOffices), ESI.Endpoints.PlanetaryInteraction.CustomOffices },
                 { nameof(IPlanetaryInteractionLogic.GetSchematicInfo), ESI.Endpoints.PlanetaryInteraction.SchematicInfo },
+
+                { nameof(IRoutesLogic.Route), ESI.Endpoints.Routes.Route },
+
+                { nameof(ISearchLogic.Query), ESI.Endpoints.Search.Query }
             };
         }
 

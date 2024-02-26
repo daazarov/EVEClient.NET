@@ -44,6 +44,11 @@ namespace Microsoft.Extensions.DependencyInjection
 
         private static IEsiClientConfigurationBuilder AddEVEOnlineEsiClient(this IServiceCollection services, EsiClientConfiguration configuration)
         {
+            if (string.IsNullOrEmpty(configuration.UserAgent))
+            {
+                throw new ArgumentNullException("Please specify UserAgent in the EsiClientConfiguration");
+            }
+            
             services.TryAddTransient<IEsiLogicAccessor, EsiLogicAccessor>();
             services.TryAddTransient<IEsiContextFactory, EsiContextFactory>();
             services.TryAddTransient<IRequestPiplineBuilder, RequestPiplineBuilder>();
@@ -98,6 +103,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IMarketLogic, MarketLogic>();
             services.TryAddTransient<IOpportunitiesLogic, OpportunitiesLogic>();
             services.TryAddTransient<IPlanetaryInteractionLogic, PlanetaryInteractionLogic>();
+            services.TryAddTransient<IRoutesLogic, RoutesLogic>();
+            services.TryAddTransient<ISearchLogic, SearchLogic>();
 
             return services;
         }

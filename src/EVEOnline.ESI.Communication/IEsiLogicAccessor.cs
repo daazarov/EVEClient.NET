@@ -25,5 +25,7 @@
         IMarketLogic MarketLogic { get; }
         IOpportunitiesLogic OpportunitiesLogic { get; }
         IPlanetaryInteractionLogic PlanetaryInteractionLogic { get; }
+        IRoutesLogic RoutesLogic { get; }
+        ISearchLogic SearchLogic { get; }
     }
 }

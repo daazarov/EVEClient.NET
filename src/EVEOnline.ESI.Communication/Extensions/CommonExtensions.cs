@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EVEOnline.ESI.Communication.DataContract;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -100,9 +101,23 @@ namespace EVEOnline.ESI.Communication.Extensions
 
         public static string ToEsiString(this Enum @this)
         {
+            var enumString = @this.ToString();
+
+            if (enumString.Contains(", "))
+            {
+                return string.Join(",", enumString.Replace(" ", "").Split(',').Select(x => @this.ToEsiStringSingle(x)));
+            }
+            else
+            {
+                return @this.ToEsiStringSingle(enumString);
+            }
+        }
+
+        private static string ToEsiStringSingle(this Enum @this, string value)
+        {
             var type = @this.GetType();
             var typeInfo = type.GetTypeInfo();
-            var memberInfo = typeInfo.DeclaredMembers.SingleOrDefault(x => x.Name == @this.ToString());
+            var memberInfo = typeInfo.DeclaredMembers.SingleOrDefault(x => x.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
             var attribute = memberInfo?.GetCustomAttribute<EnumMemberAttribute>(false);
 
             return attribute?.Value;

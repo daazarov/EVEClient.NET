@@ -22,6 +22,7 @@
     <None Remove="Datasets\Json\DeserializationTests\deserialization.market.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.opportunities.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.planetaryinteraction.json" />
+    <None Remove="Datasets\Json\DeserializationTests\deserialization.search.json" />
     <None Remove="Datasets\Json\serialization.FactionWarfare.json" />
   </ItemGroup>
 
@@ -39,6 +40,7 @@
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.market.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.opportunities.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.planetaryinteraction.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.search.json" />
   </ItemGroup>
 
   <ItemGroup>

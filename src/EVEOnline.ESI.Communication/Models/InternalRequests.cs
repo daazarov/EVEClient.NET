@@ -976,4 +976,32 @@
             }
         }
     }
+
+    internal class RoutesRequests
+    {
+        internal class RouteRequest : RouteModelBase<RoutesUriModels>
+        {
+            public RouteRequest(RoutesUriModels uriModel) : base(uriModel)
+            { }
+
+            public static RouteRequest Create(int origin, int destination, string flag, int[] avoid, int[] connetions)
+            {
+                return new RouteRequest(new RoutesUriModels(origin, destination, flag, avoid, connetions));
+            }
+        }
+    }
+
+    internal class SearchRequests
+    {
+        internal class SearchRequest : RouteModelBase<SearchQueryUriModel>
+        {
+            public SearchRequest(SearchQueryUriModel uriModel) : base(uriModel)
+            { }
+
+            public static SearchRequest Create(int characterId, string search, string categories, bool strict)
+            {
+                return new SearchRequest(new SearchQueryUriModel(characterId, search, categories, strict));
+            }
+        }
+    }
 }

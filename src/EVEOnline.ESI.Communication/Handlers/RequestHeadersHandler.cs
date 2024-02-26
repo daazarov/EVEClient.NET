@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 
@@ -25,7 +26,7 @@ namespace EVEOnline.ESI.Communication.Handlers
 
         protected virtual void ConfigureHttpClientHeaders(HttpRequestHeaders headers)
         {
-            headers.Add("X-User-Agent", _configuration.UserAgent.ArgumentStringNotNullOrEmpty(nameof(_configuration.UserAgent)));
+            headers.Add("X-User-Agent", _configuration.UserAgent);
             headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
             headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));

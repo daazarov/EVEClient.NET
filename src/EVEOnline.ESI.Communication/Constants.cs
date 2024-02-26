@@ -281,6 +281,16 @@ namespace EVEOnline.ESI.Communication
                 public const string CustomOffices =                   "get_corporations_corporation_id_customs_offices";
                 public const string SchematicInfo =                   "get_universe_schematics_schematic_id";
             }
+
+            public static class Routes
+            {
+                public const string Route =                           "get_route_origin_destination";
+            }
+
+            public static class Search
+            {
+                public const string Query =                           "get_characters_character_id_search";
+            }
         }
     }
 }
