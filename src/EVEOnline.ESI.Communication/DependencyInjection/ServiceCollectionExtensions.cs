@@ -11,6 +11,7 @@ using EVEOnline.ESI.Communication.DependencyInjection;
 using EVEOnline.ESI.Communication;
 using EVEOnline.ESI.Communication.Utilities.Stores;
 using EVEOnline.ESI.Communication.Handlers;
+using EVEOnline.ESI.Communication.Pipline;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

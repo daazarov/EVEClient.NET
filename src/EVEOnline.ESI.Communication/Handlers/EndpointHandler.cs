@@ -1,8 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+
 using EVEOnline.ESI.Communication.Attributes;
+using EVEOnline.ESI.Communication.Pipline;
 using EVEOnline.ESI.Communication.Utilities;
 
 namespace EVEOnline.ESI.Communication.Handlers
@@ -70,7 +71,6 @@ namespace EVEOnline.ESI.Communication.Handlers
         private string BuildUrlQuery(EsiContext context, string template)
         {
             var path = string.Empty;
-            var builder = new UriBuilder();
             var query = HttpUtility.ParseQueryString(string.Empty);
 
             foreach (var kvp in context.RequestContext.PathParametersMap)

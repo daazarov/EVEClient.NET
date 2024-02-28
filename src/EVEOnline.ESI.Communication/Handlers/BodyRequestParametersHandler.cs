@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 using EVEOnline.ESI.Communication.Models;
+using EVEOnline.ESI.Communication.Pipline;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {

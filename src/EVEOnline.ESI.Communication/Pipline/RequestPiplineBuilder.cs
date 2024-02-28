@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EVEOnline.ESI.Communication
+namespace EVEOnline.ESI.Communication.Pipline
 {
     internal class RequestPiplineBuilder : IRequestPiplineBuilder
     {
@@ -13,7 +13,7 @@ namespace EVEOnline.ESI.Communication
         public IServiceProvider ServiceProvider => _serviceProvider;
 
         public RequestPiplineBuilder(IServiceProvider serviceProvider)
-        { 
+        {
             _serviceProvider = serviceProvider;
         }
 

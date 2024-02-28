@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 using EVEOnline.ESI.Communication.Attributes;
 using EVEOnline.ESI.Communication.Utilities;
+using EVEOnline.ESI.Communication.Pipline;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {
@@ -54,9 +55,9 @@ namespace EVEOnline.ESI.Communication.Handlers
 
         protected virtual Task<bool> IsPublicEndpoint(EsiContext context)
         {
-            var isPublic = ReflectionCacheAttributeAccessor.Instance.ContainsAttribute<PublicEndpointAttribute>(context.CallingContext.MethodInfo);
+            var publicEndpoint = ReflectionCacheAttributeAccessor.Instance.ContainsAttribute<PublicEndpointAttribute>(context.CallingContext.MethodInfo);
 
-            return Task.FromResult(isPublic);
+            return Task.FromResult(publicEndpoint);
         }
 
         protected virtual async Task ValidateScope(EsiContext context)

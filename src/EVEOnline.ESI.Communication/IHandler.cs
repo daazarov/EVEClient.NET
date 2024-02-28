@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using EVEOnline.ESI.Communication.Pipline;
 
 namespace EVEOnline.ESI.Communication
 {

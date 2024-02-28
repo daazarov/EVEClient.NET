@@ -91,7 +91,7 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
                             services[i] = ServiceDescriptor.Singleton(service, implementationType);
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException(); // todo
+                            throw new ArgumentOutOfRangeException(nameof(serviceLifetime));
                     }
                 }
             }

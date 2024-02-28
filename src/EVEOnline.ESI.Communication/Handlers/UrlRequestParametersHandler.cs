@@ -7,6 +7,7 @@ using EVEOnline.ESI.Communication.Configuration;
 using EVEOnline.ESI.Communication.Models;
 using EVEOnline.ESI.Communication.Extensions;
 using EVEOnline.ESI.Communication.Utilities;
+using EVEOnline.ESI.Communication.Pipline;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {

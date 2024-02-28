@@ -1,4 +1,5 @@
-﻿using EVEOnline.ESI.Communication.Utilities.Stores;
+﻿using System.Linq;
+using EVEOnline.ESI.Communication.Utilities.Stores;
 
 namespace EVEOnline.ESI.Communication.Utilities
 {
@@ -11,14 +12,14 @@ namespace EVEOnline.ESI.Communication.Utilities
             return GetAttribute<T>(attributeProvider) != null;
         }
 
+        public override T GetAttribute<T>(object attributeProvider)
+        {
+            return GetAttributes<T>(attributeProvider).FirstOrDefault();
+        }
+
         public override T[] GetAttributes<T>(object attributeProvider)
         {
             return AttributeThreadSaveStore<T>.GetAttributes(attributeProvider, provider => GetAttributes<T>(provider, true));
-        }
-
-        public override T GetAttribute<T>(object attributeProvider)
-        {
-            return AttributeThreadSaveStore<T>.GetAttribute(attributeProvider, provider => GetAttribute<T>(provider, true));
         }
     }
 }

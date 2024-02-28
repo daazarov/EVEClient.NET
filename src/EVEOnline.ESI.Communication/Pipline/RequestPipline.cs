@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 
-namespace EVEOnline.ESI.Communication
+namespace EVEOnline.ESI.Communication.Pipline
 {
     internal class RequestPipline : IRequestPipline
     {
         private readonly RequestDelegate _middleware;
-        
+
         public RequestPipline(RequestDelegate middleware)
-        { 
+        {
             _middleware = middleware;
         }
 

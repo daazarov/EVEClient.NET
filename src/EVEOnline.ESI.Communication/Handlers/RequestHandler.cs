@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using EVEOnline.ESI.Communication.Extensions;
+using EVEOnline.ESI.Communication.Pipline;
 
 namespace EVEOnline.ESI.Communication.Handlers
 {

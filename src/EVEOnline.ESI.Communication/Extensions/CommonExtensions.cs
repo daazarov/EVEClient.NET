@@ -103,14 +103,27 @@ namespace EVEOnline.ESI.Communication.Extensions
         {
             var enumString = @this.ToString();
 
-            if (enumString.Contains(", "))
+            if (enumString.TrySplit(",", out var splitedArray))
             {
-                return string.Join(",", enumString.Replace(" ", "").Split(',').Select(x => @this.ToEsiStringSingle(x)));
+                return string.Join(",", splitedArray.Select(x => @this.ToEsiStringSingle(x.Trim())));
             }
             else
             {
                 return @this.ToEsiStringSingle(enumString);
             }
+        }
+
+        private static bool TrySplit(this string @this, string separator, out string[] splitedArray)
+        {
+            splitedArray = null;
+
+            if (@this.Contains(separator))
+            {
+                splitedArray = @this.Split(separator);
+                return true;
+            }
+
+            return false;
         }
 
         private static string ToEsiStringSingle(this Enum @this, string value)

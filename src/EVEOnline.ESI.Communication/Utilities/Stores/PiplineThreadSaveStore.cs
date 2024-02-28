@@ -1,4 +1,5 @@
 ﻿using System;
+using EVEOnline.ESI.Communication.Pipline;
 
 namespace EVEOnline.ESI.Communication.Utilities.Stores
 {

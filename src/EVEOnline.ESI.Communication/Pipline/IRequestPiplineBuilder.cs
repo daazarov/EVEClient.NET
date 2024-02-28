@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EVEOnline.ESI.Communication
+namespace EVEOnline.ESI.Communication.Pipline
 {
     internal interface IRequestPiplineBuilder
     {
