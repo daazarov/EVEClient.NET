@@ -6,7 +6,8 @@ jobs:
   build-and-test:
     env:
       INTEGRATION_TESTS_PROJECT: '.\src\EVEOnline.ESI.Communication.IntegrationTests\EVEOnline.ESI.Communication.IntegrationTests.csproj'
-      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      REFRESH_TOKEN: ${{ secrets.ESI_SSO_REFRESH_TOKEN }}
+      CLIENT_ID: ${{ secrets.ESI_CLIENT_ID }}
       
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
@@ -25,4 +26,4 @@ jobs:
         dotnet-version: 6.0.x
       
     - name: Test
-      run: dotnet test $INTEGRATION_TESTS_PROJECT --filter "Category=DeprecatedHeaderTests" --environment AccessToken=$ACCESS_TOKEN
+      run: dotnet test $INTEGRATION_TESTS_PROJECT --filter "Category=DeprecatedHeaderTests" --environment ESI_REFRESH_TOKEN=$REFRESH_TOKEN --environment ESI_CLIENT_ID=$CLIENT_ID
