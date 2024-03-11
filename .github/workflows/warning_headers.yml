@@ -24,4 +24,4 @@ jobs:
         dotnet-version: 6.0.x
       
     - name: Test
-      run: dotnet test $UNIT_TESTS_PROJECT --filter "Category=DeprecatedHeaderTests" -- AccessToken=ACCESS_TOKEN
+      run: dotnet test $UNIT_TESTS_PROJECT --filter "Category=DeprecatedHeaderTests" --environment AccessToken=ACCESS_TOKEN
