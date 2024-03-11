@@ -1,0 +1,27 @@
+name: Deprecated Routes
+
+on: workflow_dispatch
+
+jobs:
+  build-and-test:
+    env:
+      UNIT_TESTS_PROJECT: '.\src\EVEOnline.ESI.Communication.UnitTests\EVEOnline.ESI.Communication.UnitTests.csproj'
+      
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            name: Linux
+            
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+      
+    - name: Test
+      run: dotnet test $UNIT_TESTS_PROJECT --filter (Category=DeprecatedHeaderTests)
