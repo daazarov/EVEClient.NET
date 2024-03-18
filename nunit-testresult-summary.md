@@ -6,45 +6,13 @@
 ![Inconclusive Tests](https://img.shields.io/badge/Inconclusive_Tests-0-white)
 
 <details>
-<summary>Failed Tests</summary>
-
-Name |Result |Duration |
---- | --- | --- | 
-
-
-</details> 
-<details>
-<summary>Warning Tests</summary>
-
-Name |Result |Duration |
---- | --- | --- | 
-
-
-</details> 
-<details>
-<summary>Skipped Tests</summary>
-
-Name |Result |Duration |
---- | --- | --- | 
-
-
-</details> 
-<details>
-<summary>Inconclusive Tests</summary>
-
-Name |Result |Duration |
---- | --- | --- | 
-
-
-</details> 
-<details>
 <summary>Passed Tests</summary>
 
 Name |Result |Duration |
 --- | --- | --- | 
-```GetCharacterCorporationHistory``` |Passed :green_circle: |00:00:01.4840840 |
-```GetCharacterInfo``` |Passed :green_circle: |00:00:00.1617480 |
-```GetCharacterInfo_eTag``` |Passed :green_circle: |00:00:00.2888900 |
+```GetCharacterCorporationHistory``` |Passed :green_circle: |00:00:01.2449600 |
+```GetCharacterInfo``` |Passed :green_circle: |00:00:00.0921030 |
+```GetCharacterInfo_eTag``` |Passed :green_circle: |00:00:00.1582040 |
 
 
 </details> 
