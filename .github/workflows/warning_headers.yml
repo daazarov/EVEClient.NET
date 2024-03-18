@@ -26,4 +26,20 @@ jobs:
         dotnet-version: 6.0.x
       
     - name: Test
-      run: dotnet test $INTEGRATION_TESTS_PROJECT --filter "Category=DeprecatedHeaderTests" --environment ESI_REFRESH_TOKEN=$REFRESH_TOKEN --environment ESI_CLIENT_ID=$CLIENT_ID
+      run: dotnet test $INTEGRATION_TESTS_PROJECT --filter "Category=SmokeTest" --environment ESI_REFRESH_TOKEN=$REFRESH_TOKEN --environment ESI_CLIENT_ID=$CLIENT_ID -- NUnit.TestOutputXml=TestResults
+
+    - name: NUnit Tests Report
+      uses: daazarov/NUnitTestResultSummary@v1
+      with:
+        filename: TestResults/EVEOnline.ESI.Communication.IntegrationTests.xml
+        badge: true
+        format: markdown
+        output: file
+        passed: true
+        
+    - name: Commit Tests Results
+      uses: EndBug/add-and-commit@v9
+      with:
+        default_author: github_actions
+        message: 'Add/Replace NUnit results'
+        add: 'nunit-testresult-summary.md --force'
