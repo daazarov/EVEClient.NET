@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   build-and-test:
     env:
-      INTEGRATION_TESTS_PROJECT: '.\src\EVEOnline.ESI.Communication.IntegrationTests\EVEOnline.ESI.Communication.IntegrationTests.csproj'
+      INTEGRATION_TESTS_PROJECT: 'src/EVEOnline.ESI.Communication.IntegrationTests/EVEOnline.ESI.Communication.IntegrationTests.csproj'
       REFRESH_TOKEN: ${{ secrets.ESI_SSO_REFRESH_TOKEN }}
       CLIENT_ID: ${{ secrets.ESI_CLIENT_ID }}
       
@@ -24,9 +24,15 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+
+    - name: Restore Dependencies
+      run: dotnet restore src/EVEOnline.ESI.Communication.sln
+
+    - name: Build
+      run: dotnet build src/EVEOnline.ESI.Communication.sln --configuration Release --no-restore
       
     - name: Test
-      run: dotnet test $INTEGRATION_TESTS_PROJECT --filter "Category=SmokeTest" --environment ESI_REFRESH_TOKEN=$REFRESH_TOKEN --environment ESI_CLIENT_ID=$CLIENT_ID -- NUnit.TestOutputXml=TestResults
+      run: dotnet test $INTEGRATION_TESTS_PROJECT --configuration Release --no-build --verbosity normal --filter "Category=SmokeTest" --environment ESI_REFRESH_TOKEN=$REFRESH_TOKEN --environment ESI_CLIENT_ID=$CLIENT_ID -- NUnit.TestOutputXml=TestResults
 
     - name: NUnit Tests Report
       uses: daazarov/NUnitTestResultSummary@v1
