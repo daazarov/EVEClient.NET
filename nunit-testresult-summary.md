@@ -42,9 +42,9 @@ Name |Result |Duration |
 
 Name |Result |Duration |
 --- | --- | --- | 
-GetCharacterCorporationHistory |Passed :green_circle: |00:00:01.0741630 |
-GetCharacterInfo |Passed :green_circle: |00:00:00.0920320 |
-GetCharacterInfo_eTag |Passed :green_circle: |00:00:00.1563230 |
+```GetCharacterCorporationHistory``` |Passed :green_circle: |00:00:01.4840840 |
+```GetCharacterInfo``` |Passed :green_circle: |00:00:00.1617480 |
+```GetCharacterInfo_eTag``` |Passed :green_circle: |00:00:00.2888900 |
 
 
 </details> 
