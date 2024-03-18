@@ -6,6 +6,7 @@ jobs:
   build-and-test:
     env:
       INTEGRATION_TESTS_PROJECT: 'src/EVEOnline.ESI.Communication.IntegrationTests/EVEOnline.ESI.Communication.IntegrationTests.csproj'
+      NUNIT_RESULT_PATH: 'github/workspace/unit'
       REFRESH_TOKEN: ${{ secrets.ESI_SSO_REFRESH_TOKEN }}
       CLIENT_ID: ${{ secrets.ESI_CLIENT_ID }}
       
@@ -32,12 +33,12 @@ jobs:
       run: dotnet build src/EVEOnline.ESI.Communication.sln --configuration Release --no-restore
       
     - name: Test
-      run: dotnet test $INTEGRATION_TESTS_PROJECT --configuration Release --no-build --verbosity normal --filter "Category=SmokeTest" --environment ESI_REFRESH_TOKEN=$REFRESH_TOKEN --environment ESI_CLIENT_ID=$CLIENT_ID -- NUnit.TestOutputXml=nunit
+      run: dotnet test $INTEGRATION_TESTS_PROJECT --configuration Release --no-build --verbosity normal --filter "Category=SmokeTest" --environment ESI_REFRESH_TOKEN=$REFRESH_TOKEN --environment ESI_CLIENT_ID=$CLIENT_ID -- NUnit.TestOutputXml=$NUNIT_RESULT_PATH
 
     - name: NUnit Tests Report
       uses: daazarov/NUnitTestResultSummary@v1
       with:
-        filename: ${{ github.workspace }}/src/EVEOnline.ESI.Communication.IntegrationTests/bin/Release/net7.0/nunit/EVEOnline.ESI.Communication.IntegrationTests.xml
+        filename: $NUNIT_RESULT_PATH/EVEOnline.ESI.Communication.IntegrationTests.xml
         badge: true
         format: markdown
         output: file
