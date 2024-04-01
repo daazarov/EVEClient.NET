@@ -187,7 +187,11 @@ namespace EVEOnline.ESI.Communication.Utilities
 
                 { Key(typeof(IRoutesLogic), nameof(IRoutesLogic.Route)), ESI.Endpoints.Routes.Route },
 
-                { Key(typeof(ISearchLogic), nameof(ISearchLogic.Query)), ESI.Endpoints.Search.Query }
+                { Key(typeof(ISearchLogic), nameof(ISearchLogic.Query)), ESI.Endpoints.Search.Query },
+
+                { Key(typeof(ISkillsLogic), nameof(ISkillsLogic.GetCharacterAttributes)), ESI.Endpoints.Skills.Attributes },
+                { Key(typeof(ISkillsLogic), nameof(ISkillsLogic.GetCharacterSkillQueue)), ESI.Endpoints.Skills.SkillQueue },
+                { Key(typeof(ISkillsLogic), nameof(ISkillsLogic.GetCharacterSkills)), ESI.Endpoints.Skills.SkillDetails },
             };
         }
 

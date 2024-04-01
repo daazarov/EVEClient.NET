@@ -1,0 +1,36 @@
+{
+  "SkillAttributes": {
+    "accrued_remap_cooldown_date": "2016-09-03T05:12:25Z",
+    "bonus_remaps": 10,
+    "charisma": 20,
+    "intelligence": 30,
+    "last_remap_date": "2017-09-03T05:12:25Z",
+    "memory": 25,
+    "perception": 21,
+    "willpower": 22
+  },
+
+  "SkillQueueItem": {
+    "finish_date": "2016-06-29T10:47:00Z",
+    "finished_level": 3,
+    "level_end_sp": 5,
+    "level_start_sp": 6,
+    "queue_position": 1,
+    "skill_id": 1,
+    "start_date": "2015-06-29T10:46:00Z",
+    "training_start_sp": 10
+  },
+
+  "SkillDetails": {
+    "skills": [
+      {
+        "active_skill_level": 1,
+        "skill_id": 2,
+        "skillpoints_in_skill": 10000,
+        "trained_skill_level": 1
+      }
+    ],
+    "total_sp": 20000,
+    "unallocated_sp": 1200000
+  }
+}

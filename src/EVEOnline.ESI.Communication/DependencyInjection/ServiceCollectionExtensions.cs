@@ -106,6 +106,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IPlanetaryInteractionLogic, PlanetaryInteractionLogic>();
             services.TryAddTransient<IRoutesLogic, RoutesLogic>();
             services.TryAddTransient<ISearchLogic, SearchLogic>();
+            services.TryAddTransient<ISkillsLogic, SkillsLogic>();
 
             return services;
         }

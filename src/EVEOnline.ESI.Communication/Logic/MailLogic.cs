@@ -5,6 +5,7 @@ using EVEOnline.ESI.Communication.DataContract;
 using EVEOnline.ESI.Communication.Extensions;
 using EVEOnline.ESI.Communication.Models;
 
+using static EVEOnline.ESI.Communication.Models.CommonRequests;
 using static EVEOnline.ESI.Communication.Models.MailRequests;
 
 namespace EVEOnline.ESI.Communication.Logic

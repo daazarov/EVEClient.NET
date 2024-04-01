@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using EVEOnline.ESI.Communication.DataContract;
 
-using static EVEOnline.ESI.Communication.Models.LoyaltyRequests;
+using static EVEOnline.ESI.Communication.Models.CommonRequests;
 
 namespace EVEOnline.ESI.Communication.Logic
 {

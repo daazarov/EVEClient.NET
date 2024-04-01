@@ -2,7 +2,7 @@
 
 using EVEOnline.ESI.Communication.DataContract;
 
-using static EVEOnline.ESI.Communication.Models.LocationRequests;
+using static EVEOnline.ESI.Communication.Models.CommonRequests;
 
 namespace EVEOnline.ESI.Communication.Logic
 {

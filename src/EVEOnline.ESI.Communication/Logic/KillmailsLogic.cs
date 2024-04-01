@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using EVEOnline.ESI.Communication.DataContract;
 
+using static EVEOnline.ESI.Communication.Models.CommonRequests;
 using static EVEOnline.ESI.Communication.Models.KillmailsRequests;
 
 namespace EVEOnline.ESI.Communication.Logic

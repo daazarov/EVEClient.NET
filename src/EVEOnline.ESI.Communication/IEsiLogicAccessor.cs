@@ -27,5 +27,6 @@
         IPlanetaryInteractionLogic PlanetaryInteractionLogic { get; }
         IRoutesLogic RoutesLogic { get; }
         ISearchLogic SearchLogic { get; }
+        ISkillsLogic SkillsLogic { get; }
     }
 }

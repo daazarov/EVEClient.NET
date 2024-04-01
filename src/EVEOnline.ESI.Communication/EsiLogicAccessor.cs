@@ -32,6 +32,7 @@ namespace EVEOnline.ESI.Communication
         private IPlanetaryInteractionLogic _planetaryInteractionLogic;
         private IRoutesLogic _routesLogic;
         private ISearchLogic _searchLogic;
+        private ISkillsLogic _skillsLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -58,6 +59,7 @@ namespace EVEOnline.ESI.Communication
         public IPlanetaryInteractionLogic PlanetaryInteractionLogic => GetOrSet<IPlanetaryInteractionLogic>(ref _planetaryInteractionLogic);
         public IRoutesLogic RoutesLogic => GetOrSet<IRoutesLogic>(ref _routesLogic);
         public ISearchLogic SearchLogic => GetOrSet<ISearchLogic>(ref _searchLogic);
+        public ISkillsLogic SkillsLogic => GetOrSet<ISkillsLogic>(ref _skillsLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

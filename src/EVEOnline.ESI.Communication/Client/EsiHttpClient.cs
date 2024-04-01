@@ -14,7 +14,8 @@ namespace EVEOnline.ESI.Communication
     {
         private readonly IRequestPiplineBuilder _piplineBuilder;
         private readonly IEsiContextFactory _contextFactory;
-        private readonly Type _callingMemberType = typeof(T);
+
+        private Type callerMemberType = typeof(T);
 
         public EsiHttpClient(IEsiContextFactory contextFactory, IRequestPiplineBuilder piplineBuilder)
         {
@@ -22,18 +23,18 @@ namespace EVEOnline.ESI.Communication
             _contextFactory = contextFactory;
         }
 
-        public virtual async Task<EsiResponse> DeleteRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
+        public virtual async Task<EsiResponse> DeleteRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
             (
-                key: Key(HttpMethod.Delete.Method, memberName),
+                key: Key(HttpMethod.Delete.Method, callerMemberName),
                 getter: key => _piplineBuilder.UseDeletePipline().Build()
             );
 
             try
             {
-                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(_callingMemberType, memberName);
-                var context = _contextFactory.CreateContext(endpointId, _callingMemberType, memberName, requestModel);
+                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(callerMemberType, callerMemberName);
+                var context = _contextFactory.CreateContext(endpointId, callerMemberType, callerMemberName, requestModel);
                 var handledContext = await pipline.ExecuteAsync(context);
 
                 return new EsiResponse(handledContext.Response);
@@ -44,18 +45,18 @@ namespace EVEOnline.ESI.Communication
             }
         }
 
-        public virtual async Task<EsiResponsePagination<TResponse>> GetPaginationRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
+        public virtual async Task<EsiResponsePagination<TResponse>> GetPaginationRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
             (
-                key: Key(HttpMethod.Get.Method, memberName),
+                key: Key(HttpMethod.Get.Method, callerMemberName),
                 getter: key => _piplineBuilder.UseGetPipline().Build()
             );
 
             try
             {
-                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(_callingMemberType, memberName);
-                var context = _contextFactory.CreateContext(endpointId, _callingMemberType, memberName, requestModel);
+                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(callerMemberType, callerMemberName);
+                var context = _contextFactory.CreateContext(endpointId, callerMemberType, callerMemberName, requestModel);
                 var handledContext = await pipline.ExecuteAsync(context);
 
                 return new EsiResponsePagination<TResponse>(handledContext.Response);
@@ -66,18 +67,18 @@ namespace EVEOnline.ESI.Communication
             }
         }
 
-        public virtual async Task<EsiResponse<TResponse>> GetRequestAsync<TResponse>([CallerMemberName] string memberName = "")
+        public virtual async Task<EsiResponse<TResponse>> GetRequestAsync<TResponse>([CallerMemberName] string callerMemberName = "")
         {
             var pipline = GetOrSet
             (
-                key: Key(HttpMethod.Get.Method, memberName),
+                key: Key(HttpMethod.Get.Method, callerMemberName),
                 getter: key => _piplineBuilder.UseGetPipline().Build()
             );
 
             try
             {
-                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(_callingMemberType, memberName);
-                var context = _contextFactory.CreateContext(endpointId, _callingMemberType, memberName);
+                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(callerMemberType, callerMemberName);
+                var context = _contextFactory.CreateContext(endpointId, callerMemberType, callerMemberName);
                 var handledContext = await pipline.ExecuteAsync(context);
 
                 return new EsiResponse<TResponse>(handledContext.Response);
@@ -88,18 +89,18 @@ namespace EVEOnline.ESI.Communication
             }
         }
 
-        public virtual async Task<EsiResponse<TResponse>> GetRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
+        public virtual async Task<EsiResponse<TResponse>> GetRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
             (
-                key: Key(HttpMethod.Get.Method, memberName),
+                key: Key(HttpMethod.Get.Method, callerMemberName),
                 getter: key => _piplineBuilder.UseGetPipline().Build()
             );
 
             try
             {
-                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(_callingMemberType, memberName);
-                var context = _contextFactory.CreateContext(endpointId, _callingMemberType, memberName, requestModel);
+                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(callerMemberType, callerMemberName);
+                var context = _contextFactory.CreateContext(endpointId, callerMemberType, callerMemberName, requestModel);
                 var handledContext = await pipline.ExecuteAsync(context);
 
                 return new EsiResponse<TResponse>(handledContext.Response);
@@ -110,18 +111,18 @@ namespace EVEOnline.ESI.Communication
             }
         }
 
-        public virtual async Task<EsiResponse> PostNoContentRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
+        public virtual async Task<EsiResponse> PostNoContentRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
             (
-                key: Key(HttpMethod.Post.Method, memberName),
+                key: Key(HttpMethod.Post.Method, callerMemberName),
                 getter: key => _piplineBuilder.UsePostPipline().Build()
             );
 
             try
             {
-                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(_callingMemberType, memberName);
-                var context = _contextFactory.CreateContext(endpointId, _callingMemberType, memberName, requestModel);
+                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(callerMemberType, callerMemberName);
+                var context = _contextFactory.CreateContext(endpointId, callerMemberType, callerMemberName, requestModel);
                 var handledContext = await pipline.ExecuteAsync(context);
 
                 return new EsiResponse(handledContext.Response);
@@ -132,18 +133,18 @@ namespace EVEOnline.ESI.Communication
             }
         }
 
-        public virtual async Task<EsiResponse<TResponse>> PostRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
+        public virtual async Task<EsiResponse<TResponse>> PostRequestAsync<TRequest, TResponse>(TRequest requestModel, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
             (
-                key: Key(HttpMethod.Post.Method, memberName),
+                key: Key(HttpMethod.Post.Method, callerMemberName),
                 getter: key => _piplineBuilder.UsePostPipline().Build()
             );
 
             try
             {
-                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(_callingMemberType, memberName);
-                var context = _contextFactory.CreateContext(endpointId, _callingMemberType, memberName, requestModel);
+                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(callerMemberType, callerMemberName);
+                var context = _contextFactory.CreateContext(endpointId, callerMemberType, callerMemberName, requestModel);
                 var handledContext = await pipline.ExecuteAsync(context);
 
                 return new EsiResponse<TResponse>(handledContext.Response);
@@ -154,18 +155,18 @@ namespace EVEOnline.ESI.Communication
             }
         }
 
-        public virtual async Task<EsiResponse> PutRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string memberName = "") where TRequest : IRequestModel
+        public virtual async Task<EsiResponse> PutRequestAsync<TRequest>(TRequest requestModel, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
         {
             var pipline = GetOrSet
             (
-                key: Key(HttpMethod.Put.Method, memberName),
+                key: Key(HttpMethod.Put.Method, callerMemberName),
                 getter: key => _piplineBuilder.UsePutPipline().Build()
             );
 
             try
             {
-                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(_callingMemberType, memberName);
-                var context = _contextFactory.CreateContext(endpointId, _callingMemberType, memberName, requestModel);
+                var endpointId = CallerMemberToEnpointIdConverter.ToEndpointId(callerMemberType, callerMemberName);
+                var context = _contextFactory.CreateContext(endpointId, callerMemberType, callerMemberName, requestModel);
                 var handledContext = await pipline.ExecuteAsync(context);
 
                 return new EsiResponse(handledContext.Response);
@@ -177,6 +178,6 @@ namespace EVEOnline.ESI.Communication
         }
 
         private IRequestPipline GetOrSet(string key, Func<string, IRequestPipline> getter) => PiplineThreadSaveStore.GetPipline(key, getter);
-        private string Key(string methodName, string callingMemberName) => string.Concat(_callingMemberType.Name, "-", callingMemberName, "-", methodName);
+        private string Key(string httpMethod, string callerMemberName) => $"{callerMemberType.Name}-{callerMemberName}-{httpMethod}";
     }
 }

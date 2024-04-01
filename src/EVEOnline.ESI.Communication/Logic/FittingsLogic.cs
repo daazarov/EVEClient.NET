@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using EVEOnline.ESI.Communication.DataContract;
 using EVEOnline.ESI.Communication.Models;
 
+using static EVEOnline.ESI.Communication.Models.CommonRequests;
 using static EVEOnline.ESI.Communication.Models.FittingsRequests;
 
 namespace EVEOnline.ESI.Communication.Logic

@@ -1,6 +1,6 @@
 ﻿namespace EVEOnline.ESI.Communication.Models
 {
-    internal class CharactersRequests
+    internal class CommonRequests
     {
         internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
         {
@@ -12,6 +12,65 @@
                 return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
             }
         }
+
+        internal class AllianceIdRouteRequest : RouteModelBase<AllianceIdModel>
+        {
+            public AllianceIdRouteRequest(AllianceIdModel uriModel) : base(uriModel)
+            { }
+
+            public static AllianceIdRouteRequest Create(int allianceId)
+            {
+                return new AllianceIdRouteRequest(new AllianceIdModel(allianceId));
+            }
+        }
+
+        internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
+        {
+            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationIdRouteRequest Create(int corporationId)
+            {
+                return new CorporationIdRouteRequest(new CorporationIdModel(corporationId));
+            }
+        }
+
+        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
+        {
+            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
+            }
+        }
+
+        internal class PageBasedAllianceIdRouteRequest : RouteModelBase<PageBasedAllianceIdModel>
+        {
+            public PageBasedAllianceIdRouteRequest(PageBasedAllianceIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedAllianceIdRouteRequest Create(int characterId, int page)
+            {
+                return new PageBasedAllianceIdRouteRequest(new PageBasedAllianceIdModel(characterId, page));
+            }
+        }
+
+        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
+        {
+            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
+            {
+                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
+            }
+        }
+    }
+    
+    internal class CharactersRequests
+    {
         internal class GetCharacterBlueprintsRequest : RouteModelBase<PageBasedCharacterIdModel>
         {
             public GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
@@ -29,20 +88,6 @@
         }
     }
 
-    internal class AllianceRequests
-    {
-        internal class AllianceIdRouteRequest : RouteModelBase<AllianceIdModel>
-        {
-            public AllianceIdRouteRequest(AllianceIdModel uriModel) : base(uriModel)
-            { }
-
-            public static AllianceIdRouteRequest Create(int allianceId)
-            {
-                return new AllianceIdRouteRequest(new AllianceIdModel(allianceId));
-            }
-        }
-    }
-
     internal class AssetsRequests
     {
         internal class CharacterItemsPostRequest : RequestBase<CharacterIdModel, AssertItemBodyModel>
@@ -56,17 +101,6 @@
             }
         }
 
-        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
-        {
-            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
-            {
-                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
-            }
-        }
-
         internal class CorporationItemsPostRequest : RequestBase<CorporationIdModel, AssertItemBodyModel>
         {
             public CorporationItemsPostRequest(CorporationIdModel uriModel, AssertItemBodyModel itemIds) : base(uriModel, itemIds)
@@ -75,42 +109,6 @@
             public static CorporationItemsPostRequest Create(int corporationId, long[] itemIds)
             {
                 return new CorporationItemsPostRequest(new CorporationIdModel(corporationId), new AssertItemBodyModel(itemIds));
-            }
-        }
-
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
-            }
-        }
-    }
-
-    internal class BookmarkRequests
-    {
-        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
-        {
-            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
-            {
-                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
-            }
-        }
-
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
             }
         }
     }
@@ -159,20 +157,6 @@
         }
     }
 
-    internal class CloneLogic
-    {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-    }
-
     internal class ContactRequests
     {
         internal class AddUpdateCharacterContactRequest : RequestBase<AddUpdateCharacterContactUriModel, ContactsIdsBodyModel>
@@ -196,87 +180,10 @@
                 return new DeleteCharacterContactsRequest(new DeleteCharacterContactUriModel(characterId, contactIds));
             }
         }
-
-        internal class AllianceIdRouteRequest : RouteModelBase<AllianceIdModel>
-        {
-            public AllianceIdRouteRequest(AllianceIdModel uriModel) : base(uriModel)
-            { }
-
-            public static AllianceIdRouteRequest Create(int allianceId)
-            {
-                return new AllianceIdRouteRequest(new AllianceIdModel(allianceId));
-            }
-        }
-
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-
-        internal class PageBasedAllianceIdRouteRequest : RouteModelBase<PageBasedAllianceIdModel>
-        {
-            public PageBasedAllianceIdRouteRequest(PageBasedAllianceIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedAllianceIdRouteRequest Create(int characterId, int page)
-            {
-                return new PageBasedAllianceIdRouteRequest(new PageBasedAllianceIdModel(characterId, page));
-            }
-        }
-
-        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
-        {
-            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
-            {
-                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
-            }
-        }
-
-        internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
-        {
-            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CorporationIdRouteRequest Create(int corporationId)
-            {
-                return new CorporationIdRouteRequest(new CorporationIdModel(corporationId));
-            }
-        }
-
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
-            }
-        }
     }
 
     internal class ContractRequests
     {
-        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
-        {
-            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
-            {
-                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
-            }
-        }
-
         internal class CharacterContractRouteRequest : RouteModelBase<CharacterContractRouteModel>
         {
             public CharacterContractRouteRequest(CharacterContractRouteModel uriModel) : base(uriModel)
@@ -310,17 +217,6 @@
             }
         }
 
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
-            }
-        }
-
         internal class CorporationContractRouteRequest : RouteModelBase<CorporationContractRouteModel>
         {
             public CorporationContractRouteRequest(CorporationContractRouteModel uriModel) : base(uriModel)
@@ -346,28 +242,6 @@
 
     internal class CorporationRequests
     {
-        internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
-        {
-            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CorporationIdRouteRequest Create(int corporationId)
-            {
-                return new CorporationIdRouteRequest(new CorporationIdModel(corporationId));
-            }
-        }
-
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
-            }
-        }
-
         internal class StarbaseInfoRequest : RouteModelBase<StarbaseInfoUriModel>
         {
             public StarbaseInfoRequest(StarbaseInfoUriModel uriModel) : base(uriModel)
@@ -416,44 +290,8 @@
         }
     }
 
-    internal class FactionWarfareRequests
-    {
-        internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
-        {
-            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CorporationIdRouteRequest Create(int corporationId)
-            {
-                return new CorporationIdRouteRequest(new CorporationIdModel(corporationId));
-            }
-        }
-
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-    }
-
     internal class FittingsRequests
     {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-
         internal class DeleteFittingRequest : RouteModelBase<DeleteFittingUriModel>
         {
             public DeleteFittingRequest(DeleteFittingUriModel uriModel) : base(uriModel)
@@ -479,17 +317,6 @@
 
     internal class FleetsRequests
     {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-
         internal class FleetIdRouteRequest : RouteModelBase<FleetIdModel>
         {
             public FleetIdRouteRequest(FleetIdModel uriModel) : base(uriModel)
@@ -592,28 +419,6 @@
 
     internal class IndustryRequests
     {
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
-            }
-        }
-
-        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
-        {
-            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
-            {
-                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
-            }
-        }
-
         internal class CorporationObserverRequest : RouteModelBase<CorporationObserverUriModel>
         {
             public CorporationObserverRequest(CorporationObserverUriModel uriModel) : base(uriModel)
@@ -650,28 +455,6 @@
 
     internal class KillmailsRequests
     {
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
-            }
-        }
-
-        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
-        {
-            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
-            {
-                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
-            }
-        }
-
         internal class KillmailInfoRequest : RouteModelBase<KillmailInfoUriModel>
         {
             public KillmailInfoRequest(KillmailInfoUriModel uriModel) : base(uriModel)
@@ -684,58 +467,8 @@
         }
     }
 
-    internal class LocationRequests
-    {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-    }
-
-    internal class LoyaltyRequests
-    {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-
-        internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
-        {
-            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CorporationIdRouteRequest Create(int corporationId)
-            {
-                return new CorporationIdRouteRequest(new CorporationIdModel(corporationId));
-            }
-        }
-    }
-
     internal class MailRequests
     {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-
         internal class GetMailHeaderseRequest : RouteModelBase<MailHeadersUriModel>
         {
             public GetMailHeaderseRequest(MailHeadersUriModel uriModel) : base(uriModel)
@@ -805,39 +538,6 @@
 
     internal class MarketRequests
     {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-
-        internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
-        {
-            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
-            {
-                return new PageBasedCharacterIdRouteRequest(new PageBasedCharacterIdModel(characterId, page));
-            }
-        }
-
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
-            }
-        }
-
         internal class RegionStatisticsRouteRequest : RouteModelBase<RegionStatisticsUriModel>
         {
             public RegionStatisticsRouteRequest(RegionStatisticsUriModel uriModel) : base(uriModel)
@@ -896,17 +596,6 @@
 
     internal class OpportunitiesRequests
     {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-
         internal class GroupIdRouteRequest : RouteModelBase<OpportunitiesGroupIdModel>
         {
             public GroupIdRouteRequest(OpportunitiesGroupIdModel uriModel) : base(uriModel)
@@ -932,28 +621,6 @@
 
     internal class PlanetaryInteractionRequests
     {
-        internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
-        {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static CharacterIdRouteRequest Create(int characterId)
-            {
-                return new CharacterIdRouteRequest(new CharacterIdModel(characterId));
-            }
-        }
-
-        internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
-        {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
-            { }
-
-            public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
-            {
-                return new PageBasedCorporationIdRouteRequest(new PageBasedCorporationIdModel(corporationId, page));
-            }
-        }
-
         internal class ColonyInfoRequest : RouteModelBase<ColonyInfoUriModel>
         {
             public ColonyInfoRequest(ColonyInfoUriModel uriModel) : base(uriModel)
