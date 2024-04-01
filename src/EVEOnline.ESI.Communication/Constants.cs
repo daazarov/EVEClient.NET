@@ -295,6 +295,11 @@ namespace EVEOnline.ESI.Communication
                 public const string SolarSystems =                    "get_sovereignty_map";
                 public const string Structures =                      "get_sovereignty_structures";
             }
+
+            public static class  Status
+            {
+                public const string ServerStatus =                    "get_status";
+            }
         }
     }
 }

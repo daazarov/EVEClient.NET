@@ -196,6 +196,8 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { Key(typeof(ISovereigntyLogic), nameof(ISovereigntyLogic.Campaigns)), ESI.Endpoints.Sovereignty.Campaigns },
                 { Key(typeof(ISovereigntyLogic), nameof(ISovereigntyLogic.SolarSystems)), ESI.Endpoints.Sovereignty.SolarSystems },
                 { Key(typeof(ISovereigntyLogic), nameof(ISovereigntyLogic.Structures)), ESI.Endpoints.Sovereignty.Structures },
+
+                { Key(typeof(IStatusLogic), nameof(IStatusLogic.ServerStatus)), ESI.Endpoints.Status.ServerStatus },
             };
         }
 

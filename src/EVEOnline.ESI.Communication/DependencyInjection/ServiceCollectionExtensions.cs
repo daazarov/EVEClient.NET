@@ -108,6 +108,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<ISearchLogic, SearchLogic>();
             services.TryAddTransient<ISkillsLogic, SkillsLogic>();
             services.TryAddTransient<ISovereigntyLogic, SovereigntyLogic>();
+            services.TryAddTransient<IStatusLogic, StatusLogic>();
 
             return services;
         }
