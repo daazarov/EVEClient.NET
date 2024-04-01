@@ -47,4 +47,22 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
       
     - name: Test
-      run: dotnet test $UNIT_TESTS_PROJECT
+      run: dotnet test $UNIT_TESTS_PROJECT --configuration $BUILD_CONFIG -- NUnit.TestOutputXml=TestResults
+
+    - name: NUnit Tests Report
+      uses: daazarov/NUnitTestResultSummary@v1
+      with:
+        filename: src/EVEOnline.ESI.Communication.UnitTests/bin/Release/net7.0/TestResults/EVEOnline.ESI.Communication.UnitTests.xml
+        badge: true
+        format: markdown
+        output: file
+        passed: false
+        skipped: false
+        inconclusive: false        
+
+    - name: Add unit tests PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: nunit-testresult-summary.md
