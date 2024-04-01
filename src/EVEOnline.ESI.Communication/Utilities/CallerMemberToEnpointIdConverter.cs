@@ -192,6 +192,10 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { Key(typeof(ISkillsLogic), nameof(ISkillsLogic.GetCharacterAttributes)), ESI.Endpoints.Skills.Attributes },
                 { Key(typeof(ISkillsLogic), nameof(ISkillsLogic.GetCharacterSkillQueue)), ESI.Endpoints.Skills.SkillQueue },
                 { Key(typeof(ISkillsLogic), nameof(ISkillsLogic.GetCharacterSkills)), ESI.Endpoints.Skills.SkillDetails },
+
+                { Key(typeof(ISovereigntyLogic), nameof(ISovereigntyLogic.Campaigns)), ESI.Endpoints.Sovereignty.Campaigns },
+                { Key(typeof(ISovereigntyLogic), nameof(ISovereigntyLogic.SolarSystems)), ESI.Endpoints.Sovereignty.SolarSystems },
+                { Key(typeof(ISovereigntyLogic), nameof(ISovereigntyLogic.Structures)), ESI.Endpoints.Sovereignty.Structures },
             };
         }
 

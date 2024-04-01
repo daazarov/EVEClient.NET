@@ -24,6 +24,7 @@
     <None Remove="Datasets\Json\DeserializationTests\deserialization.planetaryinteraction.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.search.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.skills.json" />
+    <None Remove="Datasets\Json\DeserializationTests\deserialization.sovereignty.json" />
     <None Remove="Datasets\Json\serialization.FactionWarfare.json" />
   </ItemGroup>
 
@@ -43,6 +44,7 @@
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.planetaryinteraction.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.search.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.skills.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.sovereignty.json" />
   </ItemGroup>
 
   <ItemGroup>

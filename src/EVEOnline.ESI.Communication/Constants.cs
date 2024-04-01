@@ -288,6 +288,13 @@ namespace EVEOnline.ESI.Communication
                 public const string SkillQueue =                      "get_characters_character_id_skillqueue";
                 public const string SkillDetails =                    "get_characters_character_id_skills";
             }
+
+            public static class Sovereignty
+            {
+                public const string Campaigns =                       "get_sovereignty_campaigns";
+                public const string SolarSystems =                    "get_sovereignty_map";
+                public const string Structures =                      "get_sovereignty_structures";
+            }
         }
     }
 }
