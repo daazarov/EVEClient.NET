@@ -70,10 +70,7 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.WarningHeader
             })
             .UseAccessTokenProvider<AccessTokenProviderFake>();
 
-            _serviceCollection.AddTransient(typeof(ICustomEndpointRoutePriorityProvider), (sp) => 
-            {
-                return _customEndpointRoutePriorityProviderMock.Object;
-            });
+            _serviceCollection.AddTransient(provider => _customEndpointRoutePriorityProviderMock.Object);
 
             _serviceProvider = _serviceCollection.BuildServiceProvider();
             _logicAccessor = _serviceProvider.GetService<IEsiLogicAccessor>()!;

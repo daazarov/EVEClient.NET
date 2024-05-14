@@ -296,9 +296,43 @@ namespace EVEOnline.ESI.Communication
                 public const string Structures =                      "get_sovereignty_structures";
             }
 
-            public static class  Status
+            public static class Status
             {
                 public const string ServerStatus =                    "get_status";
+            }
+
+            public static class Universe
+            {
+                public const string Ancestries =                     "get_universe_ancestries";
+                public const string AsteroidBeltInfo =               "get_universe_asteroid_belts_asteroid_belt_id";
+                public const string Bloodlines =                     "get_universe_bloodlines";
+                public const string ItemCategories =                 "get_universe_categories";
+                public const string ItemCategoryInfo =               "get_universe_categories_category_id";
+                public const string Constellations =                 "get_universe_constellations";
+                public const string ConstellationInfo =              "get_universe_constellations_constellation_id";
+                public const string Factions =                       "get_universe_factions";
+                public const string Graphics =                       "get_universe_graphics";
+                public const string GraphicInfo =                    "get_universe_graphics_graphic_id";
+                public const string ItemGroups =                     "get_universe_groups";
+                public const string ItemGroupInfo =                  "get_universe_groups_group_id";
+                public const string IDs =                            "post_universe_ids";
+                public const string MoonInfo =                       "get_universe_moons_moon_id";
+                public const string Names =                          "post_universe_names";
+                public const string PlanetInfo =                     "get_universe_planets_planet_id";
+                public const string Races =                          "get_universe_races";
+                public const string Regions =                        "get_universe_regions";
+                public const string RegionInfo =                     "get_universe_regions_region_id";
+                public const string StargateInfo =                   "get_universe_stargates_stargate_id";
+                public const string StarInfo =                       "get_universe_stars_star_id";
+                public const string StationInfo =                    "get_universe_stations_station_id";
+                public const string Structures =                     "get_universe_structures";
+                public const string StructureInfo =                  "get_universe_structures_structure_id";
+                public const string SystemJumps =                    "get_universe_system_jumps";
+                public const string SystemKills =                    "get_universe_system_kills";
+                public const string SolarSystems =                   "get_universe_systems";
+                public const string SolarSystemInfo =                "get_universe_systems_system_id";
+                public const string Types =                          "get_universe_types";
+                public const string TypeInfo =                       "get_universe_types_type_id";
             }
         }
     }

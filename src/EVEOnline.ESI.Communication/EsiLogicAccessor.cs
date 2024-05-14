@@ -33,6 +33,7 @@ namespace EVEOnline.ESI.Communication
         private IRoutesLogic _routesLogic;
         private ISearchLogic _searchLogic;
         private ISkillsLogic _skillsLogic;
+        private IUniverseLogic _universeLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -60,6 +61,7 @@ namespace EVEOnline.ESI.Communication
         public IRoutesLogic RoutesLogic => GetOrSet<IRoutesLogic>(ref _routesLogic);
         public ISearchLogic SearchLogic => GetOrSet<ISearchLogic>(ref _searchLogic);
         public ISkillsLogic SkillsLogic => GetOrSet<ISkillsLogic>(ref _skillsLogic);
+        public IUniverseLogic UniverseLogic => GetOrSet<IUniverseLogic>(ref _universeLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

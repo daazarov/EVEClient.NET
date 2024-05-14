@@ -101,6 +101,11 @@ namespace EVEOnline.ESI.Communication.Extensions
 
         public static string ToEsiString(this Enum @this)
         {
+            if (@this == null)
+            {
+                return null;
+            }
+            
             var enumString = @this.ToString();
 
             if (enumString.TrySplit(",", out var splitedArray))

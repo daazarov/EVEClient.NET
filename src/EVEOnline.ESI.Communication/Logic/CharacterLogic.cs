@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 
 using EVEOnline.ESI.Communication.DataContract;
-using EVEOnline.ESI.Communication.Models;
 
 using static EVEOnline.ESI.Communication.Models.CharactersRequests;
 using static EVEOnline.ESI.Communication.Models.CommonRequests;
@@ -28,13 +27,13 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterAgentsResearch>>(CharacterIdRouteRequest.Create(characterId));
 
         public Task<EsiResponsePagination<List<CharacterBlueprint>>> GetCharacterBlueprintsAsync(int characterId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<GetCharacterBlueprintsRequest, List<CharacterBlueprint>>(new GetCharacterBlueprintsRequest(new PageBasedCharacterIdModel(characterId, page)));
+            _esiClient.GetPaginationRequestAsync<GetCharacterBlueprintsRequest, List<CharacterBlueprint>>(GetCharacterBlueprintsRequest.Create(characterId, page));
 
         public Task<EsiResponse<List<CharacterCorporationHistory>>> GetCharacterCorporationHistoryAsync(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterCorporationHistory>>(CharacterIdRouteRequest.Create(characterId));
 
         public Task<EsiResponse<long>> PostCharacterCspaAsync(int characterId, int[] characterIds) =>
-            _esiClient.PostRequestAsync<PostCharacterCspaRequest, long>(new PostCharacterCspaRequest(new CharacterIdModel(characterId), new CharacterIdsBodyModel(characterIds)));
+            _esiClient.PostRequestAsync<PostCharacterCspaRequest, long>(PostCharacterCspaRequest.Create(characterId, characterIds));
 
         public Task<EsiResponse<CharacterFatigue>> GetCharacterFatigueAsync(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, CharacterFatigue>(CharacterIdRouteRequest.Create(characterId));
@@ -58,6 +57,6 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterTitle>>(CharacterIdRouteRequest.Create(characterId));
 
         public Task<EsiResponse<List<CharacterAffilation>>> PostCharacterAffilationAsync(int[] characterIds) =>
-            _esiClient.PostRequestAsync<PostCharacterAffilationRequest, List<CharacterAffilation>>(new PostCharacterAffilationRequest(new CharacterIdsBodyModel(characterIds)));
+            _esiClient.PostRequestAsync<PostCharacterAffilationRequest, List<CharacterAffilation>>(PostCharacterAffilationRequest.Create(characterIds));
     }
 }

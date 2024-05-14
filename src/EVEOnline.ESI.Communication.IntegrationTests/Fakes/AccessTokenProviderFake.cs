@@ -58,14 +58,21 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.Fakes
             var response = await _client.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            try
             {
-                throw new ArgumentException(content);
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new ArgumentException(content);
+                }
+
+                token = JsonConvert.DeserializeObject<SsoToken>(content)!;
+
+                return token;
             }
-
-            token = JsonConvert.DeserializeObject<SsoToken>(content)!;
-
-            return token;
+            catch
+            {
+                throw;
+            }
         }
     }
 }

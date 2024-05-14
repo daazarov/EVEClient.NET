@@ -32,5 +32,14 @@ namespace EVEOnline.ESI.Communication.UnitTests.Extensions
 
             Assert.That(esiString, Is.EqualTo("alliance,character,structure"));
         }
+
+        [Test]
+        public void ToEsiString_Nullable_NullValue_Null()
+        {
+            RoutesFlag? categories = null;
+            var esiString = categories.ToEsiString();
+
+            Assert.That(esiString, Is.Null);
+        }
     }
 }

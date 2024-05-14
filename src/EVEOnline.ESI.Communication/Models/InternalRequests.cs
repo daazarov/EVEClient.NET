@@ -1,10 +1,25 @@
-﻿namespace EVEOnline.ESI.Communication.Models
+﻿using EVEOnline.ESI.Communication.DataContract;
+using static EVEOnline.ESI.Communication.Models.CalendarRequests;
+using static EVEOnline.ESI.Communication.Models.SearchRequests;
+
+namespace EVEOnline.ESI.Communication.Models
 {
     internal class CommonRequests
     {
+        internal class PageBasedRouteRequest : RouteModelBase<PageBasedModel>
+        {
+            private PageBasedRouteRequest(PageBasedModel uriModel) : base(uriModel)
+            { }
+
+            public static PageBasedRouteRequest Create(int page)
+            {
+                return new PageBasedRouteRequest(new PageBasedModel(page));
+            }
+        }
+        
         internal class CharacterIdRouteRequest : RouteModelBase<CharacterIdModel>
         {
-            public CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
+            private CharacterIdRouteRequest(CharacterIdModel uriModel) : base(uriModel)
             { }
 
             public static CharacterIdRouteRequest Create(int characterId)
@@ -15,7 +30,7 @@
 
         internal class AllianceIdRouteRequest : RouteModelBase<AllianceIdModel>
         {
-            public AllianceIdRouteRequest(AllianceIdModel uriModel) : base(uriModel)
+            private AllianceIdRouteRequest(AllianceIdModel uriModel) : base(uriModel)
             { }
 
             public static AllianceIdRouteRequest Create(int allianceId)
@@ -26,7 +41,7 @@
 
         internal class CorporationIdRouteRequest : RouteModelBase<CorporationIdModel>
         {
-            public CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
+            private CorporationIdRouteRequest(CorporationIdModel uriModel) : base(uriModel)
             { }
 
             public static CorporationIdRouteRequest Create(int corporationId)
@@ -37,7 +52,7 @@
 
         internal class PageBasedCharacterIdRouteRequest : RouteModelBase<PageBasedCharacterIdModel>
         {
-            public PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            private PageBasedCharacterIdRouteRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
             { }
 
             public static PageBasedCharacterIdRouteRequest Create(int characterId, int page)
@@ -48,7 +63,7 @@
 
         internal class PageBasedAllianceIdRouteRequest : RouteModelBase<PageBasedAllianceIdModel>
         {
-            public PageBasedAllianceIdRouteRequest(PageBasedAllianceIdModel uriModel) : base(uriModel)
+            private PageBasedAllianceIdRouteRequest(PageBasedAllianceIdModel uriModel) : base(uriModel)
             { }
 
             public static PageBasedAllianceIdRouteRequest Create(int characterId, int page)
@@ -59,7 +74,7 @@
 
         internal class PageBasedCorporationIdRouteRequest : RouteModelBase<PageBasedCorporationIdModel>
         {
-            public PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
+            private PageBasedCorporationIdRouteRequest(PageBasedCorporationIdModel uriModel) : base(uriModel)
             { }
 
             public static PageBasedCorporationIdRouteRequest Create(int corporationId, int page)
@@ -73,18 +88,35 @@
     {
         internal class GetCharacterBlueprintsRequest : RouteModelBase<PageBasedCharacterIdModel>
         {
-            public GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
+            private GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
             { }
+
+            public static GetCharacterBlueprintsRequest Create(int characterId, int page)
+            {
+                return new GetCharacterBlueprintsRequest(new PageBasedCharacterIdModel(characterId, page));
+            }
         }
+
         internal class PostCharacterCspaRequest : RequestBase<CharacterIdModel, CharacterIdsBodyModel>
         {
-            public PostCharacterCspaRequest(CharacterIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
+            private PostCharacterCspaRequest(CharacterIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
             { }
+
+            public static PostCharacterCspaRequest Create(int characterId, int[] characterIds)
+            {
+                return new PostCharacterCspaRequest(new CharacterIdModel(characterId), new CharacterIdsBodyModel(characterIds));
+            }
         }
+
         internal class PostCharacterAffilationRequest : BodyModelBase<CharacterIdsBodyModel>
         {
-            public PostCharacterAffilationRequest(CharacterIdsBodyModel bodyModel) : base(bodyModel)
+            private PostCharacterAffilationRequest(CharacterIdsBodyModel bodyModel) : base(bodyModel)
             { }
+
+            public static PostCharacterAffilationRequest Create(int[] characterIds)
+            {
+                return new PostCharacterAffilationRequest(new CharacterIdsBodyModel(characterIds));
+            }
         }
     }
 
@@ -92,7 +124,7 @@
     {
         internal class CharacterItemsPostRequest : RequestBase<CharacterIdModel, AssertItemBodyModel>
         {
-            public CharacterItemsPostRequest(CharacterIdModel uriModel, AssertItemBodyModel itemIds) : base(uriModel, itemIds)
+            private CharacterItemsPostRequest(CharacterIdModel uriModel, AssertItemBodyModel itemIds) : base(uriModel, itemIds)
             { }
 
             public static CharacterItemsPostRequest Create(int characterId, long[] itemIds)
@@ -103,7 +135,7 @@
 
         internal class CorporationItemsPostRequest : RequestBase<CorporationIdModel, AssertItemBodyModel>
         {
-            public CorporationItemsPostRequest(CorporationIdModel uriModel, AssertItemBodyModel itemIds) : base(uriModel, itemIds)
+            private CorporationItemsPostRequest(CorporationIdModel uriModel, AssertItemBodyModel itemIds) : base(uriModel, itemIds)
             { }
 
             public static CorporationItemsPostRequest Create(int corporationId, long[] itemIds)
@@ -117,7 +149,7 @@
     {
         internal class CalendarEventRequest : RouteModelBase<CharacterIdEventIdRouteModel>
         {
-            public CalendarEventRequest(CharacterIdEventIdRouteModel uriModel) : base(uriModel)
+            private CalendarEventRequest(CharacterIdEventIdRouteModel uriModel) : base(uriModel)
             { }
 
             public static CalendarEventRequest Create(int characterId, int eventId)
@@ -127,7 +159,7 @@
         }
         internal class CalendarEventAttendeesRequest : RouteModelBase<CharacterIdEventIdRouteModel>
         {
-            public CalendarEventAttendeesRequest(CharacterIdEventIdRouteModel uriModel) : base(uriModel)
+            private CalendarEventAttendeesRequest(CharacterIdEventIdRouteModel uriModel) : base(uriModel)
             { }
 
             public static CalendarEventAttendeesRequest Create(int characterId, int eventId)
@@ -137,7 +169,7 @@
         }
         internal class SummaryCalendarEventsRequest : RouteModelBase<SummaryCalendarEventsUriModel>
         {
-            public SummaryCalendarEventsRequest(SummaryCalendarEventsUriModel uriModel) : base(uriModel)
+            private SummaryCalendarEventsRequest(SummaryCalendarEventsUriModel uriModel) : base(uriModel)
             { }
 
             public static SummaryCalendarEventsRequest Create(int characterId, int? fromEventId)
@@ -147,7 +179,7 @@
         }
         internal class CalendarRespondeRequest : RequestBase<CharacterIdEventIdRouteModel, CalendarRespondeBodyModel>
         {
-            public CalendarRespondeRequest(CharacterIdEventIdRouteModel uriModel, CalendarRespondeBodyModel response) : base(uriModel, response)
+            private CalendarRespondeRequest(CharacterIdEventIdRouteModel uriModel, CalendarRespondeBodyModel response) : base(uriModel, response)
             { }
 
             public static CalendarRespondeRequest Create(int characterId, int eventId, string response)
@@ -161,7 +193,7 @@
     {
         internal class AddUpdateCharacterContactRequest : RequestBase<AddUpdateCharacterContactUriModel, ContactsIdsBodyModel>
         {
-            public AddUpdateCharacterContactRequest(AddUpdateCharacterContactUriModel uriModel, ContactsIdsBodyModel itemIds) : base(uriModel, itemIds)
+            private AddUpdateCharacterContactRequest(AddUpdateCharacterContactUriModel uriModel, ContactsIdsBodyModel itemIds) : base(uriModel, itemIds)
             { }
 
             public static AddUpdateCharacterContactRequest Create(int characterId, int[] contactIds, float standing, int[] labelIds, bool watched)
@@ -172,7 +204,7 @@
 
         internal class DeleteCharacterContactsRequest : RouteModelBase<DeleteCharacterContactUriModel>
         {
-            public DeleteCharacterContactsRequest(DeleteCharacterContactUriModel uriModel) : base(uriModel)
+            private DeleteCharacterContactsRequest(DeleteCharacterContactUriModel uriModel) : base(uriModel)
             { }
 
             public static DeleteCharacterContactsRequest Create(int characterId, int[] contactIds)
@@ -186,7 +218,7 @@
     {
         internal class CharacterContractRouteRequest : RouteModelBase<CharacterContractRouteModel>
         {
-            public CharacterContractRouteRequest(CharacterContractRouteModel uriModel) : base(uriModel)
+            private CharacterContractRouteRequest(CharacterContractRouteModel uriModel) : base(uriModel)
             { }
 
             public static CharacterContractRouteRequest Create(int characterId, int contractId)
@@ -197,7 +229,7 @@
 
         internal class PageBasedRegionIdRouteRequest : RouteModelBase<PageBasedRegionIdModel>
         {
-            public PageBasedRegionIdRouteRequest(PageBasedRegionIdModel uriModel) : base(uriModel)
+            private PageBasedRegionIdRouteRequest(PageBasedRegionIdModel uriModel) : base(uriModel)
             { }
 
             public static PageBasedRegionIdRouteRequest Create(int regionId, int page)
@@ -208,7 +240,7 @@
 
         internal class PageBasedContractIdRouteRequest : RouteModelBase<PageBasedContractIdModel>
         {
-            public PageBasedContractIdRouteRequest(PageBasedContractIdModel uriModel) : base(uriModel)
+            private PageBasedContractIdRouteRequest(PageBasedContractIdModel uriModel) : base(uriModel)
             { }
 
             public static PageBasedContractIdRouteRequest Create(int contractId, int page)
@@ -219,7 +251,7 @@
 
         internal class CorporationContractRouteRequest : RouteModelBase<CorporationContractRouteModel>
         {
-            public CorporationContractRouteRequest(CorporationContractRouteModel uriModel) : base(uriModel)
+            private CorporationContractRouteRequest(CorporationContractRouteModel uriModel) : base(uriModel)
             { }
 
             public static CorporationContractRouteRequest Create(int corporationId, int contractId)
@@ -230,7 +262,7 @@
 
         internal class PageBasedCorporationContractRouteRequest : RouteModelBase<CorporationContractPageBasedRouteModel>
         {
-            public PageBasedCorporationContractRouteRequest(CorporationContractPageBasedRouteModel uriModel) : base(uriModel)
+            private PageBasedCorporationContractRouteRequest(CorporationContractPageBasedRouteModel uriModel) : base(uriModel)
             { }
 
             public static PageBasedCorporationContractRouteRequest Create(int corporationId, int contractId, int page)
@@ -244,7 +276,7 @@
     {
         internal class StarbaseInfoRequest : RouteModelBase<StarbaseInfoUriModel>
         {
-            public StarbaseInfoRequest(StarbaseInfoUriModel uriModel) : base(uriModel)
+            private StarbaseInfoRequest(StarbaseInfoUriModel uriModel) : base(uriModel)
             { }
 
             public static StarbaseInfoRequest Create(int corporationId, long starbaseId, int systemId)
@@ -258,7 +290,7 @@
     {
         internal class AttributeIdRouteRequest : RouteModelBase<AttributeIdModel>
         {
-            public AttributeIdRouteRequest(AttributeIdModel uriModel) : base(uriModel)
+            private AttributeIdRouteRequest(AttributeIdModel uriModel) : base(uriModel)
             { }
 
             public static AttributeIdRouteRequest Create(int attributeId)
@@ -269,7 +301,7 @@
 
         internal class EffectIdRouteRequest : RouteModelBase<EffectIdModel>
         {
-            public EffectIdRouteRequest(EffectIdModel uriModel) : base(uriModel)
+            private EffectIdRouteRequest(EffectIdModel uriModel) : base(uriModel)
             { }
 
             public static EffectIdRouteRequest Create(int effectId)
@@ -280,7 +312,7 @@
 
         internal class DynamicItemInfoRequest : RouteModelBase<DynamicItemInfoUriModel>
         {
-            public DynamicItemInfoRequest(DynamicItemInfoUriModel uriModel) : base(uriModel)
+            private DynamicItemInfoRequest(DynamicItemInfoUriModel uriModel) : base(uriModel)
             { }
 
             public static DynamicItemInfoRequest Create(long itemId, int typeId)
@@ -294,7 +326,7 @@
     {
         internal class DeleteFittingRequest : RouteModelBase<DeleteFittingUriModel>
         {
-            public DeleteFittingRequest(DeleteFittingUriModel uriModel) : base(uriModel)
+            private DeleteFittingRequest(DeleteFittingUriModel uriModel) : base(uriModel)
             { }
 
             public static DeleteFittingRequest Create(int characterId, int fittingId)
@@ -305,7 +337,7 @@
 
         internal class NewFittingRequest : RequestBase<CharacterIdModel, NewFittingBodyModel>
         {
-            public NewFittingRequest(CharacterIdModel uriModel, NewFittingBodyModel bodyModel) : base(uriModel, bodyModel)
+            private NewFittingRequest(CharacterIdModel uriModel, NewFittingBodyModel bodyModel) : base(uriModel, bodyModel)
             { }
 
             public static NewFittingRequest Create(int characterId, NewFittingBodyModel fitting)
@@ -319,7 +351,7 @@
     {
         internal class FleetIdRouteRequest : RouteModelBase<FleetIdModel>
         {
-            public FleetIdRouteRequest(FleetIdModel uriModel) : base(uriModel)
+            private FleetIdRouteRequest(FleetIdModel uriModel) : base(uriModel)
             { }
 
             public static FleetIdRouteRequest Create(long fleetId)
@@ -330,7 +362,7 @@
 
         internal class InviteFleetMemberRequest : RequestBase<FleetIdModel, InviteFleetMemberBodyModel>
         {
-            public InviteFleetMemberRequest(FleetIdModel uriModel, InviteFleetMemberBodyModel body) : base(uriModel, body)
+            private InviteFleetMemberRequest(FleetIdModel uriModel, InviteFleetMemberBodyModel body) : base(uriModel, body)
             { }
 
             public static InviteFleetMemberRequest Create(long fleetId, int characterId, string role, long? squadId, long? wingId)
@@ -341,7 +373,7 @@
 
         internal class UpdateFleetSettingsRequest : RequestBase<FleetIdModel, FleetSettingsBodyModel>
         {
-            public UpdateFleetSettingsRequest(FleetIdModel uriModel, FleetSettingsBodyModel body) : base(uriModel, body)
+            private UpdateFleetSettingsRequest(FleetIdModel uriModel, FleetSettingsBodyModel body) : base(uriModel, body)
             { }
 
             public static UpdateFleetSettingsRequest Create(long fleetId, bool? isFreeMove, string motd)
@@ -352,7 +384,7 @@
 
         internal class FleetMemberRouteRequest : RouteModelBase<FleetMemberUriModel>
         {
-            public FleetMemberRouteRequest(FleetMemberUriModel uriModel) : base(uriModel)
+            private FleetMemberRouteRequest(FleetMemberUriModel uriModel) : base(uriModel)
             { }
 
             public static FleetMemberRouteRequest Create(long fleetId, int memberId)
@@ -363,7 +395,7 @@
 
         internal class MoveFleetMemberRequest : RequestBase<FleetMemberUriModel, MoveFleetMemberBodyModel>
         {
-            public MoveFleetMemberRequest(FleetMemberUriModel uriModel, MoveFleetMemberBodyModel body) : base(uriModel, body)
+            private MoveFleetMemberRequest(FleetMemberUriModel uriModel, MoveFleetMemberBodyModel body) : base(uriModel, body)
             { }
 
             public static MoveFleetMemberRequest Create(long fleetId, int memberId, string role, long? squadId, long? wingId)
@@ -374,7 +406,7 @@
 
         internal class FleetWingRouteRequest : RouteModelBase<FleetWingUriModel>
         {
-            public FleetWingRouteRequest(FleetWingUriModel uriModel) : base(uriModel)
+            private FleetWingRouteRequest(FleetWingUriModel uriModel) : base(uriModel)
             { }
 
             public static FleetWingRouteRequest Create(long fleetId, long wingId)
@@ -385,7 +417,7 @@
 
         internal class FleetSquadRouteRequest : RouteModelBase<FleetSquadUriModel>
         {
-            public FleetSquadRouteRequest(FleetSquadUriModel uriModel) : base(uriModel)
+            private FleetSquadRouteRequest(FleetSquadUriModel uriModel) : base(uriModel)
             { }
 
             public static FleetSquadRouteRequest Create(long fleetId, long squadId)
@@ -396,7 +428,7 @@
 
         internal class RenameSquadRequest : RequestBase<FleetSquadUriModel, RenameBodyModel>
         {
-            public RenameSquadRequest(FleetSquadUriModel uriModel, RenameBodyModel body) : base(uriModel, body)
+            private RenameSquadRequest(FleetSquadUriModel uriModel, RenameBodyModel body) : base(uriModel, body)
             { }
 
             public static RenameSquadRequest Create(long fleetId, long squadId, string name)
@@ -407,7 +439,7 @@
 
         internal class RenameWingRequest : RequestBase<FleetWingUriModel, RenameBodyModel>
         {
-            public RenameWingRequest(FleetWingUriModel uriModel, RenameBodyModel body) : base(uriModel, body)
+            private RenameWingRequest(FleetWingUriModel uriModel, RenameBodyModel body) : base(uriModel, body)
             { }
 
             public static RenameWingRequest Create(long fleetId, long wingId, string name)
@@ -421,7 +453,7 @@
     {
         internal class CorporationObserverRequest : RouteModelBase<CorporationObserverUriModel>
         {
-            public CorporationObserverRequest(CorporationObserverUriModel uriModel) : base(uriModel)
+            private CorporationObserverRequest(CorporationObserverUriModel uriModel) : base(uriModel)
             { }
 
             public static CorporationObserverRequest Create(int corporationId, long observerId, int page)
@@ -432,7 +464,7 @@
 
         internal class CharacterJobsRequest : RouteModelBase<CharacterJobsUriModel>
         {
-            public CharacterJobsRequest(CharacterJobsUriModel uriModel) : base(uriModel)
+            private CharacterJobsRequest(CharacterJobsUriModel uriModel) : base(uriModel)
             { }
 
             public static CharacterJobsRequest Create(int characterId, bool includeCompleted)
@@ -443,7 +475,7 @@
 
         internal class CorporationJobsRequest : RouteModelBase<CorporationJobsUriModel>
         {
-            public CorporationJobsRequest(CorporationJobsUriModel uriModel) : base(uriModel)
+            private CorporationJobsRequest(CorporationJobsUriModel uriModel) : base(uriModel)
             { }
 
             public static CorporationJobsRequest Create(int corporation, bool includeCompleted, int page)
@@ -457,7 +489,7 @@
     {
         internal class KillmailInfoRequest : RouteModelBase<KillmailInfoUriModel>
         {
-            public KillmailInfoRequest(KillmailInfoUriModel uriModel) : base(uriModel)
+            private KillmailInfoRequest(KillmailInfoUriModel uriModel) : base(uriModel)
             { }
 
             public static KillmailInfoRequest Create(int killmailId, string killmailHash)
@@ -471,7 +503,7 @@
     {
         internal class GetMailHeaderseRequest : RouteModelBase<MailHeadersUriModel>
         {
-            public GetMailHeaderseRequest(MailHeadersUriModel uriModel) : base(uriModel)
+            private GetMailHeaderseRequest(MailHeadersUriModel uriModel) : base(uriModel)
             { }
 
             public static GetMailHeaderseRequest Create(int characterId, int[] labels, int? lastMailId)
@@ -482,7 +514,7 @@
 
         internal class GetDeleteMailRequest : RouteModelBase<GetDeleteUpdateMailUriModel>
         {
-            public GetDeleteMailRequest(GetDeleteUpdateMailUriModel uriModel) : base(uriModel)
+            private GetDeleteMailRequest(GetDeleteUpdateMailUriModel uriModel) : base(uriModel)
             { }
 
             public static GetDeleteMailRequest Create(int characterId, int mailId)
@@ -493,7 +525,7 @@
 
         internal class DeleteLabelRequest : RouteModelBase<DeleteLabelUriModel>
         {
-            public DeleteLabelRequest(DeleteLabelUriModel uriModel) : base(uriModel)
+            private DeleteLabelRequest(DeleteLabelUriModel uriModel) : base(uriModel)
             { }
 
             public static DeleteLabelRequest Create(int characterId, int labelId)
@@ -504,7 +536,7 @@
 
         internal class NewLabelRequest : RequestBase<CharacterIdModel, NewLabelBodyModel>
         {
-            public NewLabelRequest(CharacterIdModel uriModel, NewLabelBodyModel bodyModel) : base(uriModel, bodyModel)
+            private NewLabelRequest(CharacterIdModel uriModel, NewLabelBodyModel bodyModel) : base(uriModel, bodyModel)
             { }
 
             public static NewLabelRequest Create(int characterId, string color, string name)
@@ -515,7 +547,7 @@
 
         internal class UpdateMailRequest : RequestBase<GetDeleteUpdateMailUriModel, UpdateMailBodyModel>
         {
-            public UpdateMailRequest(GetDeleteUpdateMailUriModel uriModel, UpdateMailBodyModel bodyModel) : base(uriModel, bodyModel)
+            private UpdateMailRequest(GetDeleteUpdateMailUriModel uriModel, UpdateMailBodyModel bodyModel) : base(uriModel, bodyModel)
             { }
 
             public static UpdateMailRequest Create(int characterId, int mailId, int[] labels, bool? read)
@@ -526,7 +558,7 @@
 
         internal class NewMailRequest : RequestBase<CharacterIdModel, NewMailBodyModel>
         {
-            public NewMailRequest(CharacterIdModel uriModel, NewMailBodyModel bodyModel) : base(uriModel, bodyModel)
+            private NewMailRequest(CharacterIdModel uriModel, NewMailBodyModel bodyModel) : base(uriModel, bodyModel)
             { }
 
             public static NewMailRequest Create(int characterId, NewMailBodyModel bodyModel)
@@ -540,7 +572,7 @@
     {
         internal class RegionStatisticsRouteRequest : RouteModelBase<RegionStatisticsUriModel>
         {
-            public RegionStatisticsRouteRequest(RegionStatisticsUriModel uriModel) : base(uriModel)
+            private RegionStatisticsRouteRequest(RegionStatisticsUriModel uriModel) : base(uriModel)
             { }
 
             public static RegionStatisticsRouteRequest Create(int regionId, int typeId)
@@ -551,7 +583,7 @@
 
         internal class MarketGroupInfoRequest : RouteModelBase<MarketGroupUriModel>
         {
-            public MarketGroupInfoRequest(MarketGroupUriModel uriModel) : base(uriModel)
+            private MarketGroupInfoRequest(MarketGroupUriModel uriModel) : base(uriModel)
             { }
 
             public static MarketGroupInfoRequest Create(int marketGroupId)
@@ -562,7 +594,7 @@
 
         internal class PageBasedRegionIdRouteRequest : RouteModelBase<PageBasedRegionIdModel>
         {
-            public PageBasedRegionIdRouteRequest(PageBasedRegionIdModel uriModel) : base(uriModel)
+            private PageBasedRegionIdRouteRequest(PageBasedRegionIdModel uriModel) : base(uriModel)
             { }
 
             public static PageBasedRegionIdRouteRequest Create(int regionId, int page)
@@ -573,7 +605,7 @@
 
         internal class PageBasedStructureIdRouteRequest : RouteModelBase<PageBasedStructureIdModel>
         {
-            public PageBasedStructureIdRouteRequest(PageBasedStructureIdModel uriModel) : base(uriModel)
+            private PageBasedStructureIdRouteRequest(PageBasedStructureIdModel uriModel) : base(uriModel)
             { }
 
             public static PageBasedStructureIdRouteRequest Create(long structureId, int page)
@@ -584,7 +616,7 @@
 
         internal class RegionOrdersRequest : RouteModelBase<RegionOrdersUriModel>
         {
-            public RegionOrdersRequest(RegionOrdersUriModel uriModel) : base(uriModel)
+            private RegionOrdersRequest(RegionOrdersUriModel uriModel) : base(uriModel)
             { }
 
             public static RegionOrdersRequest Create(int regionId, string orderType, int? typeId, int page)
@@ -598,7 +630,7 @@
     {
         internal class GroupIdRouteRequest : RouteModelBase<OpportunitiesGroupIdModel>
         {
-            public GroupIdRouteRequest(OpportunitiesGroupIdModel uriModel) : base(uriModel)
+            private GroupIdRouteRequest(OpportunitiesGroupIdModel uriModel) : base(uriModel)
             { }
 
             public static GroupIdRouteRequest Create(int groupId)
@@ -609,7 +641,7 @@
 
         internal class TaskIdRouteRequest : RouteModelBase<OpportunitiesTaskIdModel>
         {
-            public TaskIdRouteRequest(OpportunitiesTaskIdModel uriModel) : base(uriModel)
+            private TaskIdRouteRequest(OpportunitiesTaskIdModel uriModel) : base(uriModel)
             { }
 
             public static TaskIdRouteRequest Create(int taskId)
@@ -623,7 +655,7 @@
     {
         internal class ColonyInfoRequest : RouteModelBase<ColonyInfoUriModel>
         {
-            public ColonyInfoRequest(ColonyInfoUriModel uriModel) : base(uriModel)
+            private ColonyInfoRequest(ColonyInfoUriModel uriModel) : base(uriModel)
             { }
 
             public static ColonyInfoRequest Create(int characterId, int planetId)
@@ -634,7 +666,7 @@
 
         internal class SchematicInfoRequest : RouteModelBase<SchematicIdModel>
         {
-            public SchematicInfoRequest(SchematicIdModel uriModel) : base(uriModel)
+            private SchematicInfoRequest(SchematicIdModel uriModel) : base(uriModel)
             { }
 
             public static SchematicInfoRequest Create(int schematicId)
@@ -648,7 +680,7 @@
     {
         internal class RouteRequest : RouteModelBase<RoutesUriModels>
         {
-            public RouteRequest(RoutesUriModels uriModel) : base(uriModel)
+            private RouteRequest(RoutesUriModels uriModel) : base(uriModel)
             { }
 
             public static RouteRequest Create(int origin, int destination, string flag, int[] avoid, int[] connetions)
@@ -662,12 +694,202 @@
     {
         internal class SearchRequest : RouteModelBase<SearchQueryUriModel>
         {
-            public SearchRequest(SearchQueryUriModel uriModel) : base(uriModel)
+            private SearchRequest(SearchQueryUriModel uriModel) : base(uriModel)
             { }
 
             public static SearchRequest Create(int characterId, string search, string categories, bool strict)
             {
                 return new SearchRequest(new SearchQueryUriModel(characterId, search, categories, strict));
+            }
+        }
+    }
+
+    internal class UniverseRequests
+    {
+        internal class AsteroidBeltRequest : RouteModelBase<AsteroidBeltIdModel>
+        {
+            private AsteroidBeltRequest(AsteroidBeltIdModel uriModel) : base(uriModel)
+            { }
+
+            public static AsteroidBeltRequest Create(int asteroidBeltId)
+            {
+                return new AsteroidBeltRequest(new AsteroidBeltIdModel(asteroidBeltId));
+            }
+        }
+
+        internal class ConstellationRequest : RouteModelBase<ConstellationIdModel>
+        {
+            private ConstellationRequest(ConstellationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static ConstellationRequest Create(int constellationId)
+            {
+                return new ConstellationRequest(new ConstellationIdModel(constellationId));
+            }
+        }
+
+        internal class GraphicRequest : RouteModelBase<GraphicIdModel>
+        {
+            private GraphicRequest(GraphicIdModel uriModel) : base(uriModel)
+            { }
+
+            public static GraphicRequest Create(int graphicId)
+            {
+                return new GraphicRequest(new GraphicIdModel(graphicId));
+            }
+        }
+
+        internal class StructureInfoRequest : RouteModelBase<StructureIdModel>
+        {
+            private StructureInfoRequest(StructureIdModel uriModel) : base(uriModel)
+            { }
+
+            public static StructureInfoRequest Create(long structureid)
+            {
+                return new StructureInfoRequest(new StructureIdModel(structureid));
+            }
+        }
+
+        internal class RegionInfoRequest : RouteModelBase<RegionIdModel>
+        {
+            private RegionInfoRequest(RegionIdModel uriModel) : base(uriModel)
+            { }
+
+            public static RegionInfoRequest Create(int regionId)
+            {
+                return new RegionInfoRequest(new RegionIdModel(regionId));
+            }
+        }
+
+        internal class StructuresRequest : RouteModelBase<StructureTypeModel>
+        {
+            private StructuresRequest(StructureTypeModel uriModel) : base(uriModel)
+            { }
+
+            public static StructuresRequest Create(string filter)
+            {
+                return new StructuresRequest(new StructureTypeModel(filter));
+            }
+        }
+
+        internal class TypeInfoRequest : RouteModelBase<TypeIdModel>
+        {
+            private TypeInfoRequest(TypeIdModel uriModel) : base(uriModel)
+            { }
+
+            public static TypeInfoRequest Create(int typeId)
+            {
+                return new TypeInfoRequest(new TypeIdModel(typeId));
+            }
+        }
+
+        internal class StationInfoRequest : RouteModelBase<StationIdModel>
+        {
+            private StationInfoRequest(StationIdModel uriModel) : base(uriModel)
+            { }
+
+            public static StationInfoRequest Create(int stationId)
+            {
+                return new StationInfoRequest(new StationIdModel(stationId));
+            }
+        }
+
+        internal class StarInfoRequest : RouteModelBase<StarIdModel>
+        {
+            private StarInfoRequest(StarIdModel uriModel) : base(uriModel)
+            { }
+
+            public static StarInfoRequest Create(int starId)
+            {
+                return new StarInfoRequest(new StarIdModel(starId));
+            }
+        }
+
+        internal class StargateInfoRequest : RouteModelBase<StargateIdModel>
+        {
+            private StargateInfoRequest(StargateIdModel uriModel) : base(uriModel)
+            { }
+
+            public static StargateInfoRequest Create(int stargateId)
+            {
+                return new StargateInfoRequest(new StargateIdModel(stargateId));
+            }
+        }
+
+        internal class SolarSystemInfoRequest : RouteModelBase<SolarSystemIdModel>
+        {
+            private SolarSystemInfoRequest(SolarSystemIdModel uriModel) : base(uriModel)
+            { }
+
+            public static SolarSystemInfoRequest Create(int systemId)
+            {
+                return new SolarSystemInfoRequest(new SolarSystemIdModel(systemId));
+            }
+        }
+
+        internal class PlanetInfoRequest : RouteModelBase<PlanetIdModel>
+        {
+            private PlanetInfoRequest(PlanetIdModel uriModel) : base(uriModel)
+            { }
+
+            public static PlanetInfoRequest Create(int planetId)
+            {
+                return new PlanetInfoRequest(new PlanetIdModel(planetId));
+            }
+        }
+
+        internal class MoonInfoRequest : RouteModelBase<MoonIdModel>
+        {
+            private MoonInfoRequest(MoonIdModel uriModel) : base(uriModel)
+            { }
+
+            public static MoonInfoRequest Create(int moonId)
+            {
+                return new MoonInfoRequest(new MoonIdModel(moonId));
+            }
+        }
+
+        internal class ItemGroupInfoRequest : RouteModelBase<ItemGroupIdModel>
+        {
+            private ItemGroupInfoRequest(ItemGroupIdModel uriModel) : base(uriModel)
+            { }
+
+            public static ItemGroupInfoRequest Create(int groupId)
+            {
+                return new ItemGroupInfoRequest(new ItemGroupIdModel(groupId));
+            }
+        }
+
+        internal class ItemCategoryInfoRequest : RouteModelBase<ItemCategoryIdModel>
+        {
+            private ItemCategoryInfoRequest(ItemCategoryIdModel uriModel) : base(uriModel)
+            { }
+
+            public static ItemCategoryInfoRequest Create(int categoryId)
+            {
+                return new ItemCategoryInfoRequest(new ItemCategoryIdModel(categoryId));
+            }
+        }
+
+        internal class IDsRequest : BodyModelBase<string[]>
+        {
+            private IDsRequest(string[] bodyModel) : base(bodyModel)
+            { }
+
+            public static IDsRequest Create(string[] names)
+            {
+                return new IDsRequest(names);
+            }
+        }
+
+        internal class NamesRequest : BodyModelBase<int[]>
+        {
+            private NamesRequest(int[] bodyModel) : base(bodyModel)
+            { }
+
+            public static NamesRequest Create(int[] ids)
+            {
+                return new NamesRequest(ids);
             }
         }
     }
