@@ -893,4 +893,62 @@ namespace EVEOnline.ESI.Communication.Models
             }
         }
     }
+
+    internal class UserInterfaceRequests
+    {
+        internal class OpenContractWindowRequest : RouteModelBase<OpenContractWindowModel>
+        {
+            private OpenContractWindowRequest(OpenContractWindowModel uriModel) : base(uriModel)
+            { }
+
+            public static OpenContractWindowRequest Create(int contractId)
+            {
+                return new OpenContractWindowRequest(new OpenContractWindowModel(contractId));
+            }
+        }
+
+        internal class OpenInformationWindowRequest : RouteModelBase<OpenInformationWindowModel>
+        {
+            private OpenInformationWindowRequest(OpenInformationWindowModel uriModel) : base(uriModel)
+            { }
+
+            public static OpenInformationWindowRequest Create(int targetId)
+            {
+                return new OpenInformationWindowRequest(new OpenInformationWindowModel(targetId));
+            }
+        }
+
+        internal class OpenMarketDetailsRequest : RouteModelBase<OpenMarketDetailsModel>
+        {
+            private OpenMarketDetailsRequest(OpenMarketDetailsModel uriModel) : base(uriModel)
+            { }
+
+            public static OpenMarketDetailsRequest Create(int typeId)
+            {
+                return new OpenMarketDetailsRequest(new OpenMarketDetailsModel(typeId));
+            }
+        }
+
+        internal class SetAutopilotWaypointRequest : RouteModelBase<SetAutopilotWaypointModel>
+        {
+            private SetAutopilotWaypointRequest(SetAutopilotWaypointModel uriModel) : base(uriModel)
+            { }
+
+            public static SetAutopilotWaypointRequest Create(long destinationId, bool addToBeginning, bool clearOtherWaypoints)
+            {
+                return new SetAutopilotWaypointRequest(new SetAutopilotWaypointModel(destinationId, addToBeginning, clearOtherWaypoints));
+            }
+        }
+
+        internal class OpenNewMailWindowBodyRequest : BodyModelBase<OpenNewMailWindowBodyModel>
+        {
+            private OpenNewMailWindowBodyRequest(OpenNewMailWindowBodyModel uriModel) : base(uriModel)
+            { }
+
+            public static OpenNewMailWindowBodyRequest Create(string body, string subject, int[] recipients, int? toCorpOrAllianceId, int? toMailingListId)
+            {
+                return new OpenNewMailWindowBodyRequest(new OpenNewMailWindowBodyModel(body, subject, recipients, toCorpOrAllianceId, toMailingListId));
+            }
+        }
+    }
 }

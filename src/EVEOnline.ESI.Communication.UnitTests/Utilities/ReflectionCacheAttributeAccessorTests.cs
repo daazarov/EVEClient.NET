@@ -62,5 +62,32 @@ namespace EVEOnline.ESI.Communication.UnitTests.Utilities
 
             Assert.That(result, Is.Null);
         }
+
+        [Test]
+        public void ReflectionCacheAttributeAccessor_CreateGet_Nullable_Null_Object()
+        {
+            PropertyInfo namePropertyInfo = typeof(Person).GetProperty(nameof(Person.Age))!;
+
+            Person p = new Person();
+
+            var call = DynamicMethodPropertyGetAccessor.Instance.CreateGet<object>(namePropertyInfo);
+            object? result = call(p);
+
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void ReflectionCacheAttributeAccessor_CreateGet_Nullable_NotNull_Object()
+        {
+            PropertyInfo namePropertyInfo = typeof(Person).GetProperty(nameof(Person.Age))!;
+
+            Person p = new Person();
+            p.Age = 10;
+
+            var call = DynamicMethodPropertyGetAccessor.Instance.CreateGet<object>(namePropertyInfo);
+            object? result = call(p);
+
+            Assert.That((int)result, Is.EqualTo(10));
+        }
     }
 }

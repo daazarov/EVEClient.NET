@@ -6,5 +6,6 @@
         public DateTime BirthDate { get; set; }
         public DateTime LastModified { get; set; }
         public string Department { get; set; }
+        public int? Age { get; set; }
     }
 }

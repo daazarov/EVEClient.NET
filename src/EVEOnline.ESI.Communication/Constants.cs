@@ -334,6 +334,15 @@ namespace EVEOnline.ESI.Communication
                 public const string Types =                          "get_universe_types";
                 public const string TypeInfo =                       "get_universe_types_type_id";
             }
+
+            public static class UserInterface
+            {
+                public const string SetAutopilotWaypoint =           "post_ui_autopilot_waypoint";
+                public const string OpenContractWindow =             "post_ui_openwindow_contractwindow";
+                public const string OpenInformationWindow =          "post_ui_openwindow_ingormationwindow";
+                public const string OpenMarketDetails =              "post_ui_openwindow_marketdetails";
+                public const string OpenNewMailWindow =              "post_ui_openwindow_newmail";
+            }
         }
     }
 }

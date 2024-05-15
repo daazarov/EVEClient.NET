@@ -29,5 +29,7 @@
         ISearchLogic SearchLogic { get; }
         ISkillsLogic SkillsLogic { get; }
         IUniverseLogic UniverseLogic { get; }
+
+        IUserInterfaceLogic UserInterfaceLogic { get; }
     }
 }

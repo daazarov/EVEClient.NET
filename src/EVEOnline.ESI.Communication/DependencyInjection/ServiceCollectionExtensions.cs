@@ -110,6 +110,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<ISovereigntyLogic, SovereigntyLogic>();
             services.TryAddTransient<IStatusLogic, StatusLogic>();
             services.TryAddTransient<IUniverseLogic, UniverseLogic>();
+            services.TryAddTransient<IUserInterfaceLogic, UserInterfaceLogic>();
 
             return services;
         }

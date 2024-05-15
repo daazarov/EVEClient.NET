@@ -229,6 +229,12 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { Key(typeof(IUniverseLogic), nameof(IUniverseLogic.Regions)), ESI.Endpoints.Universe.Regions },
                 { Key(typeof(IUniverseLogic), nameof(IUniverseLogic.SolarSystemInfo)), ESI.Endpoints.Universe.SolarSystemInfo },
                 { Key(typeof(IUniverseLogic), nameof(IUniverseLogic.SolarSystems)), ESI.Endpoints.Universe.SolarSystems },
+
+                { Key(typeof(IUserInterfaceLogic), nameof(IUserInterfaceLogic.OpenContractWindow)), ESI.Endpoints.UserInterface.OpenContractWindow },
+                { Key(typeof(IUserInterfaceLogic), nameof(IUserInterfaceLogic.OpenInformationWindow)), ESI.Endpoints.UserInterface.OpenInformationWindow },
+                { Key(typeof(IUserInterfaceLogic), nameof(IUserInterfaceLogic.OpenMarketDetails)), ESI.Endpoints.UserInterface.OpenMarketDetails },
+                { Key(typeof(IUserInterfaceLogic), nameof(IUserInterfaceLogic.SetAutopilotWaypoint)), ESI.Endpoints.UserInterface.SetAutopilotWaypoint },
+                { Key(typeof(IUserInterfaceLogic), nameof(IUserInterfaceLogic.OpenNewMailWindow)), ESI.Endpoints.UserInterface.OpenNewMailWindow },
             };
         }
 
