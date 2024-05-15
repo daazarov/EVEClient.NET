@@ -8,7 +8,7 @@ namespace EVEOnline.ESI.Communication.DataContract
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string name {  get; set; }
+        public string Name {  get; set; }
 
         /// <summary>
         /// position coordinates
@@ -20,6 +20,6 @@ namespace EVEOnline.ESI.Communication.DataContract
         /// The solar system this asteroid belt is in
         /// </summary>
         [JsonProperty("system_id")]
-        public int system_id { get; set; }
+        public int SystemId { get; set; }
     }
 }

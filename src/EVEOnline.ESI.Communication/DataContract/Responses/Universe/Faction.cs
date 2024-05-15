@@ -61,6 +61,7 @@ namespace EVEOnline.ESI.Communication.DataContract
         /// <summary>
         /// station_system_count integer
         /// </summary>
-        public int station_system_count { get; set; }
+        [JsonProperty("station_system_count")]
+        public int StationSystemCount { get; set; }
     }
 }

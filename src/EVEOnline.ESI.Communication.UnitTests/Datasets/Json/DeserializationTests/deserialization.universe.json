@@ -1,0 +1,334 @@
+{
+  "Ancestry": {
+    "bloodline_id": 1,
+    "description": "Acutely aware of the small population...",
+    "id": 12,
+    "icon_id": 5,
+    "name": "Tube Child",
+    "short_description": "Manufactured citizens of the State."
+  },
+
+  "AsteroidBelt": {
+    "name": "Tanoo I - Asteroid Belt 1",
+    "position": {
+      "x": 161967513600,
+      "y": 21288837120,
+      "z": -73505464320
+    },
+    "system_id": 30000001
+  },
+
+  "Bloodline": {
+    "bloodline_id": 1,
+    "charisma": 6,
+    "corporation_id": 1000006,
+    "description": "The Deteis are regarded as ...",
+    "intelligence": 7,
+    "memory": 8,
+    "name": "Deteis",
+    "perception": 5,
+    "race_id": 1,
+    "ship_type_id": 601,
+    "willpower": 5
+  },
+
+  "Constellation": {
+    "constellation_id": 20000009,
+    "name": "Mekashtad",
+    "position": {
+      "x": 67796138757472320,
+      "y": -70591121348560960,
+      "z": -59587016159270070
+    },
+    "region_id": 10000001,
+    "systems": [
+      20000302,
+      20000303
+    ]
+  },
+
+  "EveType": {
+    "description": "The Rifter is a...",
+    "group_id": 25,
+    "name": "Rifter",
+    "published": true,
+    "type_id": 587,
+    "capacity": 651.848,
+    "dogma_attributes": [
+      {
+        "attribute_id": 65151651,
+        "value": 414.65
+      }
+    ],
+    "dogma_effects": [
+      {
+        "effect_id": 65165877,
+        "is_default": true
+      }
+    ],
+    "graphic_id": 145879,
+    "icon_id": 9654,
+    "market_group_id": 689658,
+    "mass": 4589.2647,
+    "packaged_volume": 54963.02154,
+    "portion_size": 52,
+    "radius": 85470121.316,
+    "volume": 9658.3256
+  },
+
+  "Faction": {
+    "corporation_id": 456,
+    "description": "blah blah",
+    "faction_id": 1,
+    "is_unique": true,
+    "name": "Faction",
+    "size_factor": 1,
+    "solar_system_id": 123,
+    "station_count": 1000,
+    "station_system_count": 100,
+    "militia_corporation_id": 85931144
+  },
+
+  "Graphic": {
+    "graphic_file": "res:/dx9/model/worldobject/planet/moon.red",
+    "collision_file": "res:/dx8/model/worldobject/planet/moon.red",
+    "icon_folder": "test/test/test",
+    "sof_dna": "sof_dna",
+    "sof_fation_name": "sof_fation_name",
+    "sof_hull_name": "sof_hull_name",
+    "sof_race_name": "sof_race_name",
+    "graphic_id": 10
+  },
+
+  "IDsLookup": {
+    "characters": [
+      {
+        "id": 95465499,
+        "name": "CCP Bartender"
+      }
+    ],
+    "systems": [
+      {
+        "id": 30000142,
+        "name": "Jita"
+      }
+    ],
+    "agents": [
+      {
+        "id": 365784,
+        "name": "Agent Test"
+      }
+    ],
+    "alliances": [
+      {
+        "id": 714725752,
+        "name": "Alliances Test"
+      }
+    ],
+    "constellations": [
+      {
+        "id": 4148245,
+        "name": "Constellations Test"
+      }
+    ],
+    "corporations": [
+      {
+        "id": 41042042,
+        "name": "Corporations Test"
+      }
+    ],
+    "factions": [
+      {
+        "id": 875132,
+        "name": "Factions Test"
+      }
+    ],
+    "inventory_types": [
+      {
+        "id": 45244444,
+        "name": "InventoryTypes Test"
+      }
+    ],
+    "regions": [
+      {
+        "id": 8522222,
+        "name": "Regions Test"
+      }
+    ],
+    "stations": [
+      {
+        "id": 777744441,
+        "name": "Stations Test"
+      }
+    ]
+  },
+
+  "ItemCategory": {
+    "category_id": 6,
+    "groups": [
+      25
+    ],
+    "name": "Ship",
+    "published": true
+  },
+
+  "ItemGroup": {
+    "category_id": 6,
+    "group_id": 25,
+    "name": "Frigate",
+    "published": true,
+    "types": [
+      587
+    ]
+  },
+
+  "JumpInfo": {
+    "ship_jumps": 42,
+    "system_id": 30002410
+  },
+
+  "KillInfo": {
+    "npc_kills": 1,
+    "pod_kills": 24,
+    "ship_kills": 42,
+    "system_id": 30002410
+  },
+
+  "Moon": {
+    "moon_id": 40000042,
+    "name": "Akpivem I - Moon 1",
+    "position": {
+      "x": 58605102008,
+      "y": -3066616285,
+      "z": -55193617920
+    },
+    "system_id": 30000003
+  },
+
+  "NamesLookup": {
+    "category": "character",
+    "id": 95465499,
+    "name": "CCP Bartender"
+  },
+
+  "Planet": {
+    "name": "Akpivem III",
+    "planet_id": 40000046,
+    "position": {
+      "x": -189226344497,
+      "y": 9901605317,
+      "z": -254852632979
+    },
+    "system_id": 30000003,
+    "type_id": 13
+  },
+
+  "Race": {
+    "alliance_id": 500001,
+    "description": "Founded on the tenets of patriotism and hard work...",
+    "name": "Caldari",
+    "race_id": 1
+  },
+
+  "Region": {
+    "constellations": [
+      20000302,
+      20000303
+    ],
+    "description": "It has long been an established fact of civilization...",
+    "name": "Metropolis",
+    "region_id": 10000042
+  },
+
+  "SolarSystemInfo": {
+    "constellation_id": 20000001,
+    "name": "Akpivem",
+    "planets": [
+      {
+        "moons": [
+          40000042
+        ],
+        "asteroid_belts": [
+          65466666
+        ],
+        "planet_id": 40000041
+      }
+    ],
+    "position": {
+      "x": -91174141133075340,
+      "y": 43938227486247170,
+      "z": -56482824383339900
+    },
+    "security_class": "B",
+    "security_status": 0.8462923765182495,
+    "star_id": 40000040,
+    "stargates": [
+      50000342
+    ],
+    "stations": [
+      68797979
+    ],
+    "system_id": 30000003
+  },
+
+  "Star": {
+    "age": 9398686722,
+    "luminosity": 0.06615000218153,
+    "name": "BKG-Q2 - Star",
+    "radius": 346600000,
+    "solar_system_id": 30004333,
+    "spectral_class": "K2 V",
+    "temperature": 3953,
+    "type_id": 45033
+  },
+
+  "Stargate": {
+    "destination": {
+      "stargate_id": 50000056,
+      "system_id": 30000001
+    },
+    "name": "Stargate (Tanoo)",
+    "position": {
+      "x": -101092761600,
+      "y": 5279539200,
+      "z": 1550503403520
+    },
+    "stargate_id": 65166516,
+    "system_id": 30000003,
+    "type_id": 29624
+  },
+
+  "Station": {
+    "max_dockable_ship_volume": 50000000,
+    "name": "Jakanerva III - Moon 15 - Prompt Delivery Storage",
+    "office_rental_cost": 10000,
+    "owner": 1000003,
+    "position": {
+      "x": 165632286720,
+      "y": 2771804160,
+      "z": -2455331266560
+    },
+    "race_id": 1,
+    "reprocessing_efficiency": 0.5,
+    "reprocessing_stations_take": 0.05,
+    "services": [
+      "courier-missions",
+      "reprocessing-plant"
+    ],
+    "station_id": 60000277,
+    "system_id": 30000148,
+    "type_id": 1531
+  },
+
+  "StructureInfo": {
+    "name": "V-3YG7 VI - The Capital",
+    "owner_id": 109299958,
+    "solar_system_id": 30000142,
+    "position": {
+      "x": 165632286720,
+      "y": 2771804160,
+      "z": -2455331266560
+    },
+    "type_id": 855558
+  }
+}
