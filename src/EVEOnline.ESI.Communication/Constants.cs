@@ -343,6 +343,16 @@ namespace EVEOnline.ESI.Communication
                 public const string OpenMarketDetails =              "post_ui_openwindow_marketdetails";
                 public const string OpenNewMailWindow =              "post_ui_openwindow_newmail";
             }
+
+            public static class Wallet
+            {
+                public const string WalletBalance =                  "get_characters_character_id_wallet";
+                public const string WalletJournal =                  "get_characters_character_id_wallet_journal";
+                public const string WalletTransactions =             "get_characters_character_id_wallet_transactions";
+                public const string CorporationWallets =             "get_corporations_corporation_id_wallets";
+                public const string CorporationWalletJournal =       "get_corporations_corporation_id_wallets_division_journal";
+                public const string CorporationWalletTransactions =  "get_corporations_corporation_id_wallets_division_transactions";
+            }
         }
     }
 }

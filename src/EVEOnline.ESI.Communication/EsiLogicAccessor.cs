@@ -35,6 +35,7 @@ namespace EVEOnline.ESI.Communication
         private ISkillsLogic _skillsLogic;
         private IUniverseLogic _universeLogic;
         private IUserInterfaceLogic _userInterfaceLogic;
+        private IWalletLogic _walletLogic;
 
         public ICharacterLogic CharacterLogic => GetOrSet<ICharacterLogic>(ref _characterLogic);
         public IAllianceLogic AllianceLogic => GetOrSet<IAllianceLogic>(ref _allianceLogic);
@@ -64,6 +65,7 @@ namespace EVEOnline.ESI.Communication
         public ISkillsLogic SkillsLogic => GetOrSet<ISkillsLogic>(ref _skillsLogic);
         public IUniverseLogic UniverseLogic => GetOrSet<IUniverseLogic>(ref _universeLogic);
         public IUserInterfaceLogic UserInterfaceLogic => GetOrSet<IUserInterfaceLogic>(ref _userInterfaceLogic);
+        public IWalletLogic WalletLogic => GetOrSet<IWalletLogic>(ref _walletLogic);
 
         public EsiLogicAccessor(IServiceProvider serviceProvider)
         {

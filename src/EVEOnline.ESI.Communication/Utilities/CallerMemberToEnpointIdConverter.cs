@@ -235,6 +235,13 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { Key(typeof(IUserInterfaceLogic), nameof(IUserInterfaceLogic.OpenMarketDetails)), ESI.Endpoints.UserInterface.OpenMarketDetails },
                 { Key(typeof(IUserInterfaceLogic), nameof(IUserInterfaceLogic.SetAutopilotWaypoint)), ESI.Endpoints.UserInterface.SetAutopilotWaypoint },
                 { Key(typeof(IUserInterfaceLogic), nameof(IUserInterfaceLogic.OpenNewMailWindow)), ESI.Endpoints.UserInterface.OpenNewMailWindow },
+
+                { Key(typeof(IWalletLogic), nameof(IWalletLogic.WalletBalance)), ESI.Endpoints.Wallet.WalletBalance },
+                { Key(typeof(IWalletLogic), nameof(IWalletLogic.WalletTransactions)), ESI.Endpoints.Wallet.WalletTransactions },
+                { Key(typeof(IWalletLogic), nameof(IWalletLogic.WalletJournal)), ESI.Endpoints.Wallet.WalletJournal },
+                { Key(typeof(IWalletLogic), nameof(IWalletLogic.CorporationWalletJournal)), ESI.Endpoints.Wallet.CorporationWalletJournal },
+                { Key(typeof(IWalletLogic), nameof(IWalletLogic.CorporationWallets)), ESI.Endpoints.Wallet.CorporationWallets },
+                { Key(typeof(IWalletLogic), nameof(IWalletLogic.CorporationWalletTransactions)), ESI.Endpoints.Wallet.CorporationWalletTransactions },
             };
         }
 

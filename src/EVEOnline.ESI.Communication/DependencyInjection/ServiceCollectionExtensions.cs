@@ -111,6 +111,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddTransient<IStatusLogic, StatusLogic>();
             services.TryAddTransient<IUniverseLogic, UniverseLogic>();
             services.TryAddTransient<IUserInterfaceLogic, UserInterfaceLogic>();
+            services.TryAddTransient<IWalletLogic, WalletLogic>();
 
             return services;
         }

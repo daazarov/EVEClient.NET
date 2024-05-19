@@ -951,4 +951,40 @@ namespace EVEOnline.ESI.Communication.Models
             }
         }
     }
+
+    internal class WalletRequests
+    {
+        internal class CorporationWalletJournalRequest : RouteModelBase<CorporationWalletJournalModel>
+        {
+            private CorporationWalletJournalRequest(CorporationWalletJournalModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationWalletJournalRequest Create(int corporationId, int divisionId, int page)
+            {
+                return new CorporationWalletJournalRequest(new CorporationWalletJournalModel(corporationId, divisionId, page));
+            }
+        }
+
+        internal class CorporationWalletTransactionsRequest : RouteModelBase<CorporationWalletTransactionsModel>
+        {
+            private CorporationWalletTransactionsRequest(CorporationWalletTransactionsModel uriModel) : base(uriModel)
+            { }
+
+            public static CorporationWalletTransactionsRequest Create(int corporationId, int divisionId, long? fromId)
+            {
+                return new CorporationWalletTransactionsRequest(new CorporationWalletTransactionsModel(corporationId, divisionId, fromId));
+            }
+        }
+
+        internal class WalletTransactionsRequest : RouteModelBase<WalletTransactionsModel>
+        {
+            private WalletTransactionsRequest(WalletTransactionsModel uriModel) : base(uriModel)
+            { }
+
+            public static WalletTransactionsRequest Create(int characterId, long? fromId)
+            {
+                return new WalletTransactionsRequest(new WalletTransactionsModel(characterId, fromId));
+            }
+        }
+    }
 }
