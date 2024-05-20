@@ -242,6 +242,10 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { Key(typeof(IWalletLogic), nameof(IWalletLogic.CorporationWalletJournal)), ESI.Endpoints.Wallet.CorporationWalletJournal },
                 { Key(typeof(IWalletLogic), nameof(IWalletLogic.CorporationWallets)), ESI.Endpoints.Wallet.CorporationWallets },
                 { Key(typeof(IWalletLogic), nameof(IWalletLogic.CorporationWalletTransactions)), ESI.Endpoints.Wallet.CorporationWalletTransactions },
+
+                { Key(typeof(IWarsLogic), nameof(IWarsLogic.Kills)), ESI.Endpoints.Wars.Kills },
+                { Key(typeof(IWarsLogic), nameof(IWarsLogic.Wars)), ESI.Endpoints.Wars.WarList },
+                { Key(typeof(IWarsLogic), nameof(IWarsLogic.WarDetails)), ESI.Endpoints.Wars.WarDetails }
             };
         }
 

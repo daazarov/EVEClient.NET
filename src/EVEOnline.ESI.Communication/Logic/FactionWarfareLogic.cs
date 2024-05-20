@@ -34,8 +34,8 @@ namespace EVEOnline.ESI.Communication.Logic
         public Task<EsiResponse<FactionStats>> GetFactionsStatsAsync() =>
             _esiClient.GetRequestAsync<FactionStats>();
 
-        public Task<EsiResponse<List<War>>> GetWarsAsync() =>
-            _esiClient.GetRequestAsync<List<War>>();
+        public Task<EsiResponse<List<FactionWar>>> GetWarsAsync() =>
+            _esiClient.GetRequestAsync<List<FactionWar>>();
 
         public Task<EsiResponse<List<FactionWarfareSystem>>> OwnershipSystemOverviewAsync() =>
             _esiClient.GetRequestAsync<List<FactionWarfareSystem>>();

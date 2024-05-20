@@ -987,4 +987,40 @@ namespace EVEOnline.ESI.Communication.Models
             }
         }
     }
+
+    internal class WarsRequests
+    {
+        internal class WarsRequest : RouteModelBase<WarsModel>
+        {
+            private WarsRequest(WarsModel uriModel) : base(uriModel)
+            { }
+
+            public static WarsRequest Create(long? maxWarId)
+            {
+                return new WarsRequest(new WarsModel(maxWarId));
+            }
+        }
+
+        internal class WarDetailsRequest : RouteModelBase<WarDetailsModel>
+        {
+            private WarDetailsRequest(WarDetailsModel uriModel) : base(uriModel)
+            { }
+
+            public static WarDetailsRequest Create(int warId)
+            {
+                return new WarDetailsRequest(new WarDetailsModel(warId));
+            }
+        }
+
+        internal class KillsRequest : RouteModelBase<KillsModel>
+        {
+            private KillsRequest(KillsModel uriModel) : base(uriModel)
+            { }
+
+            public static KillsRequest Create(int warId, int page)
+            {
+                return new KillsRequest(new KillsModel(warId, page));
+            }
+        }
+    }
 }

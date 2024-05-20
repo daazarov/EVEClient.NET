@@ -96,6 +96,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/fw/wars/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/fw/wars/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/fw/wars/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<War>>> GetWarsAsync();
+        Task<EsiResponse<List<FactionWar>>> GetWarsAsync();
     }
 }

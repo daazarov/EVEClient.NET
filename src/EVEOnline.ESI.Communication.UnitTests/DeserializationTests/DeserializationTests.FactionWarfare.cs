@@ -10,8 +10,8 @@ namespace EVEOnline.ESI.Communication.UnitTests.DeserializationTests.FactionWarf
         private const string FileName = "deserialization.factionwarfare.json";
         private const string CustomSectionName = "";
 
-        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<War>), nameof(DeserializationTestCaseSourceProvider<War>.GetTestData), new object[] { FileName, CustomSectionName })]
-        public void Deserialization_FactionWarfare_War(War model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<FactionWar>), nameof(DeserializationTestCaseSourceProvider<FactionWar>.GetTestData), new object[] { FileName, CustomSectionName })]
+        public void Deserialization_FactionWarfare_War(FactionWar model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.AgainstId, Is.EqualTo(500002));

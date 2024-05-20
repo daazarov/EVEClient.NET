@@ -353,6 +353,13 @@ namespace EVEOnline.ESI.Communication
                 public const string CorporationWalletJournal =       "get_corporations_corporation_id_wallets_division_journal";
                 public const string CorporationWalletTransactions =  "get_corporations_corporation_id_wallets_division_transactions";
             }
+
+            public static class Wars
+            {
+                public const string WarList =                        "get_wars";
+                public const string WarDetails =                     "get_wars_war_id";
+                public const string Kills =                          "get_wars_war_id_killmails";
+            }
         }
     }
 }

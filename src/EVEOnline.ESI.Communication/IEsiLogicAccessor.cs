@@ -30,7 +30,7 @@
         ISkillsLogic SkillsLogic { get; }
         IUniverseLogic UniverseLogic { get; }
         IWalletLogic WalletLogic { get; }
-
         IUserInterfaceLogic UserInterfaceLogic { get; }
+        IWarsLogic WarsLogic { get; }
     }
 }

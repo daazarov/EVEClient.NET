@@ -2,7 +2,7 @@
 
 namespace EVEOnline.ESI.Communication.DataContract
 {
-    public class War
+    public class FactionWar
     {
         /// <summary>
         /// The faction ID of the enemy faction.
