@@ -1,13 +1,8 @@
 ﻿using EVEOnline.ESI.Communication.DataContract;
 using EVEOnline.ESI.Communication.UnitTests.Datasets.Providers;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EVEOnline.ESI.Communication.UnitTests.DeserializationTests
+namespace EVEOnline.ESI.Communication.UnitTests.DeserializationTests.Wallet
 {
     [TestFixture]
     public class DeserializationTests
@@ -49,8 +44,8 @@ namespace EVEOnline.ESI.Communication.UnitTests.DeserializationTests
             Assert.That(model.UnitPrice, Is.EqualTo(1));
         }
 
-        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<Wallet>), nameof(DeserializationTestCaseSourceProvider<Wallet>.GetTestData), new object[] { FileName, CustomSectionName })]
-        public void Deserialization_Wallet_Wallet(Wallet model)
+        [TestCaseSource(typeof(DeserializationTestCaseSourceProvider<DataContract.Wallet>), nameof(DeserializationTestCaseSourceProvider<DataContract.Wallet >.GetTestData), new object[] { FileName, CustomSectionName })]
+        public void Deserialization_Wallet_Wallet(DataContract.Wallet model)
         {
             Assert.That(model, Is.Not.Null);
             Assert.That(model.Balance, Is.EqualTo(123.45d));

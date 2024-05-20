@@ -1,0 +1,33 @@
+{
+  "War": {
+    "aggressor": {
+      "corporation_id": 986665792,
+      "alliance_id": 514777854,
+      "isk_destroyed": 1000,
+      "ships_killed": 2000
+    },
+    "allies": [
+      {
+        "alliance_id": 6516566,
+        "corporation_id": 6985214
+      }
+    ],
+    "declared": "2004-05-22T05:20:00Z",
+    "defender": {
+      "corporation_id": 1001562011,
+      "isk_destroyed": 1500,
+      "ships_killed": 2500
+    },
+    "finished": "2005-05-22T05:20:00Z",
+    "id": 1941,
+    "mutual": true,
+    "open_for_allies": true,
+    "retracted": "2006-05-22T05:20:00Z",
+    "started": "2007-05-22T05:20:00Z"
+  },
+
+  "Kill": {
+    "killmail_hash": "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
+    "killmail_id": 2
+  }
+}

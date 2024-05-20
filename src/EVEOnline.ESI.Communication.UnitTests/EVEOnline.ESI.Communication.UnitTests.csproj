@@ -28,6 +28,7 @@
     <None Remove="Datasets\Json\DeserializationTests\deserialization.status.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.universe.json" />
     <None Remove="Datasets\Json\DeserializationTests\deserialization.wallet.json" />
+    <None Remove="Datasets\Json\DeserializationTests\deserialization.wars.json" />
     <None Remove="Datasets\Json\serialization.FactionWarfare.json" />
   </ItemGroup>
 
@@ -51,6 +52,7 @@
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.status.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.universe.json" />
     <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.wallet.json" />
+    <EmbeddedResource Include="Datasets\Json\DeserializationTests\deserialization.wars.json" />
   </ItemGroup>
 
   <ItemGroup>
