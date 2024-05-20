@@ -17,70 +17,70 @@ namespace EVEOnline.ESI.Communication
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<CorporationInfo>> GetCorporationInfoAsync(int corporationId) =>
+        public Task<EsiResponse<CorporationInfo>> Information(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, CorporationInfo>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<List<AllianceHistory>>> GetCorporationAllianceHistoryAsync(int corporationId) =>
+        public Task<EsiResponse<List<AllianceHistory>>> AllianceHistory(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, List<AllianceHistory>>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponsePagination<List<Blueprint>>> GetCorporationBlueprintsAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<Blueprint>>> Blueprints(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<Blueprint>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponsePagination<List<ContainerLog>>> GetCorporationContainerLogsAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<ContainerLog>>> ContainersLogs(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<ContainerLog>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponse<Divisions>> GetCorporationDivisionsAsync(int corporationId) =>
+        public Task<EsiResponse<Divisions>> Divisions(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, Divisions>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<List<Facility>>> GetCorporationFacilitiesAsync(int corporationId) =>
+        public Task<EsiResponse<List<Facility>>> Facilities(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, List<Facility>>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<CorporationIcon>> GetCorporationIconAsync(int corporationId) =>
+        public Task<EsiResponse<CorporationIcon>> Icons(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, CorporationIcon>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponsePagination<List<CorporationMedal>>> GetCorporationMedalsAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<CorporationMedal>>> Medals(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<CorporationMedal>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponsePagination<List<CorporationIssuedMedal>>> GetCorporationIssuedMedalsAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<CorporationIssuedMedal>>> IssuedMedals(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<CorporationIssuedMedal>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponse<List<int>>> GetCorporationMembersAsync(int corporationId) =>
+        public Task<EsiResponse<List<int>>> Members(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, List<int>>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<int>> GetCorporationMemberLimitAsync(int corporationId) =>
+        public Task<EsiResponse<int>> MembersLimit(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, int>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<List<MemberTitle>>> GetCorporationMemberTitlesAsync(int corporationId) =>
+        public Task<EsiResponse<List<MemberTitle>>> MembersTitles(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, List<MemberTitle>>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<List<MemberTracking>>> GetCorporationMemberTrackingAsync(int corporationId) =>
+        public Task<EsiResponse<List<MemberTracking>>> MemberTracking(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, List<MemberTracking>>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<List<MemberRole>>> GetCorporationMemberRolesAsync(int corporationId) =>
+        public Task<EsiResponse<List<MemberRole>>> Roles(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, List<MemberRole>>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponsePagination<List<MemberRoleHistory>>> GetCorporationMemberRolesHistoryAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<MemberRoleHistory>>> RolesHistory(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<MemberRoleHistory>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponsePagination<List<Shareholder>>> GetCorporationShareholdersAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<Shareholder>>> Shareholders(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<Shareholder>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponsePagination<List<CorporationStanding>>> GetCorporationStandingsAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<CorporationStanding>>> Standings(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<CorporationStanding>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponsePagination<List<Starbase>>> GetCorporationStarbasesAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<Starbase>>> Starbases(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<Starbase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponse<StarbaseInfo>> GetStarbaseInfoAsync(int corporationId, long starbaseId, int systemId) =>
+        public Task<EsiResponse<StarbaseInfo>> StarbaseInfo(int corporationId, long starbaseId, int systemId) =>
             _esiClient.GetRequestAsync<StarbaseInfoRequest, StarbaseInfo>(StarbaseInfoRequest.Create(corporationId, starbaseId, systemId));
 
-        public Task<EsiResponsePagination<List<Structure>>> GetCorporationStructuresAsync(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<Structure>>> Structures(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<Structure>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponse<List<Title>>> GetCorporationTitlesAsync(int corporationId) =>
+        public Task<EsiResponse<List<Title>>> Titles(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, List<Title>>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<List<int>>> GetNpcCorporationsAsync() =>
+        public Task<EsiResponse<List<int>>> NpcCorporations() =>
             _esiClient.GetRequestAsync<List<int>>();
     }
 }

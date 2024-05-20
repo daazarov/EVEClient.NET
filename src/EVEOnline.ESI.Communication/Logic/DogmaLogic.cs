@@ -16,19 +16,19 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<AttributeInfo>> GetAttributeInfoAsync(int attributeId) =>
+        public Task<EsiResponse<AttributeInfo>> AttributeInfo(int attributeId) =>
             _esiClient.GetRequestAsync<AttributeIdRouteRequest, AttributeInfo>(AttributeIdRouteRequest.Create(attributeId));
 
-        public Task<EsiResponse<List<int>>> GetAttributesAsync() =>
+        public Task<EsiResponse<List<int>>> Attributes() =>
             _esiClient.GetRequestAsync<List<int>>();
 
-        public Task<EsiResponse<EffectInfo>> GetDogmaEffectInfoAsync(int effectId) =>
+        public Task<EsiResponse<EffectInfo>> EffectInfo(int effectId) =>
             _esiClient.GetRequestAsync<EffectIdRouteRequest, EffectInfo>(EffectIdRouteRequest.Create(effectId));
 
-        public Task<EsiResponse<List<int>>> GetDogmaEffectsAsync() =>
+        public Task<EsiResponse<List<int>>> Effects() =>
             _esiClient.GetRequestAsync<List<int>>();
 
-        public Task<EsiResponse<DynamicItemInfo>> GetDynamicItemInfoAsync(long itemId, int typeId) =>
+        public Task<EsiResponse<DynamicItemInfo>> DynamicItemInfo(long itemId, int typeId) =>
             _esiClient.GetRequestAsync<DynamicItemInfoRequest, DynamicItemInfo>(DynamicItemInfoRequest.Create(itemId, typeId));
     }
 }

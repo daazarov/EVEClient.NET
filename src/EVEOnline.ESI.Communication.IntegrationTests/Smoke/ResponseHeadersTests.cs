@@ -9,7 +9,7 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.Smoke
         {
             var characterId = 2119944183;
 
-            var response = await _logicAccessor.CharacterLogic.GetCharacterPulicInformationAsync(characterId);
+            var response = await _logicAccessor.CharacterLogic.PublicInformation(characterId);
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Expires.HasValue, Is.True);
@@ -25,7 +25,7 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.Smoke
         {
             var regionId = 10000001;
 
-            var response = await _logicAccessor.MarketLogic.GetRegionOrders(regionId);
+            var response = await _logicAccessor.MarketLogic.RegionOrders(regionId);
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Pages, Is.Not.EqualTo(0));

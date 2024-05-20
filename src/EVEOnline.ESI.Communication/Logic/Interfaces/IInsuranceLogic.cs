@@ -16,6 +16,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/insurance/prices/", Version = EndpointVersion.Legacy)]
         [Route("/v1/insurance/prices/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/insurance/prices/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Insurance>>> GetInsuranceLevelsAsync();
+        Task<EsiResponse<List<Insurance>>> InsuranceLevels();
     }
 }

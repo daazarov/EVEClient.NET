@@ -16,16 +16,16 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<int>>> GetAllianceCorporationsAsync(int allianceId) =>
+        public Task<EsiResponse<List<int>>> CorporationsInAlliance(int allianceId) =>
             _esiClient.GetRequestAsync<AllianceIdRouteRequest, List<int>>(AllianceIdRouteRequest.Create(allianceId));
 
-        public Task<EsiResponse<AllianceIcon>> GetAllianceIconAsync(int allianceId) =>
+        public Task<EsiResponse<AllianceIcon>> AllianceIcon(int allianceId) =>
             _esiClient.GetRequestAsync<AllianceIdRouteRequest, AllianceIcon>(AllianceIdRouteRequest.Create(allianceId));
 
-        public Task<EsiResponse<Alliance>> GetAlliancePublicInformationAsync(int allianceId) =>
+        public Task<EsiResponse<Alliance>> PublicInformation(int allianceId) =>
             _esiClient.GetRequestAsync<AllianceIdRouteRequest, Alliance>(AllianceIdRouteRequest.Create(allianceId));
 
-        public Task<EsiResponse<List<int>>> GetAlliancesAsync() =>
+        public Task<EsiResponse<List<int>>> ActiveAlliances() =>
             _esiClient.GetRequestAsync<List<int>>();
     }
 }

@@ -19,7 +19,7 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<Header>>> GetCharacterMailHeaders(int characterId, int[] labels = null, int? lastMailId = null) =>
+        public Task<EsiResponse<List<Header>>> MailHeaders(int characterId, int[] labels = null, int? lastMailId = null) =>
             _esiClient.GetRequestAsync<GetMailHeaderseRequest, List<Header>>(GetMailHeaderseRequest.Create(characterId, labels, lastMailId));
 
         public Task<EsiResponse<int>> SendMail(int characterId, NewMail mail) =>
@@ -34,7 +34,7 @@ namespace EVEOnline.ESI.Communication.Logic
         public Task<EsiResponse> UpdateMail(int characterId, int mailId, int[] labels, bool? read) =>
             _esiClient.PutRequestAsync<UpdateMailRequest>(UpdateMailRequest.Create(characterId, mailId, labels, read));
 
-        public Task<EsiResponse<LabelCounts>> GetCharacterMailLabels(int characterId) =>
+        public Task<EsiResponse<LabelCounts>> GetLabels(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, LabelCounts>(CharacterIdRouteRequest.Create(characterId));
 
         public Task<EsiResponse<int>> NewMailLabel(int characterId, string name, LabelColor color = LabelColor.White) =>
@@ -43,7 +43,7 @@ namespace EVEOnline.ESI.Communication.Logic
         public Task<EsiResponse> DeleteLabel(int characterId, int labelId) =>
             _esiClient.DeleteRequestAsync<DeleteLabelRequest>(DeleteLabelRequest.Create(characterId, labelId));
 
-        public Task<EsiResponse<List<MailingList>>> GetCharacterMailingList(int characterId) =>
+        public Task<EsiResponse<List<MailingList>>> MailingList(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<MailingList>>(CharacterIdRouteRequest.Create(characterId));
     }
 }

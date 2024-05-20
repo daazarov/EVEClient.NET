@@ -17,7 +17,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v3/characters/{character_id}/clones/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/v4/characters/{character_id}/clones/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/characters/{character_id}/clones/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Clones>> GetCharacterClonesAsync(int characterId);
+        Task<EsiResponse<Clones>> CloneList(int characterId);
 
         /// <summary>
         /// Return implants on the active clone of a character
@@ -29,6 +29,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/characters/{character_id}/implants/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/implants/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/implants/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> GetCharacterCloneImplantsAsync(int characterId);
+        Task<EsiResponse<List<int>>> CloneImplants(int characterId);
     }
 }

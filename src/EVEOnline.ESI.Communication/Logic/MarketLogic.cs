@@ -18,37 +18,37 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<OrderBase>>> GetCharacterOrders(int characterId) =>
+        public Task<EsiResponse<List<OrderBase>>> CharacterOrders(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<OrderBase>>(CharacterIdRouteRequest.Create(characterId));
 
-        public Task<EsiResponsePagination<List<OrderBase>>> GetCharacterOrdersHistory(int characterId, int page = 1) =>
+        public Task<EsiResponsePagination<List<OrderBase>>> CharacterOrdersHistory(int characterId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<OrderBase>>(PageBasedCharacterIdRouteRequest.Create(characterId, page));
 
-        public Task<EsiResponsePagination<List<OrderBase>>> GetCorporationOrders(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<OrderBase>>> CorporationOrders(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<OrderBase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponsePagination<List<OrderBase>>> GetCorporationOrdersHistory(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<OrderBase>>> CorporationOrdersHistory(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<OrderBase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponse<List<Statistic>>> GetRegionStatistics(int regionId, int typeId) =>
+        public Task<EsiResponse<List<Statistic>>> RegionStatistics(int regionId, int typeId) =>
             _esiClient.GetRequestAsync<RegionStatisticsRouteRequest, List<Statistic>>(RegionStatisticsRouteRequest.Create(regionId, typeId));
 
-        public Task<EsiResponsePagination<List<OrderBase>>> GetRegionOrders(int regionId, OrderType orderType = OrderType.All, int? typeId = null, int page = 1) =>
+        public Task<EsiResponsePagination<List<OrderBase>>> RegionOrders(int regionId, OrderType orderType = OrderType.All, int? typeId = null, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<RegionOrdersRequest, List<OrderBase>>(RegionOrdersRequest.Create(regionId, orderType.ToEsiString(), typeId, page));
 
-        public Task<EsiResponsePagination<List<int>>> GetActiveOrderTypes(int regionId, int page = 1) =>
+        public Task<EsiResponsePagination<List<int>>> ActiveRegionOrderTypes(int regionId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedRegionIdRouteRequest, List<int>>(PageBasedRegionIdRouteRequest.Create(regionId, page));
 
-        public Task<EsiResponse<List<int>>> GetItemGroups() =>
+        public Task<EsiResponse<List<int>>> MarketGroups() =>
             _esiClient.GetRequestAsync<List<int>>();
 
-        public Task<EsiResponse<MarketGroup>> GetItemGroupInfo(int marketGroupId) =>
+        public Task<EsiResponse<MarketGroup>> MarketGroupInfo(int marketGroupId) =>
             _esiClient.GetRequestAsync<MarketGroupInfoRequest, MarketGroup>(MarketGroupInfoRequest.Create(marketGroupId));
 
-        public Task<EsiResponse<List<Price>>> GetPrices() =>
+        public Task<EsiResponse<List<Price>>> TypePrices() =>
             _esiClient.GetRequestAsync<List<Price>>();
 
-        public Task<EsiResponsePagination<List<OrderBase>>> GetStructureOrders(long structureId, int page = 1) =>
+        public Task<EsiResponsePagination<List<OrderBase>>> StructureOrders(long structureId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedStructureIdRouteRequest, List<OrderBase>>(PageBasedStructureIdRouteRequest.Create(structureId, page));
     }
 }

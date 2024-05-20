@@ -16,7 +16,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/dogma/attributes/", Version = EndpointVersion.Legacy)]
         [Route("/v1/dogma/attributes/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/dogma/attributes/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> GetAttributesAsync();
+        Task<EsiResponse<List<int>>> Attributes();
 
         /// <summary>
         /// Get information on a dogma attribute
@@ -27,7 +27,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/dogma/attributes/{attribute_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/dogma/attributes/{attribute_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/dogma/attributes/{attribute_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<AttributeInfo>> GetAttributeInfoAsync(int attributeId);
+        Task<EsiResponse<AttributeInfo>> AttributeInfo(int attributeId);
 
         /// <summary>
         /// Returns info about a dynamic item resulting from mutation with a mutaplasmid.
@@ -37,7 +37,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/dogma/dynamic/items/{type_id}/{item_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/dogma/dynamic/items/{type_id}/{item_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/dogma/dynamic/items/{type_id}/{item_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<DynamicItemInfo>> GetDynamicItemInfoAsync(long itemId, int typeId);
+        Task<EsiResponse<DynamicItemInfo>> DynamicItemInfo(long itemId, int typeId);
 
         /// <summary>
         /// Get a list of dogma effect ids
@@ -47,7 +47,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/dogma/effects/", Version = EndpointVersion.Legacy)]
         [Route("/v1/dogma/effects/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/dogma/effects/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> GetDogmaEffectsAsync();
+        Task<EsiResponse<List<int>>> Effects();
 
         /// <summary>
         /// Get information on a dogma effect
@@ -57,6 +57,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/dogma/effects/{effect_id}/", Version = EndpointVersion.Latest)]
         [Route("/v2/dogma/effects/{effect_id}/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/dogma/effects/{effect_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<EffectInfo>> GetDogmaEffectInfoAsync(int effectId);
+        Task<EsiResponse<EffectInfo>> EffectInfo(int effectId);
     }
 }

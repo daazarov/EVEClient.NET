@@ -17,7 +17,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/characters/{character_id}/bookmarks/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/bookmarks/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/bookmarks/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Bookmark>>> GetCharacterBookmarksAsync(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<Bookmark>>> CharacterBookmarks(int characterId, int page = 1);
 
         /// <summary>
         /// A list of your character’s personal bookmark folders
@@ -28,7 +28,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/characters/{character_id}/bookmarks/folders/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/bookmarks/folders/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/bookmarks/folders/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Folder>>> GetCharacterBookmarkFoldersAsync(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<Folder>>> CharacterBookmarkFolders(int characterId, int page = 1);
 
         /// <summary>
         /// A list of your corporation’s bookmarks
@@ -40,7 +40,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/corporations/{corporation_id}/bookmarks/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/bookmarks/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/bookmarks/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Bookmark>>> GetCorporationBookmarksAsync(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Bookmark>>> CorporationBookmarks(int corporationId, int page = 1);
 
         /// <summary>
         /// A list of your corporation’s bookmark folders
@@ -52,6 +52,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/corporations/{corporation_id}/bookmarks/folders/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/bookmarks/folders/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/bookmarks/folders/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CorporationFolder>>> GetCorporationBookmarkFoldersAsync(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<CorporationFolder>>> CorporationBookmarkFolders(int corporationId, int page = 1);
     }
 }

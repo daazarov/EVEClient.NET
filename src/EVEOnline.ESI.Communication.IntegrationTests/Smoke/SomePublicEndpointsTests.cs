@@ -11,7 +11,7 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.Smoke
         [Test]
         public async Task GetCharacterInfo()
         {
-            var response = await _logicAccessor.CharacterLogic.GetCharacterPulicInformationAsync(CharacterId);
+            var response = await _logicAccessor.CharacterLogic.PublicInformation(CharacterId);
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Data, Is.Not.Null);
@@ -20,8 +20,8 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.Smoke
         [Test]
         public async Task GetCharacterInfo_eTag()
         {
-            var response = await _logicAccessor.CharacterLogic.GetCharacterPulicInformationAsync(CharacterId);
-            var response1 = await _logicAccessor.CharacterLogic.GetCharacterPulicInformationAsync(CharacterId);
+            var response = await _logicAccessor.CharacterLogic.PublicInformation(CharacterId);
+            var response1 = await _logicAccessor.CharacterLogic.PublicInformation(CharacterId);
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Data, Is.Not.Null);
@@ -34,7 +34,7 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.Smoke
         [Test]
         public async Task GetCharacterCorporationHistory()
         {
-            var response = await _logicAccessor.CharacterLogic.GetCharacterCorporationHistoryAsync(CharacterId);
+            var response = await _logicAccessor.CharacterLogic.CorporationHistory(CharacterId);
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Data, Is.Not.Null);

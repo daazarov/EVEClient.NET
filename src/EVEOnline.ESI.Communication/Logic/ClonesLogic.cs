@@ -15,10 +15,10 @@ namespace EVEOnline.ESI.Communication.Logic
         {
             _esiClient = esiClient;
         }
-        public Task<EsiResponse<List<int>>> GetCharacterCloneImplantsAsync(int characterId) =>
+        public Task<EsiResponse<List<int>>> CloneImplants(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<int>>(CharacterIdRouteRequest.Create(characterId));
 
-        public Task<EsiResponse<Clones>> GetCharacterClonesAsync(int characterId) =>
+        public Task<EsiResponse<Clones>> CloneList(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, Clones>(CharacterIdRouteRequest.Create(characterId));
     }
 }

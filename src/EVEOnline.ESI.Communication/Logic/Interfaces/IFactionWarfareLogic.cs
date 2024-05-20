@@ -18,7 +18,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/characters/{character_id}/fw/stats/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/fw/stats/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/fw/stats/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<CharacterStats>> GetCharacterStatsAsync(int characterId);
+        Task<EsiResponse<CharacterStats>> CharacterStats(int characterId);
 
         /// <summary>
         /// Statistics about a corporation involved in faction warfare
@@ -30,7 +30,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/corporations/{corporation_id}/fw/stats/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/corporations/{corporation_id}/fw/stats/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/fw/stats/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<CorporationStats>> GetCorporationStatsAsync(int corporationId);
+        Task<EsiResponse<CorporationStats>> CorporationStats(int corporationId);
 
         /// <summary>
         /// Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday
@@ -41,7 +41,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/fw/leaderboards/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/fw/leaderboards/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/fw/leaderboards/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Leaderboards<FactionTotal>>> GetFactionsLeaderboardAsync();
+        Task<EsiResponse<Leaderboards<FactionTotal>>> FactionsLeaderboard();
 
         /// <summary>
         /// Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday
@@ -52,7 +52,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/fw/leaderboards/characters/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/fw/leaderboards/characters/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/fw/leaderboards/characters/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Leaderboards<CharacterTotal>>> GetCaractersLeaderboardAsync();
+        Task<EsiResponse<Leaderboards<CharacterTotal>>> CaractersLeaderboard();
 
         /// <summary>
         /// Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday
@@ -63,7 +63,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/fw/leaderboards/corporations/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/fw/leaderboards/corporations/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/fw/leaderboards/corporations/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Leaderboards<CorporationTotal>>> GetCorporationsLeaderboardAsync();
+        Task<EsiResponse<Leaderboards<CorporationTotal>>> CorporationsLeaderboard();
 
         /// <summary>
         /// Statistical overviews of factions involved in faction warfare
@@ -74,7 +74,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/fw/stats/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/fw/stats/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/fw/stats/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<FactionStats>> GetFactionsStatsAsync();
+        Task<EsiResponse<FactionStats>> FactionsStats();
 
         /// <summary>
         /// An overview of the current ownership of faction warfare solar systems
@@ -85,7 +85,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v2/fw/systems/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/v3/fw/systems/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/fw/systems/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<FactionWarfareSystem>>> OwnershipSystemOverviewAsync();
+        Task<EsiResponse<List<FactionWarfareSystem>>> OwnershipSystemOverview();
 
         /// <summary>
         /// Data about which NPC factions are at war
@@ -96,6 +96,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/fw/wars/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/fw/wars/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/fw/wars/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<FactionWar>>> GetWarsAsync();
+        Task<EsiResponse<List<FactionWar>>> Wars();
     }
 }

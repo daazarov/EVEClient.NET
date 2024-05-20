@@ -17,7 +17,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/opportunities/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/opportunities/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/opportunities/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ComplitedTask>>> GetCharacterComplitedTasks(int characterId);
+        Task<EsiResponse<List<ComplitedTask>>> CompletedTasks(int characterId);
 
         /// <summary>
         /// Return a list of opportunities groups
@@ -27,7 +27,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/opportunities/groups/", Version = EndpointVersion.Legacy)]
         [Route("/v1/opportunities/groups/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/opportunities/groups/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> GetOpportunitiesGroups();
+        Task<EsiResponse<List<int>>> Groups();
 
         /// <summary>
         /// Return information of an opportunities group
@@ -38,7 +38,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/opportunities/groups/{group_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/opportunities/groups/{group_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/opportunities/groups/{group_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<OpportunitiesGroup>> GetOpportunitiesGroupInfo(int groupId);
+        Task<EsiResponse<OpportunitiesGroup>> GroupInfo(int groupId);
 
         /// <summary>
         /// Return a list of opportunities tasks
@@ -48,7 +48,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/opportunities/tasks/", Version = EndpointVersion.Legacy)]
         [Route("/v1/opportunities/tasks/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/opportunities/tasks/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> GetOpportunitiesTasks();
+        Task<EsiResponse<List<int>>> Tasks();
 
         /// <summary>
         /// Return information of an opportunities task
@@ -59,6 +59,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/opportunities/tasks/{task_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/opportunities/tasks/{task_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/opportunities/tasks/{task_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<OpportunitiesTask>> GetOpportunitiesTaskInfo(int taskId);
+        Task<EsiResponse<OpportunitiesTask>> TaskInfo(int taskId);
     }
 }

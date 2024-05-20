@@ -16,28 +16,28 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<Leaderboards<CharacterTotal>>> GetCaractersLeaderboardAsync() =>
+        public Task<EsiResponse<Leaderboards<CharacterTotal>>> CaractersLeaderboard() =>
             _esiClient.GetRequestAsync<Leaderboards<CharacterTotal>>();
 
-        public Task<EsiResponse<CharacterStats>> GetCharacterStatsAsync(int characterId) =>
+        public Task<EsiResponse<CharacterStats>> CharacterStats(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, CharacterStats>(CharacterIdRouteRequest.Create(characterId));
 
-        public Task<EsiResponse<Leaderboards<CorporationTotal>>> GetCorporationsLeaderboardAsync() =>
+        public Task<EsiResponse<Leaderboards<CorporationTotal>>> CorporationsLeaderboard() =>
             _esiClient.GetRequestAsync<Leaderboards<CorporationTotal>>();
 
-        public Task<EsiResponse<CorporationStats>> GetCorporationStatsAsync(int corporationId) =>
+        public Task<EsiResponse<CorporationStats>> CorporationStats(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, CorporationStats>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<Leaderboards<FactionTotal>>> GetFactionsLeaderboardAsync() =>
+        public Task<EsiResponse<Leaderboards<FactionTotal>>> FactionsLeaderboard() =>
             _esiClient.GetRequestAsync<Leaderboards<FactionTotal>>();
 
-        public Task<EsiResponse<FactionStats>> GetFactionsStatsAsync() =>
+        public Task<EsiResponse<FactionStats>> FactionsStats() =>
             _esiClient.GetRequestAsync<FactionStats>();
 
-        public Task<EsiResponse<List<FactionWar>>> GetWarsAsync() =>
+        public Task<EsiResponse<List<FactionWar>>> Wars() =>
             _esiClient.GetRequestAsync<List<FactionWar>>();
 
-        public Task<EsiResponse<List<FactionWarfareSystem>>> OwnershipSystemOverviewAsync() =>
+        public Task<EsiResponse<List<FactionWarfareSystem>>> OwnershipSystemOverview() =>
             _esiClient.GetRequestAsync<List<FactionWarfareSystem>>();
     }
 }

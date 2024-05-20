@@ -17,16 +17,16 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<Colony>>> GetCharacterColonies(int characterId) =>
+        public Task<EsiResponse<List<Colony>>> Colonies(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<Colony>>(CharacterIdRouteRequest.Create(characterId));
 
-        public Task<EsiResponse<ColonyLayout>> GetColonyInfo(int characterId, int planetId) =>
+        public Task<EsiResponse<ColonyLayout>> ColonyInfo(int characterId, int planetId) =>
             _esiClient.GetRequestAsync<ColonyInfoRequest, ColonyLayout>(ColonyInfoRequest.Create(characterId, planetId));
 
-        public Task<EsiResponsePagination<List<CustomOffice>>> GetCorporationCustomOffices(int corporationId, int page = 1) =>
+        public Task<EsiResponsePagination<List<CustomOffice>>> CorporationCustomOffices(int corporationId, int page = 1) =>
             _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<CustomOffice>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
 
-        public Task<EsiResponse<SchematicInfo>> GetSchematicInfo(int schematicId) =>
+        public Task<EsiResponse<SchematicInfo>> SchematicInfo(int schematicId) =>
             _esiClient.GetRequestAsync<SchematicInfoRequest, SchematicInfo>(SchematicInfoRequest.Create(schematicId));
     }
 }

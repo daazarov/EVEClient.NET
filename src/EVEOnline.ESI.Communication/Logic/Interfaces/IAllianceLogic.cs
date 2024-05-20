@@ -17,7 +17,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v2/alliances/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/legacy/alliances/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> GetAlliancesAsync();
+        Task<EsiResponse<List<int>>> ActiveAlliances();
 
         /// <summary>
         /// Public information about an alliance
@@ -29,7 +29,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v4/alliances/{alliance_id}/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/legacy/alliances/{alliance_id}/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/{alliance_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Alliance>> GetAlliancePublicInformationAsync(int allianceId);
+        Task<EsiResponse<Alliance>> PublicInformation(int allianceId);
 
         /// <summary>
         /// List all current member corporations of an alliance
@@ -41,7 +41,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v2/alliances/{alliance_id}/corporations/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/legacy/alliances/{alliance_id}/corporations/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/{alliance_id}/corporations/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> GetAllianceCorporationsAsync(int allianceId);
+        Task<EsiResponse<List<int>>> CorporationsInAlliance(int allianceId);
 
         /// <summary>
         /// Get the icon urls for a alliance
@@ -53,6 +53,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/alliances/{alliance_id}/icons/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/legacy/alliances/{alliance_id}/icons/", Version = EndpointVersion.Legacy)]
         [Route("/dev/alliances/{alliance_id}/icons/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<AllianceIcon>> GetAllianceIconAsync(int allianceId);
+        Task<EsiResponse<AllianceIcon>> AllianceIcon(int allianceId);
     }
 }

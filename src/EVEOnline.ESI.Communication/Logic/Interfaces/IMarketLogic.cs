@@ -16,7 +16,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/characters/{character_id}/orders/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/orders/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/orders/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<OrderBase>>> GetCharacterOrders(int characterId);
+        Task<EsiResponse<List<OrderBase>>> CharacterOrders(int characterId);
 
         /// <summary>
         /// List cancelled and expired market orders placed by a character up to 90 days in the past.
@@ -28,7 +28,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/orders/history/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/orders/history/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/orders/history/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> GetCharacterOrdersHistory(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> CharacterOrdersHistory(int characterId, int page = 1);
 
         /// <summary>
         /// List open market orders placed on behalf of a corporation
@@ -40,7 +40,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/corporations/{corporation_id}/orders/", Version = EndpointVersion.Latest)]
         [Route("/v3/corporations/{corporation_id}/orders/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/orders/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> GetCorporationOrders(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> CorporationOrders(int corporationId, int page = 1);
 
         /// <summary>
         /// List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past.
@@ -52,7 +52,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/corporations/{corporation_id}/orders/history/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/orders/history/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/orders/history/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> GetCorporationOrdersHistory(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> CorporationOrdersHistory(int corporationId, int page = 1);
 
         /// <summary>
         /// Return a list of historical market statistics for the specified type in a region
@@ -64,7 +64,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/markets/{region_id}/history/", Version = EndpointVersion.Legacy)]
         [Route("/v1/markets/{region_id}/history/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/markets/{region_id}/history/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Statistic>>> GetRegionStatistics(int regionId, int typeId);
+        Task<EsiResponse<List<Statistic>>> RegionStatistics(int regionId, int typeId);
 
         /// <summary>
         /// Return a list of orders in a region
@@ -78,7 +78,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/markets/{region_id}/orders/", Version = EndpointVersion.Legacy)]
         [Route("/v1/markets/{region_id}/orders/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/markets/{region_id}/orders/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> GetRegionOrders(int regionId, OrderType orderType = OrderType.All, int? typeId = null, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> RegionOrders(int regionId, OrderType orderType = OrderType.All, int? typeId = null, int page = 1);
 
         /// <summary>
         /// Return a list of type IDs that have active orders in the region, for efficient market indexing.
@@ -90,7 +90,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/markets/{region_id}/types/", Version = EndpointVersion.Legacy)]
         [Route("/v1/markets/{region_id}/types/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/markets/{region_id}/types/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<int>>> GetActiveOrderTypes(int regionId, int page = 1);
+        Task<EsiResponsePagination<List<int>>> ActiveRegionOrderTypes(int regionId, int page = 1);
 
         /// <summary>
         /// Get a list of item groups
@@ -100,7 +100,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/markets/groups/", Version = EndpointVersion.Legacy)]
         [Route("/v1/markets/groups/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/markets/groups/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> GetItemGroups();
+        Task<EsiResponse<List<int>>> MarketGroups();
 
         /// <summary>
         /// Get information on an item group
@@ -111,7 +111,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/markets/groups/{market_group_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/markets/groups/{market_group_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/markets/groups/{market_group_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<MarketGroup>> GetItemGroupInfo(int marketGroupId);
+        Task<EsiResponse<MarketGroup>> MarketGroupInfo(int marketGroupId);
 
         /// <summary>
         /// Return a list of prices
@@ -121,7 +121,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/markets/prices/", Version = EndpointVersion.Legacy)]
         [Route("/v1/markets/prices/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/markets/prices/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Price>>> GetPrices();
+        Task<EsiResponse<List<Price>>> TypePrices();
 
         /// <summary>
         /// Return all orders in a structure
@@ -133,6 +133,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/markets/structures/{structure_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1markets/structures/{structure_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/markets/structures/{structure_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> GetStructureOrders(long structureId, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> StructureOrders(long structureId, int page = 1);
     }
 }

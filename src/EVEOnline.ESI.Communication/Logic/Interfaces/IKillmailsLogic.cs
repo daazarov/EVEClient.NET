@@ -18,7 +18,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/killmails/recent/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/killmails/recent/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/killmails/recent/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Killmail>>> GetCharacterKillmails(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<Killmail>>> CharacterKillmails(int characterId, int page = 1);
 
         /// <summary>
         /// Get a list of a corporation’s kills and losses going back 90 days
@@ -31,7 +31,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/corporations/{corporation_id}/killmails/recent/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/killmails/recent/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/killmails/recent/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Killmail>>> GetCorporationKillmails(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Killmail>>> CorporationKillmails(int corporationId, int page = 1);
 
         /// <summary>
         /// Return a single killmail from its ID and hash
@@ -43,6 +43,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/killmails/{killmail_id}/{killmail_hash}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/killmails/{killmail_id}/{killmail_hash}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/killmails/{killmail_id}/{killmail_hash}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<KillmailInfo>> GetKillmainInfo(int killmailId, string killmainHash);
+        Task<EsiResponse<KillmailInfo>> KillmailInfo(int killmailId, string killmainHash);
     }
 }

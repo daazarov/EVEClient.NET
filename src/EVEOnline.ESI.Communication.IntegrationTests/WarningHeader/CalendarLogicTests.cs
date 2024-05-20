@@ -9,7 +9,7 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.WarningHeader
         {
             var characterId = 2119944183;
 
-            var response = await _logicAccessor.CalendarLogic.GetCharacterSummaryCalendarEventsAsync(characterId);
+            var response = await _logicAccessor.CalendarLogic.CalendarItems(characterId);
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Warning, Is.Null);

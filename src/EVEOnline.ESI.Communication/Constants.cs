@@ -49,7 +49,7 @@ namespace EVEOnline.ESI.Communication
 
             public static class Alliances
             {
-                public const string AllianceList =                    "get_alliance";
+                public const string ActiveAlliances =                 "get_alliance";
                 public const string PublicInformation =               "get_alliances_alliance_id";
                 public const string CorporationsInAlliance =          "get_alliances_alliance_id_corporations";
                 public const string AllianceIcon =                    "get_alliances_alliance_id_icons";
@@ -67,10 +67,10 @@ namespace EVEOnline.ESI.Communication
 
             public static class Bookmarks 
             {
-                public const string CharacterBookmarkList =           "get_characters_character_id_bookmarks";
-                public const string CharacterBookmarkFolderList =     "get_characters_character_id_bookmarks_folders";
-                public const string CorporationBookmarkList =         "get_corporations_corporation_id_bookmarks";
-                public const string CorporationBookmarkFolderList =   "get_corporations_corporation_id_bookmarks_folders";
+                public const string CharacterBookmarks =              "get_characters_character_id_bookmarks";
+                public const string CharacterBookmarkFolders =        "get_characters_character_id_bookmarks_folders";
+                public const string CorporationBookmarks =            "get_corporations_corporation_id_bookmarks";
+                public const string CorporationBookmarkFolders =      "get_corporations_corporation_id_bookmarks_folders";
             }
 
             public static class Calendar
@@ -89,15 +89,15 @@ namespace EVEOnline.ESI.Communication
 
             public static class Contacts
             {
-                public const string AllianceContactList =             "get_alliances_alliance_id_contacts";
-                public const string AllianceContactLabelList =        "get_alliances_alliance_id_contacts_labels";
+                public const string AllianceContacts =                "get_alliances_alliance_id_contacts";
+                public const string AllianceContactLabels =           "get_alliances_alliance_id_contacts_labels";
                 public const string DeleteCharacterContacts =         "delete_characters_character_id_contacts";
-                public const string CharacterContactList =            "get_characters_character_id_contacts";
+                public const string CharacterContacts =               "get_characters_character_id_contacts";
                 public const string AddCharacterContacts =            "post_characters_character_id_contacts";
                 public const string UpdateCharacterContacts =         "put_characters_character_id_contacts";
-                public const string CharacterContactLabelList =       "get_characters_character_id_contacts_labels";
-                public const string CorporationContactList =          "get_corporations_corporation_id_contacts";
-                public const string CorporationContactLabelList =     "get_corporations_corporation_id_contacts_labels";
+                public const string CharacterContactLabels =          "get_characters_character_id_contacts_labels";
+                public const string CorporationContacts =             "get_corporations_corporation_id_contacts";
+                public const string CorporationContactLabels =        "get_corporations_corporation_id_contacts_labels";
             }
 
             public static class Contracts
@@ -303,62 +303,62 @@ namespace EVEOnline.ESI.Communication
 
             public static class Universe
             {
-                public const string Ancestries =                     "get_universe_ancestries";
-                public const string AsteroidBeltInfo =               "get_universe_asteroid_belts_asteroid_belt_id";
-                public const string Bloodlines =                     "get_universe_bloodlines";
-                public const string ItemCategories =                 "get_universe_categories";
-                public const string ItemCategoryInfo =               "get_universe_categories_category_id";
-                public const string Constellations =                 "get_universe_constellations";
-                public const string ConstellationInfo =              "get_universe_constellations_constellation_id";
-                public const string Factions =                       "get_universe_factions";
-                public const string Graphics =                       "get_universe_graphics";
-                public const string GraphicInfo =                    "get_universe_graphics_graphic_id";
-                public const string ItemGroups =                     "get_universe_groups";
-                public const string ItemGroupInfo =                  "get_universe_groups_group_id";
-                public const string IDs =                            "post_universe_ids";
-                public const string MoonInfo =                       "get_universe_moons_moon_id";
-                public const string Names =                          "post_universe_names";
-                public const string PlanetInfo =                     "get_universe_planets_planet_id";
-                public const string Races =                          "get_universe_races";
-                public const string Regions =                        "get_universe_regions";
-                public const string RegionInfo =                     "get_universe_regions_region_id";
-                public const string StargateInfo =                   "get_universe_stargates_stargate_id";
-                public const string StarInfo =                       "get_universe_stars_star_id";
-                public const string StationInfo =                    "get_universe_stations_station_id";
-                public const string Structures =                     "get_universe_structures";
-                public const string StructureInfo =                  "get_universe_structures_structure_id";
-                public const string SystemJumps =                    "get_universe_system_jumps";
-                public const string SystemKills =                    "get_universe_system_kills";
-                public const string SolarSystems =                   "get_universe_systems";
-                public const string SolarSystemInfo =                "get_universe_systems_system_id";
-                public const string Types =                          "get_universe_types";
-                public const string TypeInfo =                       "get_universe_types_type_id";
+                public const string Ancestries =                      "get_universe_ancestries";
+                public const string AsteroidBeltInfo =                "get_universe_asteroid_belts_asteroid_belt_id";
+                public const string Bloodlines =                      "get_universe_bloodlines";
+                public const string ItemCategories =                  "get_universe_categories";
+                public const string ItemCategoryInfo =                "get_universe_categories_category_id";
+                public const string Constellations =                  "get_universe_constellations";
+                public const string ConstellationInfo =               "get_universe_constellations_constellation_id";
+                public const string Factions =                        "get_universe_factions";
+                public const string Graphics =                        "get_universe_graphics";
+                public const string GraphicInfo =                     "get_universe_graphics_graphic_id";
+                public const string ItemGroups =                      "get_universe_groups";
+                public const string ItemGroupInfo =                   "get_universe_groups_group_id";
+                public const string IDs =                             "post_universe_ids";
+                public const string MoonInfo =                        "get_universe_moons_moon_id";
+                public const string Names =                           "post_universe_names";
+                public const string PlanetInfo =                      "get_universe_planets_planet_id";
+                public const string Races =                           "get_universe_races";
+                public const string Regions =                         "get_universe_regions";
+                public const string RegionInfo =                      "get_universe_regions_region_id";
+                public const string StargateInfo =                    "get_universe_stargates_stargate_id";
+                public const string StarInfo =                        "get_universe_stars_star_id";
+                public const string StationInfo =                     "get_universe_stations_station_id";
+                public const string Structures =                      "get_universe_structures";
+                public const string StructureInfo =                   "get_universe_structures_structure_id";
+                public const string SystemJumps =                     "get_universe_system_jumps";
+                public const string SystemKills =                     "get_universe_system_kills";
+                public const string SolarSystems =                    "get_universe_systems";
+                public const string SolarSystemInfo =                 "get_universe_systems_system_id";
+                public const string Types =                           "get_universe_types";
+                public const string TypeInfo =                        "get_universe_types_type_id";
             }
 
             public static class UserInterface
             {
-                public const string SetAutopilotWaypoint =           "post_ui_autopilot_waypoint";
-                public const string OpenContractWindow =             "post_ui_openwindow_contractwindow";
-                public const string OpenInformationWindow =          "post_ui_openwindow_ingormationwindow";
-                public const string OpenMarketDetails =              "post_ui_openwindow_marketdetails";
-                public const string OpenNewMailWindow =              "post_ui_openwindow_newmail";
+                public const string SetAutopilotWaypoint =            "post_ui_autopilot_waypoint";
+                public const string OpenContractWindow =              "post_ui_openwindow_contractwindow";
+                public const string OpenInformationWindow =           "post_ui_openwindow_ingormationwindow";
+                public const string OpenMarketDetails =               "post_ui_openwindow_marketdetails";
+                public const string OpenNewMailWindow =               "post_ui_openwindow_newmail";
             }
 
             public static class Wallet
             {
-                public const string WalletBalance =                  "get_characters_character_id_wallet";
-                public const string WalletJournal =                  "get_characters_character_id_wallet_journal";
-                public const string WalletTransactions =             "get_characters_character_id_wallet_transactions";
-                public const string CorporationWallets =             "get_corporations_corporation_id_wallets";
-                public const string CorporationWalletJournal =       "get_corporations_corporation_id_wallets_division_journal";
-                public const string CorporationWalletTransactions =  "get_corporations_corporation_id_wallets_division_transactions";
+                public const string WalletBalance =                   "get_characters_character_id_wallet";
+                public const string WalletJournal =                   "get_characters_character_id_wallet_journal";
+                public const string WalletTransactions =              "get_characters_character_id_wallet_transactions";
+                public const string CorporationWallets =              "get_corporations_corporation_id_wallets";
+                public const string CorporationWalletJournal =        "get_corporations_corporation_id_wallets_division_journal";
+                public const string CorporationWalletTransactions =   "get_corporations_corporation_id_wallets_division_transactions";
             }
 
             public static class Wars
             {
-                public const string WarList =                        "get_wars";
-                public const string WarDetails =                     "get_wars_war_id";
-                public const string Kills =                          "get_wars_war_id_killmails";
+                public const string WarList =                         "get_wars";
+                public const string WarDetails =                      "get_wars_war_id";
+                public const string Kills =                           "get_wars_war_id_killmails";
             }
         }
     }

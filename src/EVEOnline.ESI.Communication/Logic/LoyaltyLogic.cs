@@ -16,10 +16,10 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<Offer>>> GetCorporationOffers(int corporationId) =>
+        public Task<EsiResponse<List<Offer>>> CorporationOffers(int corporationId) =>
             _esiClient.GetRequestAsync<CorporationIdRouteRequest, List<Offer>>(CorporationIdRouteRequest.Create(corporationId));
 
-        public Task<EsiResponse<List<Points>>> GetLoyaltyPoints(int characterId) =>
+        public Task<EsiResponse<List<Points>>> LoyaltyPoints(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<Points>>(CharacterIdRouteRequest.Create(characterId));
     }
 }

@@ -18,13 +18,13 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse> DeleteCharacterFittingAsync(int characterId, int fittingId) =>
+        public Task<EsiResponse> DeleteFitting(int characterId, int fittingId) =>
             _esiClient.DeleteRequestAsync<DeleteFittingRequest>(DeleteFittingRequest.Create(characterId, fittingId));
 
-        public Task<EsiResponse<List<Fitting>>> GetCharacterFittingsAsync(int characterId) =>
+        public Task<EsiResponse<List<Fitting>>> GetFittings(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<Fitting>>(CharacterIdRouteRequest.Create(characterId));
 
-        public Task<EsiResponse<NewFittingResponse>> NewCharacterFittingAsync(int characterId, NewFitting fitting) =>
+        public Task<EsiResponse<NewFittingResponse>> NewFitting(int characterId, NewFitting fitting) =>
             _esiClient.PostRequestAsync<NewFittingRequest, NewFittingResponse>(NewFittingRequest.Create(characterId, NewFittingBodyModel.FromDataContractModel(fitting)));
     }
 }

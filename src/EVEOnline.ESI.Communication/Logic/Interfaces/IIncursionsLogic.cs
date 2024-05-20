@@ -16,6 +16,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/incursions/", Version = EndpointVersion.Legacy)]
         [Route("/v1/incursions/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/incursions/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Incursion>>> GetIncursions();
+        Task<EsiResponse<List<Incursion>>> IncursionList();
     }
 }

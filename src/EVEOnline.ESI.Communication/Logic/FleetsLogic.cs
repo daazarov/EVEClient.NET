@@ -18,46 +18,46 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<FleetInfo>> GetCharacterFleetAsync(int characterId) =>
+        public Task<EsiResponse<FleetInfo>> FleetInfo(int characterId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, FleetInfo>(CharacterIdRouteRequest.Create(characterId));
 
-        public Task<EsiResponse<FleetSettings>> GetFleetSettingsAsync(long fleetId) =>
+        public Task<EsiResponse<FleetSettings>> FleetSettings(long fleetId) =>
             _esiClient.GetRequestAsync<FleetIdRouteRequest, FleetSettings>(FleetIdRouteRequest.Create(fleetId));
 
-        public Task<EsiResponse> UpdateFleetSettingsAsync(long fleetId, bool? isFreeMove, string motd) =>
+        public Task<EsiResponse> UpdateFleetSettings(long fleetId, bool? isFreeMove, string motd) =>
             _esiClient.PutRequestAsync<UpdateFleetSettingsRequest>(UpdateFleetSettingsRequest.Create(fleetId, isFreeMove, motd));
 
-        public Task<EsiResponse<List<FleetMember>>> GetFleetMembersAsync(long fleetId) =>
+        public Task<EsiResponse<List<FleetMember>>> FleetMembers(long fleetId) =>
             _esiClient.GetRequestAsync<FleetIdRouteRequest, List<FleetMember>>(FleetIdRouteRequest.Create(fleetId));
 
-        public Task<EsiResponse> InviteMemberAsync(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null) =>
+        public Task<EsiResponse> InviteMember(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null) =>
             _esiClient.PostNoContentRequestAsync(InviteFleetMemberRequest.Create(fleetId, characterId, role.ToEsiString(), squadId, wingId));
 
-        public Task<EsiResponse> KickMemberAsync(long fleetId, int memberId) =>
+        public Task<EsiResponse> KickMember(long fleetId, int memberId) =>
             _esiClient.DeleteRequestAsync<FleetMemberRouteRequest>(FleetMemberRouteRequest.Create(fleetId, memberId));
 
-        public Task<EsiResponse> MoveMemberAsync(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null) =>
+        public Task<EsiResponse> MoveMember(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null) =>
             _esiClient.PutRequestAsync<MoveFleetMemberRequest>(MoveFleetMemberRequest.Create(fleetId, memberId, role.ToEsiString(), squadId, wingId));
 
-        public Task<EsiResponse> DeleteSquadAsync(long fleetId, long squadId) =>
+        public Task<EsiResponse> DeleteSquad(long fleetId, long squadId) =>
             _esiClient.DeleteRequestAsync<FleetSquadRouteRequest>(FleetSquadRouteRequest.Create(fleetId, squadId));
 
-        public Task<EsiResponse> RenameSquadAsync(long fleetId, long squadId, string name) =>
+        public Task<EsiResponse> RenameSquad(long fleetId, long squadId, string name) =>
             _esiClient.PutRequestAsync<RenameSquadRequest>(RenameSquadRequest.Create(fleetId, squadId, name));
 
-        public Task<EsiResponse<List<Wing>>> GetFleetWingsAsync(long fleetId) =>
+        public Task<EsiResponse<List<Wing>>> InviteMember(long fleetId) =>
             _esiClient.GetRequestAsync<FleetIdRouteRequest, List<Wing>>(FleetIdRouteRequest.Create(fleetId));
 
-        public Task<EsiResponse<NewWing>> CreateFleetWingAsync(long fleetId) =>
+        public Task<EsiResponse<NewWing>> NewWing(long fleetId) =>
             _esiClient.PostRequestAsync<FleetIdRouteRequest, NewWing>(FleetIdRouteRequest.Create(fleetId));
 
-        public Task<EsiResponse> DeleteFleetWingAsync(long fleetId, long wingId) =>
+        public Task<EsiResponse> DeleteWing(long fleetId, long wingId) =>
             _esiClient.DeleteRequestAsync<FleetWingRouteRequest>(FleetWingRouteRequest.Create(fleetId, wingId));
 
-        public Task<EsiResponse> RenameFleetWingAsync(long fleetId, long wingId, string name) =>
+        public Task<EsiResponse> RenameWing(long fleetId, long wingId, string name) =>
             _esiClient.PutRequestAsync<RenameWingRequest>(RenameWingRequest.Create(fleetId, wingId, name));
 
-        public Task<EsiResponse<NewSquad>> CreateSquadAsync(long fleetId, long wingId) =>
+        public Task<EsiResponse<NewSquad>> NewSquad(long fleetId, long wingId) =>
             _esiClient.PostRequestAsync<FleetWingRouteRequest, NewSquad>(FleetWingRouteRequest.Create(fleetId, wingId));
     }
 }

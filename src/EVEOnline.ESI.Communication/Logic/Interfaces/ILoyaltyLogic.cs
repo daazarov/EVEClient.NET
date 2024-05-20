@@ -17,7 +17,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/loyalty/points/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/loyalty/points/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/loyalty/points/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Points>>> GetLoyaltyPoints(int characterId);
+        Task<EsiResponse<List<Points>>> LoyaltyPoints(int characterId);
 
         /// <summary>
         /// Return a list of offers from a specific corporation’s loyalty store
@@ -28,6 +28,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/loyalty/stores/{corporation_id}/offers/", Version = EndpointVersion.Legacy)]
         [Route("/v1/loyalty/stores/{corporation_id}/offers/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/loyalty/stores/{corporation_id}/offers/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Offer>>> GetCorporationOffers(int corporationId);
+        Task<EsiResponse<List<Offer>>> CorporationOffers(int corporationId);
     }
 }

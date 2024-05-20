@@ -18,7 +18,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/contracts/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/contracts/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/contracts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Contract>>> GetCharacterContractsAsync(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<Contract>>> CharacterContracts(int characterId, int page = 1);
 
         /// <summary>
         /// Lists bids on a particular auction contract
@@ -30,7 +30,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Bid>>> GetCharacterContractBidsAsync(int characterId, int contractId);
+        Task<EsiResponse<List<Bid>>> CharacterContractBids(int characterId, int contractId);
 
         /// <summary>
         /// Lists items of a particular contract
@@ -42,7 +42,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/contracts/{contract_id}/items/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/contracts/{contract_id}/items/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/contracts/{contract_id}/items/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ContractItem>>> GetCharacterContractItemsAsync(int characterId, int contractId);
+        Task<EsiResponse<List<ContractItem>>> CharacterContractItems(int characterId, int contractId);
 
         /// <summary>
         /// Returns a paginated list of all public contracts in the given region
@@ -54,7 +54,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/contracts/public/{region_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/contracts/public/{region_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/contracts/public/{region_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<PublicContract>>> GetPublicContractsAsync(int regionId, int page = 1);
+        Task<EsiResponsePagination<List<PublicContract>>> PublicContracts(int regionId, int page = 1);
 
         /// <summary>
         /// Lists bids on a public auction contract
@@ -66,7 +66,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/contracts/public/bids/{contract_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/contracts/public/bids/{contract_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/contracts/public/bids/{contract_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Bid>>> GetPublicContractBidsAsync(int contractId, int page = 1);
+        Task<EsiResponsePagination<List<Bid>>> PublicContractBids(int contractId, int page = 1);
 
         /// <summary>
         /// Lists items of a public contract
@@ -78,7 +78,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/contracts/public/items/{contract_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/contracts/public/items/{contract_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/contracts/public/items/{contract_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<ContractItem>>> GetPublicContractItemsAsync(int contractId, int page = 1);
+        Task<EsiResponsePagination<List<ContractItem>>> PublicContractItems(int contractId, int page = 1);
 
         /// <summary>
         /// Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee.
@@ -91,7 +91,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/corporations/{corporation_id}/contracts/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/contracts/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/contracts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Contract>>> GetCorporationContractsAsync(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Contract>>> CorporationContracts(int corporationId, int page = 1);
 
         /// <summary>
         /// Lists bids on a particular auction contract
@@ -104,7 +104,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/corporations/{corporation_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Bid>>> GetCorporationContractsBidsAsync(int corporationId, int contractId, int page = 1);
+        Task<EsiResponsePagination<List<Bid>>> CorporationContractBids(int corporationId, int contractId, int page = 1);
 
         /// <summary>
         /// Lists items of a particular contract
@@ -116,6 +116,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/corporations/{corporation_id}/contracts/{contract_id}/items/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/contracts/{contract_id}/items/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/contracts/{contract_id}/items/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ContractItem>>> GetCorporationContractItemsAsync(int corporationId, int contractId);
+        Task<EsiResponse<List<ContractItem>>> CorporationContractItems(int corporationId, int contractId);
     }
 }

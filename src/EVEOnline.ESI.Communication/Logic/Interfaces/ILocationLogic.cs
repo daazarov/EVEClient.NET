@@ -18,7 +18,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/characters/{character_id}/location/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/location/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/location/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Location>> GetCharacterLocationAsync(int characterId);
+        Task<EsiResponse<Location>> CurrentLocation(int characterId);
 
         /// <summary>
         /// Checks if the character is currently online
@@ -29,7 +29,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/v2/characters/{character_id}/online/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/v3/characters/{character_id}/online/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/online/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Activity>> GetCharacterOnlineAsync(int characterId);
+        Task<EsiResponse<Activity>> Online(int characterId);
 
         /// <summary>
         /// Get the current ship type, name and id
@@ -41,6 +41,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/v1/characters/{character_id}/ship/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/ship/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/ship/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Ship>> GetCharacterShipAsync(int characterId);
+        Task<EsiResponse<Ship>> CurrentShip(int characterId);
     }
 }

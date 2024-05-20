@@ -14,7 +14,7 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<Insurance>>> GetInsuranceLevelsAsync() =>
+        public Task<EsiResponse<List<Insurance>>> InsuranceLevels() =>
             _esiClient.GetRequestAsync<List<Insurance>>();
     }
 }

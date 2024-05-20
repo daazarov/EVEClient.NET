@@ -14,6 +14,6 @@ namespace EVEOnline.ESI.Communication.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<Incursion>>> GetIncursions() => _esiClient.GetRequestAsync<List<Incursion>>();
+        public Task<EsiResponse<List<Incursion>>> IncursionList() => _esiClient.GetRequestAsync<List<Incursion>>();
     }
 }

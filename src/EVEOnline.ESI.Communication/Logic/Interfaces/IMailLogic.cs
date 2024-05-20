@@ -20,7 +20,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/mail/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Header>>> GetCharacterMailHeaders(int characterId, int[] labels = null, int? lastMailId = null);
+        Task<EsiResponse<List<Header>>> MailHeaders(int characterId, int[] labels = null, int? lastMailId = null);
 
         /// <summary>
         /// Create and send a new mail
@@ -81,7 +81,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/characters/{character_id}/mail/labels/", Version = EndpointVersion.Latest)]
         [Route("/v3/characters/{character_id}/mail/labels/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/labels/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<LabelCounts>> GetCharacterMailLabels(int characterId);
+        Task<EsiResponse<LabelCounts>> GetLabels(int characterId);
 
         /// <summary>
         /// Create a mail label
@@ -118,6 +118,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/mail/lists/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/lists/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/lists/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<MailingList>>> GetCharacterMailingList(int characterId);
+        Task<EsiResponse<List<MailingList>>> MailingList(int characterId);
     }
 }

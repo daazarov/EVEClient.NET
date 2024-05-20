@@ -17,7 +17,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/characters/{character_id}/assets/", Version = EndpointVersion.Latest)]
         [Route("/v5/characters/{character_id}/assets/", Version = EndpointVersion.V5, Preferred = true)]
         [Route("/dev/characters/{character_id}/assets/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<AssetItem>>> GetCharacterAssets(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<AssetItem>>> CharacterAssetList(int characterId, int page = 1);
 
         /// <summary>
         /// Return locations for a set of item ids, which you can get from character assets endpoint.
@@ -29,7 +29,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/characters/{character_id}/assets/locations/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/assets/locations/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/assets/locations/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ItemLocation>>> PostCharacterLocationAssets(int characterId, long[] itemIds);
+        Task<EsiResponse<List<ItemLocation>>> LocationAssets(int characterId, long[] itemIds);
 
         /// <summary>
         /// Return names for a set of item ids, which you can get from character assets endpoint.
@@ -42,7 +42,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/characters/{character_id}/assets/names/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/assets/names/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/assets/names/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ItemName>>> PostCharacterNameAssets(int characterId, long[] itemIds);
+        Task<EsiResponse<List<ItemName>>> AssetItemNames(int characterId, long[] itemIds);
 
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/corporations/{corporation_id}/assets/", Version = EndpointVersion.Latest)]
         [Route("/v5/corporations/{corporation_id}/assets/", Version = EndpointVersion.V5, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/assets/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<AssetItem>>> GetCorporationAssets(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<AssetItem>>> CorporationAssetList(int corporationId, int page = 1);
 
         /// <summary>
         /// Return locations for a set of item ids, which you can get from corporation assets endpoint.
@@ -67,7 +67,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/latest/corporations/{corporation_id}/assets/locations/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/assets/locations/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/assets/locations/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ItemLocation>>> PostCorporationLocationAssets(int corporationId, long[] itemIds);
+        Task<EsiResponse<List<ItemLocation>>> CorporationLocationAssets(int corporationId, long[] itemIds);
 
         /// <summary>
         /// Return names for a set of item ids, which you can get from corporation assets endpoint.
@@ -80,6 +80,6 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/corporations/{corporation_id}/assets/names/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/assets/names/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/assets/names/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ItemName>>> PostCorporationNameAssets(int corporationId, long[] itemIds);
+        Task<EsiResponse<List<ItemName>>> CorporationAssetItemNames(int corporationId, long[] itemIds);
     }
 }
