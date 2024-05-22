@@ -4,8 +4,7 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.WarningHeader
 {
     public class CalendarLogicTests : WarningHeaderTestsBase
     {
-        [TestCaseSource(nameof(EndpointVersions), new object[] { ESI.Endpoints.Calendar.CalendarItems })]
-        public async Task CalendarItems_Test(EndpointVersion endpointVersion)
+        public async Task CalendarItems_Test()
         {
             var characterId = 2119944183;
 

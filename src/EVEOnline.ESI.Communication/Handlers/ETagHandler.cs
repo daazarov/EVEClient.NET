@@ -11,21 +11,18 @@ namespace EVEOnline.ESI.Communication.Handlers
 {
     public class ETagHandler : IHandler
     {
-        private readonly IOptionsMonitor<EsiClientConfiguration> _options;
+        private readonly EsiClientConfiguration _options;
         private readonly IETagStorage _storage;
 
-        public ETagHandler(IOptionsMonitor<EsiClientConfiguration> options) : this(options, null)
-        { }
-
-        public ETagHandler(IOptionsMonitor<EsiClientConfiguration> options, IETagStorage storage)
+        public ETagHandler(IOptions<EsiClientConfiguration> options, IETagStorage storage)
         { 
-            _options = options;
+            _options = options.Value;
             _storage = storage;
         }
 
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            if (!_options.CurrentValue.EnableETag)
+            if (!_options.EnableETag)
             {
                 await next.Invoke(context);
             }
@@ -60,6 +57,6 @@ namespace EVEOnline.ESI.Communication.Handlers
         }
 
         protected virtual string GetKey(EsiContext context) =>
-            ETagStoreKeyGenerator.GetKey(context.EndpointId, context.RequestContext.PathParametersMap.AsNameValueCollection(), context.RequestContext.QueryParametersMap.AsNameValueCollection());
+            ETagStoreKeyGenerator.GetKey(context.RequestContext.EndpointId, context.RequestContext.PathParametersMap.AsNameValueCollection(), context.RequestContext.QueryParametersMap.AsNameValueCollection());
     }
 }

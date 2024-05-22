@@ -1,4 +1,8 @@
-﻿namespace EVEOnline.ESI.Communication
+﻿/*
+Sketches for a separate Polly extension
+
+
+namespace EVEOnline.ESI.Communication
 {
     public class EndpointRoutePrioritySetting
     {
@@ -6,3 +10,4 @@
         public int Order { get; set; }
     }
 }
+*/

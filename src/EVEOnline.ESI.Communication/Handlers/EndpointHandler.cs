@@ -10,62 +10,23 @@ namespace EVEOnline.ESI.Communication.Handlers
 {
     public class EndpointHandler : IHandler
     {
-        private readonly ICustomEndpointRoutePriorityProvider _endpointRoutePriorityProvider;
-
-        public EndpointHandler() : this(null)
-        { }
-
-        public EndpointHandler(ICustomEndpointRoutePriorityProvider endpointRoutePriorityProvider)
-        {
-            _endpointRoutePriorityProvider = endpointRoutePriorityProvider;
-        }
-
-        protected virtual bool CustomPriorityEnabled => _endpointRoutePriorityProvider != null;
-
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            context.RequestContext.RouteQueue = CustomPriorityEnabled ? SetupCustomPriorityQueue(context) : SetupDefaultPriorityQueue(context);
+            context.RequestContext.RequestUrl = SetupDefaultPriorityQueue(context);
 
             await next.Invoke(context);
         }
 
-        protected virtual RouteQueue SetupDefaultPriorityQueue(EsiContext context)
+        protected virtual string SetupDefaultPriorityQueue(EsiContext context)
         {
-            var routeQueue = new RouteQueue();
-
             var availableRoutes = ReflectionCacheAttributeAccessor.Instance.GetAttributes<RouteAttribute>(context.CallingContext.MethodInfo);
 
-            foreach (var attribute in availableRoutes.Where(x => x.Preferred))
+            foreach (var item in availableRoutes)
             {
-                routeQueue.AddRoute(BuildUrlQuery(context, attribute.Template), new RoutePriority { Version = attribute.Version });
+                context.RequestContext.EndpointUrls.Add(item.Version, BuildUrlQuery(context, item.Template));
             }
 
-            return routeQueue;
-        }
-
-        protected virtual RouteQueue SetupCustomPriorityQueue(EsiContext context)
-        {
-            var endpointPrioritySetting = _endpointRoutePriorityProvider.GetRoutePrioritiesForEndpoint(context.EndpointId);
-
-            if (endpointPrioritySetting == null || !endpointPrioritySetting.Any())
-            {
-                return SetupDefaultPriorityQueue(context);
-            }
-
-            var routeQueue = new RouteQueue();
-            var availableRoutes = ReflectionCacheAttributeAccessor.Instance.GetAttributes<RouteAttribute>(context.CallingContext.MethodInfo);
-
-            foreach (var setting in endpointPrioritySetting)
-            {
-                var route = availableRoutes.Where(x => x.Version == setting.Version).FirstOrDefault();
-
-                if (route != null)
-                {
-                    routeQueue.AddRoute(BuildUrlQuery(context, route.Template), new RoutePriority { Version = route.Version, Order = setting.Order });
-                }
-            }
-
-            return routeQueue;
+            return BuildUrlQuery(context, availableRoutes.Where(x => x.Preferred).First().Template);
         }
 
         private string BuildUrlQuery(EsiContext context, string template)

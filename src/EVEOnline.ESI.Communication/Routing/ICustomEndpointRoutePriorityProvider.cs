@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿/*
+Sketches for a separate Polly extension
+
+
+using System.Collections.Generic;
 
 namespace EVEOnline.ESI.Communication
 {
@@ -11,3 +15,4 @@ namespace EVEOnline.ESI.Communication
         IEnumerable<EndpointRoutePrioritySetting> GetRoutePrioritiesForEndpoint(string endpointId);
     }
 }
+*/

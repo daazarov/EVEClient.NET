@@ -13,11 +13,11 @@ namespace EVEOnline.ESI.Communication.Handlers
 {
     public class UrlRequestParametersHandler : IHandler
     {
-        private readonly IOptionsMonitor<EsiClientConfiguration> _options;
+        private readonly EsiClientConfiguration _options;
         
-        public UrlRequestParametersHandler(IOptionsMonitor<EsiClientConfiguration> options) 
+        public UrlRequestParametersHandler(IOptions<EsiClientConfiguration> options) 
         {
-            _options = options;
+            _options = options.Value;
         }
 
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
@@ -74,7 +74,7 @@ namespace EVEOnline.ESI.Communication.Handlers
         {
             return new Dictionary<string, string>()
             {
-                { "datasource", _options.CurrentValue.Server }
+                { "datasource", _options.Server.ToString().ToLower()}
             };
         }
     }

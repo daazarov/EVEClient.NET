@@ -45,7 +45,7 @@ namespace EVEOnline.ESI.Communication.Logic
         public Task<EsiResponse> RenameSquad(long fleetId, long squadId, string name) =>
             _esiClient.PutRequestAsync<RenameSquadRequest>(RenameSquadRequest.Create(fleetId, squadId, name));
 
-        public Task<EsiResponse<List<Wing>>> InviteMember(long fleetId) =>
+        public Task<EsiResponse<List<Wing>>> FleetWings(long fleetId) =>
             _esiClient.GetRequestAsync<FleetIdRouteRequest, List<Wing>>(FleetIdRouteRequest.Create(fleetId));
 
         public Task<EsiResponse<NewWing>> NewWing(long fleetId) =>

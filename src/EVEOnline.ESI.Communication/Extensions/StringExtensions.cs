@@ -16,6 +16,16 @@ namespace EVEOnline.ESI.Communication.Extensions
             return @this;
         }
 
+        public static string EnsureLeadingSlash(this string url)
+        {
+            if (!string.IsNullOrEmpty(url) && !url.StartsWith("/"))
+            {
+                return "/" + url;
+            }
+
+            return url;
+        }
+
         public static string MD5(this string @this)
         {
             return HashingFactory.Instance.CreateHashingInstance(HashingAliases.MD5).GenerateHash(@this);

@@ -8,7 +8,7 @@ namespace EVEOnline.ESI.Communication.DependencyInjection
         private readonly IServiceCollection _serviceCollection;
         private readonly EsiClientConfiguration _configuration;
 
-        public IServiceCollection ServiceCollection => _serviceCollection;
+        public IServiceCollection Services => _serviceCollection;
         public EsiClientConfiguration Configuration => _configuration;
 
         public EsiClientConfigurationBuilder(IServiceCollection serviceCollection, EsiClientConfiguration configuration)

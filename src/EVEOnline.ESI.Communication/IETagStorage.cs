@@ -6,6 +6,5 @@ namespace EVEOnline.ESI.Communication
     {
         Task<bool> TryGetETagAsync(string eTagKey, out string eTag);
         Task StoreETagAsync(string eTagKey, string eTag);
-        Task ReplaceETagAsync(string eTagKey, string eTag);
     }
 }

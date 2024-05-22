@@ -25,7 +25,7 @@ namespace EVEOnline.ESI.Communication.IntegrationTests.Fakes
             clientId = Environment.GetEnvironmentVariable("ESI_CLIENT_ID")!;
         }
 
-        public async Task<string> GetAccessToken()
+        public async Task<string> RequestAccessToken()
         {
             if (token != null)
             {

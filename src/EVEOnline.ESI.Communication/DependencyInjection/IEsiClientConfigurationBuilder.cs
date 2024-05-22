@@ -4,7 +4,7 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public interface IEsiClientConfigurationBuilder
     {
-        IServiceCollection ServiceCollection { get; }
+        IServiceCollection Services { get; }
         EsiClientConfiguration Configuration { get; }
     }
 }

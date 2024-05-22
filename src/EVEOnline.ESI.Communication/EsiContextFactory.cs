@@ -14,14 +14,14 @@ namespace EVEOnline.ESI.Communication
             _httpClientFactory = httpClientFactory;
         }
 
-        public EsiContext CreateContext(string endpointId, Type callingMemberType, string callingMemberName)
+        public EsiContext CreateContext(Type callingMemberType, string callingMemberName)
         {
-            return new EsiContext(endpointId, _httpClientFactory.CreateClient(ESI.HttpClientName), new CallingContext(callingMemberName, callingMemberType));
+            return new EsiContext(_httpClientFactory.CreateClient(ESI.HttpClientName), new CallingContext(callingMemberName, callingMemberType));
         }
 
-        public EsiContext CreateContext(string endpointId, Type callingMemberType, string callingMemberName, IRequestModel requestModel)
+        public EsiContext CreateContext(Type callingMemberType, string callingMemberName, IRequestModel requestModel)
         {
-            return new EsiContext(endpointId, _httpClientFactory.CreateClient(ESI.HttpClientName), new CallingContext(callingMemberName, callingMemberType), requestModel);
+            return new EsiContext(_httpClientFactory.CreateClient(ESI.HttpClientName), new CallingContext(callingMemberName, callingMemberType), requestModel);
         }
     }
 }

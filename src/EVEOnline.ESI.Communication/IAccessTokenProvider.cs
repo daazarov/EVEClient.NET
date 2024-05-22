@@ -4,6 +4,6 @@ namespace EVEOnline.ESI.Communication
 {
     public interface IAccessTokenProvider
     {
-        Task<string> GetAccessToken();
+        Task<string> RequestAccessToken();
     }
 }

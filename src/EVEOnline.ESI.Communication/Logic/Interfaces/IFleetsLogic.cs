@@ -140,7 +140,7 @@ namespace EVEOnline.ESI.Communication
         [Route("/legacy/fleets/{fleet_id}/wings/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/wings/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/wings/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Wing>>> InviteMember(long fleetId);
+        Task<EsiResponse<List<Wing>>> FleetWings(long fleetId);
 
         /// <summary>
         /// Create a new wing in a fleet

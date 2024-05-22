@@ -1,11 +1,11 @@
-﻿using EVEOnline.ESI.Communication.Models;
-using System;
+﻿using System;
+using EVEOnline.ESI.Communication.Models;
 
 namespace EVEOnline.ESI.Communication
 {
     internal interface IEsiContextFactory
     {
-        EsiContext CreateContext(string endpointId, Type callingMemberType, string callingMemberName);
-        EsiContext CreateContext(string endpointId, Type callingMemberType, string callingMemberName, IRequestModel requestModel);
+        EsiContext CreateContext(Type callingMemberType, string callingMemberName);
+        EsiContext CreateContext(Type callingMemberType, string callingMemberName, IRequestModel requestModel);
     }
 }

@@ -30,16 +30,6 @@ namespace EVEOnline.ESI.Communication.Extensions
             return @this;
         }
 
-        public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T> @this)
-        {
-            if (@this == null)
-            {
-                return Enumerable.Empty<T>();
-            }
-
-            return @this;
-        }
-
         public static NameValueCollection AsNameValueCollection<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> @this)
         {
             var nv = new NameValueCollection();
@@ -140,22 +130,5 @@ namespace EVEOnline.ESI.Communication.Extensions
 
             return attribute?.Value;
         }
-
-        //public static string PreparePathTemplate(this HttpUtility @this, string template, NameValueCollection replacement)
-        //{
-        //    if (replacement == null || replacement.Count == 0)
-        //    {
-        //        return template;
-        //    }
-
-        //    var path = string.Empty;
-
-        //    foreach (var key in replacement.AllKeys)
-        //    {
-        //        path = template.Replace($"{{{key}}}", replacement.Get(key));
-        //    }
-
-        //    return path;
-        //}
     }
 }

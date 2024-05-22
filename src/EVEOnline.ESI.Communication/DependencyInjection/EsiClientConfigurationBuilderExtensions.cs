@@ -1,14 +1,104 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+
 using EVEOnline.ESI.Communication;
 using EVEOnline.ESI.Communication.DependencyInjection;
 using EVEOnline.ESI.Communication.Handlers;
+using EVEOnline.ESI.Communication.Pipline;
+using EVEOnline.ESI.Communication.Defaults;
+using EVEOnline.ESI.Communication.Logic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static partial class EsiClientConfigurationBuilderExtensions
     {
+        public static IEsiClientConfigurationBuilder AddRequiredClientServices(this IEsiClientConfigurationBuilder builder)
+        {
+            builder.Services
+                .AddHttpClient(ESI.HttpClientName, httpClient =>
+                {
+                    httpClient.BaseAddress = new Uri(builder.Configuration.EsiUrl);
+                })
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                { 
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                });
+
+            builder.Services.TryAddSingleton<IEsiContextFactory, EsiContextFactory>();
+            builder.Services.TryAddSingleton<IRequestPiplineBuilder, RequestPiplineBuilder>();
+            builder.Services.TryAddScoped<IEsiLogicAccessor, EsiLogicAccessor>();
+            builder.Services.TryAddScoped(typeof(IEsiHttpClient<>), typeof(EsiHttpClient<>));
+
+            return builder;
+        }
+
+        public static IEsiClientConfigurationBuilder AddDefaults(this IEsiClientConfigurationBuilder builder)
+        {
+            builder.Services.TryAddSingleton<IETagStorage, DefaultInMemoryETagThreadSaveStore>();
+            builder.Services.TryAddSingleton<IScopeAccessValidator, DefaultScopeAccessValidator>();
+            builder.Services.TryAddSingleton<IPiplineStore, DefaultPiplineThreadSaveStore>();
+
+            return builder;
+        }
+
+        public static IEsiClientConfigurationBuilder AddEsiLogic(this IEsiClientConfigurationBuilder builder)
+        {
+            builder.Services.TryAddScoped<ICharacterLogic, CharacterLogic>();
+            builder.Services.TryAddScoped<IAllianceLogic, AllianceLogic>();
+            builder.Services.TryAddScoped<IAssetsLogic, AssetsLogic>();
+            builder.Services.TryAddScoped<IBookmarksLogic, BookmarksLogic>();
+            builder.Services.TryAddScoped<ICalendarLogic, CalendarLogic>();
+            builder.Services.TryAddScoped<IClonesLogic, ClonesLogic>();
+            builder.Services.TryAddScoped<IContactsLogic, ContactsLogic>();
+            builder.Services.TryAddScoped<IContractsLogic, ContractsLogic>();
+            builder.Services.TryAddScoped<ICorporationLogic, CorporationLogic>();
+            builder.Services.TryAddScoped<IDogmaLogic, DogmaLogic>();
+            builder.Services.TryAddScoped<IFactionWarfareLogic, FactionWarfareLogic>();
+            builder.Services.TryAddScoped<IFittingsLogic, FittingsLogic>();
+            builder.Services.TryAddScoped<IFleetsLogic, FleetsLogic>();
+            builder.Services.TryAddScoped<IIncursionsLogic, IncursionsLogic>();
+            builder.Services.TryAddScoped<IIndustryLogic, IndustryLogic>();
+            builder.Services.TryAddScoped<IInsuranceLogic, InsuranceLogic>();
+            builder.Services.TryAddScoped<IKillmailsLogic, KillmailsLogic>();
+            builder.Services.TryAddScoped<ILocationLogic, LocationLogic>();
+            builder.Services.TryAddScoped<ILoyaltyLogic, LoyaltyLogic>();
+            builder.Services.TryAddScoped<IMailLogic, MailLogic>();
+            builder.Services.TryAddScoped<IMarketLogic, MarketLogic>();
+            builder.Services.TryAddScoped<IOpportunitiesLogic, OpportunitiesLogic>();
+            builder.Services.TryAddScoped<IPlanetaryInteractionLogic, PlanetaryInteractionLogic>();
+            builder.Services.TryAddScoped<IRoutesLogic, RoutesLogic>();
+            builder.Services.TryAddScoped<ISearchLogic, SearchLogic>();
+            builder.Services.TryAddScoped<ISkillsLogic, SkillsLogic>();
+            builder.Services.TryAddScoped<ISovereigntyLogic, SovereigntyLogic>();
+            builder.Services.TryAddScoped<IStatusLogic, StatusLogic>();
+            builder.Services.TryAddScoped<IUniverseLogic, UniverseLogic>();
+            builder.Services.TryAddScoped<IUserInterfaceLogic, UserInterfaceLogic>();
+            builder.Services.TryAddScoped<IWalletLogic, WalletLogic>();
+            builder.Services.TryAddScoped<IWarsLogic, WarsLogic>();
+
+            return builder;
+        }
+
+        public static IEsiClientConfigurationBuilder AddPiplineHandlers(this IEsiClientConfigurationBuilder builder)
+        {
+            builder.Services.TryAddSingleton<RequestHeadersHandler>();
+            builder.Services.TryAddSingleton<UrlRequestParametersHandler>();
+            builder.Services.TryAddSingleton<RequestGetHandler>();
+            builder.Services.TryAddSingleton<RequestPostHandler>();
+            builder.Services.TryAddSingleton<RequestDeleteHandler>();
+            builder.Services.TryAddSingleton<RequestPutHandler>();
+            builder.Services.TryAddSingleton<ETagHandler>();
+            builder.Services.TryAddSingleton<EndpointHandler>();
+            builder.Services.TryAddSingleton<ProtectionHandler>();
+            builder.Services.TryAddSingleton<BodyRequestParametersHandler>();
+            builder.Services.TryAddSingleton<ExceptionHandler>();
+
+            return builder;
+        }
+
         /// <summary>
         /// Adds the specified <see cref="IAccessTokenProvider"/> as a <see cref="ServiceLifetime.Transient"/> service
         /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
@@ -33,7 +123,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(IAccessTokenProvider), instanceType);
 
-            builder.ServiceCollection.TryAddTransient(typeof(IAccessTokenProvider), instanceType);
+            builder.Services.TryAddTransient(typeof(IAccessTokenProvider), instanceType);
 
             return builder;
         }
@@ -62,7 +152,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(IScopeAccessValidator), instanceType);
 
-            builder.ServiceCollection.TryAddTransient(typeof(IScopeAccessValidator), instanceType);
+            builder.Services.AddSingletonWithReplace(typeof(IScopeAccessValidator), instanceType);
 
             return builder;
         }
@@ -91,7 +181,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(IETagStorage), instanceType);
 
-            builder.ServiceCollection.AddSingletonWithReplace(typeof(IETagStorage), instanceType);
+            builder.Services.AddSingletonWithReplace(typeof(IETagStorage), instanceType);
 
             return builder;
         }
@@ -120,7 +210,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(RequestHeadersHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(RequestHeadersHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(RequestHeadersHandler), instanceType);
 
             return builder;
         }
@@ -149,7 +239,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(ProtectionHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(ProtectionHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(ProtectionHandler), instanceType);
 
             return builder;
         }
@@ -178,7 +268,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(ETagHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(ETagHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(ETagHandler), instanceType);
 
             return builder;
         }
@@ -207,7 +297,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(BodyRequestParametersHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(BodyRequestParametersHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(BodyRequestParametersHandler), instanceType);
 
             return builder;
         }
@@ -236,7 +326,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(UrlRequestParametersHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(UrlRequestParametersHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(UrlRequestParametersHandler), instanceType);
 
             return builder;
         }
@@ -265,7 +355,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(EndpointHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(EndpointHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(EndpointHandler), instanceType);
 
             return builder;
         }
@@ -294,7 +384,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(RequestGetHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(RequestGetHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(RequestGetHandler), instanceType);
 
             return builder;
         }
@@ -323,7 +413,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(RequestPostHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(RequestPostHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(RequestPostHandler), instanceType);
 
             return builder;
         }
@@ -352,7 +442,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(RequestPutHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(RequestPutHandler), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(RequestPutHandler), instanceType);
 
             return builder;
         }
@@ -381,36 +471,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(RequestDeleteHandler), instanceType);
 
-            builder.ServiceCollection.AddTransientWithReplace(typeof(RequestDeleteHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="ICustomEndpointRoutePriorityProvider"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="ICustomEndpointRoutePriorityProvider"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseEndpointRoutePriorityProvider<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseEndpointRoutePriorityProvider(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="ICustomEndpointRoutePriorityProvider"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseEndpointRoutePriorityProvider(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(ICustomEndpointRoutePriorityProvider), instanceType);
-
-            builder.ServiceCollection.TryAddTransient(typeof(ICustomEndpointRoutePriorityProvider), instanceType);
+            builder.Services.AddTransientWithReplace(typeof(RequestDeleteHandler), instanceType);
 
             return builder;
         }

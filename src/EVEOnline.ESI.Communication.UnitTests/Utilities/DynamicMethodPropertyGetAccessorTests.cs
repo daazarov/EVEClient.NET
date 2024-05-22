@@ -5,10 +5,10 @@ using EVEOnline.ESI.Communication.Utilities;
 
 namespace EVEOnline.ESI.Communication.UnitTests.Utilities
 {
-    public class ReflectionCacheAttributeAccessorTests
+    public class DynamicMethodPropertyGetAccessorTests
     {
         [Test]
-        public void ReflectionCacheAttributeAccessor_CreateGet_NotNull_Typed()
+        public void DynamicMethodPropertyGetAccessor_CreateGet_NotNull_Typed()
         {
             PropertyInfo namePropertyInfo = typeof(Person).GetProperty(nameof(Person.Name))!;
 
@@ -23,7 +23,7 @@ namespace EVEOnline.ESI.Communication.UnitTests.Utilities
         }
 
         [Test]
-        public void ReflectionCacheAttributeAccessor_CreateGet_Null_Typed()
+        public void DynamicMethodPropertyGetAccessor_CreateGet_Null_Typed()
         {
             PropertyInfo namePropertyInfo = typeof(Person).GetProperty(nameof(Person.Name))!;
 
@@ -36,7 +36,7 @@ namespace EVEOnline.ESI.Communication.UnitTests.Utilities
         }
 
         [Test]
-        public void ReflectionCacheAttributeAccessor_CreateGet_NotNull_Object()
+        public void DynamicMethodPropertyGetAccessor_CreateGet_NotNull_Object()
         {
             PropertyInfo namePropertyInfo = typeof(Person).GetProperty(nameof(Person.Name))!;
 
@@ -51,7 +51,7 @@ namespace EVEOnline.ESI.Communication.UnitTests.Utilities
         }
 
         [Test]
-        public void ReflectionCacheAttributeAccessor_CreateGet_Null_Object()
+        public void DynamicMethodPropertyGetAccessor_CreateGet_Null_Object()
         {
             PropertyInfo namePropertyInfo = typeof(Person).GetProperty(nameof(Person.Name))!;
 
@@ -64,7 +64,7 @@ namespace EVEOnline.ESI.Communication.UnitTests.Utilities
         }
 
         [Test]
-        public void ReflectionCacheAttributeAccessor_CreateGet_Nullable_Null_Object()
+        public void DynamicMethodPropertyGetAccessor_CreateGet_Nullable_Null_Object()
         {
             PropertyInfo namePropertyInfo = typeof(Person).GetProperty(nameof(Person.Age))!;
 
@@ -77,7 +77,7 @@ namespace EVEOnline.ESI.Communication.UnitTests.Utilities
         }
 
         [Test]
-        public void ReflectionCacheAttributeAccessor_CreateGet_Nullable_NotNull_Object()
+        public void DynamicMethodPropertyGetAccessor_CreateGet_Nullable_NotNull_Object()
         {
             PropertyInfo namePropertyInfo = typeof(Person).GetProperty(nameof(Person.Age))!;
 

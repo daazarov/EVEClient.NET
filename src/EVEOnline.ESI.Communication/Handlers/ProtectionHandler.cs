@@ -17,12 +17,6 @@ namespace EVEOnline.ESI.Communication.Handlers
         private readonly IAccessTokenProvider _accessTokenProvider;
         private readonly IScopeAccessValidator _scopeAccessValidator;
 
-        public ProtectionHandler() : this(null, null)
-        { }
-
-        public ProtectionHandler(IAccessTokenProvider accessTokenProvider) : this(accessTokenProvider, null)
-        {}
-
         public ProtectionHandler(IAccessTokenProvider accessTokenProvider, IScopeAccessValidator scopeAccessValidator)
         {
             _accessTokenProvider = accessTokenProvider;
@@ -31,16 +25,21 @@ namespace EVEOnline.ESI.Communication.Handlers
 
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            var isPublic = await IsPublicEndpoint(context);
-
-            if (isPublic)
+            if (IsPublicEndpoint(context))
             {
                 await next.Invoke(context);
             }
             else
             {
-                await ValidateScope(context);
-                await SetAuthHeader(context);
+                var tokenResult = await _accessTokenProvider.RequestAccessToken();
+
+                if (string.IsNullOrEmpty(tokenResult))
+                {
+                    UnauthorizedResponse(context, HttpStatusCode.Unauthorized, $"The request endpoint requires SSO authentication and a token has not been provided.");
+                }
+
+                await ValidateScope(context, tokenResult);
+                await SetAuthorizationHeader(context, tokenResult);
 
                 if (CanContinue(context))
                 {
@@ -53,42 +52,29 @@ namespace EVEOnline.ESI.Communication.Handlers
             }
         }
 
-        protected virtual Task<bool> IsPublicEndpoint(EsiContext context)
+        protected virtual async Task ValidateScope(EsiContext context, string token)
         {
-            var publicEndpoint = ReflectionCacheAttributeAccessor.Instance.ContainsAttribute<PublicEndpointAttribute>(context.CallingContext.MethodInfo);
-
-            return Task.FromResult(publicEndpoint);
-        }
-
-        protected virtual async Task ValidateScope(EsiContext context)
-        {
-            var protectedEnpointAttribute = ReflectionCacheAttributeAccessor.Instance.GetAttribute<ProtectedEndpointAttribute>(context.CallingContext.MethodInfo);
-
-            if (_scopeAccessValidator != null && !string.IsNullOrEmpty(protectedEnpointAttribute.RequiredScope))
+            if (CanContinue(context))
             {
-                var allowed =  await _scopeAccessValidator.VerifyScopeAccess(protectedEnpointAttribute.RequiredScope);
+                var protectedEnpointAttribute = ReflectionCacheAttributeAccessor.Instance.GetAttribute<ProtectedEndpointAttribute>(context.CallingContext.MethodInfo);
+
+                var allowed = await _scopeAccessValidator.ValidateScopeAccess(token, protectedEnpointAttribute.RequiredScope);
 
                 if (!allowed)
                 {
-                    UnauthorizedResponse(context, HttpStatusCode.Forbidden, $"token is not valid for scope: {protectedEnpointAttribute.RequiredScope}");
+                    UnauthorizedResponse(context, HttpStatusCode.Forbidden, $"Token is not valid for scope: {protectedEnpointAttribute.RequiredScope}");
                 }
             }
         }
 
-        protected virtual async Task SetAuthHeader(EsiContext context)
+        protected virtual Task SetAuthorizationHeader(EsiContext context, string token)
         {
-            if (!CanContinue(context)) return;
-            
-            var token = await _accessTokenProvider.GetAccessToken();
-
-            if (string.IsNullOrEmpty(token))
-            {
-                UnauthorizedResponse(context, HttpStatusCode.Unauthorized, "The request endpoint requires SSO authentication and a token has not been provided.");
-            }
-            else
+            if (CanContinue(context))
             {
                 context.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
+
+            return Task.CompletedTask;
         }
 
         protected void UnauthorizedResponse(EsiContext context, HttpStatusCode httpStatusCode, string errorMessage)
@@ -99,6 +85,10 @@ namespace EVEOnline.ESI.Communication.Handlers
             });
         }
 
-        protected bool CanContinue(EsiContext context) => context.Response == null;
+        private bool CanContinue(EsiContext context) => 
+            context.Response == null;
+
+        private bool IsPublicEndpoint(EsiContext context) =>
+            ReflectionCacheAttributeAccessor.Instance.ContainsAttribute<PublicEndpointAttribute>(context.CallingContext.MethodInfo);
     }
 }

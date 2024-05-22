@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿/*
+using System.Collections.Generic;
 
 namespace EVEOnline.ESI.Communication
 {
@@ -22,3 +23,4 @@ namespace EVEOnline.ESI.Communication
         }
     }
 }
+*/

@@ -23,17 +23,14 @@ namespace EVEOnline.ESI.Communication
         private readonly TimeSpan _errorLimitReset;
         private readonly List<string> _errors;
 
-        protected Exception _exception;
-
         public HttpStatusCode StatusCode => _statusCode;
         public string ETag => _eTag;
         public HttpResponseMessage HttpResponseMessage => _httpResponseMessage;
         public DateTime? Expires => _expires;
         public DateTime? LastModified => _lastModified;
         public Guid RequestId => _requestId;
-        public Exception Exception => _exception;
         public List<string> Errors => _errors;
-        public bool Success => Errors == null && Exception == null;
+        public bool Success => Errors == null;
         public string Warning => _warning;
 
         /// <summary>
@@ -45,62 +42,50 @@ namespace EVEOnline.ESI.Communication
         /// Number of seconds until the end of the current error window.
         /// </summary>
         public TimeSpan ErrorLimitReset => _errorLimitReset;
-
-        public EsiResponse(Exception exception)
-        {
-            _exception = exception;
-        }
         
         public EsiResponse(HttpResponseMessage response)
         {
             _httpResponseMessage = response;
-            
-            try 
+
+            if (response.Headers.Contains("X-ESI-Request-ID"))
             {
-                if (response.Headers.Contains("X-ESI-Request-ID"))
-                {
-                    _requestId = Guid.Parse(response.Headers.GetValues("X-ESI-Request-ID").First());
-                }
-                if (response.Headers.Contains("ETag"))
-                {
-                    _eTag = response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
-                }
-                if (response.Content.Headers.Contains("Expires"))
-                {
-                    _expires = DateTime.Parse(response.Content.Headers.GetValues("Expires").First());
-                }
-                if (response.Content.Headers.Contains("Last-Modified"))
-                {
-                    _lastModified = DateTime.Parse(response.Content.Headers.GetValues("Last-Modified").First());
-                }
-                if (response.Headers.Contains("Warning"))
-                {
-                    _warning = response.Headers.GetValues("Warning").First();
-                }
-                if (response.Headers.Contains("X-ESI-Error-Limit-Remain"))
-                {
-                    _errorLimitRemain = int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Remain").First());
-                }
-                if (response.Headers.Contains("X-ESI-Error-Limit-Reset"))
-                {
-                    _errorLimitReset = TimeSpan.FromSeconds(int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Reset").First()));
-                }
-
-                _statusCode = response.StatusCode;
-
-                if (!response.IsSuccessStatusCode && _statusCode.NotIn(HttpStatusCode.NotModified))
-                {
-                    var result = response.Content.ReadAsStringAsync().Result;
-
-                    _errors = new List<string>() 
-                    { 
-                        JsonConvert.DeserializeAnonymousType(result, new { error = string.Empty }).error
-                    };
-                }
+                _requestId = Guid.Parse(response.Headers.GetValues("X-ESI-Request-ID").First());
             }
-            catch (Exception ex)
-            { 
-                _exception = ex;
+            if (response.Headers.Contains("ETag"))
+            {
+                _eTag = response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
+            }
+            if (response.Content.Headers.Contains("Expires"))
+            {
+                _expires = DateTime.Parse(response.Content.Headers.GetValues("Expires").First());
+            }
+            if (response.Content.Headers.Contains("Last-Modified"))
+            {
+                _lastModified = DateTime.Parse(response.Content.Headers.GetValues("Last-Modified").First());
+            }
+            if (response.Headers.Contains("Warning"))
+            {
+                _warning = response.Headers.GetValues("Warning").First();
+            }
+            if (response.Headers.Contains("X-ESI-Error-Limit-Remain"))
+            {
+                _errorLimitRemain = int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Remain").First());
+            }
+            if (response.Headers.Contains("X-ESI-Error-Limit-Reset"))
+            {
+                _errorLimitReset = TimeSpan.FromSeconds(int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Reset").First()));
+            }
+
+            _statusCode = response.StatusCode;
+
+            if (!response.IsSuccessStatusCode && _statusCode.NotIn(HttpStatusCode.NotModified))
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+
+                _errors = new List<string>()
+                {
+                    JsonConvert.DeserializeAnonymousType(result, new { error = string.Empty }).error
+                };
             }
         }
     }

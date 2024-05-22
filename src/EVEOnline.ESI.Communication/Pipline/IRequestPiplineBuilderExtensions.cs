@@ -11,6 +11,10 @@ namespace EVEOnline.ESI.Communication.Pipline
         {
             builder.ArgumentNotNull(nameof(builder));
 
+            // to do
+            // Now we have an artificial singleton when injecting services into our handler.
+            // Since the pipline is created once and cached for each of the request types.
+            // Perhaps we should detach from the IHandler interface and create a "HandleAsync" method call dynamically with passing the necessary services as an input parameter.
             var instance = builder.ServiceProvider.GetService<THandler>();
 
             return builder.Use(next =>

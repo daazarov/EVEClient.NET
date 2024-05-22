@@ -1,4 +1,8 @@
-﻿namespace EVEOnline.ESI.Communication
+﻿/*
+Sketches for a separate Polly extension
+
+
+namespace EVEOnline.ESI.Communication
 {
     public class RoutePriority
     {
@@ -51,3 +55,4 @@
         }
     }
 }
+*/

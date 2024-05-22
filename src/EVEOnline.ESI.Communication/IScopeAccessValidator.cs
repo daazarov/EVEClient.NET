@@ -4,6 +4,6 @@ namespace EVEOnline.ESI.Communication
 {
     public interface IScopeAccessValidator
     {
-        public Task<bool> VerifyScopeAccess(string scope);
+        public Task<bool> ValidateScopeAccess(string token, string scope);
     }
 }

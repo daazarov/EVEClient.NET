@@ -5,7 +5,7 @@ namespace EVEOnline.ESI.Communication.Utilities
 {
     internal static class CallerMemberToEnpointIdConverter
     {
-        private static readonly Dictionary<string, string> _dataset;
+        internal static readonly Dictionary<string, string> _dataset;
 
         static CallerMemberToEnpointIdConverter()
         { 
@@ -116,7 +116,7 @@ namespace EVEOnline.ESI.Communication.Utilities
                 { Key(typeof(IFleetsLogic), nameof(IFleetsLogic.FleetInfo)), ESI.Endpoints.Fleets.FleetInfo },
                 { Key(typeof(IFleetsLogic), nameof(IFleetsLogic.FleetSettings)), ESI.Endpoints.Fleets.FleetSettings },
                 { Key(typeof(IFleetsLogic), nameof(IFleetsLogic.FleetMembers)), ESI.Endpoints.Fleets.FleetMembers },
-                { Key(typeof(IFleetsLogic), nameof(IFleetsLogic.InviteMember)), ESI.Endpoints.Fleets.InviteMember },
+                { Key(typeof(IFleetsLogic), nameof(IFleetsLogic.FleetWings)), ESI.Endpoints.Fleets.FleetWings },
                 { Key(typeof(IFleetsLogic), nameof(IFleetsLogic.NewWing)), ESI.Endpoints.Fleets.NewWing },
                 { Key(typeof(IFleetsLogic), nameof(IFleetsLogic.NewSquad)), ESI.Endpoints.Fleets.NewSquad },
                 { Key(typeof(IFleetsLogic), nameof(IFleetsLogic.DeleteWing)), ESI.Endpoints.Fleets.DeleteWing },

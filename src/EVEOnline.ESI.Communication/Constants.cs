@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System;
 
 namespace EVEOnline.ESI.Communication
 {
@@ -7,28 +6,29 @@ namespace EVEOnline.ESI.Communication
     {
         internal const string HttpClientName = "EsiHttpClient";
 
+        internal static class SSO
+        {
+            public const string DiscoveryWebKeys = "oauth/jwks";
+            public const string DiscoveryConfiguration = ".well-known/oauth-authorization-server";
+            public const string RevokeToken = "v2/oauth/revoke";
+            public const string GetToken = "v2/oauth/token";
+            public const string Authorize = "v2/oauth/authorize";
+
+            internal static class Tranquility
+            {
+                public const string AuthorizationSsoBaseUrl = "https://login.eveonline.com";
+                public const string EsiBaseUrl = "https://esi.evetech.net";
+            }
+
+            internal static class Singularity
+            {
+                public const string AuthorizationSsoBaseUrl = "https://sisilogin.testeveonline.com";
+                public const string EsiBaseUrl = "https://esi.evetech.net";
+            }
+        }
+
         public static class Endpoints
         {
-            public static ImmutableDictionary<string, EndpointVersion> AvailableRoutes => ImmutableDictionary.CreateRange(new Dictionary<string, EndpointVersion>
-            {
-                { Endpoints.Characters.PublicInformation, EndpointVersion.V5 | EndpointVersion.Latest | EndpointVersion.Legacy | EndpointVersion.Dev },
-                { Endpoints.Characters.Standings, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-                { Endpoints.Characters.AgentsResearch, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-                { Endpoints.Characters.Blueprints, EndpointVersion.Latest | EndpointVersion.V3 | EndpointVersion.Dev },
-                { Endpoints.Characters.CorporationHistory, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-                { Endpoints.Characters.CSPA, EndpointVersion.Latest | EndpointVersion.V5 | EndpointVersion.Dev },
-                { Endpoints.Characters.Fatigue, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-                { Endpoints.Characters.Medals, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-                { Endpoints.Characters.Notifications, EndpointVersion.Latest | EndpointVersion.V5 | EndpointVersion.V6 | EndpointVersion.Dev },
-                { Endpoints.Characters.ContactNotifications, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-                { Endpoints.Characters.Portrait, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.V3 | EndpointVersion.Dev },
-                { Endpoints.Characters.Roles, EndpointVersion.Latest | EndpointVersion.V3 | EndpointVersion.Dev },
-                { Endpoints.Characters.Titles, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-                { Endpoints.Characters.Affilation, EndpointVersion.Latest | EndpointVersion.V2 | EndpointVersion.Dev },
-
-                { Endpoints.Calendar.CalendarItems, EndpointVersion.Latest | EndpointVersion.Legacy | EndpointVersion.V1 |EndpointVersion.V2 | EndpointVersion.Dev }
-            });
-
             public static class Characters
             {
                 public const string PublicInformation =               "get_characters_character_id";
