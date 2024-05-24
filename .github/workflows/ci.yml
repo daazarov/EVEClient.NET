@@ -21,8 +21,8 @@ jobs:
   build-and-test:
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: '.\src\EVEOnline.ESI.Communication.sln'
-      UNIT_TESTS_PROJECT: '.\src\EVEOnline.ESI.Communication.UnitTests\EVEOnline.ESI.Communication.UnitTests.csproj'
+      SOLUTION: '.\src\EVEClient.NET.sln'
+      UNIT_TESTS_PROJECT: '.\src\EVEClient.NET.UnitTests\EVEClient.NET.UnitTests.csproj'
       
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
@@ -52,7 +52,7 @@ jobs:
     - name: NUnit Tests Report
       uses: daazarov/NUnitTestResultSummary@v1
       with:
-        filename: src/EVEOnline.ESI.Communication.UnitTests/bin/Release/net7.0/TestResults/EVEOnline.ESI.Communication.UnitTests.xml
+        filename: src/EVEClient.NET.UnitTests/bin/Release/net7.0/TestResults/EVEClient.NET.UnitTests.xml
         badge: true
         format: markdown
         output: file
