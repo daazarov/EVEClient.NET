@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
 
@@ -66,7 +66,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EVEClient.NET\EVEClient.NET.csproj" />
-    <ProjectReference Include="..\EVEOnline.ESI.Communication\EVEClient.NET.csproj" />
   </ItemGroup>
 
 </Project>
