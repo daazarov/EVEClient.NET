@@ -1,6 +1,7 @@
-﻿using EVEClient.NET.Models;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+
+using EVEClient.NET.Models;
 
 namespace EVEClient.NET
 {

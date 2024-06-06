@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
+
 using EVEClient.NET.Extensions;
 
 namespace EVEClient.NET.Pipline.Modifications
@@ -9,7 +9,7 @@ namespace EVEClient.NET.Pipline.Modifications
     internal class SingleEndpointModificationBuilder : IEndpointModificationBuilder
     {
         private readonly PiplineModification _modification;
-        private readonly PiplineModificationsBuilder _bulder;        
+        private readonly PiplineModificationsBuilder _bulder;
 
         public SingleEndpointModificationBuilder(PiplineModification modification, PiplineModificationsBuilder bulder)
         {

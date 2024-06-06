@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EVEClient.NET
+﻿namespace EVEClient.NET
 {
     public class ESI
     {

@@ -4,6 +4,6 @@ namespace EVEClient.NET.Pipline
 {
     internal interface IPiplineStore
     {
-        IRequestPipline GetPipline(EndpointMarker point);
+        IRequestPipline GetPipline(EndpointMarker marker);
     }
 }

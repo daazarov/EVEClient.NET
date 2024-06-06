@@ -14,6 +14,7 @@ namespace EVEClient.NET
         public int CurrentPage => _currentPage;
         public Func<Task<EsiResponsePagination<T>>> NextPage { get; }
         public Func<Task<EsiResponsePagination<T>>> PreviousPage { get; }
+        public Func<int, Task<EsiResponsePagination<T>>> SpecificPage { get; }
         */
 
         public EsiResponsePagination(HttpResponseMessage response) : base(response)
