@@ -11,26 +11,22 @@ namespace EVEClient.NET.Pipline
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            // to do
-            // Now we have an artificial singleton when injecting services into our handler.
-            // Since the pipline is created once and cached for each of the request types.
-            // Perhaps we should detach from the IHandler interface and create a "HandleAsync" method call dynamically with passing the necessary services as an input parameter.
-            var instance = builder.ServiceProvider.GetService<THandler>();
+            var componentId = typeof(THandler).Name;
 
-            return builder.Use(next =>
+            return builder.Use(new PiplineComponent(componentId, next =>
             {
                 return context =>
                 {
-                    return instance.HandleAsync(context, next);
+                    var handler = context.ScopedServices.GetRequiredService<THandler>();
+                    
+                    return handler.HandleAsync(context, next);
                 };
-            });
+            }));
         }
 
         public static IRequestPiplineBuilder UseDeletePipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
-
-            builder.Clear();
 
             return builder.UseHandler<ProtectionHandler>()
                           .UseHandler<RequestHeadersHandler>()
@@ -42,8 +38,6 @@ namespace EVEClient.NET.Pipline
         public static IRequestPiplineBuilder UseGetPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
-
-            builder.Clear();
 
             return builder.UseHandler<ProtectionHandler>()
                           .UseHandler<RequestHeadersHandler>()
@@ -57,8 +51,6 @@ namespace EVEClient.NET.Pipline
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            builder.Clear();
-
             return builder.UseHandler<ProtectionHandler>()
                           .UseHandler<RequestHeadersHandler>()
                           .UseHandler<UrlRequestParametersHandler>()
@@ -70,8 +62,6 @@ namespace EVEClient.NET.Pipline
         public static IRequestPiplineBuilder UsePutPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
-
-            builder.Clear();
 
             return builder.UseHandler<ProtectionHandler>()
                           .UseHandler<RequestHeadersHandler>()

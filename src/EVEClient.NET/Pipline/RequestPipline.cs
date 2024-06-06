@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EVEClient.NET.Pipline
 {
@@ -6,10 +7,20 @@ namespace EVEClient.NET.Pipline
     {
         private readonly RequestDelegate _middleware;
 
+#if DEBUG
+        private readonly List<PiplineComponent> _components;
+
+        public RequestPipline(RequestDelegate middleware, List<PiplineComponent> components)
+        {
+            _middleware = middleware;
+            _components = components;
+        }
+#else
         public RequestPipline(RequestDelegate middleware)
         {
             _middleware = middleware;
         }
+#endif
 
         public async Task<EsiContext> ExecuteAsync(EsiContext context)
         {

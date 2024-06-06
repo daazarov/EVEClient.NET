@@ -16,7 +16,7 @@ namespace EVEClient.NET.UnitTests.Utilities
             p.Name = "Name!1";
 
             var call = DynamicMethodPropertyGetAccessor.Instance.CreateGet<Person>(namePropertyInfo);
-            object? result = call(p);
+            object result = call(p);
 
             Assert.That(result, Is.Not.Null);
             Assert.That((string)result, Is.EqualTo("Name!1"));
@@ -30,7 +30,7 @@ namespace EVEClient.NET.UnitTests.Utilities
             Person p = new Person();
 
             var call = DynamicMethodPropertyGetAccessor.Instance.CreateGet<Person>(namePropertyInfo);
-            object? result = call(p);
+            object result = call(p);
 
             Assert.That(result, Is.Null);
         }
@@ -44,7 +44,7 @@ namespace EVEClient.NET.UnitTests.Utilities
             p.Name = "Name!2";
 
             var call = DynamicMethodPropertyGetAccessor.Instance.CreateGet<object>(namePropertyInfo);
-            object? result = call(p);
+            object result = call(p);
 
             Assert.That(result, Is.Not.Null);
             Assert.That((string)result, Is.EqualTo("Name!2"));
@@ -58,7 +58,7 @@ namespace EVEClient.NET.UnitTests.Utilities
             Person p = new Person();
 
             var call = DynamicMethodPropertyGetAccessor.Instance.CreateGet<object>(namePropertyInfo);
-            object? result = call(p);
+            object result = call(p);
 
             Assert.That(result, Is.Null);
         }
@@ -71,7 +71,7 @@ namespace EVEClient.NET.UnitTests.Utilities
             Person p = new Person();
 
             var call = DynamicMethodPropertyGetAccessor.Instance.CreateGet<object>(namePropertyInfo);
-            object? result = call(p);
+            object result = call(p);
 
             Assert.That(result, Is.Null);
         }
@@ -85,7 +85,7 @@ namespace EVEClient.NET.UnitTests.Utilities
             p.Age = 10;
 
             var call = DynamicMethodPropertyGetAccessor.Instance.CreateGet<object>(namePropertyInfo);
-            object? result = call(p);
+            object result = call(p);
 
             Assert.That((int)result, Is.EqualTo(10));
         }

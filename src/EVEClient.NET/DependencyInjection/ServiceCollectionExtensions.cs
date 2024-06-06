@@ -1,35 +1,17 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
 
 using EVEClient.NET.Configuration;
 using EVEClient.NET.DependencyInjection;
+using EVEClient.NET.Pipline.Modifications;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static partial class ServiceCollectionExtensions
     {
-        public static IEsiClientConfigurationBuilder AddEVEOnlineEsiClient(this IServiceCollection services, IConfiguration configuration, string sectionName = null)
-        {
-            return services.AddEVEOnlineEsiClient(configuration.GetRequiredSection(string.IsNullOrEmpty(sectionName) ? EsiClientConfiguration.DefaultEsiConfigurationSectionName : sectionName));
-        }
-
         public static IEsiClientConfigurationBuilder AddEVEOnlineEsiClient(this IServiceCollection services, Action<EsiClientConfiguration> configure)
         {
             var options = new EsiClientConfiguration();
             configure(options);
-
-            return services.AddEVEOnlineEsiClient(options);
-        }
-
-        private static IEsiClientConfigurationBuilder AddEVEOnlineEsiClient(this IServiceCollection services, IConfigurationSection configuration)
-        {
-            if (!configuration.Exists())
-            {
-                throw new InvalidOperationException(); //todo
-            }
-            
-            var options = new EsiClientConfiguration();
-            configuration.Bind(options);
 
             return services.AddEVEOnlineEsiClient(options);
         }
@@ -61,7 +43,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
         private static IEsiClientConfigurationBuilder AddEsiClientConfigurationBuilder(this IServiceCollection services, EsiClientConfiguration configuration)
         {
-            return new EsiClientConfigurationBuilder(services, configuration);
+            return new EsiClientConfigurationBuilder(services, configuration, new PiplineModificationsBuilder());
         }
     }
 }

@@ -8,6 +8,7 @@ using EVEClient.NET;
 using EVEClient.NET.DependencyInjection;
 using EVEClient.NET.Handlers;
 using EVEClient.NET.Pipline;
+using EVEClient.NET.Pipline.Modifications;
 using EVEClient.NET.Defaults;
 using EVEClient.NET.Logic;
 
@@ -27,8 +28,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
                 });
 
-            builder.Services.TryAddSingleton<IEsiContextFactory, EsiContextFactory>();
-            builder.Services.TryAddSingleton<IRequestPiplineBuilder, RequestPiplineBuilder>();
+            builder.Services.TryAddScoped<IEsiContextFactory, EsiContextFactory>();
             builder.Services.TryAddScoped<IEsiLogicAccessor, EsiLogicAccessor>();
             builder.Services.TryAddScoped(typeof(IEsiHttpClient<>), typeof(EsiHttpClient<>));
 
@@ -39,7 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             builder.Services.TryAddSingleton<IETagStorage, DefaultInMemoryETagThreadSaveStore>();
             builder.Services.TryAddSingleton<IScopeAccessValidator, DefaultScopeAccessValidator>();
-            builder.Services.TryAddSingleton<IPiplineStore, DefaultPiplineThreadSaveStore>();
+            builder.Services.TryAddSingleton<IPiplineStore, PiplineStore>();
 
             return builder;
         }
@@ -94,8 +94,30 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.TryAddSingleton<EndpointHandler>();
             builder.Services.TryAddSingleton<ProtectionHandler>();
             builder.Services.TryAddSingleton<BodyRequestParametersHandler>();
-            builder.Services.TryAddSingleton<ExceptionHandler>();
 
+            return builder;
+        }
+
+        public static IEsiClientConfigurationBuilder CustomizePipline(this IEsiClientConfigurationBuilder builder, Action<IPiplineModificationsBuilder> configure)
+        {
+            configure(builder.PiplineModificationBuilder);
+
+            if (builder.PiplineModificationBuilder is PiplineModificationsBuilder modificationBuilder)
+            {
+                modificationBuilder.Validate();
+
+                foreach (var modification in modificationBuilder.Modifications)
+                {
+                    builder.AddPiplineModification(modification);
+                }
+            }
+
+            return builder;
+        }
+
+        internal static IEsiClientConfigurationBuilder AddPiplineModification(this IEsiClientConfigurationBuilder builder, PiplineModification modification)
+        {
+            builder.Services.AddSingleton(modification);
             return builder;
         }
 
@@ -182,296 +204,6 @@ namespace Microsoft.Extensions.DependencyInjection
             IsAssignableFrom(typeof(IETagStorage), instanceType);
 
             builder.Services.AddSingletonWithReplace(typeof(IETagStorage), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestHeadersHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="RequestHeadersHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestHeadersHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseRequestHeadersHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestHeadersHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestHeadersHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(RequestHeadersHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(RequestHeadersHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="ProtectionHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="ProtectionHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseProtectionHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseProtectionHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="ProtectionHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseProtectionHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(ProtectionHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(ProtectionHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="ETagHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="ETagHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseETagHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseETagHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="ETagHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseETagHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(ETagHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(ETagHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="BodyRequestParametersHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="BodyRequestParametersHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseBodyRequestParametersHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseBodyRequestParametersHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="BodyRequestParametersHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseBodyRequestParametersHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(BodyRequestParametersHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(BodyRequestParametersHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="UrlRequestParametersHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="UrlRequestParametersHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseUrlRequestParametersHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseUrlRequestParametersHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="UrlRequestParametersHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseUrlRequestParametersHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(UrlRequestParametersHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(UrlRequestParametersHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="EndpointHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="EndpointHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseEndpointHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseEndpointHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="EndpointHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseEndpointHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(EndpointHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(EndpointHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestGetHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="RequestGetHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestGetHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseRequestGetHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestGetHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestGetHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(RequestGetHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(RequestGetHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestPostHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="RequestPostHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestPostHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseRequestPostHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestPostHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestPostHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(RequestPostHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(RequestPostHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestPutHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="RequestPutHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestPutHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseRequestPutHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestPutHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestPutHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(RequestPutHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(RequestPutHandler), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestDeleteHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="RequestDeleteHandler"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestDeleteHandler<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.UseRequestDeleteHandler(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="RequestDeleteHandler"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseRequestDeleteHandler(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(RequestDeleteHandler), instanceType);
-
-            builder.Services.AddTransientWithReplace(typeof(RequestDeleteHandler), instanceType);
 
             return builder;
         }

@@ -19,7 +19,7 @@ namespace EVEClient.NET.Handlers
 
         protected virtual string SetupDefaultPriorityQueue(EsiContext context)
         {
-            var availableRoutes = ReflectionCacheAttributeAccessor.Instance.GetAttributes<RouteAttribute>(context.CallingContext.MethodInfo);
+            var availableRoutes = ReflectionCacheAttributeAccessor.Instance.GetAttributes<RouteAttribute>(context.EndpointMarker.AsMethodInfo());
 
             foreach (var item in availableRoutes)
             {

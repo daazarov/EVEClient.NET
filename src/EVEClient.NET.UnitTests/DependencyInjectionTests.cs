@@ -1,7 +1,6 @@
 ﻿using EVEClient.NET.Configuration;
 using EVEClient.NET.Handlers;
 using EVEClient.NET.Pipline;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
@@ -57,7 +56,6 @@ namespace EVEClient.NET.UnitTests
         }
 
         [TestCase(typeof(EndpointHandler))]
-        [TestCase(typeof(ExceptionHandler))]
         [TestCase(typeof(ProtectionHandler))]
         [TestCase(typeof(RequestDeleteHandler))]
         [TestCase(typeof(RequestPutHandler))]
@@ -77,9 +75,8 @@ namespace EVEClient.NET.UnitTests
         [TestCase(typeof(IPiplineStore), ServiceLifetime.Singleton)]
         [TestCase(typeof(IScopeAccessValidator), ServiceLifetime.Singleton)]
         [TestCase(typeof(IHttpClientFactory), ServiceLifetime.Singleton)]
-        [TestCase(typeof(IEsiContextFactory), ServiceLifetime.Singleton)]
+        [TestCase(typeof(IEsiContextFactory), ServiceLifetime.Scoped)]
         [TestCase(typeof(IEsiLogicAccessor), ServiceLifetime.Scoped)]
-        [TestCase(typeof(IRequestPiplineBuilder), ServiceLifetime.Singleton)]
         [TestCase(typeof(IEsiHttpClient<>), ServiceLifetime.Scoped)]
         public void ServiceCollection_ContainsOther(Type type, ServiceLifetime lifetime)
         {
@@ -88,64 +85,7 @@ namespace EVEClient.NET.UnitTests
         }
 
         [Test]
-        public void Configuration_DefaultSectionName()
-        {
-            var dict = new Dictionary<string, string>
-            {
-               {"EsiClientConfiguration:UserAgent", "My_User_Agent"},
-               {"EsiClientConfiguration:EnableETag", "true"}
-            };
-
-            var config = new ConfigurationBuilder().AddInMemoryCollection(dict).Build();
-            var services = new ServiceCollection();
-            services.AddEVEOnlineEsiClient(config);
-            var provider = services.BuildServiceProvider();
-            var options = provider.GetService<IOptions<EsiClientConfiguration>>().Value;
-
-            Assert.That(options.UserAgent, Is.EqualTo("My_User_Agent"));
-            Assert.That(options.EnableETag, Is.True);
-        }
-
-        [Test]
-        public void Configuration_CustomSectionName()
-        {
-            var dict = new Dictionary<string, string>
-            {
-               {"MySection:UserAgent", "My_User_Agent"},
-               {"MySection:EnableETag", "true"}
-            };
-
-            var config = new ConfigurationBuilder().AddInMemoryCollection(dict).Build();
-            var services = new ServiceCollection();
-            services.AddEVEOnlineEsiClient(config, "MySection");
-            var provider = services.BuildServiceProvider();
-            var options = provider.GetService<IOptions<EsiClientConfiguration>>().Value;
-
-            Assert.That(options.UserAgent, Is.EqualTo("My_User_Agent"));
-            Assert.That(options.EnableETag, Is.True);
-        }
-
-        [Test]
-        public void Configuration_Defaults()
-        {
-            var dict = new Dictionary<string, string>
-            {
-               {"EsiClientConfiguration:UserAgent", "My_User_Agent"}
-            };
-
-            var config = new ConfigurationBuilder().AddInMemoryCollection(dict).Build();
-            var services = new ServiceCollection();
-            services.AddEVEOnlineEsiClient(config);
-            var provider = services.BuildServiceProvider();
-            var options = provider.GetService<IOptions<EsiClientConfiguration>>().Value;
-
-            Assert.That(options.EsiUrl, Is.EqualTo(ESI.SSO.Tranquility.EsiBaseUrl));
-            Assert.That(options.AuthorizationUrl, Is.EqualTo(ESI.SSO.Tranquility.AuthorizationSsoBaseUrl));
-            Assert.That(options.Server, Is.EqualTo(EVEOnlineServer.Tranquility));
-        }
-
-        [Test]
-        public void Configuration_DelegateConfiguration()
+        public void Configuration_Custom()
         {
             var services = new ServiceCollection();
             services.AddEVEOnlineEsiClient(config =>
@@ -162,6 +102,24 @@ namespace EVEClient.NET.UnitTests
             Assert.That(options.EsiUrl, Is.EqualTo(ESI.SSO.Singularity.EsiBaseUrl));
             Assert.That(options.AuthorizationUrl, Is.EqualTo(ESI.SSO.Singularity.AuthorizationSsoBaseUrl));
             Assert.That(options.Server, Is.EqualTo(EVEOnlineServer.Singularity));
+        }
+
+        [Test]
+        public void Configuration_Default()
+        {
+            var services = new ServiceCollection();
+            services.AddEVEOnlineEsiClient(config =>
+            {
+                config.UserAgent = "blah blah blah";
+            });
+            var provider = services.BuildServiceProvider();
+            var options = provider.GetService<IOptions<EsiClientConfiguration>>().Value;
+
+            Assert.That(options.UserAgent, Is.EqualTo("blah blah blah"));
+            Assert.That(options.EnableETag, Is.False);
+            Assert.That(options.EsiUrl, Is.EqualTo(ESI.SSO.Tranquility.EsiBaseUrl));
+            Assert.That(options.AuthorizationUrl, Is.EqualTo(ESI.SSO.Tranquility.AuthorizationSsoBaseUrl));
+            Assert.That(options.Server, Is.EqualTo(EVEOnlineServer.Tranquility));
         }
     }
 }

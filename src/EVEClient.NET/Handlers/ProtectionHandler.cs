@@ -56,7 +56,7 @@ namespace EVEClient.NET.Handlers
         {
             if (CanContinue(context))
             {
-                var protectedEnpointAttribute = ReflectionCacheAttributeAccessor.Instance.GetAttribute<ProtectedEndpointAttribute>(context.CallingContext.MethodInfo);
+                var protectedEnpointAttribute = ReflectionCacheAttributeAccessor.Instance.GetAttribute<ProtectedEndpointAttribute>(context.EndpointMarker.AsMethodInfo());
 
                 var allowed = await _scopeAccessValidator.ValidateScopeAccess(token, protectedEnpointAttribute.RequiredScope);
 
@@ -89,6 +89,6 @@ namespace EVEClient.NET.Handlers
             context.Response == null;
 
         private bool IsPublicEndpoint(EsiContext context) =>
-            ReflectionCacheAttributeAccessor.Instance.ContainsAttribute<PublicEndpointAttribute>(context.CallingContext.MethodInfo);
+            ReflectionCacheAttributeAccessor.Instance.ContainsAttribute<PublicEndpointAttribute>(context.EndpointMarker.AsMethodInfo());
     }
 }
