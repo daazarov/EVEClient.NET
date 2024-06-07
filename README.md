@@ -28,3 +28,21 @@ In the future it is planned to write a separate library for ASP.NET Core, which 
 | `EVEClient.NET.Polly` | Coming Soon... | Integration with [`Polly`](https://www.nuget.org/packages/Polly/) APIs to provide a repeat function and selection of alternative routes. |
 | `EVEClient.NET.Identity` | Coming Soon... | OAuth 2.0 framework for ASP.NET Core to provide out-of-the-box functionality for EVE SSO authorization. |
 
+## Quick start
+
+To use the library, you need to invoke the extension method for `IServiceCollection`.
+
+<!-- snippet: quick-start -->
+```cs
+_serviceCollection.AddEVEOnlineEsiClient(config =>
+{
+    // Required property. Header in your client which includes the source of the request and contact information.
+    // This way, CCP can identify and help you with issues if you’re banned.
+    config.UserAgent = "agent name";
+    // If you want to use the eTag functionality for less ESI API server load.
+    // 304 http status code will be returned on a second request as long as the data on the server is cached and has not been changed 
+    config.EnableETag = true; // 
+})
+.UseAccessTokenProvider<YourAccessTokenProvider>();
+```
+<!-- endSnippet -->
