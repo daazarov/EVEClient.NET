@@ -2,7 +2,7 @@
 
 ## About EVEOnline.ESI
 
-EVEOnline.ESI is a wrapper over the [`ESI API`](https://esi.evetech.net/ui/) based on an middleware approach. The middleware works on the pipline principle in ASP.NET Core and allows you to add/modify the behavior of request generation and response processing.
+EVEOnline.ESI is a wrapper over the [`ESI API`](https://esi.evetech.net/ui/) based on an [middleware](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/index/_static/request-delegate-pipeline.png?view=aspnetcore-8.0) approach. The middleware works on the pipline principle in ASP.NET Core and allows you to add/modify the behavior of request generation and response processing.
 
 EVEOnline.ESI includes following default ordered middlewares:
 
@@ -24,7 +24,7 @@ In the future it is planned to write a separate library for ASP.NET Core, which 
 
 | **Package** | **Latest Version** | **About** |
 |:--|:--|:--|
-| `EVEClient.NET` | [![NuGet](https://buildstats.info/nuget/EVEClient.NET)](https://buildstats.info/nuget/EVEClient.NET "Download EVEClient.NET from NuGet.org") | The core functionality to communicate with [`EVE`](https://esi.evetech.net/ui/) API. |
+| `EVEClient.NET` | [![NuGet](https://buildstats.info/nuget/EVEClient.NET)](https://buildstats.info/nuget/EVEClient.NET "Download EVEClient.NET from NuGet.org") | The core functionality to communicate with [`ESI API`](https://esi.evetech.net/ui/). |
 | `EVEClient.NET.Polly` | Coming Soon... | Integration with [`Polly`](https://www.nuget.org/packages/Polly/) APIs to provide a repeat function and selection of alternative routes. |
 | `EVEClient.NET.Identity` | Coming Soon... | OAuth 2.0 framework for ASP.NET Core to provide out-of-the-box functionality for EVE SSO authorization. |
 
@@ -50,3 +50,59 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
 <!-- endSnippet -->
 
 ### Customizations
+
+For example, you don't want to return a 304 http status code when using ETag, but rather return cached data from your local storage. 
+
+To do this, create a new handler, which will then be connected to the existing pipelines.
+
+```cs
+internal class CustomHandler : IHandler
+{
+    // Your custom cache
+    private readonly IResponseCache _cache;
+    
+    public CustomHandler(IResponseCache cache)
+    { 
+        _cache = cache;
+    }
+
+    public async Task HandleAsync(EsiContext context, RequestDelegate next)
+    {
+        // before request area
+        
+        await next(context);
+
+        // after request area
+        if (context.Response.StatusCode == HttpStatusCode.NotModified)
+        {
+            var eTag = context.Response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
+            var data = await _cache.GetCachedResponse(etag);
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+            response.Content = new StringContent(JsonConvert.SerializeObject(data));
+
+            context.SetHttpResponseMessage(response);
+        }
+    }
+}
+```
+
+Next, register your cache with the service collection and set up customization of the pipline
+
+```cs
+_serviceCollection.AddEVEOnlineEsiClient(config =>
+{
+    config.UserAgent = "agent name";
+    config.EnableETag = true;
+})
+.UseAccessTokenProvider<YourAccessTokenProvider>()
+.CustomizePipline(configure =>
+{
+	configure.ModificationFor(EndpointsSelector.GetRequests) // You can use a preset group or you can specify a specific endpoint Ids
+		// Place it so that the handler is launched before the ETagHandler callback (i.e. after RequestGetHandler)
+		.AdditionalMiddleware<CustomHandler>("eTagResponseModifier", addAfter: "ETagHandler");
+});
+
+// Also register your cache
+_serviceCollection.TryAddSingleton<IResponseCache, MyResponseCache>;
+```
