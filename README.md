@@ -30,6 +30,8 @@ In the future it is planned to write a separate library for ASP.NET Core, which 
 
 ## Quick start
 
+### General
+
 To use the library, you need to invoke the extension method for `IServiceCollection`.
 
 <!-- snippet: quick-start -->
@@ -46,3 +48,5 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
 .UseAccessTokenProvider<YourAccessTokenProvider>();
 ```
 <!-- endSnippet -->
+
+### Customizations
