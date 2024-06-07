@@ -103,6 +103,7 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
 		.AdditionalMiddleware<CustomHandler>("eTagResponseModifier", addAfter: "ETagHandler");
 });
 
-// Also register your cache
+// Also register your cache and handler it self
 _serviceCollection.TryAddSingleton<IResponseCache, MyResponseCache>;
+_serviceCollection.TryAddSingleton<CustomHandler>; // scope at your discretion
 ```
