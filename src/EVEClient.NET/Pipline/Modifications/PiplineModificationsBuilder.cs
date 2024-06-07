@@ -19,7 +19,6 @@ namespace EVEClient.NET.Pipline.Modifications
             "RequestPostHandler",
             "RequestDeleteHandler",
             "RequestPutHandler",
-            "RequestPutHandler",
             "ETagHandler",
             "EndpointHandler",
             "ProtectionHandler",

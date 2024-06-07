@@ -82,6 +82,8 @@ namespace EVEClient.NET.DataContract
         CorporationGoalClosed,
         CorporationGoalCompleted,
         CorporationGoalCreated,
+        CorporationGoalNameChange,
+        CorporationLeft,
         CustomsMsg,
         DeclareWar,
         DistrictAttacked,
