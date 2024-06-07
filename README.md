@@ -1,10 +1,10 @@
 [![Build Status](https://github.com/daazarov/EVEClient.NET/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/daazarov/EVEClient.NET/actions/workflows/ci.yml)
 
-## About EVEOnline.ESI
+## About EVEClient.NET
 
 EVEOnline.ESI is a wrapper over the [`ESI API`](https://esi.evetech.net/ui/) based on an [middleware](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/index/_static/request-delegate-pipeline.png?view=aspnetcore-8.0) approach. The middleware works on the pipline principle in ASP.NET Core and allows you to add/modify the behavior of request generation and response processing.
 
-EVEOnline.ESI includes following default ordered middlewares:
+EVEClient.NET includes following default ordered middlewares:
 
 - `ProtectionHandler` - Performs getting the access token from `IAccessTokenProvider`, validates scope, and sets the Authorization header
 - `RequestHeadersHandler` - Configures the default headers for the request.
@@ -16,9 +16,9 @@ EVEOnline.ESI includes following default ordered middlewares:
 
 ## Limitations
 
-1. EVEOnline.ESI currently has no built-in functionality to work in EVE SSO. You need to implement your own token provider using the provided interface `IAccessTokenProvider`.
+1. EVEClient.NET currently has no built-in functionality to work in EVE SSO. You need to implement your own token provider using the provided interface `IAccessTokenProvider`.
 In the future it is planned to write a separate library for ASP.NET Core, which will provide native authorization support.
-2. EVEOnline.ESI uses ENDPOINT VERSIONING according to best practices (see [more](https://developers.eveonline.com/blog/article/esi-endpoint-versioning-important-info-and-best-practices)). At the moment there is no way to choose a different route (e.g. legacy/latest or dev) except to override the EndpointHandler in pipline. But in the future, we plan to provide this feature in separate package along with repeat customization. I don't know why it might be necessary :sweat_smile:
+2. EVEClient.NET uses ENDPOINT VERSIONING according to best practices (see [more](https://developers.eveonline.com/blog/article/esi-endpoint-versioning-important-info-and-best-practices)). At the moment there is no way to choose a different route (e.g. legacy/latest or dev) except to override the EndpointHandler in pipline. But in the future, we plan to provide this feature in separate package along with repeat customization. I don't know why it might be necessary :sweat_smile:
 
 ## NuGet Packages
 
