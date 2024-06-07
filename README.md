@@ -49,6 +49,29 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
 ```
 <!-- endSnippet -->
 
+After that you can inject IEsiLogicAccessor or specific logic interface directly.
+
+```cs
+public class AccountController : Controller
+{
+    private readonly IEsiLogicAccessor _esiLogicAccessor;
+    private readonly ICharacterLogic _characterLogic;
+
+    public AccountController(IEsiLogicAccessor esiLogicAccessor, ICharacterLogic characterLogic)
+    { 
+        _esiLogicAccessor = esiLogicAccessor;
+        _characterLogic = characterLogic;
+    }
+	
+    public async Task<IActionResult> Index()
+    {
+        var characterInfo = await _characterLogic.PublicInformation(65151651651);
+        var orders = await _esiLogicAccessor.MarketLogic.CharacterOrders(65151651651);
+	...
+    }
+}
+```
+
 ### Customizations
 
 For example, you don't want to return a 304 http status code when using ETag, but rather return cached data from your local storage. 
@@ -87,7 +110,7 @@ internal class CustomHandler : IHandler
 }
 ```
 
-Next, register your cache with the service collection and set up customization of the pipline
+Next, register your cache in the service collection and set up customization of the pipline
 
 ```cs
 _serviceCollection.AddEVEOnlineEsiClient(config =>
