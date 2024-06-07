@@ -99,7 +99,7 @@ internal class CustomHandler : IHandler
         if (context.Response.StatusCode == HttpStatusCode.NotModified)
         {
             var eTag = context.Response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
-            var data = await _cache.GetCachedResponse(etag);
+            var data = await _cache.GetCachedResponse(eTag);
             var response = new HttpResponseMessage(HttpStatusCode.OK);
 
             response.Content = new StringContent(JsonConvert.SerializeObject(data));
