@@ -99,7 +99,7 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
 .CustomizePipline(configure =>
 {
 	configure.ModificationFor(EndpointsSelector.GetRequests) // You can use a preset group or you can specify a specific endpoint Ids
-		// Place it so that the handler is launched before the ETagHandler callback (i.e. after RequestGetHandler)
+		// Place it so that the handler is launched before the ETagHandler callback (i.e. on the reverse pass of the chain after RequestGetHandler)
 		.AdditionalMiddleware<CustomHandler>("eTagResponseModifier", addAfter: "ETagHandler");
 });
 
