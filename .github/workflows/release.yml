@@ -69,5 +69,8 @@ jobs:
     
     - name: Deploy
       if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
-      run: dotnet nuget push nugets\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+      run: |
+          foreach($file in (Get-ChildItem "${{ env.NUGET_DIRECTORY }}" -Recurse -Include *.nupkg)) {
+              dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+          }
    
