@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  - package-ecosystem: nuget
+  - package-ecosystem: "nuget"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -16,8 +16,3 @@ updates:
         - "EVEClient.NET"
         - "EVEClient.NET.UnitTests"
         - "EVEClient.NET.IntegrationTests"
-- package-ecosystem: "github-actions"
-  directory: "/"
-  schedule:
-    interval: weekly
-  open-pull-requests-limit: 100
