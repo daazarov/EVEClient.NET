@@ -25,7 +25,7 @@ jobs:
 
     # Create the NuGet package in the folder from the environment variable NuGetDirectory
     - name: Pack
-      run: dotnet pack $PROJECT --configuration Release --no-restore --output ${{ env.NuGetDirectory }} /p:Version=${{ github.ref_name }}
+      run: dotnet pack ${{ env.PROJECT }} --configuration Release --no-restore --output ${{ env.NUGET_DIRECTORY }} /p:Version=${{ github.ref_name }}
 
     # Publish the NuGet package as an artifact, so they can be used in the following jobs
     - name: Publish artifacts
@@ -34,7 +34,7 @@ jobs:
         name: nugets
         overwrite: true
         if-no-files-found: error
-        path: ${{ env.NuGetDirectory }}/*.nupkg
+        path: ${{ env.NUGET_DIRECTORY }}/*.nupkg
         retention-days: 1
 
   validate_nuget:
@@ -47,13 +47,13 @@ jobs:
       - uses: actions/download-artifact@v4.1.7
         with:
           name: nugets
-          path: ${{ env.NuGetDirectory }}
+          path: ${{ env.NUGET_DIRECTORY }}
 
       - name: Install nuget validator
         run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
 
       - name: Validate package
-        run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NuGetDirectory }}/*.nupkg")
+        run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NUGET_DIRECTORY }}/*.nupkg")
   
   publish_nuget:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
     - uses: actions/download-artifact@v4.1.7
       with:
         name: nugets
-        path: ${{ env.NuGetDirectory }}
+        path: ${{ env.NUGET_DIRECTORY }}
     
     - name: Deploy
       if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
