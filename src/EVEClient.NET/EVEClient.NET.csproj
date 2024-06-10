@@ -11,6 +11,7 @@
     <Description>EVEClient.ESI is a wrapper over the ESI API based on a middleware approach</Description>
     <Title>EVE Online ESI HttpClient wrapper</Title>
     <Authors>Dmitry Azarov</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
