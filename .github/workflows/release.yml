@@ -4,6 +4,11 @@ on:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
       - '[0-9]+.[0-9]+.[0-9]+-*'
+  workflow_dispatch:
+    inputs:
+      name:
+        type: string
+        description: package version
 
 defaults:
   run:
