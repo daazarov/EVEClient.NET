@@ -2,7 +2,7 @@
 
 ## About EVEClient.NET
 
-EVEOnline.ESI is a wrapper over the [`ESI API`](https://esi.evetech.net/ui/) based on a [middleware](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/index/_static/request-delegate-pipeline.png?view=aspnetcore-8.0) approach. The middleware works on the pipline principle in ASP.NET Core and allows you to add/modify the behavior of request generation and response processing.
+EVEClient.ESI is a wrapper over the [`ESI API`](https://esi.evetech.net/ui/) based on a [middleware](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/index/_static/request-delegate-pipeline.png?view=aspnetcore-8.0) approach. The middleware works on the pipline principle in ASP.NET Core and allows you to add/modify the behavior of request generation and response processing.
 
 EVEClient.NET includes following default ordered middlewares:
 
