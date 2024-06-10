@@ -8,7 +8,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/daazarov/EVEClient.NET</RepositoryUrl>
     <PackageTags>EVE, ESI, C#, API</PackageTags>
-    <Description>EVEOnline.ESI is a wrapper over the ESI API based on a middleware approach</Description>
+    <Description>EVEClient.ESI is a wrapper over the ESI API based on a middleware approach</Description>
     <Title>EVE Online ESI HttpClient wrapper</Title>
     <Authors>Dmitry Azarov</Authors>
   </PropertyGroup>
