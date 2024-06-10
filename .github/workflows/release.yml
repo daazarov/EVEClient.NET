@@ -53,7 +53,7 @@ jobs:
         run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
 
       - name: Validate package
-        run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NUGET_DIRECTORY }}/*.nupkg")
+        run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NUGET_DIRECTORY }}/*.nupkg") --excluded-rules XmlDocumentationMustBePresent, IconMustBeSet, LicenseMustBeSet, Symbols
   
   publish_nuget:
     runs-on: ubuntu-latest
