@@ -24,7 +24,7 @@ In the future it is planned to write a separate library for ASP.NET Core, which 
 
 | **Package** | **Latest Version** | **About** |
 |:--|:--|:--|
-| `EVEClient.NET` | [![NuGet](https://buildstats.info/nuget/EVEClient.NET)](https://buildstats.info/nuget/EVEClient.NET "Download EVEClient.NET from NuGet.org") | The core functionality to communicate with [`ESI API`](https://esi.evetech.net/ui/). |
+| `EVEClient.NET` | [![NuGet](https://buildstats.info/nuget/EVEClient.NET)](https://www.nuget.org/packages/EVEClient.NET "Download EVEClient.NET from NuGet.org") | The core functionality to communicate with [`ESI API`](https://esi.evetech.net/ui/). |
 | `EVEClient.NET.Polly` | Coming Soon... | Integration with [`Polly`](https://www.nuget.org/packages/Polly/) APIs to provide a repeat function and selection of alternative routes. |
 | `EVEClient.NET.Identity` | Coming Soon... | OAuth 2.0 framework for ASP.NET Core to provide out-of-the-box functionality for EVE SSO authorization. |
 
