@@ -5,13 +5,13 @@ name: CI
 
 on:
   push:
-    branches: [ "release/**" ]
+    branches: [ "release-**" ]
     paths-ignore:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
   pull_request:
-    branches: [ "main", "release/**" ]
+    branches: [ "main", "release-**" ]
     paths: 
     - '**.cs'
     - '**.csproj'
