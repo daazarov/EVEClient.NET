@@ -9,13 +9,13 @@ namespace EVEClient.NET.DataContract
         /// contact_id integer
         /// </summary>
         [JsonProperty("contact_id")]
-        public required int ContactId {  get; set; }
+        public int ContactId { get; init; }
 
         /// <summary>
         /// contact_type string
         /// </summary>
         [JsonProperty("contact_type")]
-        public required ContactType ContactType { get; init; }
+        public ContactType ContactType { get; init; }
 
         /// <summary>
         /// Label IDs applied to the contact
@@ -27,6 +27,6 @@ namespace EVEClient.NET.DataContract
         /// Standing of the contact
         /// </summary>
         [JsonProperty("standing")]
-        public required float Standing { get; init; }
+        public float Standing { get; init; }
     }
 }

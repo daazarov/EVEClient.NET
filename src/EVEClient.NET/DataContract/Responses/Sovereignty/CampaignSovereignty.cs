@@ -10,19 +10,19 @@ namespace EVEClient.NET.DataContract
         /// Score for all attacking parties, only present in Defense Events.
         /// </summary>
         [JsonProperty("attackers_score")]
-        public float? AttackersScore {  get; set; }
+        public float? AttackersScore { get; init; }
 
         /// <summary>
         /// Unique ID for this campaign.
         /// </summary>
         [JsonProperty("campaign_id")]
-        public required int CampaignId { get; init; }
+        public int CampaignId { get; init; }
 
         /// <summary>
         /// The constellation in which the campaign will take place.
         /// </summary>
         [JsonProperty("constellation_id")]
-        public required int ConstellationId { get; init; }
+        public int ConstellationId { get; init; }
 
         /// <summary>
         /// Defending alliance, only present in Defense Events
@@ -40,7 +40,7 @@ namespace EVEClient.NET.DataContract
         /// Type of event this campaign is for. tcu_defense, ihub_defense and station_defense are referred to as "Defense Events", station_freeport as "Freeport Events".
         /// </summary>
         [JsonProperty("event_type")]
-        public required CampaignEventType EventType { get; init; }
+        public CampaignEventType EventType { get; init; }
 
         /// <summary>
         /// Alliance participating and their respective scores, only present in Freeport Events.
@@ -52,19 +52,19 @@ namespace EVEClient.NET.DataContract
         /// The solar system the structure is located in.
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public required int SolarSystemId { get; init; }
+        public int SolarSystemId { get; init; }
 
         /// <summary>
         /// Time the event is scheduled to start.
         /// </summary>
         [JsonProperty("start_time")]
-        public required DateTime StartTime { get; init; }
+        public DateTime StartTime { get; init; }
 
         /// <summary>
         /// The structure item ID that is related to this campaign.
         /// </summary>
         [JsonProperty("structure_id")]
-        public required long StructureId { get; init; }
+        public long StructureId { get; init; }
 
         public class Participant
         {
@@ -72,13 +72,13 @@ namespace EVEClient.NET.DataContract
             /// alliance_id integer
             /// </summary>
             [JsonProperty("alliance_id")]
-            public required int AllianceId { get; init; }
+            public int AllianceId { get; init; }
 
             /// <summary>
             /// score number
             /// </summary>
             [JsonProperty("score")]
-            public required float Score { get; init; }
+            public float Score { get; init; }
         }
     }
 }

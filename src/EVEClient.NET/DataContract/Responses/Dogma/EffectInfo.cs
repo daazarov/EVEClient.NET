@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// IEnumerable<KeyValuePair<TKey, TValue>>
         /// </summary>
         [JsonProperty("description")]
-        public string? Description {  get; set; }
+        public string? Description { get; init; }
 
         /// <summary>
         /// disallow_auto_repeat boolean
@@ -38,13 +38,13 @@ namespace EVEClient.NET.DataContract
         /// effect_category integer
         /// </summary>
         [JsonProperty("effect_category")]
-        public int? EffectCategory {  get; set; }
+        public int? EffectCategory { get; init; }
 
         /// <summary>
         /// effect_id integer
         /// </summary>
         [JsonProperty("effect_id")]
-        public required int EffectId { get; init; }
+        public int EffectId { get; init; }
 
         /// <summary>
         /// electronic_chance boolean
@@ -98,7 +98,7 @@ namespace EVEClient.NET.DataContract
         /// post_expression integer
         /// </summary>
         [JsonProperty("post_expression")]
-        public int? PostExpression {  get; set; }
+        public int? PostExpression { get; init; }
 
         /// <summary>
         /// pre_expression integer
@@ -149,7 +149,7 @@ namespace EVEClient.NET.DataContract
         /// func string
         /// </summary>
         [JsonProperty("func")]
-        public required string Func { get; init; }
+        public string Func { get; init; }
 
         /// <summary>
         /// modified_attribute_id integer

@@ -8,25 +8,25 @@ namespace EVEClient.NET.DataContract
         /// implant ids integer
         /// </summary>
         [JsonProperty("implants")]
-        public required int[] Implants { get; init; }
+        public int[] Implants { get; init; }
 
         /// <summary>
         /// jump_clone_id integer
         /// </summary>
         [JsonProperty("jump_clone_id")]
-        public required int JumpCloneId { get; init; }
+        public int JumpCloneId { get; init; }
 
         /// <summary>
         /// location_id integer
         /// </summary>
         [JsonProperty("location_id")]
-        public required long LocationId { get; init; }
+        public long LocationId { get; init; }
 
         /// <summary>
         /// location_type string
         /// </summary>
         [JsonProperty("location_type")]
-        public required CloneLocationType LocationType { get; init; }
+        public CloneLocationType LocationType { get; init; }
 
         /// <summary>
         /// name string

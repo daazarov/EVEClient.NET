@@ -55,12 +55,12 @@ namespace EVEClient.NET.DataContract
         public int TypeId { get; init; }
 
         /// <summary>
-        /// Quantity of items still required or offered
+        /// Quantity of items still or offered
         /// </summary>
         public int VolumeRemain { get; init; }
 
         /// <summary>
-        /// Quantity of items required or offered at time order was placed
+        /// Quantity of items or offered at time order was placed
         /// </summary>
         public int VolumeTotal { get; init; }
     }

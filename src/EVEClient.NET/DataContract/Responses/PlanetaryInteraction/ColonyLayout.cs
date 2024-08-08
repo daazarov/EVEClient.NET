@@ -10,19 +10,19 @@ namespace EVEClient.NET.DataContract
         /// links array
         /// </summary>
         [JsonProperty("links")]
-        public required List<Link> Links { get; init; }
+        public List<Link> Links { get; init; }
 
         /// <summary>
         /// pins array
         /// </summary>
         [JsonProperty("pins")]
-        public required List<Pin> Pins { get; init; }
+        public List<Pin> Pins { get; init; }
 
         /// <summary>
         /// routes array
         /// </summary>
         [JsonProperty("routes")]
-        public required List<Route> Routes { get; init; }
+        public List<Route> Routes { get; init; }
 
         public class Link
         {
@@ -30,19 +30,19 @@ namespace EVEClient.NET.DataContract
             /// destination_pin_id integer
             /// </summary>
             [JsonProperty("destination_pin_id")]
-            public required long DestinationPinId { get; init; }
+            public long DestinationPinId { get; init; }
 
             /// <summary>
             /// link_level integer
             /// </summary>
             [JsonProperty("link_level")]
-            public required int LinkLevel { get; init; }
+            public int LinkLevel { get; init; }
 
             /// <summary>
             /// source_pin_id integer
             /// </summary>
             [JsonProperty("source_pin_id")]
-            public required long SourcePinId { get; init; }
+            public long SourcePinId { get; init; }
         }
 
         public class Pin
@@ -87,19 +87,19 @@ namespace EVEClient.NET.DataContract
             /// latitude number
             /// </summary>
             [JsonProperty("latitude")]
-            public required float Latitude { get; init; }
+            public float Latitude { get; init; }
 
             /// <summary>
             /// longitude number
             /// </summary>
             [JsonProperty("longitude")]
-            public required float Longitude { get; init; }
+            public float Longitude { get; init; }
 
             /// <summary>
             /// pin_id integer
             /// </summary>
             [JsonProperty("pin_id")]
-            public required long PinId { get; init; }
+            public long PinId { get; init; }
 
             /// <summary>
             /// schematic_id integer
@@ -111,7 +111,7 @@ namespace EVEClient.NET.DataContract
             /// type_id integer
             /// </summary>
             [JsonProperty("type_id")]
-            public required int TypeId { get; init; }
+            public int TypeId { get; init; }
 
             public class Content
             {
@@ -119,13 +119,13 @@ namespace EVEClient.NET.DataContract
                 /// amount integer
                 /// </summary>
                 [JsonProperty("amount")]
-                public required long Amount { get; init; }
+                public long Amount { get; init; }
 
                 /// <summary>
                 /// type_id integer
                 /// </summary>
                 [JsonProperty("type_id")]
-                public required int TypeId { get; init; }
+                public int TypeId { get; init; }
             }
 
             public class Extractor
@@ -146,7 +146,7 @@ namespace EVEClient.NET.DataContract
                 /// heads array
                 /// </summary>
                 [JsonProperty("heads")]
-                public required List<Head> Heads { get; init; }
+                public List<Head> Heads { get; init; }
 
                 /// <summary>
                 /// product_type_id integer
@@ -166,19 +166,19 @@ namespace EVEClient.NET.DataContract
                     /// head_id integer
                     /// </summary>
                     [JsonProperty("head_id")]
-                    public required int HeadId { get; init; }
+                    public int HeadId { get; init; }
 
                     /// <summary>
                     /// latitude number
                     /// </summary>
                     [JsonProperty("latitude")]
-                    public required float Latitude { get; init; }
+                    public float Latitude { get; init; }
 
                     /// <summary>
                     /// longitude number
                     /// </summary>
                     [JsonProperty("longitude")]
-                    public required float Longitude { get; init; }
+                    public float Longitude { get; init; }
                 }
             }
 
@@ -188,7 +188,7 @@ namespace EVEClient.NET.DataContract
                 /// schematic_id integer
                 /// </summary>
                 [JsonProperty("schematic_id")]
-                public required int SchematicId { get; init; }
+                public int SchematicId { get; init; }
             }
         }
 
@@ -198,31 +198,31 @@ namespace EVEClient.NET.DataContract
             /// content_type_id integer
             /// </summary>
             [JsonProperty("content_type_id")]
-            public required int ContentTypeId { get; init; }
+            public int ContentTypeId { get; init; }
 
             /// <summary>
             /// destination_pin_id integer
             /// </summary>
             [JsonProperty("destination_pin_id")]
-            public required long DestinationPinId { get; init; }
+            public long DestinationPinId { get; init; }
 
             /// <summary>
             /// quantity number
             /// </summary>
             [JsonProperty("quantity")]
-            public required float Quantity { get; init; }
+            public float Quantity { get; init; }
 
             /// <summary>
             /// route_id integer
             /// </summary>
             [JsonProperty("route_id")]
-            public required long RouteId { get; init; }
+            public long RouteId { get; init; }
 
             /// <summary>
             /// source_pin_id integer
             /// </summary>
             [JsonProperty("source_pin_id")]
-            public required long SourcePinId { get; init; }
+            public long SourcePinId { get; init; }
 
             /// <summary>
             /// list of pin ID waypoints

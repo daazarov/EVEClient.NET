@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// corporation_id integer
         /// </summary>
         [JsonProperty("corporation_id")]
-        public required int CorporationId { get; init; }
+        public int CorporationId { get; init; }
 
         /// <summary>
         /// True if the corporation has been deleted
@@ -21,12 +21,12 @@ namespace EVEClient.NET.DataContract
         /// An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous
         /// </summary>
         [JsonProperty("record_id")]
-        public required int RecordId { get; init; }
+        public int RecordId { get; init; }
 
         /// <summary>
         /// start_date string
         /// </summary>
         [JsonProperty("start_date")]
-        public required DateTime StartDate { get; init; }
+        public DateTime StartDate { get; init; }
     }
 }

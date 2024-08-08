@@ -9,13 +9,13 @@ namespace EVEClient.NET.DataContract
         /// The constellation this solar system is in
         /// </summary>
         [JsonProperty("constellation_id")]
-        public required int ConstellationId {  get; set; }
+        public int ConstellationId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// planets array
@@ -27,7 +27,7 @@ namespace EVEClient.NET.DataContract
         /// position object
         /// </summary>
         [JsonProperty("position")]
-        public required Position Position { get; init; }
+        public Position Position { get; init; }
 
         /// <summary>
         /// security_class string
@@ -39,7 +39,7 @@ namespace EVEClient.NET.DataContract
         /// security_status number
         /// </summary>
         [JsonProperty("security_status")]
-        public required float SecurityStatus { get; init; }
+        public float SecurityStatus { get; init; }
 
         /// <summary>
         /// star_id integer
@@ -63,7 +63,7 @@ namespace EVEClient.NET.DataContract
         /// system_id integer
         /// </summary>
         [JsonProperty("system_id")]
-        public required int SystemId { get; init; }
+        public int SystemId { get; init; }
 
 
         public class IncludedObject
@@ -84,7 +84,7 @@ namespace EVEClient.NET.DataContract
             /// planet_id integer
             /// </summary>
             [JsonProperty("planet_id")]
-            public required int PlanetId { get; init; }
+            public int PlanetId { get; init; }
         }
     }
 }

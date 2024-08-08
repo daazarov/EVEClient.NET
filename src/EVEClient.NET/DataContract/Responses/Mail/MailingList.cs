@@ -8,12 +8,12 @@ namespace EVEClient.NET.DataContract
         /// Mailing list ID
         /// </summary>
         [JsonProperty("mailing_list_id")]
-        public required int MailingListId { get; init; }
+        public int MailingListId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
     }
 }

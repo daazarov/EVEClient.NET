@@ -8,13 +8,13 @@ namespace EVEClient.NET.DataContract
         /// The bloodline associated with this ancestry
         /// </summary>
         [JsonProperty("bloodline_id")]
-        public required int BloodlineId { get; init; }
+        public int BloodlineId { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public required string Description { get; init; }
+        public string Description { get; init; }
 
         /// <summary>
         /// icon_id integer
@@ -26,13 +26,13 @@ namespace EVEClient.NET.DataContract
         /// id integer
         /// </summary>
         [JsonProperty("id")]
-        public required int Id { get; init; }
+        public int Id { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// short_description string

@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// character_id integer
         /// </summary>
         [JsonProperty("character_id")]
-        public required int CharacterId { get; init; }
+        public int CharacterId { get; init; }
 
         /// <summary>
         /// grantable_roles array

@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// bookmark_id integer
         /// </summary>
         [JsonProperty("bookmark_id")]
-        public required int BookmarkId { get; init; }
+        public int BookmarkId { get; init; }
 
         /// <summary>
         /// coordinates object
@@ -21,13 +21,13 @@ namespace EVEClient.NET.DataContract
         /// created string
         /// </summary>
         [JsonProperty("created")]
-        public required DateTime Created { get; init; }
+        public DateTime Created { get; init; }
 
         /// <summary>
         /// creator_id integer
         /// </summary>
         [JsonProperty("creator_id")]
-        public required int CreatorId { get; init; }
+        public int CreatorId { get; init; }
 
         /// <summary>
         /// folder_id integer
@@ -45,18 +45,18 @@ namespace EVEClient.NET.DataContract
         /// label string
         /// </summary>
         [JsonProperty("label")]
-        public required string Label { get; init; }
+        public string Label { get; init; }
 
         /// <summary>
         /// location_id integer
         /// </summary>
         [JsonProperty("location_id")]
-        public required int LocationId { get; init; }
+        public int LocationId { get; init; }
 
         /// <summary>
         /// notes string
         /// </summary>
         [JsonProperty("notes")]
-        public required string Notes { get; init; }
+        public string Notes { get; init; }
     }
 }

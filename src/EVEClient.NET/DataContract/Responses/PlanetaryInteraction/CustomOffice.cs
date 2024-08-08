@@ -14,13 +14,13 @@ namespace EVEClient.NET.DataContract
         /// standing_level and any standing related tax rate only present when this is true
         /// </summary>
         [JsonProperty("allow_access_with_standings")]
-        public required bool AllowAccessWithStandings { get; init; }
+        public bool AllowAccessWithStandings { get; init; }
 
         /// <summary>
         /// allow_alliance_access boolean
         /// </summary>
         [JsonProperty("allow_alliance_access")]
-        public required bool AllowAllianceAccess { get; init; }
+        public bool AllowAllianceAccess { get; init; }
 
         /// <summary>
         /// bad_standing_tax_rate number
@@ -56,19 +56,19 @@ namespace EVEClient.NET.DataContract
         /// unique ID of this customs office
         /// </summary>
         [JsonProperty("office_id")]
-        public required long OfficeId { get; init; }
+        public long OfficeId { get; init; }
 
         /// <summary>
         /// reinforce_exit_end integer
         /// </summary>
         [JsonProperty("reinforce_exit_end")]
-        public required int ReinforceExitEnd { get; init; }
+        public int ReinforceExitEnd { get; init; }
 
         /// <summary>
         /// Together with reinforce_exit_end, marks a 2-hour period where this customs office could exit reinforcement mode during the day after initial attack
         /// </summary>
         [JsonProperty("reinforce_exit_start")]
-        public required int ReinforceExitStart { get; init; }
+        public int ReinforceExitStart { get; init; }
 
         /// <summary>
         /// Access is allowed only for entities with this level of standing or better
@@ -80,7 +80,7 @@ namespace EVEClient.NET.DataContract
         /// ID of the solar system this customs office is located in
         /// </summary>
         [JsonProperty("system_id")]
-        public required int SystemId { get; init; }
+        public int SystemId { get; init; }
 
         /// <summary>
         /// terrible_standing_tax_rate number

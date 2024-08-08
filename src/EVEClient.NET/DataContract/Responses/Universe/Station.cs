@@ -9,31 +9,31 @@ namespace EVEClient.NET.DataContract
         /// max_dockable_ship_volume number
         /// </summary>
         [JsonProperty("max_dockable_ship_volume")]
-        public required float MaxDockableShipVolume {  get; set; }
+        public float MaxDockableShipVolume { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// office_rental_cost number
         /// </summary>
         [JsonProperty("office_rental_cost")]
-        public required float OfficeRentalCost { get; init; }
+        public float OfficeRentalCost { get; init; }
 
         /// <summary>
         /// ID of the corporation that controls this station
         /// </summary>
         [JsonProperty("owner")]
-        public int? Owner {  get; set; }
+        public int? Owner { get; init; }
 
         /// <summary>
         /// position object
         /// </summary>
         [JsonProperty("position")]
-        public required Position Position { get; init; }
+        public Position Position { get; init; }
 
         /// <summary>
         /// race_id integer
@@ -45,36 +45,36 @@ namespace EVEClient.NET.DataContract
         /// reprocessing_efficiency number
         /// </summary>
         [JsonProperty("reprocessing_efficiency")]
-        public required float ReprocessingEfficiency { get; init; }
+        public float ReprocessingEfficiency { get; init; }
 
         /// <summary>
         /// reprocessing_stations_take number
         /// </summary>
         [JsonProperty("reprocessing_stations_take")]
-        public required float ReprocessingStationsTake { get; init; }
+        public float ReprocessingStationsTake { get; init; }
 
         /// <summary>
         /// services array
         /// </summary>
         [JsonProperty("services")]
-        public required List<Service> Services { get; init; }
+        public List<Service> Services { get; init; }
 
         /// <summary>
         /// station_id integer
         /// </summary>
         [JsonProperty("station_id")]
-        public required int StationId { get; init; }
+        public int StationId { get; init; }
 
         /// <summary>
         /// The solar system this station is in
         /// </summary>
         [JsonProperty("system_id")]
-        public required int SystemId { get; init; }
+        public int SystemId { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public required int TypeId { get; init; }
+        public int TypeId { get; init; }
     }
 }

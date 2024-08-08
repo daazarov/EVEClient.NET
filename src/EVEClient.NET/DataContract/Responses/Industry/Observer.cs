@@ -9,18 +9,18 @@ namespace EVEClient.NET.DataContract
         /// last_updated string
         /// </summary>
         [JsonProperty("last_updated")]
-        public required DateTime LastUpdated { get; init; }
+        public DateTime LastUpdated { get; init; }
 
         /// <summary>
         /// The entity that was observing the asteroid field when it was mined.
         /// </summary>
         [JsonProperty("observer_id")]
-        public required long ObserverId { get; init; }
+        public long ObserverId { get; init; }
 
         /// <summary>
         /// The category of the observing entity
         /// </summary>
         [JsonProperty("observer_type")]
-        public required string ObserverType { get; init; }
+        public string ObserverType { get; init; }
     }
 }

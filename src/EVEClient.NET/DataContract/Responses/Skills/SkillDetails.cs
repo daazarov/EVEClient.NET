@@ -9,13 +9,13 @@ namespace EVEClient.NET.DataContract
         /// skills array
         /// </summary>
         [JsonProperty("skills")]
-        public required List<Skill> Skills { get; init; }
+        public List<Skill> Skills { get; init; }
 
         /// <summary>
         /// total_sp integer
         /// </summary>
         [JsonProperty("total_sp")]
-        public required long TotalSp {  get; set; }
+        public long TotalSp { get; init; }
 
         /// <summary>
         /// Skill points available to be assigned
@@ -30,24 +30,24 @@ namespace EVEClient.NET.DataContract
         /// active_skill_level integer
         /// </summary>
         [JsonProperty("active_skill_level")]
-        public required int ActiveSkillLevel { get; init; }
+        public int ActiveSkillLevel { get; init; }
 
         /// <summary>
         /// skill_id integer
         /// </summary>
         [JsonProperty("skill_id")]
-        public required int SkillId { get; init; }
+        public int SkillId { get; init; }
 
         /// <summary>
         /// killpoints_in_skill integer
         /// </summary>
         [JsonProperty("skillpoints_in_skill")]
-        public required long SkillpointsInSkill { get; init; }
+        public long SkillpointsInSkill { get; init; }
 
         /// <summary>
         /// trained_skill_level integer
         /// </summary>
         [JsonProperty("trained_skill_level")]
-        public required int TrainedSkillLevel { get; init; }
+        public int TrainedSkillLevel { get; init; }
     }
 }

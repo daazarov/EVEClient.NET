@@ -13,13 +13,13 @@ namespace EVEClient.NET.Models
         public long? ApprovedCost { get; set; }
 
         [JsonProperty("body")]
-        public required string Body { get; set; }
+        public string Body { get; set; }
 
         [JsonProperty("recipients")]
-        public required List<RecipientBodyModel> Recipients { get; set; }
+        public List<RecipientBodyModel> Recipients { get; set; }
 
         [JsonProperty("subject")]
-        public required string Subject { get; set; }
+        public string Subject { get; set; }
 
         public bool ShouldSerializeApprovedCost()
         {
@@ -44,13 +44,13 @@ namespace EVEClient.NET.Models
         /// recipient_id integer
         /// </summary>
         [JsonProperty("recipient_id")]
-        public required int RecipientId { get; set; }
+        public int RecipientId { get; set; }
 
         /// <summary>
         /// recipient_type string
         /// </summary>
         [JsonProperty("recipient_type")]
-        public required string RecipientType { get; set; }
+        public string RecipientType { get; set; }
 
         public static RecipientBodyModel FromDataContractModel(NewMail.Recipient recipient)
         {

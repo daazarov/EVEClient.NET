@@ -9,19 +9,19 @@ namespace EVEClient.NET.DataContract
         /// id integer
         /// </summary>
         [JsonProperty("id")]
-        public required long Id {  get; set; }
+        public long Id { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// squads array
         /// </summary>
         [JsonProperty("squads")]
-        public required List<Squad> Squads { get; init; }
+        public List<Squad> Squads { get; init; }
     }
 
     public class Squad
@@ -30,12 +30,12 @@ namespace EVEClient.NET.DataContract
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// id integer
         /// </summary>
         [JsonProperty("id")]
-        public required long Id { get; init; }
+        public long Id { get; init; }
     }
 }

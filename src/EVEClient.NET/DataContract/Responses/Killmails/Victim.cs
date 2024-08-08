@@ -27,7 +27,7 @@ namespace EVEClient.NET.DataContract
         /// How much total damage was taken by the victim
         /// </summary>
         [JsonProperty("damage_taken")]
-        public required int DamageTaken { get; init; }
+        public int DamageTaken { get; init; }
 
         /// <summary>
         /// faction_id integer
@@ -51,6 +51,6 @@ namespace EVEClient.NET.DataContract
         /// The ship that the victim was piloting and was destroyed
         /// </summary>
         [JsonProperty("ship_type_id")]
-        public required int ShipTypeId { get; init; }
+        public int ShipTypeId { get; init; }
     }
 }

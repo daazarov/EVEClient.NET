@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// The given character’s current faction rank
         /// </summary>
         [JsonProperty("current_rank")]
-        public int? CurrentRank {  get; set; }
+        public int? CurrentRank { get; init; }
 
         /// <summary>
         /// The enlistment date of the given character into faction warfare.
@@ -35,12 +35,12 @@ namespace EVEClient.NET.DataContract
         /// kills array
         /// </summary>
         [JsonProperty("kills")]
-        public required Totals Kills { get; init; }
+        public Totals Kills { get; init; }
 
         /// <summary>
         /// victory_points array
         /// </summary>
         [JsonProperty("victory_points")]
-        public required Totals VictoryPoints { get; init; }
+        public Totals VictoryPoints { get; init; }
     }
 }

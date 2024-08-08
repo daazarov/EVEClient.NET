@@ -23,7 +23,7 @@ namespace EVEClient.NET.DataContract
         /// kills array
         /// </summary>
         [JsonProperty("kills")]
-        public required Totals Kills { get; init; }
+        public Totals Kills { get; init; }
 
         /// <summary>
         /// How many pilots the enlisted corporation has.
@@ -36,6 +36,6 @@ namespace EVEClient.NET.DataContract
         /// victory_points array
         /// </summary>
         [JsonProperty("victory_points")]
-        public required Totals VictoryPoints { get; init; }
+        public Totals VictoryPoints { get; init; }
     }
 }

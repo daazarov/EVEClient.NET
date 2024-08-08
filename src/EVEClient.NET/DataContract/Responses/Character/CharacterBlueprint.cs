@@ -8,50 +8,50 @@ namespace EVEClient.NET.DataContract
         /// Unique ID for this item.
         /// </summary>
         [JsonProperty("item_id")]
-        public required long ItemId { get; init; }
+        public long ItemId { get; init; }
 
         /// <summary>
         /// Type of the location_id
         /// </summary>
         [JsonProperty("location_flag")]
-        public required LocationFlag LocationFlag { get; init; }
+        public LocationFlag LocationFlag { get; init; }
 
         /// <summary>
         /// References a station, a ship or an item_id if this blueprint is located within a container.
         /// If the return value is an item_id, then the Character AssetList API must be queried to find the container using the given item_id to determine the correct location of the Blueprint.
         /// </summary>
         [JsonProperty("location_id")]
-        public required long LocationId { get; init; }
+        public long LocationId { get; init; }
 
         /// <summary>
         /// Material Efficiency Level of the blueprint.
         /// </summary>
         [JsonProperty("material_efficiency")]
-        public required int MaterialEfficiency { get; init; }
+        public int MaterialEfficiency { get; init; }
 
         /// <summary>
         /// A range of numbers with a minimum of -2 and no maximum value where -1 is an original and -2 is a copy.
         /// It can be a positive integer if it is a stack of blueprint originals fresh from the market (e.g. no activities performed on them yet).
         /// </summary>
         [JsonProperty("quantity")]
-        public required int Quantity { get; init; }
+        public int Quantity { get; init; }
 
         /// <summary>
         /// Number of runs remaining if the blueprint is a copy, -1 if it is an original.
         /// </summary>
         [JsonProperty("runs")]
-        public required int Runs { get; init; }
+        public int Runs { get; init; }
 
         /// <summary>
         /// Time Efficiency Level of the blueprint.
         /// </summary>
         [JsonProperty("time_efficiency")]
-        public required int TimeEfficiency { get; init; }
+        public int TimeEfficiency { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public required int TypeId { get; init; }
+        public int TypeId { get; init; }
     }
 }

@@ -17,7 +17,7 @@ namespace EVEClient.NET.DataContract
         /// Number of days for which order is/was valid (starting from the issued date). An order expires at time issued + duration
         /// </summary>
         [JsonProperty("duration")]
-        public required int Duration { get; init; }
+        public int Duration { get; init; }
 
         /// <summary>
         /// For buy orders, the amount of ISK in escrow
@@ -41,7 +41,7 @@ namespace EVEClient.NET.DataContract
         /// Date and time when this order was issued
         /// </summary>
         [JsonProperty("issued")]
-        public required DateTime Issued { get; init; }
+        public DateTime Issued { get; init; }
 
         /// <summary>
         /// The character who issued this order
@@ -53,7 +53,7 @@ namespace EVEClient.NET.DataContract
         /// ID of the location where order was placed
         /// </summary>
         [JsonProperty("location_id")]
-        public required long LocationId { get; init; }
+        public long LocationId { get; init; }
 
         /// <summary>
         /// For buy orders, the minimum quantity that will be accepted in a matching sell order
@@ -65,19 +65,19 @@ namespace EVEClient.NET.DataContract
         /// Unique order ID
         /// </summary>
         [JsonProperty("order_id")]
-        public required long OrderId { get; init; }
+        public long OrderId { get; init; }
 
         /// <summary>
         /// Cost per unit for this order
         /// </summary>
         [JsonProperty("price")]
-        public required double Price { get; init; }
+        public double Price { get; init; }
 
         /// <summary>
         /// Valid order range, numbers are ranges in jumps
         /// </summary>
         [JsonProperty("range")]
-        public required OrderRange Range { get; init; }
+        public OrderRange Range { get; init; }
 
         /// <summary>
         /// The solar system this order was placed
@@ -101,19 +101,19 @@ namespace EVEClient.NET.DataContract
         /// The type ID of the item transacted in this order
         /// </summary>
         [JsonProperty("type_id")]
-        public required int TypeId { get; init; }
+        public int TypeId { get; init; }
 
         /// <summary>
-        /// Quantity of items still required or offered
+        /// Quantity of items still or offered
         /// </summary>
         [JsonProperty("volume_remain")]
-        public required int VolumeRemain { get; init; }
+        public int VolumeRemain { get; init; }
 
         /// <summary>
-        /// Quantity of items required or offered at time order was placed
+        /// Quantity of items or offered at time order was placed
         /// </summary>
         [JsonProperty("volume_total")]
-        public required int VolumeTotal { get; init; }
+        public int VolumeTotal { get; init; }
 
         /// <summary>
         /// The corporation wallet division used for this order.

@@ -8,24 +8,24 @@ namespace EVEClient.NET.DataContract
         /// category_id integer
         /// </summary>
         [JsonProperty("category_id")]
-        public required int CategoryId {  get; set; }
+        public int CategoryId { get; init; }
 
         /// <summary>
         /// groups array
         /// </summary>
         [JsonProperty("groups")]
-        public required int[] Groups { get; init; }
+        public int[] Groups { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// published boolean
         /// </summary>
         [JsonProperty("published")]
-        public required bool Published { get; init; }
+        public bool Published { get; init; }
     }
 }

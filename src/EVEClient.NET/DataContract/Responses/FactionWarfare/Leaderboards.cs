@@ -6,22 +6,22 @@ namespace EVEClient.NET.DataContract
     public class Leaderboards<T>
     {
         [JsonProperty("kills")]
-        public required Summary<T> Kills { get; init; }
+        public Summary<T> Kills { get; init; }
 
         [JsonProperty("victory_points")]
-        public required Summary<T> VictoryPoints { get; init; }
+        public Summary<T> VictoryPoints { get; init; }
     }
 
     public class Summary<T>
     {
         [JsonProperty("yesterday")]
-        public required List<T> Yesterday { get; init; }
+        public List<T> Yesterday { get; init; }
 
         [JsonProperty("last_week")]
-        public required List<T> LastWeek { get; init; }
+        public List<T> LastWeek { get; init; }
 
         [JsonProperty("active_total")]
-        public required List<T> ActiveTotal { get; init; }
+        public List<T> ActiveTotal { get; init; }
     }
 
     public class FactionTotal

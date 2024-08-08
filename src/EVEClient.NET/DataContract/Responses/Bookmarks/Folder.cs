@@ -8,12 +8,12 @@ namespace EVEClient.NET.DataContract
         /// folder_id integer
         /// </summary>
         [JsonProperty("folder_id")]
-        public required int FolderId { get; init; }
+        public int FolderId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
     }
 }

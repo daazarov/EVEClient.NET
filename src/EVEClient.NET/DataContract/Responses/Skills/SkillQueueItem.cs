@@ -9,19 +9,19 @@ namespace EVEClient.NET.DataContract
         /// Date on which training of the skill will complete. Omitted if the skill queue is paused.
         /// </summary>
         [JsonProperty("finish_date")]
-        public DateTime? FinishDate {  get; set; }
+        public DateTime? FinishDate { get; init; }
 
         /// <summary>
         /// finished_level integer
         /// </summary>
         [JsonProperty("finished_level")]
-        public required int FinishedLevel { get; init; }
+        public int FinishedLevel { get; init; }
 
         /// <summary>
         /// level_end_sp integer
         /// </summary>
         [JsonProperty("level_end_sp")]
-        public int? LevelEndSp {  get; set; }
+        public int? LevelEndSp { get; init; }
 
         /// <summary>
         /// Amount of SP that was in the skill when it started training it’s current level. Used to calculate % of current level complete.
@@ -33,13 +33,13 @@ namespace EVEClient.NET.DataContract
         /// queue_position integer
         /// </summary>
         [JsonProperty("queue_position")]
-        public required int QueuePosition { get; init; }
+        public int QueuePosition { get; init; }
 
         /// <summary>
         /// skill_id integer
         /// </summary>
         [JsonProperty("skill_id")]
-        public required int SkillId { get; init; }
+        public int SkillId { get; init; }
 
         /// <summary>
         /// start_date string

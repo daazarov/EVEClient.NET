@@ -8,18 +8,18 @@ namespace EVEClient.NET.DataContract
         /// from_id integer
         /// </summary>
         [JsonProperty("from_id")]
-        public required int FromId { get; init; }
+        public int FromId { get; init; }
 
         /// <summary>
         /// from_type string
         /// </summary>
         [JsonProperty("from_type")]
-        public required StandingType StandingType { get; init; }
+        public StandingType StandingType { get; init; }
 
         /// <summary>
         /// standing number
         /// </summary>
         [JsonProperty("standing")]
-        public required float Standing { get; init; }
+        public float Standing { get; init; }
     }
 }

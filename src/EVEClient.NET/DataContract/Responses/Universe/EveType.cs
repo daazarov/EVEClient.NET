@@ -9,13 +9,13 @@ namespace EVEClient.NET.DataContract
         /// capacity number
         /// </summary>
         [JsonProperty("capacity")]
-        public float? Capacity {  get; set; }
+        public float? Capacity { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public required string Description { get; init; }
+        public string Description { get; init; }
 
         /// <summary>
         /// dogma_attributes array
@@ -39,7 +39,7 @@ namespace EVEClient.NET.DataContract
         /// group_id integer
         /// </summary>
         [JsonProperty("group_id")]
-        public required int GroupId { get; init; }
+        public int GroupId { get; init; }
 
         /// <summary>
         /// icon_id integer
@@ -63,7 +63,7 @@ namespace EVEClient.NET.DataContract
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// packaged_volume number
@@ -81,7 +81,7 @@ namespace EVEClient.NET.DataContract
         /// published boolean
         /// </summary>
         [JsonProperty("published")]
-        public required bool Published { get; init; }
+        public bool Published { get; init; }
 
         /// <summary>
         /// radius number
@@ -93,7 +93,7 @@ namespace EVEClient.NET.DataContract
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public required int TypeId { get; init; }
+        public int TypeId { get; init; }
 
         /// <summary>
         /// volume number

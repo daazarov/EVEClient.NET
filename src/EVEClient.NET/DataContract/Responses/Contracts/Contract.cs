@@ -9,25 +9,25 @@ namespace EVEClient.NET.DataContract
         /// Who will accept the contract
         /// </summary>
         [JsonProperty("acceptor_id")]
-        public required int AcceptorId { get; init; }
+        public int AcceptorId { get; init; }
 
         /// <summary>
         /// ID to whom the contract is assigned, can be alliance, corporation or character ID
         /// </summary>
         [JsonProperty("assignee_id")]
-        public required int AssigneeId { get; init; }
+        public int AssigneeId { get; init; }
 
         /// <summary>
         /// To whom the contract is available
         /// </summary>
         [JsonProperty("availability")]
-        public required ContractAvailability Availability {  get; set; }
+        public ContractAvailability Availability { get; init; }
 
         /// <summary>
         /// Buyout price (for Auctions only)
         /// </summary>
         [JsonProperty("buyout")]
-        public double? Buyout {  get; set; }
+        public double? Buyout { get; init; }
 
         /// <summary>
         /// Collateral price (for Couriers only)
@@ -39,7 +39,7 @@ namespace EVEClient.NET.DataContract
         /// contract_id integer
         /// </summary>
         [JsonProperty("contract_id")]
-        public required int ContractId { get; init; }
+        public int ContractId { get; init; }
 
         /// <summary>
         /// Date of confirmation of contract
@@ -57,13 +57,13 @@ namespace EVEClient.NET.DataContract
         /// Expiration date of the contract
         /// </summary>
         [JsonProperty("date_expired")]
-        public required DateTime DateExpired { get; init; }
+        public DateTime DateExpired { get; init; }
 
         /// <summary>
         /// Сreation date of the contract
         /// </summary>
         [JsonProperty("date_issued")]
-        public required DateTime DateIssued { get; init; }
+        public DateTime DateIssued { get; init; }
 
         /// <summary>
         /// Number of days to perform the contract
@@ -81,19 +81,19 @@ namespace EVEClient.NET.DataContract
         /// true if the contract was issued on behalf of the issuer’s corporation
         /// </summary>
         [JsonProperty("for_corporation")]
-        public required bool ForCorporation { get; init; }
+        public bool ForCorporation { get; init; }
 
         /// <summary>
         /// Character’s corporation ID for the issuer
         /// </summary>
         [JsonProperty("issuer_corporation_id")]
-        public required int IssuerCorporationId { get; init; }
+        public int IssuerCorporationId { get; init; }
 
         /// <summary>
         /// Character ID for the issuer
         /// </summary>
         [JsonProperty("issuer_id")]
-        public required int IssuerId { get; init; }
+        public int IssuerId { get; init; }
 
         /// <summary>
         /// Price of contract (for ItemsExchange and Auctions)
@@ -117,7 +117,7 @@ namespace EVEClient.NET.DataContract
         /// Status of the the contract
         /// </summary>
         [JsonProperty("status")]
-        public required ContactStatus Status { get; init; }
+        public ContactStatus Status { get; init; }
 
         /// <summary>
         /// Title of the contract
@@ -129,7 +129,7 @@ namespace EVEClient.NET.DataContract
         /// Type of the contract
         /// </summary>
         [JsonProperty("type")]
-        public required ContractType Type { get; init; }
+        public ContractType Type { get; init; }
 
         /// <summary>
         /// Volume of items in the contract

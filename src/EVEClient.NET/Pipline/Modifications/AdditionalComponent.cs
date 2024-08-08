@@ -2,7 +2,7 @@
 {
     internal class AdditionalComponent
     {
-        public required PiplineComponent PiplineComponent { get; init; }
+        public PiplineComponent PiplineComponent { get; init; }
         public string? AddAfter { get; set; }
         public bool AddToEnd { get; set; }
         public bool AddToStart { get; set; }
