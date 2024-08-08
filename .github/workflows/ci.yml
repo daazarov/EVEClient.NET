@@ -46,6 +46,7 @@ jobs:
 
     - name: NUnit Tests Report
       uses: daazarov/NUnitTestResultSummary@v1
+      if: github.event_name == 'pull_request'
       with:
         filename: src/EVEClient.NET.UnitTests/bin/Release/net6.0/TestResults/EVEClient.NET.UnitTests.xml
         badge: true
