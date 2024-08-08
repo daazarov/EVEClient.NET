@@ -9,60 +9,60 @@ namespace EVEClient.NET.DataContract
         /// client_id integer
         /// </summary>
         [JsonProperty("client_id")]
-        public int ClientId { get; set; }
+        public required int ClientId { get; init; }
 
         /// <summary>
         /// Date and time of transaction
         /// </summary>
         [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        public required DateTime Date { get; init; }
 
         /// <summary>
         /// is_buy boolean
         /// </summary>
         [JsonProperty("is_buy")]
-        public bool IsBuy { get; set; }
+        public required bool IsBuy { get; init; }
 
         /// <summary>
         /// is_personal boolean
         /// </summary>
         [JsonProperty("is_personal")]
-        public bool? IsPersonal { get; set; }
+        public bool? IsPersonal { get; init; }
 
         /// <summary>
         /// journal_ref_id integer
         /// </summary>
         [JsonProperty("journal_ref_id")]
-        public long JournalRefId { get; set; }
+        public required long JournalRefId { get; init; }
 
         /// <summary>
         /// location_id integer
         /// </summary>
         [JsonProperty("location_id")]
-        public long LocationId { get; set; }
+        public required long LocationId { get; init; }
 
         /// <summary>
         /// quantity integer
         /// </summary>
         [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        public required int Quantity { get; init; }
 
         /// <summary>
         /// Unique transaction ID
         /// </summary>
         [JsonProperty("transaction_id")]
-        public long TransactionId { get; set; }
+        public required long TransactionId { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
 
         /// <summary>
         /// Amount paid per unit
         /// </summary>
         [JsonProperty("unit_price")]
-        public double UnitPrice { get; set; }
+        public required double UnitPrice { get; init; }
     }
 }

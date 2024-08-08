@@ -4,12 +4,12 @@ namespace EVEClient.NET.Models
 {
     internal class StructureTypeModel
     {
-        public StructureTypeModel(string structureType)
+        public StructureTypeModel(string? structureType)
         {
             StructureType = structureType;
         }
 
         [QueryParameter("filter")]
-        public string StructureType { get; set; }
+        public string? StructureType { get; set; }
     }
 }

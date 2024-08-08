@@ -22,6 +22,6 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/search/", Version = EndpointVersion.Legacy)]
         [Route("/v3/characters/{character_id}/search/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/search/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<SearchResult>> Query(int characterId, string search, SearchCategory categories, bool strict = false);
+        Task<EsiResponse<SearchResult>> Query(int characterId, string search, SearchCategory categories, bool strict = false, string? token = null);
     }
 }

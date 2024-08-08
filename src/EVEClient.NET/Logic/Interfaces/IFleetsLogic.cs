@@ -16,7 +16,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/fleet/", Version = EndpointVersion.Latest)]
         [Route("/legacy/characters/{character_id}/fleet/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/fleet/", Version = EndpointVersion.V1, Preferred = true)]
-        Task<EsiResponse<FleetInfo>> FleetInfo(int characterId);
+        Task<EsiResponse<FleetInfo>> FleetInfo(int characterId, string? token = null);
 
         /// <summary>
         /// Return details about a fleet
@@ -27,7 +27,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<FleetSettings>> FleetSettings(long fleetId);
+        Task<EsiResponse<FleetSettings>> FleetSettings(long fleetId, string? token = null);
 
         /// <summary>
         /// Update settings about a fleet
@@ -40,7 +40,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> UpdateFleetSettings(long fleetId, bool? isFreeMove, string motd);
+        Task<EsiResponse> UpdateFleetSettings(long fleetId, bool? isFreeMove, string? motd, string? token = null);
 
         /// <summary>
         /// Return information about fleet members
@@ -51,7 +51,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/members/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/members/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/members/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<FleetMember>>> FleetMembers(long fleetId);
+        Task<EsiResponse<List<FleetMember>>> FleetMembers(long fleetId, string? token = null);
 
         /// <summary>
         /// Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI
@@ -72,7 +72,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/members/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/members/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/members/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> InviteMember(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null);
+        Task<EsiResponse> InviteMember(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null, string? token = null);
 
         /// <summary>
         /// Kick a fleet member
@@ -84,7 +84,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/members/{member_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/members/{member_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/members/{member_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> KickMember(long fleetId, int memberId);
+        Task<EsiResponse> KickMember(long fleetId, int memberId, string? token = null);
 
         /// <summary>
         /// Move a fleet member around
@@ -104,7 +104,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/members/{member_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/members/{member_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/members/{member_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> MoveMember(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null);
+        Task<EsiResponse> MoveMember(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null, string? token = null);
 
         /// <summary>
         /// Delete a fleet squad, only empty squads can be deleted
@@ -116,7 +116,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/squads/{squad_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/squads/{squad_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/squads/{squad_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> DeleteSquad(long fleetId, long squadId);
+        Task<EsiResponse> DeleteSquad(long fleetId, long squadId, string? token = null);
 
         /// <summary>
         /// Rename a fleet squad
@@ -129,7 +129,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/squads/{squad_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/squads/{squad_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/squads/{squad_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> RenameSquad(long fleetId, long squadId, string name);
+        Task<EsiResponse> RenameSquad(long fleetId, long squadId, string name, string? token = null);
 
         /// <summary>
         /// Return information about wings in a fleet
@@ -140,7 +140,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/wings/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/wings/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/wings/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Wing>>> FleetWings(long fleetId);
+        Task<EsiResponse<List<Wing>>> FleetWings(long fleetId, string? token = null);
 
         /// <summary>
         /// Create a new wing in a fleet
@@ -151,7 +151,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/wings/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/wings/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/wings/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<NewWing>> NewWing(long fleetId);
+        Task<EsiResponse<NewWing>> NewWing(long fleetId, string? token = null);
 
         /// <summary>
         /// Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty
@@ -163,7 +163,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/wings/{wing_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/wings/{wing_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/wings/{wing_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> DeleteWing(long fleetId, long wingId);
+        Task<EsiResponse> DeleteWing(long fleetId, long wingId, string? token = null);
 
         /// <summary>
         /// Rename a fleet wing
@@ -176,7 +176,7 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/wings/{wing_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/wings/{wing_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/wings/{wing_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> RenameWing(long fleetId, long wingId, string name);
+        Task<EsiResponse> RenameWing(long fleetId, long wingId, string name, string? token = null);
 
         /// <summary>
         /// Create a new squad in a fleet
@@ -188,6 +188,6 @@ namespace EVEClient.NET
         [Route("/legacy/fleets/{fleet_id}/wings/{wing_id}/squads/", Version = EndpointVersion.Legacy)]
         [Route("/v1/fleets/{fleet_id}/wings/{wing_id}/squads/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/fleets/{fleet_id}/wings/{wing_id}/squads/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<NewSquad>> NewSquad(long fleetId, long wingId);
+        Task<EsiResponse<NewSquad>> NewSquad(long fleetId, long wingId, string? token = null);
     }
 }

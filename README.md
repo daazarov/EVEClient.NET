@@ -45,7 +45,10 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
     // 304 http status code will be returned on a second request as long as the data on the server is cached and has not been changed 
     config.EnableETag = true; // 
 })
-.UseAccessTokenProvider<YourAccessTokenProvider>();
+.AddAccessTokenProvider<YourAccessTokenProvider>()
+.AddScopeValidator<YourScopeAccessValidator>()
+// or
+.UseOnlyPublicEndpoints()
 ```
 <!-- endSnippet -->
 
@@ -74,7 +77,7 @@ public class AccountController : Controller
 
 ### Customizations
 
-For example, you don't want to return a 304 http status code when using ETag, but rather return cached data from your local storage. 
+For example, you don't want to return a 304 http status code when using ETag option, but rather return cached data from your local storage. 
 
 To do this, create a new handler, which will then be connected to the existing pipelines.
 
@@ -118,7 +121,8 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
     config.UserAgent = "agent name";
     config.EnableETag = true;
 })
-.UseAccessTokenProvider<YourAccessTokenProvider>()
+.AddAccessTokenProvider<YourAccessTokenProvider>()
+.AddScopeValidator<YourScopeAccessValidator>()
 .CustomizePipline(configure =>
 {
     configure.ModificationFor(EndpointsSelector.GetRequests) // You can use a preset group or you can specify a specific endpoint Ids

@@ -8,66 +8,66 @@ namespace EVEClient.NET.DataContract
         /// agent array
         /// </summary>
         [JsonProperty("agent")]
-        public int[] Agents { get; set; }
+        public int[]? Agents { get; init; }
 
         /// <summary>
         /// alliance array
         /// </summary>
         [JsonProperty("alliance")]
-        public int[] Alliances { get; set; }
+        public int[]? Alliances { get; init; }
 
         /// <summary>
         /// character array
         /// </summary>
         [JsonProperty("character")]
-        public int[] Characters { get; set; }
+        public int[]? Characters { get; init; }
 
         /// <summary>
         /// constellation array
         /// </summary>
         [JsonProperty("constellation")]
-        public int[] Constellations { get; set; }
+        public int[]? Constellations { get; init; }
 
         /// <summary>
         /// corporation array
         /// </summary>
         [JsonProperty("corporation")]
-        public int[] Corporations { get; set; }
+        public int[]? Corporations { get; init; }
 
         /// <summary>
         /// faction array
         /// </summary>
         [JsonProperty("faction")]
-        public int[] Factions { get; set; }
+        public int[]? Factions { get; init; }
 
         /// <summary>
         /// inventory_type array
         /// </summary>
         [JsonProperty("inventory_type")]
-        public int[] InventoryTypes { get; set; }
+        public int[]? InventoryTypes { get; init; }
 
         /// <summary>
         /// region array
         /// </summary>
         [JsonProperty("region")]
-        public int[] Regions { get; set; }
+        public int[]? Regions { get; init; }
 
         /// <summary>
         /// solar_system array
         /// </summary>
         [JsonProperty("solar_system")]
-        public int[] SolarSystems { get; set; }
+        public int[]? SolarSystems { get; init; }
 
         /// <summary>
         /// station array
         /// </summary>
         [JsonProperty("station")]
-        public int[] Stations { get; set; }
+        public int[]? Stations { get; init; }
 
         /// <summary>
         /// structure array
         /// </summary>
         [JsonProperty("structure")]
-        public long[] Structures { get; set; }
+        public long[]? Structures { get; init; }
     }
 }

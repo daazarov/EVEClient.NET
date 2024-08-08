@@ -3,27 +3,7 @@
     public class ESI
     {
         internal const string HttpClientName = "EsiHttpClient";
-
-        internal static class SSO
-        {
-            public const string DiscoveryWebKeys = "oauth/jwks";
-            public const string DiscoveryConfiguration = ".well-known/oauth-authorization-server";
-            public const string RevokeToken = "v2/oauth/revoke";
-            public const string GetToken = "v2/oauth/token";
-            public const string Authorize = "v2/oauth/authorize";
-
-            internal static class Tranquility
-            {
-                public const string AuthorizationSsoBaseUrl = "https://login.eveonline.com";
-                public const string EsiBaseUrl = "https://esi.evetech.net";
-            }
-
-            internal static class Singularity
-            {
-                public const string AuthorizationSsoBaseUrl = "https://sisilogin.testeveonline.com";
-                public const string EsiBaseUrl = "https://esi.evetech.net";
-            }
-        }
+        internal const string EsiBaseUrl = "https://esi.evetech.net";
 
         public static class Endpoints
         {

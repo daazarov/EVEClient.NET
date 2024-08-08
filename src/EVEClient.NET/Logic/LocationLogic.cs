@@ -15,13 +15,13 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<Location>> CurrentLocation(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Location>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<Location>> CurrentLocation(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Location>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponse<Activity>> Online(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Activity>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<Activity>> Online(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Activity>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponse<Ship>> CurrentShip(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Ship>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<Ship>> CurrentShip(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Ship>(CharacterIdRouteRequest.Create(characterId), token);
     }
 }

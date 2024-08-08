@@ -8,30 +8,30 @@ namespace EVEClient.NET.DataContract
         /// planet_id integer
         /// </summary>
         [JsonProperty("planet_id")]
-        public int PlanetId {  get; set; }
+        public required int PlanetId {  get; set; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// position object
         /// </summary>
         [JsonProperty("position")]
-        public Position Position { get; set; }
+        public required Position Position { get; init; }
 
         /// <summary>
         /// The solar system this planet is in
         /// </summary>
         [JsonProperty("system_id")]
-        public int SystemId { get; set; }
+        public required int SystemId { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
     }
 }

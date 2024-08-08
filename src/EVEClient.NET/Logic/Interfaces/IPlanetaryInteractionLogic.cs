@@ -17,7 +17,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/planets/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/planets/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/planets/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Colony>>> Colonies(int characterId);
+        Task<EsiResponse<List<Colony>>> Colonies(int characterId, string? token = null);
 
         /// <summary>
         /// Returns full details on the layout of a single planetary colony, including links, pins and routes.
@@ -29,7 +29,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/planets/{planet_id}/", Version = EndpointVersion.Latest)]
         [Route("/v3/characters/{character_id}/planets/{planet_id}/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/planets/{planet_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<ColonyLayout>> ColonyInfo(int characterId, int planetId);
+        Task<EsiResponse<ColonyLayout>> ColonyInfo(int characterId, int planetId, string? token = null);
 
         /// <summary>
         /// List customs offices owned by a corporation
@@ -42,7 +42,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/customs_offices/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/customs_offices/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/customs_offices/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CustomOffice>>> CorporationCustomOffices(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<CustomOffice>>> CorporationCustomOffices(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Get information on a planetary factory schematic

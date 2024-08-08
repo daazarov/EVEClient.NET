@@ -2,8 +2,8 @@
 {
     internal class AdditionalComponent
     {
-        public PiplineComponent PiplineComponent { get; set; }
-        public string AddAfter { get; set; }
+        public required PiplineComponent PiplineComponent { get; init; }
+        public string? AddAfter { get; set; }
         public bool AddToEnd { get; set; }
         public bool AddToStart { get; set; }
         public int? EndOrder { get; set; }

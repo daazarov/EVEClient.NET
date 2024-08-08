@@ -9,30 +9,30 @@ namespace EVEClient.NET.DataContract
         /// The time at which the chunk being extracted will arrive and can be fractured by the moon mining drill.
         /// </summary>
         [JsonProperty("chunk_arrival_time")]
-        public DateTime ChunkArrivalTime { get; set; }
+        public required DateTime ChunkArrivalTime { get; init; }
 
         /// <summary>
         /// The time at which the current extraction was initiated.
         /// </summary>
         [JsonProperty("extraction_start_time")]
-        public DateTime ExtractionStartTime { get; set; }
+        public required DateTime ExtractionStartTime { get; init; }
 
         /// <summary>
         /// moon_id integer
         /// </summary>
         [JsonProperty("moon_id")]
-        public int MoonId { get; set; }
+        public required int MoonId { get; init; }
 
         /// <summary>
         /// The time at which the chunk being extracted will naturally fracture if it is not first fractured by the moon mining drill.
         /// </summary>
         [JsonProperty("natural_decay_time")]
-        public DateTime NaturalDecayTime { get; set; }
+        public required DateTime NaturalDecayTime { get; init; }
 
         /// <summary>
         /// structure_id integer
         /// </summary>
         [JsonProperty("structure_id")]
-        public long StructureId { get; set; }
+        public required long StructureId { get; init; }
     }
 }

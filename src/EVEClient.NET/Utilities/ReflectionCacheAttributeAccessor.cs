@@ -12,12 +12,12 @@ namespace EVEClient.NET.Utilities
             return GetAttribute<T>(attributeProvider) != null;
         }
 
-        public override T GetAttribute<T>(object attributeProvider)
+        public override T? GetAttribute<T>(object attributeProvider) where T : class
         {
-            return GetAttributes<T>(attributeProvider).FirstOrDefault();
+            return GetAttributes<T>(attributeProvider)?.FirstOrDefault();
         }
 
-        public override T[] GetAttributes<T>(object attributeProvider)
+        public override T[]? GetAttributes<T>(object attributeProvider)
         {
             return AttributeThreadSaveStore<T>.GetAttributes(attributeProvider, provider => GetAttributes<T>(provider, true));
         }

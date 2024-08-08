@@ -4,44 +4,32 @@ namespace EVEClient.NET.Configuration
 {
     public class EsiClientConfiguration
     {
-        internal const string DefaultEsiConfigurationSectionName = "EsiClientConfiguration";
+        /// <summary>
+        /// Get or set UserAgent header value which will be used when sending requests.
+        /// </summary>
+        /// <remarks>
+        /// When making requests, it’s recommended you set a User-Agent header in your client which includes the source of the request and contact information. 
+        /// This way, CCP can identify and help you with issues if you’re banned.
+        /// </remarks>
+        public string UserAgent { get; set; } = default!;
 
-        private EVEOnlineServer _server;
-
-        public EsiClientConfiguration()
-        {
-            Server = EVEOnlineServer.Tranquility;
-        }
-
-        public string UserAgent { get; set; }
+        /// <summary>
+        /// Indicates whether the ETag header should be stored and used.
+        /// See more: <see href="https://developers.eveonline.com/blog/article/esi-etag-best-practices"/>
+        /// </summary>
         public bool EnableETag { get; set; }
 
-        public EVEOnlineServer Server
-        {
-            get { return _server; }
-            set
-            {
-                _server = value;
-                switch (value)
-                {
-                    case EVEOnlineServer.Tranquility:
-                        AuthorizationUrl = ESI.SSO.Tranquility.AuthorizationSsoBaseUrl;
-                        EsiUrl = ESI.SSO.Tranquility.EsiBaseUrl;
-                        break;
+        /// <summary>
+        /// Get or set server you would like data from
+        /// </summary>
+        /// <remarks>The default value: <see cref="EVEOnlineServer.Tranquility"></see></remarks>
+        public EVEOnlineServer Server { get; set; } = EVEOnlineServer.Tranquility;
 
-                    case EVEOnlineServer.Singularity:
-                        AuthorizationUrl = ESI.SSO.Singularity.AuthorizationSsoBaseUrl;
-                        EsiUrl = ESI.SSO.Singularity.EsiBaseUrl;
-                        break;
-
-                    default:
-                        throw new ArgumentException($"Server '{value}' is unsupported.", nameof(value));
-                }
-            }
-        }
-
-        internal string EsiUrl { get; set; }
-        internal string AuthorizationUrl { get; set; }
+        /// <summary>
+        /// Get or set the EVE ESI base url.
+        /// </summary>
+        /// <remarks>The default value: https://esi.evetech.net</remarks>
+        public string EsiBaseUrl { get; set; } = ESI.EsiBaseUrl;
     }
 
     public enum EVEOnlineServer

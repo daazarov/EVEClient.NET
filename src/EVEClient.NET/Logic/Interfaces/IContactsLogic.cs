@@ -17,7 +17,7 @@ namespace EVEClient.NET
         [Route("/latest/alliances/{alliance_id}/contacts/", Version = EndpointVersion.Latest)]
         [Route("/v2/alliances/{alliance_id}/contacts/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/alliances/{alliance_id}/contacts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<AlianceContact>>> AllianceContacts(int allianceId, int page = 1);
+        Task<EsiResponsePagination<List<AlianceContact>>> AllianceContacts(int allianceId, int page = 1, string? token = null);
 
         /// <summary>
         /// Return custom labels for an alliance’s contacts
@@ -28,7 +28,7 @@ namespace EVEClient.NET
         [Route("/legacy/alliances/{alliance_id}/contacts/labels/", Version = EndpointVersion.Legacy)]
         [Route("/v1/alliances/{alliance_id}/contacts/labels/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/alliances/{alliance_id}/contacts/labels/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ContactLabel>>> AllianceContactLabels(int allianceId);
+        Task<EsiResponse<List<ContactLabel>>> AllianceContactLabels(int allianceId, string? token = null);
 
         /// <summary>
         /// Bulk delete contacts
@@ -39,7 +39,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/contacts/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/contacts/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/contacts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> DeleteCharacterContacts(int characterId, int[] contactIds);
+        Task<EsiResponse> DeleteCharacterContacts(int characterId, int[] contactIds, string? token = null);
 
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/contacts/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/contacts/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/contacts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CharacterContact>>> CharacterContacts(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<CharacterContact>>> CharacterContacts(int characterId, int page = 1, string? token = null);
 
         /// <summary>
         /// Bulk add contacts with same settings
@@ -66,7 +66,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/contacts/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/contacts/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/contacts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> AddCharacterContacts(int characterId, int[] contactIds, float standing, int[] labelIds = null, bool watched = false);
+        Task<EsiResponse<List<int>>> AddCharacterContacts(int characterId, int[] contactIds, float standing, int[]? labelIds = null, bool watched = false, string? token = null);
 
         /// <summary>
         /// Bulk edit contacts with same settings
@@ -80,7 +80,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/contacts/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/contacts/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/contacts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> UpdateCharacterContacts(int characterId, int[] contactIds, float standing, int[] labelIds = null, bool watched = false);
+        Task<EsiResponse> UpdateCharacterContacts(int characterId, int[] contactIds, float standing, int[]? labelIds = null, bool watched = false, string? token = null);
 
         /// <summary>
         /// Return custom labels for a character’s contacts
@@ -91,7 +91,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/contacts/labels/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/contacts/labels/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/contacts/labels/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ContactLabel>>> CharacterContactLabels(int characterId);
+        Task<EsiResponse<List<ContactLabel>>> CharacterContactLabels(int characterId, string? token = null);
 
         /// <summary>
         /// Return contacts of a corporation
@@ -102,7 +102,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/contacts/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/contacts/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/contacts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CorporationContact>>> CorporationContacts(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<CorporationContact>>> CorporationContacts(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Return custom labels for a corporation’s contacts
@@ -113,6 +113,6 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/contacts/labels/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/contacts/labels/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/contacts/labels/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ContactLabel>>> CorporationContactLabels(int corporationId);
+        Task<EsiResponse<List<ContactLabel>>> CorporationContactLabels(int corporationId, string? token = null);
     }
 }

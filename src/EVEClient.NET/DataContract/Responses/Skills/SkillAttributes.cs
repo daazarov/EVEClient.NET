@@ -9,48 +9,48 @@ namespace EVEClient.NET.DataContract
         /// Neural remapping cooldown after a character uses remap accrued over time
         /// </summary>
         [JsonProperty("accrued_remap_cooldown_date")]
-        public DateTime? AccruedRemapCooldownDate { get; set; }
+        public DateTime? AccruedRemapCooldownDate { get; init; }
 
         /// <summary>
         /// Number of available bonus character neural remaps
         /// </summary>
         [JsonProperty("bonus_remaps")]
-        public int? BonusRemaps { get; set; }
+        public int? BonusRemaps { get; init; }
 
         /// <summary>
         /// charisma integer
         /// </summary>
         [JsonProperty("charisma")]
-        public int Charisma { get; set; }
+        public required int Charisma { get; init; }
 
         /// <summary>
         /// intelligence integer
         /// </summary>
         [JsonProperty("intelligence")]
-        public int Intelligence { get; set; }
+        public required int Intelligence { get; init; }
 
         /// <summary>
         /// Datetime of last neural remap, including usage of bonus remaps
         /// </summary>
         [JsonProperty("last_remap_date")]
-        public DateTime? LastRemapDate { get; set; }
+        public DateTime? LastRemapDate { get; init; }
 
         /// <summary>
         /// memory integer
         /// </summary>
         [JsonProperty("memory")]
-        public int Memory { get; set; }
+        public required int Memory { get; init; }
 
         /// <summary>
         /// perception integer
         /// </summary>
         [JsonProperty("perception")]
-        public int Perception { get; set; }
+        public required int Perception { get; init; }
 
         /// <summary>
         /// willpower integer
         /// </summary>
         [JsonProperty("willpower")]
-        public int Willpower { get; set; }
+        public required int Willpower { get; init; }
     }
 }

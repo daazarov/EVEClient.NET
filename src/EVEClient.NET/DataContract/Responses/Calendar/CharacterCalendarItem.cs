@@ -9,30 +9,30 @@ namespace EVEClient.NET.DataContract
         /// event_date string
         /// </summary>
         [JsonProperty("event_date")]
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; init; }
 
         /// <summary>
         /// event_id integer
         /// </summary>
         [JsonProperty("event_id")]
-        public int EventId { get; set; }
+        public int? EventId { get; init; }
 
         /// <summary>
         /// event_response string
         /// </summary>
         [JsonProperty("event_response")]
-        public CalendarEventResponse EventResponse { get; set; }
+        public CalendarEventResponse? EventResponse { get; init; }
 
         /// <summary>
         /// importance integer
         /// </summary>
         [JsonProperty("importance")]
-        public int Importance { get; set; }
+        public int? Importance { get; init; }
 
         /// <summary>
         /// title string
         /// </summary>
         [JsonProperty("title")]
-        public string Title { get; set; }
+        public string? Title { get; init; }
     }
 }

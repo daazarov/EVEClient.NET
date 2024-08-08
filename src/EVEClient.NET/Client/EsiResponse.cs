@@ -12,79 +12,104 @@ namespace EVEClient.NET
 {
     public class EsiResponse
     {
-        private readonly string _eTag;
-        private readonly string _warning;
-        private readonly Guid _requestId;
-        private readonly HttpResponseMessage _httpResponseMessage;
-        private readonly HttpStatusCode _statusCode;
-        private readonly DateTime? _expires;
-        private readonly DateTime? _lastModified;
-        private readonly int _errorLimitRemain;
-        private readonly TimeSpan _errorLimitReset;
-        private readonly List<string> _errors;
+        /// <summary>
+        /// Gets the <see cref="HttpStatusCode"/>.
+        /// </summary>
+        public HttpStatusCode StatusCode { get; }
 
-        public HttpStatusCode StatusCode => _statusCode;
-        public string ETag => _eTag;
-        public HttpResponseMessage HttpResponseMessage => _httpResponseMessage;
-        public DateTime? Expires => _expires;
-        public DateTime? LastModified => _lastModified;
-        public Guid RequestId => _requestId;
-        public List<string> Errors => _errors;
-        public bool Success => Errors == null;
-        public string Warning => _warning;
+        /// <summary>
+        /// Gets the <c>ETag</c> header value.
+        /// </summary>
+        /// <remarks>Entity Tags are described in RFC7232 <see href="https://tools.ietf.org/html/rfc7232"/>.</remarks>
+        public string? ETag { get; }
+
+        /// <summary>
+        /// Gets the <see cref="HttpResponseMessage"/>.
+        /// </summary>
+        public HttpResponseMessage HttpResponseMessage { get; }
+
+        /// <summary>
+        /// Gets the <c>Expires</c> header value.
+        /// </summary>
+        public DateTime? Expires { get; }
+
+        /// <summary>
+        /// Gets the <c>Last-Modified</c> header value.
+        /// </summary>
+        public DateTime? LastModified { get; }
+
+        /// <summary>
+        /// Gets the EVE request ID.
+        /// </summary>
+        public Guid RequestId { get; }
+
+        /// <summary>
+        /// Holds failure information from the HTTP response.
+        /// </summary>
+        public List<string>? Errors { get; protected set; }
+
+        /// <summary>
+        /// Gets a value that indicates if the HTTP request to the EVE ESI was successfull.
+        /// </summary>
+        public bool Success => (HttpResponseMessage.IsSuccessStatusCode || StatusCode == HttpStatusCode.NotModified) && Errors == null;
+
+        /// <summary>
+        /// Can contain important information about endpoint routes deprication.
+        /// </summary>
+        public string? Warning { get; }
 
         /// <summary>
         /// How many more errors you can make within the window of time <see cref="ErrorLimitRemain"/>
         /// </summary>
-        public int ErrorLimitRemain => _errorLimitRemain;
+        public int ErrorLimitRemain { get; }
 
         /// <summary>
         /// Number of seconds until the end of the current error window.
         /// </summary>
-        public TimeSpan ErrorLimitReset => _errorLimitReset;
-        
+        public TimeSpan ErrorLimitReset { get; }
+
         public EsiResponse(HttpResponseMessage response)
         {
-            _httpResponseMessage = response;
+            HttpResponseMessage = response;
 
             if (response.Headers.Contains("X-ESI-Request-ID"))
             {
-                _requestId = Guid.Parse(response.Headers.GetValues("X-ESI-Request-ID").First());
+                RequestId = Guid.Parse(response.Headers.GetValues("X-ESI-Request-ID").First());
             }
             if (response.Headers.Contains("ETag"))
             {
-                _eTag = response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
+                ETag = response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
             }
             if (response.Content.Headers.Contains("Expires"))
             {
-                _expires = DateTime.Parse(response.Content.Headers.GetValues("Expires").First());
+                Expires = DateTime.Parse(response.Content.Headers.GetValues("Expires").First());
             }
             if (response.Content.Headers.Contains("Last-Modified"))
             {
-                _lastModified = DateTime.Parse(response.Content.Headers.GetValues("Last-Modified").First());
+                LastModified = DateTime.Parse(response.Content.Headers.GetValues("Last-Modified").First());
             }
             if (response.Headers.Contains("Warning"))
             {
-                _warning = response.Headers.GetValues("Warning").First();
+                Warning = response.Headers.GetValues("Warning").First();
             }
             if (response.Headers.Contains("X-ESI-Error-Limit-Remain"))
             {
-                _errorLimitRemain = int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Remain").First());
+                ErrorLimitRemain = int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Remain").First());
             }
             if (response.Headers.Contains("X-ESI-Error-Limit-Reset"))
             {
-                _errorLimitReset = TimeSpan.FromSeconds(int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Reset").First()));
+                ErrorLimitReset = TimeSpan.FromSeconds(int.Parse(response.Headers.GetValues("X-ESI-Error-Limit-Reset").First()));
             }
 
-            _statusCode = response.StatusCode;
+            StatusCode = response.StatusCode;
 
-            if (!response.IsSuccessStatusCode && _statusCode.NotIn(HttpStatusCode.NotModified))
+            if (!response.IsSuccessStatusCode && StatusCode.NotIn(HttpStatusCode.NotModified))
             {
                 var result = response.Content.ReadAsStringAsync().Result;
 
-                _errors = new List<string>()
+                Errors = new List<string>()
                 {
-                    JsonConvert.DeserializeAnonymousType(result, new { error = string.Empty }).error
+                    JsonConvert.DeserializeAnonymousType(result, new { error = "Unknown error." })?.error!
                 };
             }
         }

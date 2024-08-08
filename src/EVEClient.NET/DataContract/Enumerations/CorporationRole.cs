@@ -16,6 +16,7 @@ namespace EVEClient.NET.DataContract
         [EnumMember(Value = "Account_Take_7")] AccountTake7,
         [EnumMember(Value = "Accountant")] Accountant,
         [EnumMember(Value = "Auditor")] Auditor,
+        [EnumMember(Value = "BrandManager")] BrandManager,
         [EnumMember(Value = "Communications_Officer")] CommunicationsOfficer,
         [EnumMember(Value = "Config_Equipment")] ConfigEquipment,
         [EnumMember(Value = "Config_Starbase_Equipment")] ConfigStarbaseEquipment,

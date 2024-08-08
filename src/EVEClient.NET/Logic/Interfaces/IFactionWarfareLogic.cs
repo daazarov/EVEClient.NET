@@ -18,7 +18,7 @@ namespace EVEClient.NET
         [Route("/v1/characters/{character_id}/fw/stats/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/fw/stats/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/fw/stats/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<CharacterStats>> CharacterStats(int characterId);
+        Task<EsiResponse<CharacterStats>> CharacterStats(int characterId, string? token = null);
 
         /// <summary>
         /// Statistics about a corporation involved in faction warfare
@@ -30,7 +30,7 @@ namespace EVEClient.NET
         [Route("/v1/corporations/{corporation_id}/fw/stats/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/corporations/{corporation_id}/fw/stats/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/fw/stats/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<CorporationStats>> CorporationStats(int corporationId);
+        Task<EsiResponse<CorporationStats>> CorporationStats(int corporationId, string? token = null);
 
         /// <summary>
         /// Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday

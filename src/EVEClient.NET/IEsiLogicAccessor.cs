@@ -1,5 +1,8 @@
 ﻿namespace EVEClient.NET
 {
+    /// <summary>
+    /// Defines a class which provide facade to access specific parts of the ESI API.
+    /// </summary>
     public interface IEsiLogicAccessor
     {
         ICharacterLogic CharacterLogic { get; }

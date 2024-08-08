@@ -8,12 +8,12 @@ namespace EVEClient.NET.DataContract
         /// balance number
         /// </summary>
         [JsonProperty("balance")]
-        public double Balance {  get; set; }
+        public required double Balance {  get; set; }
 
         /// <summary>
         /// division integer
         /// </summary>
         [JsonProperty("division")]
-        public int Division {  get; set; }
+        public required int Division {  get; set; }
     }
 }

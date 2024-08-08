@@ -7,6 +7,11 @@ namespace EVEClient.NET.Pipline
 {
     internal static class IRequestPiplineBuilderExtensions
     {
+        /// <summary>
+        /// Adds a handler type to the ESI endpoint request pipeline.
+        /// </summary>
+        /// <typeparam name="THandler">The handler type.</typeparam>
+        /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UseHandler<THandler>(this IRequestPiplineBuilder builder) where THandler : IHandler
         {
             builder.ArgumentNotNull(nameof(builder));
@@ -24,6 +29,10 @@ namespace EVEClient.NET.Pipline
             }));
         }
 
+        /// <summary>
+        /// Prepare the default middleware for the DELETE ESI endpoints.
+        /// </summary>
+        /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UseDeletePipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
@@ -35,6 +44,10 @@ namespace EVEClient.NET.Pipline
                           .UseHandler<RequestDeleteHandler>();
         }
 
+        /// <summary>
+        /// Prepare the default middleware for the GET ESI endpoints.
+        /// </summary>
+        /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UseGetPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
@@ -47,6 +60,10 @@ namespace EVEClient.NET.Pipline
                           .UseHandler<RequestGetHandler>();
         }
 
+        /// <summary>
+        /// Prepare the default middleware for the POST ESI endpoints.
+        /// </summary>
+        /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UsePostPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
@@ -59,6 +76,10 @@ namespace EVEClient.NET.Pipline
                           .UseHandler<RequestPostHandler>();
         }
 
+        /// <summary>
+        /// Prepare the default middleware for the PUT ESI endpoints.
+        /// </summary>
+        /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UsePutPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));

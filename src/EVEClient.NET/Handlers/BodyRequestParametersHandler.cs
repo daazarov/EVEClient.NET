@@ -7,6 +7,9 @@ using EVEClient.NET.Pipline;
 
 namespace EVEClient.NET.Handlers
 {
+    /// <summary>
+    /// Prepares the body of the POST and PUT requests.
+    /// </summary>
     public class BodyRequestParametersHandler : IHandler
     {
         public async Task HandleAsync(EsiContext context, RequestDelegate next)

@@ -5,9 +5,10 @@ namespace EVEClient.NET
 {
     public class EsiResponsePagination<T> : EsiResponse<T>
     {
-        private readonly int _pages;
-
-        public int Pages => _pages;
+        /// <summary>
+        /// Gets the total count of pages.
+        /// </summary>
+        public int Pages { get; }
 
         // A future concept
         /*
@@ -21,7 +22,7 @@ namespace EVEClient.NET
         {
             if (response.Headers.Contains("X-Pages"))
             {
-                _pages = int.Parse(response.Headers.GetValues("X-Pages").First());
+                Pages = int.Parse(response.Headers.GetValues("X-Pages").First());
             }
         }
     }

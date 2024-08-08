@@ -42,7 +42,7 @@ namespace EVEClient.NET.IntegrationTests.WarningHeader
             {
                 config.UserAgent = "github.com/daazarov/EVEClient.NET warning headers CI tests";
             })
-            .UseAccessTokenProvider<AccessTokenProviderFake>();
+            .AddAccessTokenProvider<AccessTokenProviderFake>();
 
             _serviceProvider = _serviceCollection.BuildServiceProvider();
             _logicAccessor = _serviceProvider.GetService<IEsiLogicAccessor>()!;

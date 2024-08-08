@@ -8,6 +8,6 @@ namespace EVEClient.NET.DataContract
         /// fitting_id integer
         /// </summary>
         [JsonProperty("fitting_id")]
-        public int FittingId {  get; set; }
+        public required int FittingId {  get; set; }
     }
 }

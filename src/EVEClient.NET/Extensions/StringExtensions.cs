@@ -4,7 +4,7 @@ using EVEClient.NET.Utilities.Hashing;
 
 namespace EVEClient.NET.Extensions
 {
-    internal static class StringExtensions
+    public static class StringExtensions
     {
         public static string ArgumentStringNotNullOrEmpty(this string @this, string parameterName)
         {
@@ -26,9 +26,9 @@ namespace EVEClient.NET.Extensions
             return url;
         }
 
-        public static string MD5(this string @this)
+        public static string MD5(this string value)
         {
-            return HashingFactory.Instance.CreateHashingInstance(HashingAliases.MD5).GenerateHash(@this);
+            return HashingFactory.Instance.CreateHashingInstance(HashingAliases.MD5).GenerateHash(value);
         }
 
         public static string SHA256(this string @this)

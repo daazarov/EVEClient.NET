@@ -9,13 +9,13 @@ namespace EVEClient.NET.DataContract
         /// hangar array
         /// </summary>
         [JsonProperty("hangar")]
-        public List<Division> Hangar {  get; set; }
+        public List<Division>? Hangar {  get; set; }
 
         /// <summary>
         /// wallet array
         /// </summary>
         [JsonProperty("wallet")]
-        public List<Division> Wallet { get; set; }
+        public List<Division>? Wallet { get; init; }
     }
 
     public class Division
@@ -30,6 +30,6 @@ namespace EVEClient.NET.DataContract
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; init; }
     }
 }

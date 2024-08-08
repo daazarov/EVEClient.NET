@@ -16,7 +16,7 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<SearchResult>> Query(int characterId, string search, SearchCategory categories, bool strict = false) =>
-            _esiClient.GetRequestAsync<SearchRequest, SearchResult>(SearchRequest.Create(characterId, search, categories.ToEsiString(), strict));
+        public Task<EsiResponse<SearchResult>> Query(int characterId, string search, SearchCategory categories, bool strict = false, string? token = null) =>
+            _esiClient.GetRequestAsync<SearchRequest, SearchResult>(SearchRequest.Create(characterId, search, categories.ToEsiString(), strict), token);
     }
 }

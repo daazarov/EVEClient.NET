@@ -34,12 +34,11 @@ namespace EVEClient.NET.UnitTests.Extensions
         }
 
         [Test]
-        public void ToEsiString_Nullable_NullValue_Null()
+        public void ToEsiString_NullValue_ThrowException()
         {
             RoutesFlag? categories = null;
-            var esiString = categories.ToEsiString();
 
-            Assert.That(esiString, Is.Null);
+            Assert.Throws<ArgumentNullException>(() => categories.ToEsiString());
         }
     }
 }

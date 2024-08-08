@@ -18,7 +18,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/killmails/recent/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/killmails/recent/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/killmails/recent/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Killmail>>> CharacterKillmails(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<Killmail>>> CharacterKillmails(int characterId, int page = 1, string? token = null);
 
         /// <summary>
         /// Get a list of a corporation’s kills and losses going back 90 days
@@ -31,7 +31,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/killmails/recent/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/killmails/recent/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/killmails/recent/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Killmail>>> CorporationKillmails(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Killmail>>> CorporationKillmails(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Return a single killmail from its ID and hash

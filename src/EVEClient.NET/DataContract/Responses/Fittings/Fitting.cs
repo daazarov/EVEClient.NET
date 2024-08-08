@@ -9,31 +9,31 @@ namespace EVEClient.NET.DataContract
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public string Description {  get; set; }
+        public required string Description {  get; set; }
 
         /// <summary>
         /// fitting_id integer
         /// </summary>
         [JsonProperty("fitting_id")]
-        public int FittingId { get; set; }
+        public required int FittingId { get; init; }
 
         /// <summary>
         /// items array
         /// </summary>
         [JsonProperty("items")]
-        public List<FittingItem> Items { get; set; } = new List<FittingItem>();
+        public required List<FittingItem> Items { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// ship_type_id integer
         /// </summary>
         [JsonProperty("ship_type_id")]
-        public int ShipTypeId { get; set; }
+        public required int ShipTypeId { get; init; }
 
     }
 
@@ -43,18 +43,18 @@ namespace EVEClient.NET.DataContract
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
 
         /// <summary>
         /// flag string
         /// </summary>
         [JsonProperty("flag")]
-        public FittingFlag Flag { get; set; }
+        public required FittingFlag Flag { get; init; }
 
         /// <summary>
         /// quantity integer
         /// </summary>
         [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        public required int Quantity { get; init; }
     }
 }

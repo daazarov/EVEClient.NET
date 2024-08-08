@@ -9,24 +9,35 @@ namespace EVEClient.NET.Pipline
 {
     internal class PiplineStore : IPiplineStore
     {
-        private readonly Dictionary<string, IRequestPipline> _cache = [];
-        private readonly IEnumerable<PiplineModification> _modifications;
+        private readonly Dictionary<string, IRequestPipline> _cache = new();
+        private readonly IEnumerable<PiplineModification>? _modifications;
 
-        public PiplineStore(IEnumerable<PiplineModification> modifications = null)
+        private const string DefaultGetPiplineKey = "get_default";
+        private const string DefaultPostPiplineKey = "post_default";
+        private const string DefaultPutPiplineKey = "put_default";
+        private const string DefaultDeletePiplineKey = "delete_default";
+
+        public PiplineStore(IEnumerable<PiplineModification>? modifications = null)
         {
             _modifications = modifications;
 
-            GenericPipline(EndpointMarker.DefaultGet, new RequestPiplineBuilder().UseGetPipline());
-            GenericPipline(EndpointMarker.DefaultPost, new RequestPiplineBuilder().UsePostPipline());
-            GenericPipline(EndpointMarker.DefaultPut, new RequestPiplineBuilder().UsePutPipline());
-            GenericPipline(EndpointMarker.DefaultDelete, new RequestPiplineBuilder().UseDeletePipline());
+            GenericPipline(DefaultGetPiplineKey, new RequestPiplineBuilder().UseGetPipline());
+            GenericPipline(DefaultPostPiplineKey, new RequestPiplineBuilder().UsePostPipline());
+            GenericPipline(DefaultPutPiplineKey, new RequestPiplineBuilder().UsePutPipline());
+            GenericPipline(DefaultDeletePiplineKey, new RequestPiplineBuilder().UseDeletePipline());
 
             ApplyModifications();
         }
 
         public IRequestPipline GetPipline(EndpointMarker marker)
         {
-            if (_cache.TryGetValue(marker, out var pipline))
+            var endpointId = marker.ToEndpointId();
+            if (string.IsNullOrEmpty(endpointId))
+            {
+                throw new InvalidOperationException($"Can not convert EndpointMartker to endpoint id. HttpMethodType: {marker.HttpMethodType}; CallerType: {marker.CallerType}; CallerName: {marker.CallerName}");
+            }
+
+            if (_cache.TryGetValue(endpointId, out var pipline))
             {
                 return pipline;
             }
@@ -34,17 +45,17 @@ namespace EVEClient.NET.Pipline
             // found no custom settings for the endpoint. We use the default
             return marker.HttpMethodType switch
             {
-                "GET" => _cache[EndpointMarker.DefaultGet],
-                "POST" => _cache[EndpointMarker.DefaultPost],
-                "PUT" => _cache[EndpointMarker.DefaultPut],
-                "DELETE" => _cache[EndpointMarker.DefaultDelete],
+                "GET" => _cache[DefaultGetPiplineKey],
+                "POST" => _cache[DefaultPostPiplineKey],
+                "PUT" => _cache[DefaultPutPiplineKey],
+                "DELETE" => _cache[DefaultDeletePiplineKey],
                 _ => throw new InvalidOperationException("Unsupported HTTP method.")
             };
         }
 
-        private void GenericPipline(EndpointMarker marker, IRequestPiplineBuilder builder)
+        private void GenericPipline(string key, IRequestPiplineBuilder builder)
         {
-            _cache.Add(marker, builder.Build());
+            _cache.Add(key, builder.Build());
         }
 
         private void ApplyModifications()
@@ -75,6 +86,11 @@ namespace EVEClient.NET.Pipline
             foreach (var modification in normalizedModifications)
             {
                 var marker = EndpointsMapper.Instance[modification.EndpointId];
+                if (marker == EndpointMarker.Null)
+                {
+                    throw new InvalidOperationException($"Unknown ESI entpoint identifier: { modification.EndpointId }");
+                }
+
                 var piplineBuilder = new RequestPiplineBuilder(modification.Replacements, modification.Additions);
 
                 // apply default pipline by http method
@@ -95,7 +111,7 @@ namespace EVEClient.NET.Pipline
                 }
 
                 // the builder will modify the pipeline itself according to the modifications submitted
-                _cache.Add(marker, piplineBuilder.Build());
+                _cache.Add(modification.EndpointId, piplineBuilder.Build());
             }
         }
     }

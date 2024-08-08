@@ -17,8 +17,8 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<ComplitedTask>>> CompletedTasks(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<ComplitedTask>>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<List<ComplitedTask>>> CompletedTasks(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<ComplitedTask>>(CharacterIdRouteRequest.Create(characterId), token);
 
         public Task<EsiResponse<OpportunitiesGroup>> GroupInfo(int groupId) =>
             _esiClient.GetRequestAsync<CharacterIdRouteRequest, OpportunitiesGroup>(CharacterIdRouteRequest.Create(groupId));

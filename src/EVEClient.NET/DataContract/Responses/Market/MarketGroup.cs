@@ -8,30 +8,30 @@ namespace EVEClient.NET.DataContract
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public string Description {  get; set; }
+        public required string Description {  get; set; }
 
         /// <summary>
         /// market_group_id integer
         /// </summary>
         [JsonProperty("market_group_id")]
-        public int MarketGroupId { get; set; }
+        public required int MarketGroupId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// parent_group_id integer
         /// </summary>
         [JsonProperty("parent_group_id")]
-        public int? ParentGroupId { get; set; }
+        public int? ParentGroupId { get; init; }
 
         /// <summary>
         /// types array
         /// </summary>
         [JsonProperty("types")]
-        public int[] Types { get; set; }
+        public required int[] Types { get; init; }
     }
 }

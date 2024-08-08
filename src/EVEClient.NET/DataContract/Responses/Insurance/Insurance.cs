@@ -9,13 +9,13 @@ namespace EVEClient.NET.DataContract
         /// A list of a available insurance levels for this ship type
         /// </summary>
         [JsonProperty("levels")]
-        public List<Levels> Levels { get; set; } = new List<Levels>();
+        public required List<Levels> Levels { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
     }
 
     public class Levels
@@ -24,18 +24,18 @@ namespace EVEClient.NET.DataContract
         /// cost number
         /// </summary>
         [JsonProperty("cost")]
-        public float Cost { get; set; }
+        public required float Cost { get; init; }
 
         /// <summary>
         /// Localized insurance level
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// payout number
         /// </summary>
         [JsonProperty("payout")]
-        public float Payout { get; set; }
+        public required float Payout { get; init; }
     }
 }

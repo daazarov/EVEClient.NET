@@ -21,7 +21,7 @@ namespace EVEClient.NET
         [Route("/v1/characters/{character_id}/calendar/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/calendar/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/calendar/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CharacterCalendarItem>>> CalendarItems(int characterId, int? fromEventId = null);
+        Task<EsiResponse<List<CharacterCalendarItem>>> CalendarItems(int characterId, int? fromEventId = null, string? token = null);
 
         /// <summary>
         /// Get all the information for a specific event
@@ -34,7 +34,7 @@ namespace EVEClient.NET
         [Route("/v3/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/v4/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<CharacterCalendarEvent>> CalendarEvent(int characterId, int eventId);
+        Task<EsiResponse<CharacterCalendarEvent>> CalendarEvent(int characterId, int eventId, string? token = null);
 
         /// <summary>
         /// Set your response status to an event
@@ -48,7 +48,7 @@ namespace EVEClient.NET
         [Route("/v3/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/v4/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/characters/{character_id}/calendar/{event_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> RespondeEvent(int characterId, int eventId, EventResponse eventResponse);
+        Task<EsiResponse> RespondeEvent(int characterId, int eventId, EventResponse eventResponse, string? token = null);
 
         /// <summary>
         /// Get all invited attendees for a given event
@@ -61,6 +61,6 @@ namespace EVEClient.NET
         [Route("/v1/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/calendar/{event_id}/attendees/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Attendee>>> EventAttendees(int characterId, int eventId);
+        Task<EsiResponse<List<Attendee>>> EventAttendees(int characterId, int eventId, string? token = null);
     }
 }

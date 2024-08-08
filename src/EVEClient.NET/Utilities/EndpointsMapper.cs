@@ -16,7 +16,7 @@ namespace EVEClient.NET.Utilities
 
         public static EndpointsMapper Instance => _singletone.Value;
 
-        public string this[EndpointMarker key]
+        public string? this[EndpointMarker key]
         {
             get
             {

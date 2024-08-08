@@ -1,23 +1,27 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
 
 using Newtonsoft.Json;
 
 using EVEClient.NET.Attributes;
 using EVEClient.NET.Utilities;
 using EVEClient.NET.Pipline;
+using EVEClient.NET.Extensions;
 
 namespace EVEClient.NET.Handlers
 {
+    /// <summary>
+    /// Performs getting the access token from IAccessTokenProvider or input parameter, validates scope, and sets the Authorization header
+    /// </summary>
     public class ProtectionHandler : IHandler
     {
-        private readonly IAccessTokenProvider _accessTokenProvider;
-        private readonly IScopeAccessValidator _scopeAccessValidator;
+        private readonly IAccessTokenProvider? _accessTokenProvider;
+        private readonly IScopeAccessValidator? _scopeAccessValidator;
 
-        public ProtectionHandler(IAccessTokenProvider accessTokenProvider, IScopeAccessValidator scopeAccessValidator)
+        public ProtectionHandler(IScopeAccessValidator? scopeAccessValidator = null, IAccessTokenProvider? accessTokenProvider = null)
         {
             _accessTokenProvider = accessTokenProvider;
             _scopeAccessValidator = scopeAccessValidator;
@@ -25,24 +29,27 @@ namespace EVEClient.NET.Handlers
 
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            if (IsPublicEndpoint(context))
+            if (context.PublicEndpoint())
             {
                 await next.Invoke(context);
             }
             else
             {
-                var tokenResult = await _accessTokenProvider.RequestAccessToken();
+                var accessToken = context.TokenProvidedInRequest()
+                    ? context.RequestContext.Token
+                    : _accessTokenProvider != null ? await _accessTokenProvider.RequestAccessToken() : throw new ArgumentNullException(nameof(_accessTokenProvider));
 
-                if (string.IsNullOrEmpty(tokenResult))
+                if (string.IsNullOrEmpty(accessToken))
                 {
                     UnauthorizedResponse(context, HttpStatusCode.Unauthorized, $"The request endpoint requires SSO authentication and a token has not been provided.");
+                    return;
                 }
 
-                await ValidateScope(context, tokenResult);
-                await SetAuthorizationHeader(context, tokenResult);
-
-                if (CanContinue(context))
+                var validScope = await ValidateScope(context, accessToken);
+                if (validScope)
                 {
+                    context.SetAuthorizationHeader(accessToken);
+
                     await next.Invoke(context);
                 }
                 else
@@ -52,29 +59,23 @@ namespace EVEClient.NET.Handlers
             }
         }
 
-        protected virtual async Task ValidateScope(EsiContext context, string token)
+        protected virtual async Task<bool> ValidateScope(EsiContext context, string token)
         {
-            if (CanContinue(context))
+            if (_scopeAccessValidator == null)
             {
-                var protectedEnpointAttribute = ReflectionCacheAttributeAccessor.Instance.GetAttribute<ProtectedEndpointAttribute>(context.EndpointMarker.AsMethodInfo());
-
-                var allowed = await _scopeAccessValidator.ValidateScopeAccess(token, protectedEnpointAttribute.RequiredScope);
-
-                if (!allowed)
-                {
-                    UnauthorizedResponse(context, HttpStatusCode.Forbidden, $"Token is not valid for scope: {protectedEnpointAttribute.RequiredScope}");
-                }
+                throw new ArgumentNullException(nameof(_scopeAccessValidator));
             }
-        }
+            
+            var protectedEnpointAttribute = ReflectionCacheAttributeAccessor.Instance.GetAttribute<ProtectedEndpointAttribute>(context.EndpointMarker.AsMethodInfo())!;
 
-        protected virtual Task SetAuthorizationHeader(EsiContext context, string token)
-        {
-            if (CanContinue(context))
+            var allowed = await _scopeAccessValidator.ValidateScopeAccess(token, protectedEnpointAttribute.RequiredScope);
+
+            if (!allowed)
             {
-                context.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                UnauthorizedResponse(context, HttpStatusCode.Forbidden, $"Token is not valid for scope: {protectedEnpointAttribute.RequiredScope}");
             }
 
-            return Task.CompletedTask;
+            return allowed;
         }
 
         protected void UnauthorizedResponse(EsiContext context, HttpStatusCode httpStatusCode, string errorMessage)
@@ -84,11 +85,5 @@ namespace EVEClient.NET.Handlers
                 Content = new StringContent(JsonConvert.SerializeObject(new { error = errorMessage }), Encoding.UTF8, "application/json")
             });
         }
-
-        private bool CanContinue(EsiContext context) => 
-            context.Response == null;
-
-        private bool IsPublicEndpoint(EsiContext context) =>
-            ReflectionCacheAttributeAccessor.Instance.ContainsAttribute<PublicEndpointAttribute>(context.EndpointMarker.AsMethodInfo());
     }
 }

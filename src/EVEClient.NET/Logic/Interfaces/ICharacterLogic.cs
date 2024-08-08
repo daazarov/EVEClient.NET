@@ -28,7 +28,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/standings/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/standings/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/standings/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CharacterStanding>>> Standings(int characterId);
+        Task<EsiResponse<List<CharacterStanding>>> Standings(int characterId, string? token = null);
 
         /// <summary>
         /// Return a list of agents research information for a character.
@@ -39,7 +39,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/agents_research/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/agents_research/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/agents_research/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CharacterAgentsResearch>>> AgentsResearch(int characterId);
+        Task<EsiResponse<List<CharacterAgentsResearch>>> AgentsResearch(int characterId, string? token = null);
 
         /// <summary>
         /// A list of blueprints
@@ -50,7 +50,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/blueprints/", Version = EndpointVersion.Latest)]
         [Route("/v3/characters/{character_id}/blueprints/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/blueprints/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CharacterBlueprint>>> Blueprints(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<CharacterBlueprint>>> Blueprints(int characterId, int page = 1, string? token = null);
 
         /// <summary>
         /// Get a list of all the corporations a character has been a member of
@@ -72,7 +72,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/cspa/", Version = EndpointVersion.Latest)]
         [Route("/v5/characters/{character_id}/cspa/", Version = EndpointVersion.V5, Preferred = true)]
         [Route("/dev/characters/{character_id}/cspa/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<long>> CSPA(int characterId, int[] characterIds);
+        Task<EsiResponse<long>> CSPA(int characterId, int[] characterIds, string? token = null);
 
         /// <summary>
         /// Return a character’s jump activation and fatigue information
@@ -82,7 +82,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/fatigue/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/fatigue/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/fatigue/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<CharacterFatigue>> Fatigue(int characterId);
+        Task<EsiResponse<CharacterFatigue>> Fatigue(int characterId, string? token = null);
 
         /// <summary>
         /// Return a list of medals the character has
@@ -92,7 +92,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/medals/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/medals/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/medals/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CharacterMedal>>> Medals(int characterId);
+        Task<EsiResponse<List<CharacterMedal>>> Medals(int characterId, string? token = null);
 
         /// <summary>
         /// Return character notifications
@@ -103,7 +103,7 @@ namespace EVEClient.NET
         [Route("/v5/characters/{character_id}/notifications/", Version = EndpointVersion.V5, Preferred = true)]
         [Route("/v6/characters/{character_id}/notifications/", Version = EndpointVersion.V6, Preferred = true)]
         [Route("/dev/characters/{character_id}/notifications/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CharacterNotification>>> Notifications(int characterId);
+        Task<EsiResponse<List<CharacterNotification>>> Notifications(int characterId, string? token = null);
 
         /// <summary>
         /// Return notifications about having been added to someone’s contact list
@@ -113,7 +113,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/notifications/contacts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CharacterContactNotification>>> ContactNotifications(int characterId);
+        Task<EsiResponse<List<CharacterContactNotification>>> ContactNotifications(int characterId, string? token = null);
 
         /// <summary>
         /// Get portrait urls for a character
@@ -134,7 +134,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/roles/", Version = EndpointVersion.Latest)]
         [Route("/v3/characters/{character_id}/roles/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/roles/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<CharacterRoles>> Roles(int characterId);
+        Task<EsiResponse<CharacterRoles>> Roles(int characterId, string? token = null);
 
         /// <summary>
         /// Returns a character’s titles
@@ -144,7 +144,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/titles/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/titles/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/titles/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CharacterTitle>>> Titles(int characterId);
+        Task<EsiResponse<List<CharacterTitle>>> Titles(int characterId, string? token = null);
 
         /// <summary>
         /// Bulk lookup of character IDs to corporation, alliance and faction

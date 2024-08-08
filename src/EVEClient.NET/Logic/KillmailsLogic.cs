@@ -17,11 +17,11 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponsePagination<List<Killmail>>> CharacterKillmails(int characterId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<Killmail>>(PageBasedCharacterIdRouteRequest.Create(characterId, page));
+        public Task<EsiResponsePagination<List<Killmail>>> CharacterKillmails(int characterId, int page = 1, string? token = null) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<Killmail>>(PageBasedCharacterIdRouteRequest.Create(characterId, page), token);
 
-        public Task<EsiResponsePagination<List<Killmail>>> CorporationKillmails(int corporationId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<Killmail>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
+        public Task<EsiResponsePagination<List<Killmail>>> CorporationKillmails(int corporationId, int page = 1, string? token = null) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<Killmail>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page), token);
 
         public Task<EsiResponse<KillmailInfo>> KillmailInfo(int killmailId, string killmainHash) =>
             _esiClient.GetRequestAsync<KillmailInfoRequest, KillmailInfo>(KillmailInfoRequest.Create(killmailId, killmainHash));

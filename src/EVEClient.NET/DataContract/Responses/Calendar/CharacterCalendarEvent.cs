@@ -9,60 +9,60 @@ namespace EVEClient.NET.DataContract
         /// date string
         /// </summary>
         [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        public required DateTime Date { get; init; }
 
         /// <summary>
         /// Length in minutes
         /// </summary>
         [JsonProperty("duration")]
-        public int Duration { get; set; }
+        public required int Duration { get; init; }
 
         /// <summary>
         /// event_id integer
         /// </summary>
         [JsonProperty("event_id")]
-        public int EventId { get; set; }
+        public required int EventId { get; init; }
 
         /// <summary>
         /// importance integer
         /// </summary>
         [JsonProperty("importance")]
-        public int Importance { get; set; }
+        public required int Importance { get; init; }
 
         /// <summary>
         /// owner_id integer
         /// </summary>
         [JsonProperty("owner_id")]
-        public int OwnerId { get; set; }
+        public required int OwnerId { get; init; }
 
         /// <summary>
         /// owner_name string
         /// </summary>
         [JsonProperty("owner_name")]
-        public string OwnerName { get; set; }
+        public required string OwnerName { get; init; }
 
         /// <summary>
         /// owner_type string
         /// </summary>
         [JsonProperty("owner_type")]
-        public OwnerType OwnerType { get; set; }
+        public required OwnerType OwnerType { get; init; }
 
         /// <summary>
         /// response string
         /// </summary>
         [JsonProperty("response")]
-        public string Response { get; set; }
+        public required string Response { get; init; }
 
         /// <summary>
         /// text string
         /// </summary>
         [JsonProperty("text")]
-        public string Text { get; set; }
+        public required string Text { get; init; }
 
         /// <summary>
         /// title string
         /// </summary>
         [JsonProperty("title")]
-        public string Title { get; set; }
+        public required string Title { get; init; }
     }
 }

@@ -8,11 +8,11 @@ namespace EVEClient.NET.Pipline
 {
     internal class RequestPiplineBuilder : IRequestPiplineBuilder
     {
-        private readonly List<PiplineComponent> _components = [];
+        private readonly List<PiplineComponent> _components = new();
         private readonly List<ReplaceComponent> _replacements;
         private readonly List<AdditionalComponent> _additions;
 
-        public RequestPiplineBuilder(List<ReplaceComponent> replacements = null, List<AdditionalComponent> additions = null)
+        public RequestPiplineBuilder(List<ReplaceComponent>? replacements = null, List<AdditionalComponent>? additions = null)
         {
             _additions = additions ?? new();
             _replacements = replacements ?? new();
@@ -50,7 +50,8 @@ namespace EVEClient.NET.Pipline
                 }
                 else
                 {
-                    nonLocatedComponents.Add((addition.AddAfter, addition.PiplineComponent));
+                    // A component can reference another component that has not yet been added to the Pipeline. Postpone for later
+                    nonLocatedComponents.Add((addition.AddAfter!, addition.PiplineComponent));
                 }
             }
 

@@ -18,7 +18,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/contracts/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/contracts/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/contracts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Contract>>> CharacterContracts(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<Contract>>> CharacterContracts(int characterId, int page = 1, string? token = null);
 
         /// <summary>
         /// Lists bids on a particular auction contract
@@ -30,7 +30,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Bid>>> CharacterContractBids(int characterId, int contractId);
+        Task<EsiResponse<List<Bid>>> CharacterContractBids(int characterId, int contractId, string? token = null);
 
         /// <summary>
         /// Lists items of a particular contract
@@ -42,7 +42,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/contracts/{contract_id}/items/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/contracts/{contract_id}/items/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/contracts/{contract_id}/items/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ContractItem>>> CharacterContractItems(int characterId, int contractId);
+        Task<EsiResponse<List<ContractItem>>> CharacterContractItems(int characterId, int contractId, string? token = null);
 
         /// <summary>
         /// Returns a paginated list of all public contracts in the given region
@@ -91,7 +91,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/contracts/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/contracts/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/contracts/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Contract>>> CorporationContracts(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Contract>>> CorporationContracts(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Lists bids on a particular auction contract
@@ -104,7 +104,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/contracts/{contract_id}/bids/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Bid>>> CorporationContractBids(int corporationId, int contractId, int page = 1);
+        Task<EsiResponsePagination<List<Bid>>> CorporationContractBids(int corporationId, int contractId, int page = 1, string? token = null);
 
         /// <summary>
         /// Lists items of a particular contract
@@ -116,6 +116,6 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/contracts/{contract_id}/items/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/contracts/{contract_id}/items/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/contracts/{contract_id}/items/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<ContractItem>>> CorporationContractItems(int corporationId, int contractId);
+        Task<EsiResponse<List<ContractItem>>> CorporationContractItems(int corporationId, int contractId, string? token = null);
     }
 }

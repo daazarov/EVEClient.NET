@@ -13,14 +13,14 @@ namespace EVEClient.NET.Pipline.Modifications
             _childs = childs.ToList();
         }
 
-        public IEndpointModificationBuilder AdditionalHandler<CustomHandler>(string addAfter = null, bool addedToEnd = false, bool addedToStart = false, int? endOrder = null, int? startOrder = null)
+        public IEndpointModificationBuilder AdditionalHandler<CustomHandler>(string? addAfter = null, bool addedToEnd = false, bool addedToStart = false, int? endOrder = null, int? startOrder = null)
             where CustomHandler : IHandler
         {
             _childs.ForEach(x => x.AdditionalHandler<CustomHandler>(addAfter, addedToEnd, addedToStart, endOrder, startOrder));
             return this;
         }
 
-        public IEndpointModificationBuilder AdditionalMiddleware(string componentId, Func<RequestDelegate, RequestDelegate> middleware, string addAfter = null, bool addedToEnd = false, bool addedToStart = false, int? endOrder = null, int? startOrder = null)
+        public IEndpointModificationBuilder AdditionalMiddleware(string componentId, Func<RequestDelegate, RequestDelegate> middleware, string? addAfter = null, bool addedToEnd = false, bool addedToStart = false, int? endOrder = null, int? startOrder = null)
         {
             _childs.ForEach(x => x.AdditionalMiddleware(componentId, middleware, addAfter, addedToEnd, addedToStart, endOrder, startOrder));
             return this;

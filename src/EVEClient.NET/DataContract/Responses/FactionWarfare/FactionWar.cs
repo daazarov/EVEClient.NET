@@ -8,12 +8,12 @@ namespace EVEClient.NET.DataContract
         /// The faction ID of the enemy faction.
         /// </summary>
         [JsonProperty("faction_id")]
-        public int FactionId { get; set; }
+        public required int FactionId { get; init; }
 
         /// <summary>
         /// faction_id integer
         /// </summary>
         [JsonProperty("against_id")]
-        public int AgainstId { get; set; }
+        public required int AgainstId { get; init; }
     }
 }

@@ -4,7 +4,7 @@ namespace EVEClient.NET.Models
 {
     internal class AddUpdateCharacterContactUriModel : CharacterIdModel
     {
-        public AddUpdateCharacterContactUriModel(int characterId, float standing, int[] labelIds, bool watched)
+        public AddUpdateCharacterContactUriModel(int characterId, float standing, int[]? labelIds, bool watched)
             : base(characterId)
         {
             LabelIds = labelIds;
@@ -13,7 +13,7 @@ namespace EVEClient.NET.Models
         }
 
         [QueryParameter("label_ids")]
-        public int[] LabelIds { get; set; }
+        public int[]? LabelIds { get; set; }
 
         [QueryParameter("standing")]
         public float Standing {  get; set; }

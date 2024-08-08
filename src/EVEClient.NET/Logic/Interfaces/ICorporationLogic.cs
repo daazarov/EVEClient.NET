@@ -37,7 +37,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/blueprints/", Version = EndpointVersion.Latest)]
         [Route("/v3/corporations/{corporation_id}/blueprints/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/blueprints/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Blueprint>>> Blueprints(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Blueprint>>> Blueprints(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation
@@ -48,7 +48,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/containers/logs/", Version = EndpointVersion.Latest)]
         [Route("/v3/corporations/{corporation_id}/containers/logs/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/containers/logs/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<ContainerLog>>> ContainersLogs(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<ContainerLog>>> ContainersLogs(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Return corporation hangar and wallet division names, only show if a division is not using the default name
@@ -58,7 +58,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/divisions/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/divisions/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/divisions/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Divisions>> Divisions(int corporationId);
+        Task<EsiResponse<Divisions>> Divisions(int corporationId, string? token = null);
 
         /// <summary>
         /// Return a corporation’s facilities
@@ -68,7 +68,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/facilities/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/facilities/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/facilities/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Facility>>> Facilities(int corporationId);
+        Task<EsiResponse<List<Facility>>> Facilities(int corporationId, string? token = null);
 
         /// <summary>
         /// Get the icon urls for a corporation
@@ -89,7 +89,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/medals", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/medals/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/medals/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CorporationMedal>>> Medals(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<CorporationMedal>>> Medals(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Returns medals issued by a corporation
@@ -100,7 +100,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/medals/issued/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/medals/issued/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/medals/issued/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CorporationIssuedMedal>>> IssuedMedals(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<CorporationIssuedMedal>>> IssuedMedals(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Return the current member list of a corporation, the token’s character need to be a member of the corporation.
@@ -110,7 +110,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/members/", Version = EndpointVersion.Latest)]
         [Route("/v4/corporations/{corporation_id}/members/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/members/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> Members(int corporationId);
+        Task<EsiResponse<List<int>>> Members(int corporationId, string? token = null);
 
         /// <summary>
         /// Return a corporation’s member limit, not including CEO himself
@@ -120,7 +120,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/members/limit/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/members/limit/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/members/limit/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<int>> MembersLimit(int corporationId);
+        Task<EsiResponse<int>> MembersLimit(int corporationId, string? token = null);
 
         /// <summary>
         /// Returns a corporation’s member’s titles
@@ -130,7 +130,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/members/titles/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/members/titles/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/members/titles/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<MemberTitle>>> MembersTitles(int corporationId);
+        Task<EsiResponse<List<MemberTitle>>> MembersTitles(int corporationId, string? token = null);
 
         /// <summary>
         /// Returns additional information about a corporation’s members which helps tracking their activities
@@ -140,7 +140,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/membertracking/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/membertracking/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/membertracking/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<MemberTracking>>> MemberTracking(int corporationId);
+        Task<EsiResponse<List<MemberTracking>>> MemberTracking(int corporationId, string? token = null);
 
         /// <summary>
         /// Return the roles of all members if the character has the personnel manager role or any grantable role.
@@ -150,7 +150,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/roles/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/roles/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/roles/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<MemberRole>>> Roles(int corporationId);
+        Task<EsiResponse<List<MemberRole>>> Roles(int corporationId, string? token = null);
 
         /// <summary>
         /// Return how roles have changed for a coporation’s members, up to a month
@@ -161,7 +161,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/roles/history/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/roles/history/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/roles/history/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<MemberRoleHistory>>> RolesHistory(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<MemberRoleHistory>>> RolesHistory(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Return the current shareholders of a corporation.
@@ -173,7 +173,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/shareholders/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/shareholders/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/shareholders/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Shareholder>>> Shareholders(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Shareholder>>> Shareholders(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Return corporation standings from agents, NPC corporations, and factions
@@ -184,18 +184,19 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/standings/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/standings/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/standings/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CorporationStanding>>> Standings(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<CorporationStanding>>> Standings(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Returns list of corporation starbases (POSes)
         /// </summary>
         /// <param name="corporationId">An EVE corporation ID</param>
         /// <param name="page">Which page of results to return. Default value: 1</param>
+        /// <remarks>Requires one of the following EVE corporation role(s): Director</remarks>
         [ProtectedEndpoint(RequiredScope = "esi-corporations.read_starbases.v1")]
         [Route("/latest/corporations/{corporation_id}/starbases/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/starbases/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/starbases/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Starbase>>> Starbases(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Starbase>>> Starbases(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Returns various settings and fuels of a starbase (POS)
@@ -207,7 +208,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/starbases/{starbase_id}/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/starbases/{starbase_id}/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/starbases/{starbase_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<StarbaseInfo>> StarbaseInfo(int corporationId, long starbaseId, int systemId);
+        Task<EsiResponse<StarbaseInfo>> StarbaseInfo(int corporationId, long starbaseId, int systemId, string? token = null);
 
         /// <summary>
         /// Get a list of corporation structures.
@@ -219,7 +220,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/structures/", Version = EndpointVersion.Latest)]
         [Route("/v4/corporations/{corporation_id}/structures/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/structures/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Structure>>> Structures(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<Structure>>> Structures(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Returns a corporation’s titles
@@ -229,7 +230,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/titles/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/titles/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/titles/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Title>>> Titles(int corporationId);
+        Task<EsiResponse<List<Title>>> Titles(int corporationId, string? token = null);
 
         /// <summary>
         /// Get a list of npc corporations

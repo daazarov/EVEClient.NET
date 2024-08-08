@@ -9,24 +9,24 @@ namespace EVEClient.NET.DataContract
         /// The amount bid, in ISK
         /// </summary>
         [JsonProperty("amount")]
-        public float amount { get; set; }
+        public required float Amount { get; init; }
 
         /// <summary>
         /// Unique ID for the bid
         /// </summary>
         [JsonProperty("bid_id")]
-        public int bid_id { get; set; }
+        public required int BidId { get; init; }
 
         /// <summary>
         /// Character ID of the bidder
         /// </summary>
         [JsonProperty("bidder_id")]
-        public int bidder_id { get; set; }
+        public required int BidderId { get; init; }
 
         /// <summary>
         /// Datetime when the bid was placed
         /// </summary>
         [JsonProperty("date_bid")]
-        public DateTime date_bid { get; set; }
+        public required DateTime DateBid { get; init; }
     }
 }

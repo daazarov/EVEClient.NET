@@ -16,14 +16,14 @@ namespace EVEClient.NET
             _scoped = scoped;
         }
 
-        public EsiContext CreateContext(EndpointMarker marker)
+        public EsiContext CreateContext(EndpointMarker marker, string? token)
         {
-            return new EsiContext(_httpClientFactory.CreateClient(ESI.HttpClientName), marker, _scoped);
+            return new EsiContext(_httpClientFactory.CreateClient(ESI.HttpClientName), marker, _scoped, token);
         }
 
-        public EsiContext CreateContext(EndpointMarker marker, IRequestModel requestModel)
+        public EsiContext CreateContext(EndpointMarker marker, IRequestModel requestModel, string? token)
         {
-            return new EsiContext(_httpClientFactory.CreateClient(ESI.HttpClientName), marker, _scoped, requestModel);
+            return new EsiContext(_httpClientFactory.CreateClient(ESI.HttpClientName), marker, _scoped, requestModel, token);
         }
     }
 }

@@ -10,55 +10,55 @@ namespace EVEClient.NET.DataContract
         /// corporation_id integer
         /// </summary>
         [JsonProperty("corporation_id")]
-        public int CorporationId { get; set; }
+        public required int CorporationId { get; init; }
 
         /// <summary>
         /// date string
         /// </summary>
         [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        public required DateTime Date { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public required string Description { get; init; }
 
         /// <summary>
         /// graphics array
         /// </summary>
         [JsonProperty("graphics")]
-        public List<CharacterMedalGraphics> Graphics { get; set; }
+        public required List<CharacterMedalGraphics> Graphics { get; init; }
 
         /// <summary>
         /// issuer_id integer
         /// </summary>
         [JsonProperty("issuer_id")]
-        public int IssuerId { get; set; }
+        public required int IssuerId { get; init; }
 
         /// <summary>
         /// medal_id integer
         /// </summary>
         [JsonProperty("medal_id")]
-        public int MedalId { get; set; }
+        public required int MedalId { get; init; }
 
         /// <summary>
         /// reason string
         /// </summary>
         [JsonProperty("reason")]
-        public string Reason { get; set; }
+        public required string Reason { get; init; }
 
         /// <summary>
         /// status string
         /// </summary>
         [JsonProperty("status")]
-        public Status Status { get; set; }
+        public required Status Status { get; init; }
 
         /// <summary>
         /// title string
         /// </summary>
         [JsonProperty("title")]
-        public string Title { get; set; }
+        public required string Title { get; init; }
 
     }
 
@@ -68,24 +68,24 @@ namespace EVEClient.NET.DataContract
         /// color integer
         /// </summary>
         [JsonProperty("color")]
-        public int? Color { get; set; }
+        public int? Color { get; init; }
 
         /// <summary>
         /// graphic string
         /// </summary>
         [JsonProperty("graphic")]
-        public string Graphic { get; set; }
+        public required string Graphic { get; init; }
 
         /// <summary>
         /// layer integer
         /// </summary>
         [JsonProperty("layer")]
-        public int Layer { get; set; }
+        public required int Layer { get; init; }
 
         /// <summary>
         /// part integer
         /// </summary>
         [JsonProperty("part")]
-        public int Part {  get; set; }
+        public required int Part {  get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Net.Http;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 using EVEClient.NET.Extensions;
@@ -10,30 +9,16 @@ namespace EVEClient.NET
 {
     public readonly struct EndpointMarker : IEquatable<EndpointMarker>
     {
-        public string CallerName { get; }
-        public Type CallerType { get; }
+        public string? CallerName { get; }
+        public Type? CallerType { get; }
         public string HttpMethodType { get; }
-        public bool IsDefault => !IsNull && CallerType is null && string.IsNullOrEmpty(CallerName);
+
+        [MemberNotNullWhen(false, nameof(CallerName), nameof(CallerType), nameof(HttpMethodType))]
         public bool IsNull => Equals(Null);
 
-        private static string[] availableHttpMethods = { HttpMethod.Get.Method, HttpMethod.Post.Method, HttpMethod.Put.Method, HttpMethod.Delete.Method };
+        private static EndpointMarker _null = new();
 
-        public static EndpointMarker Null => new();
-
-        public static EndpointMarker DefaultGet = HttpMethod.Get.Method;
-        public static EndpointMarker DefaultPost = HttpMethod.Post.Method;
-        public static EndpointMarker DefaultPut = HttpMethod.Put.Method;
-        public static EndpointMarker DefaultDelete = HttpMethod.Delete.Method;
-        
-        internal EndpointMarker(string httpMethodType)
-        {
-            if (!availableHttpMethods.Contains(httpMethodType.ToUpper()))
-            {
-                throw new NotSupportedException($"{httpMethodType} is unsupported HTTP method.");
-            }
-
-            HttpMethodType = httpMethodType.ToUpper();
-        }
+        public static EndpointMarker Null => _null;
 
         internal EndpointMarker(string httpMethodType, Type callerType, string callerName)
         {
@@ -68,16 +53,6 @@ namespace EVEClient.NET
             return (HttpMethodType, CallerName, CallerType).GetHashCode();
         }
 
-        public static implicit operator EndpointMarker(string httpMethodType)
-        {
-            if (string.IsNullOrEmpty(httpMethodType))
-            {
-                return Null;
-            }
-
-            return new EndpointMarker(httpMethodType);
-        }
-
         public static bool operator ==(EndpointMarker x, EndpointMarker y)
         {
             return x.Equals(y);
@@ -88,43 +63,39 @@ namespace EVEClient.NET
             return !(x == y);
         }
 
-        public static implicit operator string?(EndpointMarker key)
-        {
-            return key.ToEndpointId();
-        }
+        //public static implicit operator string(EndpointMarker key)
+        //{
+        //    return key.ToEndpointId() 
+        //        ?? throw new NotSupportedException(
+        //            $"Unable to cast this endpoint marker to the endpoint identifier. " +
+        //            $"HttpMethodType: {key.HttpMethodType ?? "null"}, CallerName: {key.CallerName ?? "null"}, CallerType: {key.CallerType?.Name ?? "null"}"
+        //            );
+        //}
 
-        public override string ToString() => ((string?)this) ?? "(null)";
+        public override string ToString() => ToEndpointId() ?? "(null)";
 
-        internal MethodInfo AsMethodInfo()
-        {
-            if (!IsNull && !IsDefault)
-            { 
-                return CallerType.GetMethod(CallerName);
-            }
-
-            throw new InvalidOperationException("An empty or default marker cannot refer to a specific invocation method.");
-        }
-
-        private string? ToEndpointId()
+        public string? ToEndpointId()
         {
             if (IsNull)
             {
                 return null;
             }
-            
-            if (IsDefault)
-            {
-                return HttpMethodType switch
-                {
-                    "GET" => "get_default",
-                    "POST" => "post_default",
-                    "PUT" => "put_default",
-                    "DELETE" => "delete_default",
-                    _ => throw new NotSupportedException("Unsupported HTTP method.")
-                };
-            }
 
             return EndpointsMapper.Instance[this];
+        }
+
+        internal MethodInfo AsMethodInfo()
+        {
+            if (!IsNull)
+            {
+                var methodInfo = CallerType.GetMethod(CallerName);
+                if (methodInfo != null)
+                {
+                    return methodInfo;
+                }
+            }
+
+            throw new InvalidOperationException("An empty or default marker cannot refer to a specific invocation method.");
         }
     }
 }

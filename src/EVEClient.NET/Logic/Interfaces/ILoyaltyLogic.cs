@@ -17,7 +17,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/loyalty/points/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/loyalty/points/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/loyalty/points/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Points>>> LoyaltyPoints(int characterId);
+        Task<EsiResponse<List<Points>>> LoyaltyPoints(int characterId, string? token = null);
 
         /// <summary>
         /// Return a list of offers from a specific corporation’s loyalty store

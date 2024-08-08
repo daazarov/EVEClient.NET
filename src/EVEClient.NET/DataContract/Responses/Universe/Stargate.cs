@@ -8,37 +8,37 @@ namespace EVEClient.NET.DataContract
         /// destination object
         /// </summary>
         [JsonProperty("destination")]
-        public Destination Destination {  get; set; }
+        public required Destination Destination {  get; set; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// position object
         /// </summary>
         [JsonProperty("position")]
-        public Position Position { get; set; }
+        public required Position Position { get; init; }
 
         /// <summary>
         /// stargate_id integer
         /// </summary>
         [JsonProperty("stargate_id")]
-        public int StargateId { get; set; }
+        public required int StargateId { get; init; }
 
         /// <summary>
         /// The solar system this stargate is in
         /// </summary>
         [JsonProperty("system_id")]
-        public int SystemId { get; set; }
+        public required int SystemId { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
     }
 
     public class Destination
@@ -47,12 +47,12 @@ namespace EVEClient.NET.DataContract
         /// The stargate this stargate connects to
         /// </summary>
         [JsonProperty("stargate_id")]
-        public int StargateId { get; set; }
+        public required int StargateId { get; init; }
 
         /// <summary>
         /// The solar system this stargate connects to
         /// </summary>
         [JsonProperty("system_id")]
-        public int SystemId { get; set; }
+        public required int SystemId { get; init; }
     }
 }

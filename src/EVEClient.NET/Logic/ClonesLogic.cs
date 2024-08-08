@@ -15,10 +15,10 @@ namespace EVEClient.NET.Logic
         {
             _esiClient = esiClient;
         }
-        public Task<EsiResponse<List<int>>> CloneImplants(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<int>>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<List<int>>> CloneImplants(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<int>>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponse<Clones>> CloneList(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Clones>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<Clones>> CloneList(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Clones>(CharacterIdRouteRequest.Create(characterId), token);
     }
 }

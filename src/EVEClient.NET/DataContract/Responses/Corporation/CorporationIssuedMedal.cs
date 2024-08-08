@@ -9,36 +9,36 @@ namespace EVEClient.NET.DataContract
         /// ID of the character who was rewarded this medal
         /// </summary>
         [JsonProperty("character_id")]
-        public int character_id {  get; set; }
+        public required int CharacterId {  get; set; }
 
         /// <summary>
         /// issued_at string
         /// </summary>
         [JsonProperty("issued_at")]
-        public DateTime issued_at { get; set; }
+        public required DateTime IssuedAt { get; init; }
 
         /// <summary>
         /// ID of the character who issued the medal
         /// </summary>
         [JsonProperty("issuer_id")]
-        public int issuer_id { get; set; }
+        public required int IssuerId { get; init; }
 
         /// <summary>
         /// medal_id integer
         /// </summary>
         [JsonProperty("medal_id")]
-        public int medal_id { get; set; }
+        public required int MedalId { get; init; }
 
         /// <summary>
         /// reason string
         /// </summary>
         [JsonProperty("reason")]
-        public string reason { get; set; }
+        public required string Reason { get; init; }
 
         /// <summary>
         /// status string
         /// </summary>
         [JsonProperty("status")]
-        public MedalStatus status { get; set; }
+        public required MedalStatus Status { get; init; }
     }
 }

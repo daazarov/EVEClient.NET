@@ -9,18 +9,18 @@ namespace EVEClient.NET.DataContract
         /// This value can be used to track repeated uses of a ship, or detect when a pilot changes into a different instance of the same ship type.
         /// </summary>
         [JsonProperty("ship_item_id")]
-        public long ShipItemId { get; set; }
+        public required long ShipItemId { get; init; }
 
         /// <summary>
         /// ship_name string
         /// </summary>
         [JsonProperty("ship_name")]
-        public string ShipName { get; set; }
+        public required string ShipName { get; init; }
 
         /// <summary>
         /// ship_type_id integer
         /// </summary>
         [JsonProperty("ship_type_id")]
-        public int ShipTypeId { get; set; }
+        public required int ShipTypeId { get; init; }
     }
 }

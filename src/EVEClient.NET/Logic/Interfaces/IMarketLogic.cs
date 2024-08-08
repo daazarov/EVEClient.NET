@@ -16,7 +16,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/orders/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/orders/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/orders/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<OrderBase>>> CharacterOrders(int characterId);
+        Task<EsiResponse<List<OrderBase>>> CharacterOrders(int characterId, string? token = null);
 
         /// <summary>
         /// List cancelled and expired market orders placed by a character up to 90 days in the past.
@@ -28,7 +28,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/orders/history/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/orders/history/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/orders/history/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> CharacterOrdersHistory(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> CharacterOrdersHistory(int characterId, int page = 1, string? token = null);
 
         /// <summary>
         /// List open market orders placed on behalf of a corporation
@@ -40,7 +40,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/orders/", Version = EndpointVersion.Latest)]
         [Route("/v3/corporations/{corporation_id}/orders/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/orders/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> CorporationOrders(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> CorporationOrders(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past.
@@ -52,7 +52,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/orders/history/", Version = EndpointVersion.Latest)]
         [Route("/v2/corporations/{corporation_id}/orders/history/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/orders/history/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> CorporationOrdersHistory(int corporationId, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> CorporationOrdersHistory(int corporationId, int page = 1, string? token = null);
 
         /// <summary>
         /// Return a list of historical market statistics for the specified type in a region
@@ -133,6 +133,6 @@ namespace EVEClient.NET
         [Route("/legacy/markets/structures/{structure_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1markets/structures/{structure_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/markets/structures/{structure_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<OrderBase>>> StructureOrders(long structureId, int page = 1);
+        Task<EsiResponsePagination<List<OrderBase>>> StructureOrders(long structureId, int page = 1, string? token = null);
     }
 }

@@ -5,14 +5,14 @@ namespace EVEClient.NET.Models
 {
     internal class UpdateMailBodyModel
     {
-        public UpdateMailBodyModel(int[] labels, bool? read)
+        public UpdateMailBodyModel(int[]? labels, bool? read)
         {
             Labels = labels;
             Read = read;
         }
 
         [JsonProperty("labels")]
-        public int[] Labels { get; private set; }
+        public int[]? Labels { get; private set; }
 
         [JsonProperty("read")]
         public bool? Read {  get; private set; }

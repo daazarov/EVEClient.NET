@@ -18,7 +18,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/industry/jobs/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/industry/jobs/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/industry/jobs/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CharacterIndustryJob>>> CharacterJobs(int characterId, bool includeCompleted = false);
+        Task<EsiResponse<List<CharacterIndustryJob>>> CharacterJobs(int characterId, bool includeCompleted = false, string? token = null);
 
         /// <summary>
         /// Paginated record of all mining done by a character for the past 30 days
@@ -30,7 +30,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mining/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mining/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mining/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Mining>>> CharacterMiningLedger(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<Mining>>> CharacterMiningLedger(int characterId, int page = 1, string? token = null);
 
         /// <summary>
         /// Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.
@@ -43,7 +43,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporation/{corporation_id}/mining/extractions/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporation/{corporation_id}/mining/extractions/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporation/{corporation_id}/mining/extractions/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Extraction>>> ExtractionTimers(int corporation, int page = 1);
+        Task<EsiResponsePagination<List<Extraction>>> ExtractionTimers(int corporation, int page = 1, string? token = null);
 
         /// <summary>
         /// Paginated list of all entities capable of observing and recording mining for a corporation
@@ -55,7 +55,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporation/{corporation_id}/mining/observers/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporation/{corporation_id}/mining/observers/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporation/{corporation_id}/mining/observers/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<Observer>>> CorporationObservers(int corporation, int page = 1);
+        Task<EsiResponsePagination<List<Observer>>> CorporationObservers(int corporation, int page = 1, string? token = null);
 
         /// <summary>
         /// Paginated record of all mining seen by an observer
@@ -68,7 +68,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporation/{corporation_id}/mining/observers/{observer_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporation/{corporation_id}/mining/observers/{observer_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporation/{corporation_id}/mining/observers/{observer_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<ObserverInfo>>> ObserverInfo(int corporation, long observerId, int page = 1);
+        Task<EsiResponsePagination<List<ObserverInfo>>> ObserverInfo(int corporation, long observerId, int page = 1, string? token = null);
 
         /// <summary>
         /// List industry jobs run by a corporation
@@ -82,7 +82,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/industry/jobs/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/industry/jobs/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/industry/jobs/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<CorporationIndustryJob>>> CorporationJobs(int corporationId, bool includeCompleted = false, int page = 1);
+        Task<EsiResponsePagination<List<CorporationIndustryJob>>> CorporationJobs(int corporationId, bool includeCompleted = false, int page = 1, string? token = null);
 
         /// <summary>
         /// Return a list of industry facilities

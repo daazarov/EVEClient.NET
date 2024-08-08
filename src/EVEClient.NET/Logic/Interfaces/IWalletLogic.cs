@@ -16,7 +16,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/wallet/", Version = EndpointVersion.Latest)]
         [Route("/legacy/characters/{character_id}/wallet/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/wallet/", Version = EndpointVersion.V1, Preferred = true)]
-        Task<EsiResponse<double>> WalletBalance(int characterId);
+        Task<EsiResponse<double>> WalletBalance(int characterId, string? token = null);
 
         /// <summary>
         /// Retrieve the given character’s wallet journal going 30 days back
@@ -27,7 +27,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/wallet/journal/", Version = EndpointVersion.Latest)]
         [Route("/v6/characters/{character_id}/wallet/journal/", Version = EndpointVersion.V6, Preferred = true)]
         [Route("/dev/characters/{character_id}/wallet/journal/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<JournalItem>>> WalletJournal(int characterId, int page = 1);
+        Task<EsiResponsePagination<List<JournalItem>>> WalletJournal(int characterId, int page = 1, string? token = null);
 
         /// <summary>
         /// Get wallet transactions of a character
@@ -39,7 +39,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/wallet/transactions/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/wallet/transactions/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/wallet/transactions/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Transaction>>> WalletTransactions(int characterId, long? fromId = null);
+        Task<EsiResponse<List<Transaction>>> WalletTransactions(int characterId, long? fromId = null, string? token = null);
 
         /// <summary>
         /// Get a corporation’s wallets
@@ -51,7 +51,7 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/wallets/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/wallets/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/wallets/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Wallet>>> CorporationWallets(int corporationId);
+        Task<EsiResponse<List<Wallet>>> CorporationWallets(int corporationId, string? token = null);
 
         /// <summary>
         /// Retrieve the given corporation’s wallet journal for the given division going 30 days back
@@ -64,7 +64,7 @@ namespace EVEClient.NET
         [Route("/latest/corporations/{corporation_id}/wallets/{division}/journal/\"", Version = EndpointVersion.Latest)]
         [Route("/v4/corporations/{corporation_id}/wallets/{division}/journal/", Version = EndpointVersion.V4, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/wallets/{division}/journal/", Version = EndpointVersion.Dev)]
-        Task<EsiResponsePagination<List<JournalItem>>> CorporationWalletJournal(int corporationId, int division, int page = 1);
+        Task<EsiResponsePagination<List<JournalItem>>> CorporationWalletJournal(int corporationId, int division, int page = 1, string? token = null);
 
         /// <summary>
         /// Get wallet transactions of a corporation
@@ -78,6 +78,6 @@ namespace EVEClient.NET
         [Route("/legacy/corporations/{corporation_id}/wallets/{division}/transactions/", Version = EndpointVersion.Legacy)]
         [Route("/v1/corporations/{corporation_id}/wallets/{division}/transactions/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/corporations/{corporation_id}/wallets/{division}/transactions/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Transaction>>> CorporationWalletTransactions(int corporationId, int division, long? fromId = null);
+        Task<EsiResponse<List<Transaction>>> CorporationWalletTransactions(int corporationId, int division, long? fromId = null, string? token = null);
     }
 }

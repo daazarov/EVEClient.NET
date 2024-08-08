@@ -25,7 +25,7 @@ namespace EVEClient.NET.IntegrationTests.Smoke
                 config.UserAgent = "github.com/daazarov/EVEClient.NET smoke tests";
                 config.EnableETag = true;
             })
-            .UseAccessTokenProvider<AccessTokenProviderEmptyFake>();
+            .UseOnlyPublicEndpoints();
 
             _serviceScope = _serviceCollection.BuildServiceProvider().CreateScope();
             _logicAccessor = _serviceScope.ServiceProvider.GetService<IEsiLogicAccessor>()!;
@@ -47,11 +47,7 @@ namespace EVEClient.NET.IntegrationTests.Smoke
         [Test]
         public async Task GetCharacterInfo()
         {
-            System.Diagnostics.Debug.WriteLine($"Execute: GetCharacterInfo");
-
             var response = await _logicAccessor.CharacterLogic.PublicInformation(CharacterId);
-
-            System.Diagnostics.Debug.WriteLine($"Execute: GetCharacterInfo: Complete");
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Data, Is.Not.Null);
@@ -60,12 +56,8 @@ namespace EVEClient.NET.IntegrationTests.Smoke
         [Test]
         public async Task GetCharacterInfo_eTag()
         {
-            System.Diagnostics.Debug.WriteLine($"Execute: GetCharacterInfo_eTag");
-
             var response = await _logicAccessor.CharacterLogic.PublicInformation(CharacterId);
             var response1 = await _logicAccessor.CharacterLogic.PublicInformation(CharacterId);
-
-            System.Diagnostics.Debug.WriteLine($"Execute: GetCharacterInfo_eTag: Complete");
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Data, Is.Not.Null);
@@ -78,11 +70,7 @@ namespace EVEClient.NET.IntegrationTests.Smoke
         [Test]
         public async Task GetCharacterCorporationHistory()
         {
-            System.Diagnostics.Debug.WriteLine($"Execute: GetCharacterCorporationHistory");
-
             var response = await _logicAccessor.CharacterLogic.CorporationHistory(CharacterId);
-
-            System.Diagnostics.Debug.WriteLine($"Execute: GetCharacterCorporationHistory: Complete");
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.Data, Is.Not.Null);

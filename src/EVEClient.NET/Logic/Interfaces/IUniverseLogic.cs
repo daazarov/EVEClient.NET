@@ -244,7 +244,7 @@ namespace EVEClient.NET
         [ProtectedEndpoint(RequiredScope = "esi-universe.read_structures.v1")]
         [Route("/latest/universe/structures/{structure_id}/", Version = EndpointVersion.Latest)]
         [Route("/v2/universe/structures/{structure_id}/", Version = EndpointVersion.V2, Preferred = true)]
-        Task<EsiResponse<StructureInfo>> StructureInfo(long structureId);
+        Task<EsiResponse<StructureInfo>> StructureInfo(long structureId, string? token = null);
 
         /// <summary>
         /// Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space.

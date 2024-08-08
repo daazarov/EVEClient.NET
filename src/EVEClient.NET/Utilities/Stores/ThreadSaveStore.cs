@@ -7,7 +7,7 @@ namespace EVEClient.NET.Utilities.Stores
     {
         private readonly ConcurrentDictionary<TKey, TValue> _concurrentStore = new ConcurrentDictionary<TKey, TValue>();
 
-        public TValue? Get(TKey key, Func<TKey, TValue> getter)
+        public TValue Get(TKey key, Func<TKey, TValue> getter)
         {
             return _concurrentStore.GetOrAdd(key, getter);
         }

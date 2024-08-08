@@ -11,10 +11,13 @@ using EVEClient.NET.Pipline;
 
 namespace EVEClient.NET.Handlers
 {
+    /// <summary>
+    /// Prepares a list of parameters to be passed and replaced in the ESI endpoint route template.
+    /// </summary>
     public class UrlRequestParametersHandler : IHandler
     {
         private readonly EsiClientConfiguration _options;
-        
+
         public UrlRequestParametersHandler(IOptions<EsiClientConfiguration> options) 
         {
             _options = options.Value;
@@ -24,28 +27,28 @@ namespace EVEClient.NET.Handlers
         {
             var routeModel = context.RequestModel as IRoteModel;
 
-            context.RequestContext.QueryParametersMap.Merge(InitializeDefaultQueryParameters);
+            context.RequestContext.QueryParametersMap.Merge(InitializeDefaultQueryParameters());
 
             if (routeModel != null)
             {
-                context.RequestContext.PathParametersMap.Merge(() => PrepareRouteKeyPairValues(routeModel));
-                context.RequestContext.QueryParametersMap.Merge(() => PrepareQueryKeyPairValues(routeModel));
+                context.RequestContext.PathParametersMap.Merge(PrepareRouteKeyPairValues(routeModel));
+                context.RequestContext.QueryParametersMap.Merge(PrepareQueryKeyPairValues(routeModel));
             }
             
             await next.Invoke(context);
         }
 
-        protected virtual Dictionary<string, string> PrepareRouteKeyPairValues(IRoteModel routeModel)
+        protected virtual Dictionary<string, string>? PrepareRouteKeyPairValues(IRoteModel routeModel)
         {
             return GetUrlParameters<PathParameterAttribute>(routeModel.QueryRoute);
         }
 
-        protected virtual Dictionary<string, string> PrepareQueryKeyPairValues(IRoteModel routeModel)
+        protected virtual Dictionary<string, string>? PrepareQueryKeyPairValues(IRoteModel routeModel)
         {
             return GetUrlParameters<QueryParameterAttribute>(routeModel.QueryRoute);
         }
 
-        private Dictionary<string, string> GetUrlParameters<T>(object model) where T : UrlParameterAttribute
+        private Dictionary<string, string>? GetUrlParameters<T>(object model) where T : UrlParameterAttribute
         {
             var type = model.GetType();
             var propsInfo = type.GetProperties();
@@ -62,7 +65,7 @@ namespace EVEClient.NET.Handlers
 
                     if (value != null)
                     {
-                        result.Add(attribute.ParameterName, value.ToString());
+                        result.Add(attribute.ParameterName, value.ToString()!);
                     }
                 }
             }

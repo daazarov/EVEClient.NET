@@ -9,24 +9,24 @@ namespace EVEClient.NET.DataContract
         /// alliance_id integer
         /// </summary>
         [JsonProperty("alliance_id")]
-        public int? AllianceId { get; set; }
+        public int? AllianceId { get; init; }
 
         /// <summary>
         /// True if the alliance has been closed
         /// </summary>
         [JsonProperty("is_deleted")]
-        public bool? IsDeleted { get; set; }
+        public bool? IsDeleted { get; init; }
 
         /// <summary>
         /// An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous
         /// </summary>
         [JsonProperty("record_id")]
-        public int RecordId { get; set; }
+        public required int RecordId { get; init; }
 
         /// <summary>
         /// start_date string
         /// </summary>
         [JsonProperty("start_date")]
-        public DateTime StartDate { get; set; }
+        public required DateTime StartDate { get; init; }
     }
 }

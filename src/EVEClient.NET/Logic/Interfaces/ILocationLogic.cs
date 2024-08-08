@@ -18,7 +18,7 @@ namespace EVEClient.NET
         [Route("/v1/characters/{character_id}/location/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/location/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/location/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Location>> CurrentLocation(int characterId);
+        Task<EsiResponse<Location>> CurrentLocation(int characterId, string? token = null);
 
         /// <summary>
         /// Checks if the character is currently online
@@ -29,7 +29,7 @@ namespace EVEClient.NET
         [Route("/v2/characters/{character_id}/online/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/v3/characters/{character_id}/online/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/online/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Activity>> Online(int characterId);
+        Task<EsiResponse<Activity>> Online(int characterId, string? token = null);
 
         /// <summary>
         /// Get the current ship type, name and id
@@ -41,6 +41,6 @@ namespace EVEClient.NET
         [Route("/v1/characters/{character_id}/ship/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/v2/characters/{character_id}/ship/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/ship/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Ship>> CurrentShip(int characterId);
+        Task<EsiResponse<Ship>> CurrentShip(int characterId, string? token = null);
     }
 }

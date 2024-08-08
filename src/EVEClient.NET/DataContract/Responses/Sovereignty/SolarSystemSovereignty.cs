@@ -14,18 +14,18 @@ namespace EVEClient.NET.DataContract
         /// corporation_id integer
         /// </summary>
         [JsonProperty("corporation_id")]
-        public int? CorporationId { get; set; }
+        public int? CorporationId { get; init; }
 
         /// <summary>
         /// faction_id integer
         /// </summary>
         [JsonProperty("faction_id")]
-        public int? FactionId { get; set; }
+        public int? FactionId { get; init; }
 
         /// <summary>
         /// system_id integer
         /// </summary>
         [JsonProperty("system_id")]
-        public int SystemId { get; set; }
+        public required int SystemId { get; init; }
     }
 }

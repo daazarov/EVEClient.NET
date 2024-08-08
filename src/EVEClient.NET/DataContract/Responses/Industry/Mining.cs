@@ -9,24 +9,24 @@ namespace EVEClient.NET.DataContract
         /// date string
         /// </summary>
         [JsonProperty("date")]
-        public DateTime Date {  get; set; }
+        public required DateTime Date {  get; set; }
 
         /// <summary>
         /// quantity integer
         /// </summary>
         [JsonProperty("quantity")]
-        public long Quantity { get; set; }
+        public required long Quantity { get; init; }
 
         /// <summary>
         /// solar_system_id integer
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public int SolarSystemId { get; set; }
+        public required int SolarSystemId { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
     }
 }

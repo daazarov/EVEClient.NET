@@ -4,7 +4,7 @@ namespace EVEClient.NET.Models
 {
     internal class RoutesUriModels
     {
-        public RoutesUriModels(int origin, int destination, string flag, int[] avoid, int[] connections)
+        public RoutesUriModels(int origin, int destination, string flag, int[]? avoid, int[]? connections)
         {
             Origin = origin;
             Destination = destination;
@@ -31,9 +31,9 @@ namespace EVEClient.NET.Models
         public string Flag {  get; set; }
 
         [QueryParameter("avoid")]
-        public string Avoid { get; set; }
+        public string? Avoid { get; set; }
 
         [QueryParameter("connections")]
-        public string Connections { get; set; }
+        public string? Connections { get; set; }
     }
 }

@@ -19,14 +19,14 @@ namespace EVEClient.NET.Logic
         public Task<EsiResponse<Leaderboards<CharacterTotal>>> CaractersLeaderboard() =>
             _esiClient.GetRequestAsync<Leaderboards<CharacterTotal>>();
 
-        public Task<EsiResponse<CharacterStats>> CharacterStats(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, CharacterStats>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<CharacterStats>> CharacterStats(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, CharacterStats>(CharacterIdRouteRequest.Create(characterId), token);
 
         public Task<EsiResponse<Leaderboards<CorporationTotal>>> CorporationsLeaderboard() =>
             _esiClient.GetRequestAsync<Leaderboards<CorporationTotal>>();
 
-        public Task<EsiResponse<CorporationStats>> CorporationStats(int corporationId) =>
-            _esiClient.GetRequestAsync<CorporationIdRouteRequest, CorporationStats>(CorporationIdRouteRequest.Create(corporationId));
+        public Task<EsiResponse<CorporationStats>> CorporationStats(int corporationId, string? token = null) =>
+            _esiClient.GetRequestAsync<CorporationIdRouteRequest, CorporationStats>(CorporationIdRouteRequest.Create(corporationId), token);
 
         public Task<EsiResponse<Leaderboards<FactionTotal>>> FactionsLeaderboard() =>
             _esiClient.GetRequestAsync<Leaderboards<FactionTotal>>();

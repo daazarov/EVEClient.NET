@@ -21,7 +21,7 @@ namespace EVEClient.NET
         [Route("/legacy/ui/autopilot/waypoint/", Version = EndpointVersion.Legacy)]
         [Route("/v2/ui/autopilot/waypoint/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/ui/autopilot/waypoint/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> SetAutopilotWaypoint(long destinationId, bool addToBeginning = false, bool clearOtherWaypoints = false);
+        Task<EsiResponse> SetAutopilotWaypoint(long destinationId, bool addToBeginning = false, bool clearOtherWaypoints = false, string? token = null);
 
         /// <summary>
         /// Open the contract window inside the client
@@ -32,7 +32,7 @@ namespace EVEClient.NET
         [Route("/legacy/ui/openwindow/contract/", Version = EndpointVersion.Legacy)]
         [Route("/v1/ui/openwindow/contract/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/ui/openwindow/contract/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> OpenContractWindow(int contractId);
+        Task<EsiResponse> OpenContractWindow(int contractId, string? token = null);
 
         /// <summary>
         /// Open the information window for a character, corporation or alliance inside the client
@@ -43,7 +43,7 @@ namespace EVEClient.NET
         [Route("/legacy/ui/openwindow/information/", Version = EndpointVersion.Legacy)]
         [Route("/v1/ui/openwindow/information/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/ui/openwindow/information/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> OpenInformationWindow(int targetId);
+        Task<EsiResponse> OpenInformationWindow(int targetId, string? token = null);
 
         /// <summary>
         /// Open the market details window for a specific typeID inside the client
@@ -54,7 +54,7 @@ namespace EVEClient.NET
         [Route("/legacy/ui/openwindow/marketdetails/", Version = EndpointVersion.Legacy)]
         [Route("/v1/ui/openwindow/marketdetails/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/ui/openwindow/marketdetails/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> OpenMarketDetails(int typeId);
+        Task<EsiResponse> OpenMarketDetails(int typeId, string? token = null);
 
         /// <summary>
         /// Open the New Mail window, according to settings from the request if applicable
@@ -70,6 +70,6 @@ namespace EVEClient.NET
         [Route("/legacy/ui/openwindow/newmail/", Version = EndpointVersion.Legacy)]
         [Route("/v1/ui/openwindow/newmail/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/ui/openwindow/newmail/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> OpenNewMailWindow(string subject, string body, int[] recipients, int? toCorpOrAllianceId = null, int? toMailingListId = null);
+        Task<EsiResponse> OpenNewMailWindow(string subject, string body, int[] recipients, int? toCorpOrAllianceId = null, int? toMailingListId = null, string? token = null);
     }
 }

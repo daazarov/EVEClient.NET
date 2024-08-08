@@ -9,13 +9,13 @@ namespace EVEClient.NET.DataContract
         /// cost_indices array
         /// </summary>
         [JsonProperty("cost_indices")]
-        public List<CostIndice> CostIndices { get; set; } = new List<CostIndice>();
+        public required List<CostIndice> CostIndices { get; init; }
 
         /// <summary>
         /// solar_system_id integer
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public int SolarSystemId { get; set; }
+        public required int SolarSystemId { get; init; }
     }
 
     public class CostIndice
@@ -24,12 +24,12 @@ namespace EVEClient.NET.DataContract
         /// activity string
         /// </summary>
         [JsonProperty("activity")]
-        public SolarSystemActivity Activity { get; set; }
+        public required SolarSystemActivity Activity { get; init; }
 
         /// <summary>
         /// cost_index number
         /// </summary>
         [JsonProperty("cost_index")]
-        public float CostIndex { get; set; }
+        public required float CostIndex { get; init; }
     }
 }

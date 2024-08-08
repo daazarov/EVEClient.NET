@@ -18,46 +18,46 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<FleetInfo>> FleetInfo(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, FleetInfo>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<FleetInfo>> FleetInfo(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, FleetInfo>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponse<FleetSettings>> FleetSettings(long fleetId) =>
-            _esiClient.GetRequestAsync<FleetIdRouteRequest, FleetSettings>(FleetIdRouteRequest.Create(fleetId));
+        public Task<EsiResponse<FleetSettings>> FleetSettings(long fleetId, string? token = null) =>
+            _esiClient.GetRequestAsync<FleetIdRouteRequest, FleetSettings>(FleetIdRouteRequest.Create(fleetId), token);
 
-        public Task<EsiResponse> UpdateFleetSettings(long fleetId, bool? isFreeMove, string motd) =>
-            _esiClient.PutRequestAsync<UpdateFleetSettingsRequest>(UpdateFleetSettingsRequest.Create(fleetId, isFreeMove, motd));
+        public Task<EsiResponse> UpdateFleetSettings(long fleetId, bool? isFreeMove, string? motd, string? token = null) =>
+            _esiClient.PutRequestAsync(UpdateFleetSettingsRequest.Create(fleetId, isFreeMove, motd), token);
 
-        public Task<EsiResponse<List<FleetMember>>> FleetMembers(long fleetId) =>
-            _esiClient.GetRequestAsync<FleetIdRouteRequest, List<FleetMember>>(FleetIdRouteRequest.Create(fleetId));
+        public Task<EsiResponse<List<FleetMember>>> FleetMembers(long fleetId, string? token = null) =>
+            _esiClient.GetRequestAsync<FleetIdRouteRequest, List<FleetMember>>(FleetIdRouteRequest.Create(fleetId), token);
 
-        public Task<EsiResponse> InviteMember(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null) =>
-            _esiClient.PostNoContentRequestAsync(InviteFleetMemberRequest.Create(fleetId, characterId, role.ToEsiString(), squadId, wingId));
+        public Task<EsiResponse> InviteMember(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null, string? token = null) =>
+            _esiClient.PostNoContentRequestAsync(InviteFleetMemberRequest.Create(fleetId, characterId, role.ToEsiString(), squadId, wingId), token);
 
-        public Task<EsiResponse> KickMember(long fleetId, int memberId) =>
-            _esiClient.DeleteRequestAsync<FleetMemberRouteRequest>(FleetMemberRouteRequest.Create(fleetId, memberId));
+        public Task<EsiResponse> KickMember(long fleetId, int memberId, string? token = null) =>
+            _esiClient.DeleteRequestAsync(FleetMemberRouteRequest.Create(fleetId, memberId), token);
 
-        public Task<EsiResponse> MoveMember(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null) =>
-            _esiClient.PutRequestAsync<MoveFleetMemberRequest>(MoveFleetMemberRequest.Create(fleetId, memberId, role.ToEsiString(), squadId, wingId));
+        public Task<EsiResponse> MoveMember(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null, string? token = null) =>
+            _esiClient.PutRequestAsync(MoveFleetMemberRequest.Create(fleetId, memberId, role.ToEsiString(), squadId, wingId), token);
 
-        public Task<EsiResponse> DeleteSquad(long fleetId, long squadId) =>
-            _esiClient.DeleteRequestAsync<FleetSquadRouteRequest>(FleetSquadRouteRequest.Create(fleetId, squadId));
+        public Task<EsiResponse> DeleteSquad(long fleetId, long squadId, string? token = null) =>
+            _esiClient.DeleteRequestAsync(FleetSquadRouteRequest.Create(fleetId, squadId), token);
 
-        public Task<EsiResponse> RenameSquad(long fleetId, long squadId, string name) =>
-            _esiClient.PutRequestAsync<RenameSquadRequest>(RenameSquadRequest.Create(fleetId, squadId, name));
+        public Task<EsiResponse> RenameSquad(long fleetId, long squadId, string name, string? token = null) =>
+            _esiClient.PutRequestAsync(RenameSquadRequest.Create(fleetId, squadId, name), token);
 
-        public Task<EsiResponse<List<Wing>>> FleetWings(long fleetId) =>
-            _esiClient.GetRequestAsync<FleetIdRouteRequest, List<Wing>>(FleetIdRouteRequest.Create(fleetId));
+        public Task<EsiResponse<List<Wing>>> FleetWings(long fleetId, string? token = null) =>
+            _esiClient.GetRequestAsync<FleetIdRouteRequest, List<Wing>>(FleetIdRouteRequest.Create(fleetId), token);
 
-        public Task<EsiResponse<NewWing>> NewWing(long fleetId) =>
-            _esiClient.PostRequestAsync<FleetIdRouteRequest, NewWing>(FleetIdRouteRequest.Create(fleetId));
+        public Task<EsiResponse<NewWing>> NewWing(long fleetId, string? token = null) =>
+            _esiClient.PostRequestAsync<FleetIdRouteRequest, NewWing>(FleetIdRouteRequest.Create(fleetId), token);
 
-        public Task<EsiResponse> DeleteWing(long fleetId, long wingId) =>
-            _esiClient.DeleteRequestAsync<FleetWingRouteRequest>(FleetWingRouteRequest.Create(fleetId, wingId));
+        public Task<EsiResponse> DeleteWing(long fleetId, long wingId, string? token = null) =>
+            _esiClient.DeleteRequestAsync(FleetWingRouteRequest.Create(fleetId, wingId), token);
 
-        public Task<EsiResponse> RenameWing(long fleetId, long wingId, string name) =>
-            _esiClient.PutRequestAsync<RenameWingRequest>(RenameWingRequest.Create(fleetId, wingId, name));
+        public Task<EsiResponse> RenameWing(long fleetId, long wingId, string name, string? token = null) =>
+            _esiClient.PutRequestAsync(RenameWingRequest.Create(fleetId, wingId, name), token);
 
-        public Task<EsiResponse<NewSquad>> NewSquad(long fleetId, long wingId) =>
-            _esiClient.PostRequestAsync<FleetWingRouteRequest, NewSquad>(FleetWingRouteRequest.Create(fleetId, wingId));
+        public Task<EsiResponse<NewSquad>> NewSquad(long fleetId, long wingId, string? token = null) =>
+            _esiClient.PostRequestAsync<FleetWingRouteRequest, NewSquad>(FleetWingRouteRequest.Create(fleetId, wingId), token);
     }
 }

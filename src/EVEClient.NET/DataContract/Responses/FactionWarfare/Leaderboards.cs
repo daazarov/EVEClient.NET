@@ -6,22 +6,22 @@ namespace EVEClient.NET.DataContract
     public class Leaderboards<T>
     {
         [JsonProperty("kills")]
-        public Summary<T> Kills { get; set; }
+        public required Summary<T> Kills { get; init; }
 
         [JsonProperty("victory_points")]
-        public Summary<T> VictoryPoints { get; set; }
+        public required Summary<T> VictoryPoints { get; init; }
     }
 
     public class Summary<T>
     {
         [JsonProperty("yesterday")]
-        public List<T> Yesterday { get; set; } = new List<T>();
+        public required List<T> Yesterday { get; init; }
 
         [JsonProperty("last_week")]
-        public List<T> LastWeek { get; set; } = new List<T>();
+        public required List<T> LastWeek { get; init; }
 
         [JsonProperty("active_total")]
-        public List<T> ActiveTotal { get; set; } = new List<T>();
+        public required List<T> ActiveTotal { get; init; }
     }
 
     public class FactionTotal
@@ -30,13 +30,13 @@ namespace EVEClient.NET.DataContract
         /// faction_id integer
         /// </summary>
         [JsonProperty("faction_id")]
-        public int FactionId { get; set; }
+        public int? FactionId { get; init; }
 
         /// <summary>
         /// Amount of kills
         /// </summary>
         [JsonProperty("amount")]
-        public int Amount { get; set; }
+        public int? Amount { get; init; }
     }
 
     public class CorporationTotal
@@ -45,13 +45,13 @@ namespace EVEClient.NET.DataContract
         /// corporation_id integer
         /// </summary>
         [JsonProperty("corporation_id")]
-        public int CorporationId { get; set; }
+        public int? CorporationId { get; init; }
 
         /// <summary>
         /// Amount of kills
         /// </summary>
         [JsonProperty("amount")]
-        public int Amount { get; set; }
+        public int? Amount { get; init; }
     }
 
     public class CharacterTotal
@@ -60,12 +60,12 @@ namespace EVEClient.NET.DataContract
         /// character_id integer
         /// </summary>
         [JsonProperty("character_id")]
-        public int CharacterId { get; set; }
+        public int? CharacterId { get; init; }
 
         /// <summary>
         /// Amount of kills
         /// </summary>
         [JsonProperty("amount")]
-        public int Amount { get; set; }
+        public int? Amount { get; init; }
     }
 }

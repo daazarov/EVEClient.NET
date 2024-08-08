@@ -90,11 +90,11 @@ namespace EVEClient.NET.Logic
         public Task<EsiResponse<Station>> StationInfo(int stationId) =>
             _esiClient.GetRequestAsync<StationInfoRequest, Station>(StationInfoRequest.Create(stationId));
 
-        public Task<EsiResponse<StructureInfo>> StructureInfo(long structureId) =>
-            _esiClient.GetRequestAsync<StructureInfoRequest, StructureInfo>(StructureInfoRequest.Create(structureId));
+        public Task<EsiResponse<StructureInfo>> StructureInfo(long structureId, string? token = null) =>
+            _esiClient.GetRequestAsync<StructureInfoRequest, StructureInfo>(StructureInfoRequest.Create(structureId), token);
 
         public Task<EsiResponse<List<long>>> Structures(StructureType? type) =>
-            _esiClient.GetRequestAsync<StructuresRequest, List<long>>(StructuresRequest.Create(type.ToEsiString()));
+            _esiClient.GetRequestAsync<StructuresRequest, List<long>>(StructuresRequest.Create(type?.ToEsiString()));
 
         public Task<EsiResponse<List<JumpInfo>>> SystemJumps() =>
             _esiClient.GetRequestAsync<List<JumpInfo>>();

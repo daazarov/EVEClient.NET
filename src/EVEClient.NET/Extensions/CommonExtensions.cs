@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -37,36 +38,27 @@ namespace EVEClient.NET.Extensions
             {
                 foreach (var keyValuePair in @this)
                 {
-                    string value = null;
-
-                    if (keyValuePair.Value != null)
-                    {
-                        value = keyValuePair.Value.ToString();
-                    }
-
-                    nv.Add(keyValuePair.Key.ToString(), value);
+                    nv.Add(keyValuePair.Key?.ToString(), keyValuePair.Value?.ToString());
                 }
             }
 
             return nv;
         }
 
-        public static IDictionary<TKey, TValue> Merge<TKey, TValue>(this IDictionary<TKey, TValue> @this, Func<IDictionary<TKey, TValue>> getter)
+        public static IDictionary<TKey, TValue> Merge<TKey, TValue>(this IDictionary<TKey, TValue> @this, IDictionary<TKey, TValue>? target)
         {
             if (@this == null)
             {
                 throw new ArgumentNullException(nameof(@this));
             }
-            
-            var result = getter.Invoke();
 
-            if (result == null)
+            if (target == null)
             {
                 return @this;
             }
             else
             {
-                return @this.ForEachMerge(result);
+                return @this.ForEachMerge(target);
             }
         }
 
@@ -88,26 +80,23 @@ namespace EVEClient.NET.Extensions
             return @this;
         }
 
-        public static string ToEsiString(this Enum @this)
+        public static string ToEsiString(this Enum @enum)
         {
-            if (@this == null)
-            {
-                return null;
-            }
-            
-            var enumString = @this.ToString();
+            ArgumentNullException.ThrowIfNull(@enum);
+
+            var enumString = @enum.ToString();
 
             if (enumString.TrySplit(",", out var splitedArray))
             {
-                return string.Join(",", splitedArray.Select(x => @this.ToEsiStringSingle(x.Trim())));
+                return string.Join(",", splitedArray.Select(x => @enum.ToEsiStringSingle(x.Trim())));
             }
             else
             {
-                return @this.ToEsiStringSingle(enumString);
+                return @enum.ToEsiStringSingle(enumString);
             }
         }
 
-        private static bool TrySplit(this string @this, string separator, out string[] splitedArray)
+        private static bool TrySplit(this string @this, string separator, [MaybeNullWhen(false)] out string[] splitedArray)
         {
             splitedArray = null;
 
@@ -127,7 +116,12 @@ namespace EVEClient.NET.Extensions
             var memberInfo = typeInfo.DeclaredMembers.SingleOrDefault(x => x.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
             var attribute = memberInfo?.GetCustomAttribute<EnumMemberAttribute>(false);
 
-            return attribute?.Value;
+            if (string.IsNullOrEmpty(attribute?.Value))
+            {
+                throw new InvalidOperationException($"Can not convert enum to ESI string. Enum: { @this.ToString() }");
+            }
+
+            return attribute.Value;
         }
     }
 }

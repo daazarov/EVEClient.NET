@@ -9,6 +9,10 @@ using EVEClient.NET.Pipline;
 
 namespace EVEClient.NET.Handlers
 {
+    /// <summary>
+    /// Used when the setting "UseETag" setting is enabled.
+    /// Stores the eTag value for a particular request in internal storage and applies it to the next request.
+    /// </summary>
     public class ETagHandler : IHandler
     {
         private readonly EsiClientConfiguration _options;

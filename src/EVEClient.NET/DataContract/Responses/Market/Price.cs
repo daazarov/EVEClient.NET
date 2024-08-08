@@ -14,12 +14,12 @@ namespace EVEClient.NET.DataContract
         /// average_price number
         /// </summary>
         [JsonProperty("average_price")]
-        public double? AveragePrice { get; set; }
+        public double? AveragePrice { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
     }
 }

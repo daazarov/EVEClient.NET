@@ -17,7 +17,7 @@ namespace EVEClient.NET.Pipline.Modifications
             _bulder = bulder;
         }
 
-        public IEndpointModificationBuilder AdditionalHandler<CustomHandler>(string addAfter = null, bool addToEnd = false, bool addToStart = false, int? endOrder = null, int? startOrder = null)
+        public IEndpointModificationBuilder AdditionalHandler<CustomHandler>(string? addAfter = null, bool addToEnd = false, bool addToStart = false, int? endOrder = null, int? startOrder = null)
             where CustomHandler : IHandler
         {
             var componentId = typeof(CustomHandler).Name;
@@ -26,7 +26,7 @@ namespace EVEClient.NET.Pipline.Modifications
             return AdditionalMiddleware(componentId, middleware, addAfter, addToEnd, addToStart, endOrder, startOrder);
         }
 
-        public IEndpointModificationBuilder AdditionalMiddleware(string componentId, Func<RequestDelegate, RequestDelegate> middleware, string addAfter = null,  bool addToEnd = false, bool addToStart = false, int? endOrder = null, int? startOrder = null)
+        public IEndpointModificationBuilder AdditionalMiddleware(string componentId, Func<RequestDelegate, RequestDelegate> middleware, string? addAfter = null,  bool addToEnd = false, bool addToStart = false, int? endOrder = null, int? startOrder = null)
         {
             componentId.ArgumentStringNotNullOrEmpty(nameof(componentId));
 

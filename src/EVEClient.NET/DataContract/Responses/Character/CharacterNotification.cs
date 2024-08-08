@@ -9,42 +9,42 @@ namespace EVEClient.NET.DataContract
         /// is_read boolean
         /// </summary>
         [JsonProperty("is_read")]
-        public bool? IsRead { get; set; }
+        public bool? IsRead { get; init; }
 
         /// <summary>
         /// notification_id integer
         /// </summary>
         [JsonProperty("notification_id")]
-        public long NotificationId { get; set; }
+        public required long NotificationId { get; init; }
 
         /// <summary>
         /// sender_id integer
         /// </summary>
         [JsonProperty("sender_id")]
-        public int SenderId { get; set; }
+        public required int SenderId { get; init; }
 
         /// <summary>
         /// sender_type string
         /// </summary>
         [JsonProperty("sender_type")]
-        public SenderType SenderType { get; set; }
+        public required SenderType SenderType { get; init; }
 
         /// <summary>
         /// text string
         /// </summary>
         [JsonProperty("text")]
-        public string Text { get; set; }
+        public string? Text { get; init; }
 
         /// <summary>
         /// timestamp string
         /// </summary>
         [JsonProperty("timestamp")]
-        public DateTime Timestamp { get; set; }
+        public required DateTime Timestamp { get; init; }
 
         /// <summary>
         /// type string
         /// </summary>
         [JsonProperty("type")]
-        public NotificationType Type { get; set; }
+        public required NotificationType Type { get; init; }
     }
 }

@@ -8,48 +8,48 @@ namespace EVEClient.NET.DataContract
         /// is_blueprint_copy boolean
         /// </summary>
         [JsonProperty("is_blueprint_copy")]
-        public bool? IsBlueprintCopy { get; set; }
+        public bool? IsBlueprintCopy { get; init; }
 
         /// <summary>
         /// is_singleton boolean
         /// </summary>
         [JsonProperty("is_singleton")]
-        public bool IsSingleton { get; set; }
+        public required bool IsSingleton { get; init; }
 
         /// <summary>
         /// item_id integer
         /// </summary>
         [JsonProperty("item_id")]
-        public long ItemId { get; set; }
+        public required long ItemId { get; init; }
 
         /// <summary>
         /// location_flag string
         /// </summary>
         [JsonProperty("location_flag")]
-        public string LocationFlag { get; set; }
+        public required string LocationFlag { get; init; }
 
         /// <summary>
         /// location_id integer
         /// </summary>
         [JsonProperty("location_id")]
-        public long LocationId { get; set; }
+        public required long LocationId { get; init; }
 
         /// <summary>
         /// location_type string
         /// </summary>
         [JsonProperty("location_type")]
-        public LocationType LocationType { get; set; }
+        public required LocationType LocationType { get; init; }
 
         /// <summary>
         /// quantity integer
         /// </summary>
         [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        public required int Quantity { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
     }
 }

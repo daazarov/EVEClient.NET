@@ -10,61 +10,61 @@ namespace EVEClient.NET.DataContract
         /// Score for all attacking parties, only present in Defense Events.
         /// </summary>
         [JsonProperty("attackers_score")]
-        public float AttackersScore {  get; set; }
+        public float? AttackersScore {  get; set; }
 
         /// <summary>
         /// Unique ID for this campaign.
         /// </summary>
         [JsonProperty("campaign_id")]
-        public int CampaignId { get; set; }
+        public required int CampaignId { get; init; }
 
         /// <summary>
         /// The constellation in which the campaign will take place.
         /// </summary>
         [JsonProperty("constellation_id")]
-        public int ConstellationId { get; set; }
+        public required int ConstellationId { get; init; }
 
         /// <summary>
         /// Defending alliance, only present in Defense Events
         /// </summary>
         [JsonProperty("defender_id")]
-        public int? DefenderId { get; set; }
+        public int? DefenderId { get; init; }
 
         /// <summary>
         /// Score for the defending alliance, only present in Defense Events.
         /// </summary>
         [JsonProperty("defender_score")]
-        public float? DefenderScore { get; set; }
+        public float? DefenderScore { get; init; }
 
         /// <summary>
         /// Type of event this campaign is for. tcu_defense, ihub_defense and station_defense are referred to as "Defense Events", station_freeport as "Freeport Events".
         /// </summary>
         [JsonProperty("event_type")]
-        public CampaignEventType EventType { get; set; }
+        public required CampaignEventType EventType { get; init; }
 
         /// <summary>
         /// Alliance participating and their respective scores, only present in Freeport Events.
         /// </summary>
         [JsonProperty("participants")]
-        public List<Participant> Participants { get; set; }
+        public List<Participant>? Participants { get; init; }
 
         /// <summary>
         /// The solar system the structure is located in.
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public int SolarSystemId { get; set; }
+        public required int SolarSystemId { get; init; }
 
         /// <summary>
         /// Time the event is scheduled to start.
         /// </summary>
         [JsonProperty("start_time")]
-        public DateTime StartTime { get; set; }
+        public required DateTime StartTime { get; init; }
 
         /// <summary>
         /// The structure item ID that is related to this campaign.
         /// </summary>
         [JsonProperty("structure_id")]
-        public long StructureId { get; set; }
+        public required long StructureId { get; init; }
 
         public class Participant
         {
@@ -72,13 +72,13 @@ namespace EVEClient.NET.DataContract
             /// alliance_id integer
             /// </summary>
             [JsonProperty("alliance_id")]
-            public int AllianceId { get; set; }
+            public required int AllianceId { get; init; }
 
             /// <summary>
             /// score number
             /// </summary>
             [JsonProperty("score")]
-            public float Score { get; set; }
+            public required float Score { get; init; }
         }
     }
 }

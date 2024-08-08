@@ -14,54 +14,54 @@ namespace EVEClient.NET.DataContract
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public required string Description { get; init; }
 
         /// <summary>
         /// faction_id integer
         /// </summary>
         [JsonProperty("faction_id")]
-        public int FactionId { get; set; }
+        public required int FactionId { get; init; }
 
         /// <summary>
         /// is_unique boolean
         /// </summary>
         [JsonProperty("is_unique")]
-        public bool IsUnique { get; set; }
+        public required bool IsUnique { get; init; }
 
         /// <summary>
         /// militia_corporation_id integer
         /// </summary>
         [JsonProperty("militia_corporation_id")]
-        public int? MilitiaCorporationId { get; set; }
+        public int? MilitiaCorporationId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// size_factor number
         /// </summary>
         [JsonProperty("size_factor")]
-        public float SizeFactor { get; set; }
+        public required float SizeFactor { get; init; }
 
         /// <summary>
         /// solar_system_id integer
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public int? SolarSystemId { get; set; }
+        public int? SolarSystemId { get; init; }
 
         /// <summary>
         /// station_count integer
         /// </summary>
         [JsonProperty("station_count")]
-        public int StationCount { get; set; }
+        public required int StationCount { get; init; }
 
         /// <summary>
         /// station_system_count integer
         /// </summary>
         [JsonProperty("station_system_count")]
-        public int StationSystemCount { get; set; }
+        public required int StationSystemCount { get; init; }
     }
 }

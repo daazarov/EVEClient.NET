@@ -8,18 +8,18 @@ namespace EVEClient.NET.DataContract
         /// x number
         /// </summary>
         [JsonProperty("x")]
-        public double X { get; set; }
+        public required double X { get; init; }
 
         /// <summary>
         /// x number
         /// </summary>
         [JsonProperty("y")]
-        public double Y { get; set; }
+        public required double Y { get; init; }
 
         /// <summary>
         /// z number
         /// </summary>
         [JsonProperty("z")]
-        public double Z { get; set; }
+        public required double Z { get; init; }
     }
 }

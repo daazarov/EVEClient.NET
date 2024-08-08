@@ -5,6 +5,9 @@ using EVEClient.NET.Pipline;
 
 namespace EVEClient.NET.Handlers
 {
+    /// <summary>
+    /// Make a request to ESI API.
+    /// </summary>
     public abstract class RequestBaseHandler : IHandler
     {
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
@@ -17,6 +20,9 @@ namespace EVEClient.NET.Handlers
         protected abstract Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context);
     }
 
+    /// <summary>
+    /// Make a PUT request to ESI API.
+    /// </summary>
     public class RequestPutHandler : RequestBaseHandler
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)
@@ -25,6 +31,9 @@ namespace EVEClient.NET.Handlers
         }
     }
 
+    /// <summary>
+    /// Make a POST request to ESI API.
+    /// </summary>
     public class RequestPostHandler : RequestBaseHandler
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)
@@ -33,6 +42,9 @@ namespace EVEClient.NET.Handlers
         }
     }
 
+    /// <summary>
+    /// Make a GET request to ESI API.
+    /// </summary>
     public class RequestGetHandler : RequestBaseHandler
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)
@@ -41,6 +53,9 @@ namespace EVEClient.NET.Handlers
         }
     }
 
+    /// <summary>
+    /// Make a DELETE request to ESI API.
+    /// </summary>
     public class RequestDeleteHandler : RequestBaseHandler
     {
         protected override Task<HttpResponseMessage> ExecuteRequestAsync(string url, EsiContext context)

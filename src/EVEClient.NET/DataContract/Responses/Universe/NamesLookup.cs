@@ -8,18 +8,18 @@ namespace EVEClient.NET.DataContract
         /// id integer
         /// </summary>
         [JsonProperty("id")]
-        public int ID { get; set; }
+        public required int ID { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// category string
         /// </summary>
         [JsonProperty("category")]
-        public NameCategory Category { get; set; }
+        public required NameCategory Category { get; init; }
     }
 }

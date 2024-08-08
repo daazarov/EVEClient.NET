@@ -73,7 +73,6 @@ namespace EVEClient.NET.UnitTests
 
         [TestCase(typeof(IETagStorage), ServiceLifetime.Singleton)]
         [TestCase(typeof(IPiplineStore), ServiceLifetime.Singleton)]
-        [TestCase(typeof(IScopeAccessValidator), ServiceLifetime.Singleton)]
         [TestCase(typeof(IHttpClientFactory), ServiceLifetime.Singleton)]
         [TestCase(typeof(IEsiContextFactory), ServiceLifetime.Scoped)]
         [TestCase(typeof(IEsiLogicAccessor), ServiceLifetime.Scoped)]
@@ -99,8 +98,7 @@ namespace EVEClient.NET.UnitTests
 
             Assert.That(options.UserAgent, Is.EqualTo("blah blah blah"));
             Assert.That(options.EnableETag, Is.True);
-            Assert.That(options.EsiUrl, Is.EqualTo(ESI.SSO.Singularity.EsiBaseUrl));
-            Assert.That(options.AuthorizationUrl, Is.EqualTo(ESI.SSO.Singularity.AuthorizationSsoBaseUrl));
+            Assert.That(options.EsiBaseUrl, Is.EqualTo(ESI.EsiBaseUrl));
             Assert.That(options.Server, Is.EqualTo(EVEOnlineServer.Singularity));
         }
 
@@ -117,8 +115,7 @@ namespace EVEClient.NET.UnitTests
 
             Assert.That(options.UserAgent, Is.EqualTo("blah blah blah"));
             Assert.That(options.EnableETag, Is.False);
-            Assert.That(options.EsiUrl, Is.EqualTo(ESI.SSO.Tranquility.EsiBaseUrl));
-            Assert.That(options.AuthorizationUrl, Is.EqualTo(ESI.SSO.Tranquility.AuthorizationSsoBaseUrl));
+            Assert.That(options.EsiBaseUrl, Is.EqualTo(ESI.EsiBaseUrl));
             Assert.That(options.Server, Is.EqualTo(EVEOnlineServer.Tranquility));
         }
     }

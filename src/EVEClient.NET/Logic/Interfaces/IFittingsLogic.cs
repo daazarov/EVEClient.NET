@@ -16,7 +16,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/fittings/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/fittings/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/fittings/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Fitting>>> GetFittings(int characterId);
+        Task<EsiResponse<List<Fitting>>> GetFittings(int characterId, string? token = null);
 
         /// <summary>
         /// Save a new fitting for a character
@@ -27,7 +27,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/fittings/", Version = EndpointVersion.Latest)]
         [Route("/v2/characters/{character_id}/fittings/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/fittings/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<NewFittingResponse>> NewFitting(int characterId, NewFitting fitting);
+        Task<EsiResponse<NewFittingResponse>> NewFitting(int characterId, NewFitting fitting, string? token = null);
 
         /// <summary>
         /// Delete a fitting from a character
@@ -39,6 +39,6 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/fittings/{fitting_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/fittings/{fitting_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/fittings/{fitting_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> DeleteFitting(int characterId, int fittingId);
+        Task<EsiResponse> DeleteFitting(int characterId, int fittingId, string? token = null);
     }
 }

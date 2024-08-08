@@ -16,12 +16,16 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static partial class EsiClientConfigurationBuilderExtensions
     {
+        /// <summary>
+        /// Adds the configured HTTP client.
+        /// </summary>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         public static IEsiClientConfigurationBuilder AddRequiredClientServices(this IEsiClientConfigurationBuilder builder)
         {
             builder.Services
                 .AddHttpClient(ESI.HttpClientName, httpClient =>
                 {
-                    httpClient.BaseAddress = new Uri(builder.Configuration.EsiUrl);
+                    httpClient.BaseAddress = new Uri(builder.Configuration.EsiBaseUrl);
                 })
                 .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
                 { 
@@ -29,23 +33,30 @@ namespace Microsoft.Extensions.DependencyInjection
                 });
 
             builder.Services.TryAddScoped<IEsiContextFactory, EsiContextFactory>();
-            builder.Services.TryAddScoped<IEsiLogicAccessor, EsiLogicAccessor>();
             builder.Services.TryAddScoped(typeof(IEsiHttpClient<>), typeof(EsiHttpClient<>));
 
             return builder;
         }
 
+        /// <summary>
+        /// Adds the default implementations.
+        /// </summary>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         public static IEsiClientConfigurationBuilder AddDefaults(this IEsiClientConfigurationBuilder builder)
         {
             builder.Services.TryAddSingleton<IETagStorage, DefaultInMemoryETagThreadSaveStore>();
-            builder.Services.TryAddSingleton<IScopeAccessValidator, DefaultScopeAccessValidator>();
             builder.Services.TryAddSingleton<IPiplineStore, PiplineStore>();
 
             return builder;
         }
 
+        /// <summary>
+        /// Adds the <see cref="IEsiLogicAccessor"/> and all inner services.
+        /// </summary>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         public static IEsiClientConfigurationBuilder AddEsiLogic(this IEsiClientConfigurationBuilder builder)
         {
+            builder.Services.TryAddScoped<IEsiLogicAccessor, EsiLogicAccessor>();
             builder.Services.TryAddScoped<ICharacterLogic, CharacterLogic>();
             builder.Services.TryAddScoped<IAllianceLogic, AllianceLogic>();
             builder.Services.TryAddScoped<IAssetsLogic, AssetsLogic>();
@@ -82,6 +93,10 @@ namespace Microsoft.Extensions.DependencyInjection
             return builder;
         }
 
+        /// <summary>
+        /// Registers all default pipline handlers.
+        /// </summary>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         public static IEsiClientConfigurationBuilder AddPiplineHandlers(this IEsiClientConfigurationBuilder builder)
         {
             builder.Services.TryAddSingleton<RequestHeadersHandler>();
@@ -98,6 +113,12 @@ namespace Microsoft.Extensions.DependencyInjection
             return builder;
         }
 
+        /// <summary>
+        /// Allows  to customize the request middleware for one or more ESI endpoints.
+        /// </summary>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
+        /// <param name="configure">The action delegate witch configure <see cref="IPiplineModificationsBuilder"/>.</param>
+        /// <exception cref="InvalidOperationException"></exception>
         public static IEsiClientConfigurationBuilder CustomizePipline(this IEsiClientConfigurationBuilder builder, Action<IPiplineModificationsBuilder> configure)
         {
             configure(builder.PiplineModificationBuilder);
@@ -115,9 +136,17 @@ namespace Microsoft.Extensions.DependencyInjection
             return builder;
         }
 
-        internal static IEsiClientConfigurationBuilder AddPiplineModification(this IEsiClientConfigurationBuilder builder, PiplineModification modification)
+        /// <summary>
+        /// Adds the public <see cref="IAccessTokenProvider"/> and  <see cref="IScopeAccessValidator"/> to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
+        /// </summary>
+        /// <remarks>If you try to call a protected enpoint, an <see cref="InvalidOperationException"/> exception will be raised.</remarks>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
+        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
+        public static IEsiClientConfigurationBuilder UseOnlyPublicEndpoints(this IEsiClientConfigurationBuilder builder)
         {
-            builder.Services.AddSingleton(modification);
+            builder.AddAccessTokenProvider<PublicAccessTokenProvider>();
+            builder.AddScopeValidator<PublicScopeAccessValidator>();
+
             return builder;
         }
 
@@ -128,9 +157,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <typeparam name="T">The <see cref="IAccessTokenProvider"/> implementation.</typeparam>
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseAccessTokenProvider<T>(this IEsiClientConfigurationBuilder builder)
+        public static IEsiClientConfigurationBuilder AddAccessTokenProvider<T>(this IEsiClientConfigurationBuilder builder)
         {
-            return builder.UseAccessTokenProvider(typeof(T));
+            return builder.AddAccessTokenProvider(typeof(T));
         }
 
         /// <summary>
@@ -141,7 +170,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         /// <param name="instanceType">The implementation type of the service.</param>
         /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseAccessTokenProvider(this IEsiClientConfigurationBuilder builder, Type instanceType)
+        public static IEsiClientConfigurationBuilder AddAccessTokenProvider(this IEsiClientConfigurationBuilder builder, Type instanceType)
         {
             IsAssignableFrom(typeof(IAccessTokenProvider), instanceType);
 
@@ -157,9 +186,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <typeparam name="T">The <see cref="IScopeAccessValidator"/> implementation.</typeparam>
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseScopeValidator<T>(this IEsiClientConfigurationBuilder builder)
+        public static IEsiClientConfigurationBuilder AddScopeValidator<T>(this IEsiClientConfigurationBuilder builder)
         {
-            return builder.UseScopeValidator(typeof(T));
+            return builder.AddScopeValidator(typeof(T));
         }
 
         /// <summary>
@@ -170,7 +199,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         /// <param name="instanceType">The implementation type of the service.</param>
         /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseScopeValidator(this IEsiClientConfigurationBuilder builder, Type instanceType)
+        public static IEsiClientConfigurationBuilder AddScopeValidator(this IEsiClientConfigurationBuilder builder, Type instanceType)
         {
             IsAssignableFrom(typeof(IScopeAccessValidator), instanceType);
 
@@ -186,9 +215,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <typeparam name="T">The <see cref="IETagStorage"/> implementation.</typeparam>
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseETagStorage<T>(this IEsiClientConfigurationBuilder builder)
+        public static IEsiClientConfigurationBuilder AddETagStorage<T>(this IEsiClientConfigurationBuilder builder)
         {
-            return builder.UseETagStorage(typeof(T));
+            return builder.AddETagStorage(typeof(T));
         }
 
         /// <summary>
@@ -199,12 +228,18 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         /// <param name="instanceType">The implementation type of the service.</param>
         /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder UseETagStorage(this IEsiClientConfigurationBuilder builder, Type instanceType)
+        public static IEsiClientConfigurationBuilder AddETagStorage(this IEsiClientConfigurationBuilder builder, Type instanceType)
         {
             IsAssignableFrom(typeof(IETagStorage), instanceType);
 
             builder.Services.AddSingletonWithReplace(typeof(IETagStorage), instanceType);
 
+            return builder;
+        }
+
+        private static IEsiClientConfigurationBuilder AddPiplineModification(this IEsiClientConfigurationBuilder builder, PiplineModification modification)
+        {
+            builder.Services.AddSingleton(modification);
             return builder;
         }
 

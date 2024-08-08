@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 
@@ -10,9 +12,16 @@ namespace EVEClient.NET
 {
     public class EsiResponse<T> : EsiResponse
     {
-        private readonly T _data;
+        /// <summary>
+        /// Gets the deserialized response data.
+        /// </summary>
+        public T? Data { get; }
 
-        public T Data => _data;
+        /// <summary>
+        /// Gets a value that indicates if the HTTP request to the EVE ESI was successfull.
+        /// </summary>
+        [MemberNotNullWhen(true, nameof(Data))]
+        public new bool Success => base.Success;
 
         public EsiResponse(HttpResponseMessage response) : base(response)
         {
@@ -20,18 +29,26 @@ namespace EVEClient.NET
             {
                 var result = response.Content.ReadAsStringAsync().Result;
 
-                if ((result.StartsWith("{") && result.EndsWith("}")) ||
-                     result.StartsWith("[") && result.EndsWith("]"))
+                try
                 {
-                    _data = JsonConvert.DeserializeObject<T>(result);
-                }
-                else
-                {
-                    try
+                    if ((result.StartsWith("{") && result.EndsWith("}")) ||
+                         result.StartsWith("[") && result.EndsWith("]"))
                     {
-                        _data = (T)Convert.ChangeType(result, typeof(T));
+                        Data = JsonConvert.DeserializeObject<T>(result);
                     }
-                    catch { }
+                    else
+                    {
+                        Data = (T)Convert.ChangeType(result, typeof(T));
+                    }
+                }
+                catch
+                {
+                    if (Errors == null)
+                    {
+                        Errors = new List<string>();
+                    }
+
+                    Errors.Add($"Failed to deserializa response data to the model. Model type: {typeof(T).Name}; Response data: {result}");
                 }
             }
         }

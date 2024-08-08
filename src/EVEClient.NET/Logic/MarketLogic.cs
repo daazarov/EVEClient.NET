@@ -18,17 +18,17 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<OrderBase>>> CharacterOrders(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<OrderBase>>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<List<OrderBase>>> CharacterOrders(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<OrderBase>>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponsePagination<List<OrderBase>>> CharacterOrdersHistory(int characterId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<OrderBase>>(PageBasedCharacterIdRouteRequest.Create(characterId, page));
+        public Task<EsiResponsePagination<List<OrderBase>>> CharacterOrdersHistory(int characterId, int page = 1, string? token = null) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<OrderBase>>(PageBasedCharacterIdRouteRequest.Create(characterId, page), token);
 
-        public Task<EsiResponsePagination<List<OrderBase>>> CorporationOrders(int corporationId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<OrderBase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
+        public Task<EsiResponsePagination<List<OrderBase>>> CorporationOrders(int corporationId, int page = 1, string? token = null) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<OrderBase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page), token);
 
-        public Task<EsiResponsePagination<List<OrderBase>>> CorporationOrdersHistory(int corporationId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<OrderBase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
+        public Task<EsiResponsePagination<List<OrderBase>>> CorporationOrdersHistory(int corporationId, int page = 1, string? token = null) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<OrderBase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page), token);
 
         public Task<EsiResponse<List<Statistic>>> RegionStatistics(int regionId, int typeId) =>
             _esiClient.GetRequestAsync<RegionStatisticsRouteRequest, List<Statistic>>(RegionStatisticsRouteRequest.Create(regionId, typeId));
@@ -48,7 +48,7 @@ namespace EVEClient.NET.Logic
         public Task<EsiResponse<List<Price>>> TypePrices() =>
             _esiClient.GetRequestAsync<List<Price>>();
 
-        public Task<EsiResponsePagination<List<OrderBase>>> StructureOrders(long structureId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedStructureIdRouteRequest, List<OrderBase>>(PageBasedStructureIdRouteRequest.Create(structureId, page));
+        public Task<EsiResponsePagination<List<OrderBase>>> StructureOrders(long structureId, int page = 1, string? token = null) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedStructureIdRouteRequest, List<OrderBase>>(PageBasedStructureIdRouteRequest.Create(structureId, page), token);
     }
 }

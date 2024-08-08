@@ -8,18 +8,18 @@ namespace EVEClient.NET.DataContract
         /// solar_system_id integer
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public int SolarSystemId { get; set; }
+        public required int SolarSystemId { get; init; }
 
         /// <summary>
         /// station_id integer
         /// </summary>
         [JsonProperty("station_id")]
-        public int? StationId { get; set; }
+        public int? StationId { get; init; }
 
         /// <summary>
         /// structure_id integer
         /// </summary>
         [JsonProperty("structure_id")]
-        public long? StructureId { get; set; }
+        public long? StructureId { get; init; }
     }
 }

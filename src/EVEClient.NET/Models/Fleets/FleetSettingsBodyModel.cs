@@ -4,7 +4,7 @@ namespace EVEClient.NET.Models
 {
     internal class FleetSettingsBodyModel
     {
-        public FleetSettingsBodyModel(bool? isFreeMove, string motd)
+        public FleetSettingsBodyModel(bool? isFreeMove, string? motd)
         { 
             IsFreeMove = isFreeMove;
             Motd = motd;
@@ -14,7 +14,7 @@ namespace EVEClient.NET.Models
         public bool? IsFreeMove {  get; set; }
 
         [JsonProperty("motd")]
-        public string Motd {  get; set; }
+        public string? Motd {  get; set; }
 
         public bool ShouldSerializeIsFreeMove() // todo -- make a test
         {

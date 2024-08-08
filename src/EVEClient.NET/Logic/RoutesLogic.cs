@@ -17,7 +17,7 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<int>>> Route(int origin, int destination, RoutesFlag flag = RoutesFlag.Shortest, int[] avoid = null, int[] connections = null) =>
+        public Task<EsiResponse<List<int>>> Route(int origin, int destination, RoutesFlag flag = RoutesFlag.Shortest, int[]? avoid = null, int[]? connections = null) =>
             _esiClient.GetRequestAsync<RouteRequest, List<int>>(RouteRequest.Create(origin, destination, flag.ToEsiString(), avoid, connections));
     }
 }

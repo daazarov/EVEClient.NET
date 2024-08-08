@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+
 using EVEClient.NET.DataContract;
 using EVEClient.NET.Extensions;
 
@@ -12,13 +13,13 @@ namespace EVEClient.NET.Models
         public long? ApprovedCost { get; set; }
 
         [JsonProperty("body")]
-        public string Body { get; set; }
+        public required string Body { get; set; }
 
         [JsonProperty("recipients")]
-        public List<RecipientBodyModel> Recipients { get; set; }
+        public required List<RecipientBodyModel> Recipients { get; set; }
 
         [JsonProperty("subject")]
-        public string Subject { get; set; }
+        public required string Subject { get; set; }
 
         public bool ShouldSerializeApprovedCost()
         {
@@ -27,12 +28,12 @@ namespace EVEClient.NET.Models
 
         public static NewMailBodyModel FromDataContractModel(NewMail mail)
         {
-            return new NewMailBodyModel
+            return new NewMailBodyModel()
             {
                 ApprovedCost = mail.ApprovedCost,
                 Body = mail.Body,
                 Subject = mail.Subject,
-                Recipients = mail.Recipients.Select(x => RecipientBodyModel.FromDataContractModel(x)).ToList()
+                Recipients = mail.Recipients.Select(RecipientBodyModel.FromDataContractModel).ToList()
             };
         }
     }
@@ -43,15 +44,15 @@ namespace EVEClient.NET.Models
         /// recipient_id integer
         /// </summary>
         [JsonProperty("recipient_id")]
-        public int RecipientId { get; set; }
+        public required int RecipientId { get; set; }
 
         /// <summary>
         /// recipient_type string
         /// </summary>
         [JsonProperty("recipient_type")]
-        public string RecipientType { get; set; }
+        public required string RecipientType { get; set; }
 
-        public static RecipientBodyModel FromDataContractModel(Recipient recipient)
+        public static RecipientBodyModel FromDataContractModel(NewMail.Recipient recipient)
         {
             return new RecipientBodyModel
             {

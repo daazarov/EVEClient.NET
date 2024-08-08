@@ -8,54 +8,54 @@ namespace EVEClient.NET.DataContract
         /// character_id integer
         /// </summary>
         [JsonProperty("character_id")]
-        public int CharacterId { get; set; }
+        public required int CharacterId { get; init; }
 
         /// <summary>
         /// grantable_roles array
         /// </summary>
         [JsonProperty("grantable_roles")]
-        public CorporationRole[] GrantableRoles { get; set; }
+        public CorporationRole[]? GrantableRoles { get; init; }
 
         /// <summary>
         /// grantable_roles_at_base array
         /// </summary>
         [JsonProperty("grantable_roles_at_base")]
-        public CorporationRole[] GrantableRolesAtBase { get; set; }
+        public CorporationRole[]? GrantableRolesAtBase { get; init; }
 
         /// <summary>
         /// grantable_roles_at_hq array
         /// </summary>
         [JsonProperty("grantable_roles_at_hq")]
-        public CorporationRole[] GrantableRolesAtHq { get; set; }
+        public CorporationRole[]? GrantableRolesAtHq { get; init; }
 
         /// <summary>
         /// grantable_roles_at_other array
         /// </summary>
         [JsonProperty("grantable_roles_at_other")]
-        public CorporationRole[] GrantableRolesAtOther { get; set; }
+        public CorporationRole[]? GrantableRolesAtOther { get; init; }
 
         /// <summary>
         /// roles array
         /// </summary>
         [JsonProperty("roles")]
-        public CorporationRole[] Roles { get; set; }
+        public CorporationRole[]? Roles { get; init; }
 
         /// <summary>
         /// roles_at_base array
         /// </summary>
         [JsonProperty("roles_at_base")]
-        public CorporationRole[] RolesAtBase { get; set; }
+        public CorporationRole[]? RolesAtBase { get; init; }
 
         /// <summary>
         /// roles_at_hq array
         /// </summary>
         [JsonProperty("roles_at_hq")]
-        public CorporationRole[] RolesAtHq { get; set; }
+        public CorporationRole[]? RolesAtHq { get; init; }
 
         /// <summary>
         /// roles_at_other array
         /// </summary>
         [JsonProperty("roles_at_other")]
-        public CorporationRole[] RolesAtOther { get; set; }
+        public CorporationRole[]? RolesAtOther { get; init; }
     }
 }

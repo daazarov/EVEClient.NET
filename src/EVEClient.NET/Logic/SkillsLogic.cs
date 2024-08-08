@@ -16,13 +16,13 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<SkillAttributes>> Attributes(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, SkillAttributes>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<SkillAttributes>> Attributes(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, SkillAttributes>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponse<List<SkillQueueItem>>> SkillQueue(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<SkillQueueItem>>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<List<SkillQueueItem>>> SkillQueue(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<SkillQueueItem>>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponse<SkillDetails>> SkillDetails(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, SkillDetails>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<SkillDetails>> SkillDetails(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, SkillDetails>(CharacterIdRouteRequest.Create(characterId), token);
     }
 }

@@ -9,30 +9,30 @@ namespace EVEClient.NET.DataContract
         /// agent_id integer
         /// </summary>
         [JsonProperty("agent_id")]
-        public int AgentId { get; set; }
+        public required int AgentId { get; init; }
 
         /// <summary>
         /// points_per_day number
         /// </summary>
         [JsonProperty("points_per_day")]
-        public float PointsPerDay { get; set; }
+        public required float PointsPerDay { get; init; }
 
         /// <summary>
         /// reminder_points number
         /// </summary>
         [JsonProperty("reminder_points")]
-        public float ReminderPoints { get; set; }
+        public required float ReminderPoints { get; init; }
 
         /// <summary>
         /// skill_type_id integer
         /// </summary>
         [JsonProperty("skill_type_id")]
-        public int SkillTypeId { get; set; }
+        public required int SkillTypeId { get; init; }
 
         /// <summary>
         /// started_at string
         /// </summary>
         [JsonProperty("started_at")]
-        public DateTime StartedAt { get; set; }
+        public required DateTime StartedAt { get; init; }
     }
 }

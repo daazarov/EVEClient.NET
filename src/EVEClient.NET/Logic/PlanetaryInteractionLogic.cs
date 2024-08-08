@@ -17,14 +17,14 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<Colony>>> Colonies(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<Colony>>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<List<Colony>>> Colonies(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<Colony>>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponse<ColonyLayout>> ColonyInfo(int characterId, int planetId) =>
-            _esiClient.GetRequestAsync<ColonyInfoRequest, ColonyLayout>(ColonyInfoRequest.Create(characterId, planetId));
+        public Task<EsiResponse<ColonyLayout>> ColonyInfo(int characterId, int planetId, string? token = null) =>
+            _esiClient.GetRequestAsync<ColonyInfoRequest, ColonyLayout>(ColonyInfoRequest.Create(characterId, planetId), token);
 
-        public Task<EsiResponsePagination<List<CustomOffice>>> CorporationCustomOffices(int corporationId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<CustomOffice>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page));
+        public Task<EsiResponsePagination<List<CustomOffice>>> CorporationCustomOffices(int corporationId, int page = 1, string? token = null) =>
+            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<CustomOffice>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page), token);
 
         public Task<EsiResponse<SchematicInfo>> SchematicInfo(int schematicId) =>
             _esiClient.GetRequestAsync<SchematicInfoRequest, SchematicInfo>(SchematicInfoRequest.Create(schematicId));

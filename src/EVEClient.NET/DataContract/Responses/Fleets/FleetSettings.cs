@@ -8,24 +8,24 @@ namespace EVEClient.NET.DataContract
         /// Is free-move enabled
         /// </summary>
         [JsonProperty("is_free_move")]
-        public bool IsFreeMove {  get; set; }
+        public required bool IsFreeMove {  get; set; }
 
         /// <summary>
         /// Does the fleet have an active fleet advertisement
         /// </summary>
         [JsonProperty("is_registered")]
-        public bool IsRegistered { get; set; }
+        public required bool IsRegistered { get; init; }
 
         /// <summary>
         /// Is EVE Voice enabled
         /// </summary>
         [JsonProperty("is_voice_enabled")]
-        public bool IsVoiceEnabled { get; set; }
+        public required bool IsVoiceEnabled { get; init; }
 
         /// <summary>
         /// Fleet MOTD in CCP flavoured HTML
         /// </summary>
         [JsonProperty("motd")]
-        public string Motd {  get; set; }
+        public required string Motd {  get; set; }
     }
 }

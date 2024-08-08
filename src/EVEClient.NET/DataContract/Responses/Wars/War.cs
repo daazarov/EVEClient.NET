@@ -10,61 +10,61 @@ namespace EVEClient.NET.DataContract
         /// aggressor object
         /// </summary>
         [JsonProperty("aggressor")]
-        public Fighter Aggressor {  get; set; }
+        public required Fighter Aggressor {  get; set; }
 
         /// <summary>
         /// allied corporations or alliances, each object contains either corporation_id or alliance_id
         /// </summary>
         [JsonProperty("allies")]
-        public List<Ally> Allies { get; set; }
+        public List<Ally>? Allies { get; init; }
 
         /// <summary>
         /// Time that the war was declared
         /// </summary>
         [JsonProperty("declared")]
-        public DateTime Declared {  get; set; }
+        public required DateTime Declared {  get; set; }
 
         /// <summary>
         /// defender object
         /// </summary>
         [JsonProperty("defender")]
-        public Fighter Defender { get; set; }
+        public required Fighter Defender { get; init; }
 
         /// <summary>
         /// Time the war ended and shooting was no longer allowed
         /// </summary>
         [JsonProperty("finished")]
-        public DateTime? Finished { get; set; }
+        public DateTime? Finished { get; init; }
 
         /// <summary>
         /// ID of the specified war
         /// </summary>
         [JsonProperty("id")]
-        public int ID { get; set; }
+        public required int ID { get; init; }
 
         /// <summary>
         /// Was the war declared mutual by both parties
         /// </summary>
         [JsonProperty("mutual")]
-        public bool Mutual { get; set; }
+        public required bool Mutual { get; init; }
 
         /// <summary>
         /// Is the war currently open for allies or not
         /// </summary>
         [JsonProperty("open_for_allies")]
-        public bool OpenForAllies { get; set; }
+        public required bool OpenForAllies { get; init; }
 
         /// <summary>
         /// Time the war was retracted but both sides could still shoot each other
         /// </summary>
         [JsonProperty("retracted")]
-        public DateTime? Retracted { get; set; }
+        public DateTime? Retracted { get; init; }
 
         /// <summary>
         /// Time when the war started and both sides could shoot each other
         /// </summary>
         [JsonProperty("started")]
-        public DateTime? Started { get; set; }
+        public DateTime? Started { get; init; }
 
 
         public class Ally
@@ -79,7 +79,7 @@ namespace EVEClient.NET.DataContract
             /// Corporation ID if and only if this ally is a corporation
             /// </summary>
             [JsonProperty("corporation_id")]
-            public int? CorporationId { get; set; }
+            public int? CorporationId { get; init; }
         }
 
         public class Fighter
@@ -88,25 +88,25 @@ namespace EVEClient.NET.DataContract
             /// Alliance ID if and only if the aggressor/defender is an alliance
             /// </summary>
             [JsonProperty("alliance_id")]
-            public int? AllianceId { get; set; }
+            public int? AllianceId { get; init; }
 
             /// <summary>
             /// Corporation ID if and only if the aggressor/defender is a corporation
             /// </summary>
             [JsonProperty("corporation_id")]
-            public int? CorporationId { get; set; }
+            public int? CorporationId { get; init; }
 
             /// <summary>
             /// ISK value of ships the aggressor/defender has destroyed
             /// </summary>
             [JsonProperty("isk_destroyed")]
-            public float IskDestroyed { get; set; }
+            public required float IskDestroyed { get; init; }
 
             /// <summary>
             /// The number of ships the aggressor/defender has killed
             /// </summary>
             [JsonProperty("ships_killed")]
-            public int ShipsKilled { get; set; }
+            public required int ShipsKilled { get; init; }
         }
     }
 }

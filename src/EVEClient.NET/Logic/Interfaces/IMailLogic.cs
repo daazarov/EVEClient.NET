@@ -21,7 +21,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mail/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<Header>>> MailHeaders(int characterId, int[] labels = null, int? lastMailId = null);
+        Task<EsiResponse<List<Header>>> MailHeaders(int characterId, int[]? labels = null, int? lastMailId = null, string? token = null);
 
         /// <summary>
         /// Create and send a new mail
@@ -34,7 +34,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mail/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<int>> SendMail(int characterId, NewMail mail);
+        Task<EsiResponse<int>> SendMail(int characterId, NewMail mail, string? token = null);
 
         /// <summary>
         /// Delete a mail
@@ -46,7 +46,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> DeleteMail(int characterId, int mailId);
+        Task<EsiResponse> DeleteMail(int characterId, int mailId, string? token = null);
 
         /// <summary>
         /// Return the contents of an EVE mail
@@ -58,7 +58,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<Message>> GetMail(int characterId, int mailId);
+        Task<EsiResponse<Message>> GetMail(int characterId, int mailId, string? token = null);
 
         /// <summary>
         /// Update metadata about a mail
@@ -72,7 +72,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/{mail_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> UpdateMail(int characterId, int mailId, int[] labels, bool? read);
+        Task<EsiResponse> UpdateMail(int characterId, int mailId, int[]? labels, bool? read, string? token = null);
 
         /// <summary>
         /// Return a list of the users mail labels, unread counts for each label and a total unread count.
@@ -82,7 +82,7 @@ namespace EVEClient.NET
         [Route("/latest/characters/{character_id}/mail/labels/", Version = EndpointVersion.Latest)]
         [Route("/v3/characters/{character_id}/mail/labels/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/labels/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<LabelCounts>> GetLabels(int characterId);
+        Task<EsiResponse<LabelCounts>> GetLabels(int characterId, string? token = null);
 
         /// <summary>
         /// Create a mail label
@@ -96,7 +96,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mail/labels/", Version = EndpointVersion.Legacy)]
         [Route("/v2/characters/{character_id}/mail/labels/", Version = EndpointVersion.V2, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/labels/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<int>> NewMailLabel(int characterId, string name, LabelColor color = LabelColor.White);
+        Task<EsiResponse<int>> NewMailLabel(int characterId, string name, LabelColor color = LabelColor.White, string? token = null);
 
         /// <summary>
         /// Delete a mail label
@@ -108,7 +108,7 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mail/labels/{label_id}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/labels/{label_id}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/labels/{label_id}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse> DeleteLabel(int characterId, int labelId);
+        Task<EsiResponse> DeleteLabel(int characterId, int labelId, string? token = null);
 
         /// <summary>
         /// Return all mailing lists that the character is subscribed to
@@ -119,6 +119,6 @@ namespace EVEClient.NET
         [Route("/legacy/characters/{character_id}/mail/lists/", Version = EndpointVersion.Legacy)]
         [Route("/v1/characters/{character_id}/mail/lists/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/characters/{character_id}/mail/lists/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<MailingList>>> MailingList(int characterId);
+        Task<EsiResponse<List<MailingList>>> MailingList(int characterId, string? token = null);
     }
 }

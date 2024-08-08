@@ -22,6 +22,6 @@ namespace EVEClient.NET
         [Route("/legacy/route/{origin}/{destination}/", Version = EndpointVersion.Legacy)]
         [Route("/v1/route/{origin}/{destination}/", Version = EndpointVersion.V1, Preferred = true)]
         [Route("/dev/route/{origin}/{destination}/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<int>>> Route(int origin, int destination, RoutesFlag flag = RoutesFlag.Shortest, int[] avoid = null, int[] connections = null);
+        Task<EsiResponse<List<int>>> Route(int origin, int destination, RoutesFlag flag = RoutesFlag.Shortest, int[]? avoid = null, int[]? connections = null);
     }
 }

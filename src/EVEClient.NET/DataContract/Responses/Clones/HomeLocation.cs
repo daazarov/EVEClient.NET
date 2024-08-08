@@ -8,12 +8,12 @@ namespace EVEClient.NET.DataContract
         /// location_id integer
         /// </summary>
         [JsonProperty("location_id")]
-        public long? LocationId { get; set; }
+        public long? LocationId { get; init; }
 
         /// <summary>
         /// location_type string
         /// </summary>
         [JsonProperty("location_type")]
-        public CloneLocationType LocationType { get; set; }
+        public CloneLocationType? LocationType { get; init; }
     }
 }

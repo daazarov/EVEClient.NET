@@ -8,6 +8,6 @@ namespace EVEClient.NET.DataContract
         /// The squad_id of the newly created squad
         /// </summary>
         [JsonProperty("squad_id")]
-        public long SquadId { get; set; }
+        public required long SquadId { get; init; }
     }
 }

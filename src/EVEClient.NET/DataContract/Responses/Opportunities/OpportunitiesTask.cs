@@ -8,24 +8,24 @@ namespace EVEClient.NET.DataContract
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public required string Description { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// notification string
         /// </summary>
         [JsonProperty("notification")]
-        public string Notification { get; set; }
+        public required string Notification { get; init; }
 
         /// <summary>
         /// task_id integer
         /// </summary>
         [JsonProperty("task_id")]
-        public int TaskId { get; set; }
+        public required int TaskId { get; init; }
     }
 }

@@ -19,31 +19,31 @@ namespace EVEClient.NET.Logic
             _esiClient = esiClient;
         }
 
-        public Task<EsiResponse<List<Header>>> MailHeaders(int characterId, int[] labels = null, int? lastMailId = null) =>
-            _esiClient.GetRequestAsync<GetMailHeaderseRequest, List<Header>>(GetMailHeaderseRequest.Create(characterId, labels, lastMailId));
+        public Task<EsiResponse<List<Header>>> MailHeaders(int characterId, int[]? labels = null, int? lastMailId = null, string? token = null) =>
+            _esiClient.GetRequestAsync<GetMailHeaderseRequest, List<Header>>(GetMailHeaderseRequest.Create(characterId, labels, lastMailId), token);
 
-        public Task<EsiResponse<int>> SendMail(int characterId, NewMail mail) =>
-            _esiClient.PostRequestAsync<NewMailRequest, int>(NewMailRequest.Create(characterId, NewMailBodyModel.FromDataContractModel(mail)));
+        public Task<EsiResponse<int>> SendMail(int characterId, NewMail mail, string? token = null) =>
+            _esiClient.PostRequestAsync<NewMailRequest, int>(NewMailRequest.Create(characterId, NewMailBodyModel.FromDataContractModel(mail)), token);
 
-        public Task<EsiResponse> DeleteMail(int characterId, int mailId) =>
-            _esiClient.DeleteRequestAsync<GetDeleteMailRequest>(GetDeleteMailRequest.Create(characterId, mailId));
+        public Task<EsiResponse> DeleteMail(int characterId, int mailId, string? token = null) =>
+            _esiClient.DeleteRequestAsync<GetDeleteMailRequest>(GetDeleteMailRequest.Create(characterId, mailId), token);
 
-        public Task<EsiResponse<Message>> GetMail(int characterId, int mailId) =>
-            _esiClient.GetRequestAsync<GetDeleteMailRequest, Message>(GetDeleteMailRequest.Create(characterId, mailId));
+        public Task<EsiResponse<Message>> GetMail(int characterId, int mailId, string? token = null) =>
+            _esiClient.GetRequestAsync<GetDeleteMailRequest, Message>(GetDeleteMailRequest.Create(characterId, mailId), token);
 
-        public Task<EsiResponse> UpdateMail(int characterId, int mailId, int[] labels, bool? read) =>
-            _esiClient.PutRequestAsync<UpdateMailRequest>(UpdateMailRequest.Create(characterId, mailId, labels, read));
+        public Task<EsiResponse> UpdateMail(int characterId, int mailId, int[]? labels, bool? read, string? token = null) =>
+            _esiClient.PutRequestAsync<UpdateMailRequest>(UpdateMailRequest.Create(characterId, mailId, labels, read), token);
 
-        public Task<EsiResponse<LabelCounts>> GetLabels(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, LabelCounts>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<LabelCounts>> GetLabels(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, LabelCounts>(CharacterIdRouteRequest.Create(characterId), token);
 
-        public Task<EsiResponse<int>> NewMailLabel(int characterId, string name, LabelColor color = LabelColor.White) =>
-            _esiClient.PostRequestAsync<NewLabelRequest, int>(NewLabelRequest.Create(characterId, color.ToEsiString(), name));
+        public Task<EsiResponse<int>> NewMailLabel(int characterId, string name, LabelColor color = LabelColor.White, string? token = null) =>
+            _esiClient.PostRequestAsync<NewLabelRequest, int>(NewLabelRequest.Create(characterId, color.ToEsiString(), name), token);
 
-        public Task<EsiResponse> DeleteLabel(int characterId, int labelId) =>
-            _esiClient.DeleteRequestAsync<DeleteLabelRequest>(DeleteLabelRequest.Create(characterId, labelId));
+        public Task<EsiResponse> DeleteLabel(int characterId, int labelId, string? token = null) =>
+            _esiClient.DeleteRequestAsync<DeleteLabelRequest>(DeleteLabelRequest.Create(characterId, labelId), token);
 
-        public Task<EsiResponse<List<MailingList>>> MailingList(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<MailingList>>(CharacterIdRouteRequest.Create(characterId));
+        public Task<EsiResponse<List<MailingList>>> MailingList(int characterId, string? token = null) =>
+            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<MailingList>>(CharacterIdRouteRequest.Create(characterId), token);
     }
 }

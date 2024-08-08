@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace EVEClient.NET.Defaults
@@ -14,9 +15,16 @@ namespace EVEClient.NET.Defaults
             return Task.CompletedTask;
         }
 
-        public Task<bool> TryGetETagAsync(string eTagKey, out string eTag)
+        public Task<bool> TryGetETagAsync(string eTagKey, [MaybeNullWhen(false)] out string eTag)
         {
-            return Task.FromResult(_store.TryGetValue(eTagKey, out eTag));
+            if (_store.TryGetValue(eTagKey, out var value))
+            {
+                eTag = value;
+                return Task.FromResult(true);
+            }
+
+            eTag = null!;
+            return Task.FromResult(false);
         }
 
         /// <summary>

@@ -196,7 +196,7 @@ namespace EVEClient.NET.Models
             private AddUpdateCharacterContactRequest(AddUpdateCharacterContactUriModel uriModel, ContactsIdsBodyModel itemIds) : base(uriModel, itemIds)
             { }
 
-            public static AddUpdateCharacterContactRequest Create(int characterId, int[] contactIds, float standing, int[] labelIds, bool watched)
+            public static AddUpdateCharacterContactRequest Create(int characterId, int[] contactIds, float standing, int[]? labelIds, bool watched)
             {
                 return new AddUpdateCharacterContactRequest(new AddUpdateCharacterContactUriModel(characterId, standing, labelIds, watched), new ContactsIdsBodyModel(contactIds));
             }
@@ -376,7 +376,7 @@ namespace EVEClient.NET.Models
             private UpdateFleetSettingsRequest(FleetIdModel uriModel, FleetSettingsBodyModel body) : base(uriModel, body)
             { }
 
-            public static UpdateFleetSettingsRequest Create(long fleetId, bool? isFreeMove, string motd)
+            public static UpdateFleetSettingsRequest Create(long fleetId, bool? isFreeMove, string? motd)
             {
                 return new UpdateFleetSettingsRequest(new FleetIdModel(fleetId), new FleetSettingsBodyModel(isFreeMove, motd));
             }
@@ -506,7 +506,7 @@ namespace EVEClient.NET.Models
             private GetMailHeaderseRequest(MailHeadersUriModel uriModel) : base(uriModel)
             { }
 
-            public static GetMailHeaderseRequest Create(int characterId, int[] labels, int? lastMailId)
+            public static GetMailHeaderseRequest Create(int characterId, int[]? labels, int? lastMailId)
             {
                 return new GetMailHeaderseRequest(new MailHeadersUriModel(characterId, labels, lastMailId));
             }
@@ -550,7 +550,7 @@ namespace EVEClient.NET.Models
             private UpdateMailRequest(GetDeleteUpdateMailUriModel uriModel, UpdateMailBodyModel bodyModel) : base(uriModel, bodyModel)
             { }
 
-            public static UpdateMailRequest Create(int characterId, int mailId, int[] labels, bool? read)
+            public static UpdateMailRequest Create(int characterId, int mailId, int[]? labels, bool? read)
             {
                 return new UpdateMailRequest(new GetDeleteUpdateMailUriModel(characterId, mailId), new UpdateMailBodyModel(labels, read));
             }
@@ -683,7 +683,7 @@ namespace EVEClient.NET.Models
             private RouteRequest(RoutesUriModels uriModel) : base(uriModel)
             { }
 
-            public static RouteRequest Create(int origin, int destination, string flag, int[] avoid, int[] connetions)
+            public static RouteRequest Create(int origin, int destination, string flag, int[]? avoid, int[]? connetions)
             {
                 return new RouteRequest(new RoutesUriModels(origin, destination, flag, avoid, connetions));
             }
@@ -766,7 +766,7 @@ namespace EVEClient.NET.Models
             private StructuresRequest(StructureTypeModel uriModel) : base(uriModel)
             { }
 
-            public static StructuresRequest Create(string filter)
+            public static StructuresRequest Create(string? filter)
             {
                 return new StructuresRequest(new StructureTypeModel(filter));
             }

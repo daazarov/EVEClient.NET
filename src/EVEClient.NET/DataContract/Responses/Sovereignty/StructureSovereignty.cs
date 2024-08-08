@@ -9,25 +9,25 @@ namespace EVEClient.NET.DataContract
         /// The alliance that owns the structure.
         /// </summary>
         [JsonProperty("alliance_id")]
-        public int AllianceId {  get; set; }
+        public required int AllianceId {  get; set; }
 
         /// <summary>
         /// Solar system in which the structure is located.
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public int SolarSystemId { get; set; }
+        public required int SolarSystemId { get; init; }
 
         /// <summary>
         /// Unique item ID for this structure.
         /// </summary>
         [JsonProperty("structure_id")]
-        public long StructureId { get; set; }
+        public required long StructureId { get; init; }
 
         /// <summary>
         /// A reference to the type of structure this is.
         /// </summary>
         [JsonProperty("structure_type_id")]
-        public int StructureTypeId { get; set; }
+        public required int StructureTypeId { get; init; }
 
         /// <summary>
         /// The occupancy level for the next or current vulnerability window.
@@ -36,7 +36,7 @@ namespace EVEClient.NET.DataContract
         /// It increases the time that attackers must spend using their entosis links on the structure.
         /// </summary>
         [JsonProperty("vulnerability_occupancy_level")]
-        public float? VulnerabilityOccupancyLevel { get; set; }
+        public float? VulnerabilityOccupancyLevel { get; init; }
 
         /// <summary>
         /// The time at which the next or current vulnerability window ends.
@@ -45,12 +45,12 @@ namespace EVEClient.NET.DataContract
         /// Only once the defenders have 100% entosis control and has the vulnerableEndTime passed does the vulnerability interval expire and a new one is calculated.
         /// </summary>
         [JsonProperty("vulnerable_end_time")]
-        public DateTime? VulnerableEndTime { get; set; }
+        public DateTime? VulnerableEndTime { get; init; }
 
         /// <summary>
         /// The next time at which the structure will become vulnerable. Or the start time of the current window if current time is between this and vulnerableEndTime.
         /// </summary>
         [JsonProperty("vulnerable_start_time")]
-        public DateTime? VulnerableStartTime { get; set; }
+        public DateTime? VulnerableStartTime { get; init; }
     }
 }

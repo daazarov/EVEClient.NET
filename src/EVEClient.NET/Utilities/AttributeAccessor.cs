@@ -8,8 +8,8 @@ namespace EVEClient.NET.Utilities
     public abstract class AttributeAccessor
     {
         public abstract bool ContainsAttribute<T>(object attributeProvider) where T : Attribute;
-        public abstract T GetAttribute<T>(object attributeProvider) where T : Attribute;
-        public abstract T[] GetAttributes<T>(object attributeProvider) where T : Attribute;
+        public abstract T? GetAttribute<T>(object attributeProvider) where T : Attribute;
+        public abstract T[]? GetAttributes<T>(object attributeProvider) where T : Attribute;
 
         public T? GetAttribute<T>(object attributeProvider, bool inherit) where T : Attribute
         {

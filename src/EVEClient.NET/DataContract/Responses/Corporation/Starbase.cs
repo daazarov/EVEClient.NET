@@ -15,42 +15,42 @@ namespace EVEClient.NET.DataContract
         /// When the POS onlined, for starbases (POSes) in online state
         /// </summary>
         [JsonProperty("onlined_since")]
-        public DateTime? OnlinedSince { get; set; }
+        public DateTime? OnlinedSince { get; init; }
 
         /// <summary>
         /// When the POS will be out of reinforcement, for starbases (POSes) in reinforced state
         /// </summary>
         [JsonProperty("reinforced_until")]
-        public DateTime? ReinforcedUntil { get; set; }
+        public DateTime? ReinforcedUntil { get; init; }
 
         /// <summary>
         /// Unique ID for this starbase (POS)
         /// </summary>
         [JsonProperty("starbase_id")]
-        public long StarbaseId { get; set; }
+        public required long StarbaseId { get; init; }
 
         /// <summary>
         /// state string
         /// </summary>
         [JsonProperty("state")]
-        public StarbaseState State { get; set; }
+        public StarbaseState? State { get; init; }
 
         /// <summary>
         /// The solar system this starbase (POS) is in, unanchored POSes have this information
         /// </summary>
         [JsonProperty("system_id")]
-        public int SystemId { get; set; }
+        public required int SystemId { get; init; }
 
         /// <summary>
         /// Starbase (POS) type
         /// </summary>
         [JsonProperty("type_id")]
-        public int TypeId { get; set; }
+        public required int TypeId { get; init; }
 
         /// <summary>
         /// When the POS started unanchoring, for starbases (POSes) in unanchoring state
         /// </summary>
         [JsonProperty("unanchor_at")]
-        public DateTime? UnanchorAt { get; set; }
+        public DateTime? UnanchorAt { get; init; }
     }
 }

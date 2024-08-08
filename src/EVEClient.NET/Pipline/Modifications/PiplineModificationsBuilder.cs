@@ -9,8 +9,8 @@ namespace EVEClient.NET.Pipline.Modifications
 {
     internal class PiplineModificationsBuilder : IPiplineModificationsBuilder
     {
-        internal readonly List<PiplineModification> Modifications = [];
-        internal readonly Dictionary<string, List<string>> AddedComponentIds = [];
+        internal readonly List<PiplineModification> Modifications = new();
+        internal readonly Dictionary<string, List<string>> AddedComponentIds = new();
         internal readonly string[] DefaultsComponentIds =
         {
             "RequestHeadersHandler",
@@ -171,7 +171,7 @@ namespace EVEClient.NET.Pipline.Modifications
                     // 13. AddAfter does not refer to the component to be replaced
                     var componentsToBeReplace = new HashSet<string>(modification.Replacements.Select(a => a.ReplaceId));
                     var componentIdsWithIncorrectAddAfter = modification.Additions
-                        .Where(a => componentsToBeReplace.Contains(a.AddAfter))
+                        .Where(a => !string.IsNullOrEmpty(a.AddAfter) && componentsToBeReplace.Contains(a.AddAfter))
                         .Select(a => a.PiplineComponent.ComponentId)
                         .ToList();
                     if(componentIdsWithIncorrectAddAfter.Any())

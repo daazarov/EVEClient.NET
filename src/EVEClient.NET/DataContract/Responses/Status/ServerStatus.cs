@@ -9,24 +9,24 @@ namespace EVEClient.NET.DataContract
         /// Current online player count
         /// </summary>
         [JsonProperty("players")]
-        public int Players { get; set; }
+        public required int Players { get; init; }
 
         /// <summary>
         /// Running version as string
         /// </summary>
         [JsonProperty("server_version")]
-        public string ServerVersion { get; set; }
+        public required string ServerVersion { get; init; }
 
         /// <summary>
         /// Server start timestamp
         /// </summary>
         [JsonProperty("start_time")]
-        public DateTime StartTime { get; set; }
+        public required DateTime StartTime { get; init; }
 
         /// <summary>
         /// If the server is in VIP mode
         /// </summary>
         [JsonProperty("vip")]
-        public bool? Vip { get; set; }
+        public bool? Vip { get; init; }
     }
 }

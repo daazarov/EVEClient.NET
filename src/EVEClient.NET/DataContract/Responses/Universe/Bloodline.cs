@@ -8,66 +8,66 @@ namespace EVEClient.NET.DataContract
         /// bloodline_id integer
         /// </summary>
         [JsonProperty("bloodline_id")]
-        public int BloodlineId {  get; set; }
+        public required int BloodlineId {  get; set; }
 
         /// <summary>
         /// charisma integer
         /// </summary>
         [JsonProperty("charisma")]
-        public int Charisma {  get; set; }
+        public required int Charisma {  get; set; }
 
         /// <summary>
         /// corporation_id integer
         /// </summary>
         [JsonProperty("corporation_id")]
-        public int CorporationId { get; set; }
+        public required int CorporationId { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public required string Description { get; init; }
 
         /// <summary>
         /// intelligence integer
         /// </summary>
         [JsonProperty("intelligence")]
-        public int Intelligence { get; set; }
+        public required int Intelligence { get; init; }
 
         /// <summary>
         /// memory integer
         /// </summary>
         [JsonProperty("memory")]
-        public int Memory {  get; set; }
+        public required int Memory {  get; set; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// perception integer
         /// </summary>
         [JsonProperty("perception")]
-        public int Perception { get; set; }
+        public required int Perception { get; init; }
 
         /// <summary>
         /// race_id integer
         /// </summary>
         [JsonProperty("race_id")]
-        public int RaceId { get; set; }
+        public required int RaceId { get; init; }
 
         /// <summary>
         /// ship_type_id integer
         /// </summary>
         [JsonProperty("ship_type_id")]
-        public int ShipTypeId { get; set; }
+        public required int ShipTypeId { get; init; }
 
         /// <summary>
         /// willpower integer
         /// </summary>
         [JsonProperty("willpower")]
-        public int Willpower { get; set; }
+        public required int Willpower { get; init; }
     }
 }
