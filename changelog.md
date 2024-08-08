@@ -1,6 +1,6 @@
 Historical reference of changes made in EVEClient.NET.
 
-# 2024-08-08
+# 2024-08-08 `(Release - v8.0.0)`
 - **Fix**
   - `esi-issues` changes from `2024-07-16` - [details](https://github.com/esi/esi-issues/blob/master/changelog.md#2024-07-16)
   - `esi-issues` changes from `2024-07-11` - [details](https://github.com/esi/esi-issues/blob/master/changelog.md#2024-07-11)
@@ -17,3 +17,4 @@ Historical reference of changes made in EVEClient.NET.
 
 # 2024-06-10
 - **Initial publishing**:
+  - 8.0.0-Alpha1
