@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// alliance_id integer
         /// </summary>
         [JsonProperty("alliance_id")]
-        public int? AllianceId {  get; set; }
+        public int? AllianceId { get; init; }
 
         /// <summary>
         /// corporation_id integer
@@ -26,6 +26,6 @@ namespace EVEClient.NET.DataContract
         /// system_id integer
         /// </summary>
         [JsonProperty("system_id")]
-        public required int SystemId { get; init; }
+        public int SystemId { get; init; }
     }
 }

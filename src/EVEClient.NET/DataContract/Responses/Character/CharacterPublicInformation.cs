@@ -15,19 +15,19 @@ namespace EVEClient.NET.DataContract
         /// Creation date of the character
         /// </summary>
         [JsonProperty("birthday")]
-        public required DateTime Birthdate { get; init; }
+        public DateTime Birthdate { get; init; }
 
         /// <summary>
         /// bloodline_id integer
         /// </summary>
         [JsonProperty("bloodline_id")]
-        public required int Bloodline { get; init; }
+        public int Bloodline { get; init; }
 
         /// <summary>
         /// The character’s corporation ID
         /// </summary>
         [JsonProperty("corporation_id")]
-        public required int CorporationId { get; init; }
+        public int CorporationId { get; init; }
 
         /// <summary>
         /// description string
@@ -45,19 +45,19 @@ namespace EVEClient.NET.DataContract
         /// The character’s gender
         /// </summary>
         [JsonProperty("gender")]
-        public required Gender Gender { get; init; }
+        public Gender Gender { get; init; }
 
         /// <summary>
         /// The character's name
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// race_id integer
         /// </summary>
         [JsonProperty("race_id")]
-        public required int RaceId { get; init; }
+        public int RaceId { get; init; }
 
         /// <summary>
         /// security_status number

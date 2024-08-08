@@ -15,19 +15,19 @@ namespace EVEClient.NET.DataContract
         /// notification_id integer
         /// </summary>
         [JsonProperty("notification_id")]
-        public required long NotificationId { get; init; }
+        public long NotificationId { get; init; }
 
         /// <summary>
         /// sender_id integer
         /// </summary>
         [JsonProperty("sender_id")]
-        public required int SenderId { get; init; }
+        public int SenderId { get; init; }
 
         /// <summary>
         /// sender_type string
         /// </summary>
         [JsonProperty("sender_type")]
-        public required SenderType SenderType { get; init; }
+        public SenderType SenderType { get; init; }
 
         /// <summary>
         /// text string
@@ -39,12 +39,12 @@ namespace EVEClient.NET.DataContract
         /// timestamp string
         /// </summary>
         [JsonProperty("timestamp")]
-        public required DateTime Timestamp { get; init; }
+        public DateTime Timestamp { get; init; }
 
         /// <summary>
         /// type string
         /// </summary>
         [JsonProperty("type")]
-        public required NotificationType Type { get; init; }
+        public NotificationType Type { get; init; }
     }
 }

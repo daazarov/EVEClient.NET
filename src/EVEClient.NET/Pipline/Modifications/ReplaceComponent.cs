@@ -2,7 +2,7 @@
 {
     internal class ReplaceComponent
     {
-        public required PiplineComponent PiplineComponent { get; init; }
-        public required string ReplaceId { get; init; }
+        public PiplineComponent PiplineComponent { get; init; }
+        public string ReplaceId { get; init; }
     }
 }

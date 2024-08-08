@@ -7,12 +7,12 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Number of days for which order is/was valid (starting from the issued date). An order expires at time issued + duration
         /// </summary>
-        public int Duration {  get; set; }
+        public int Duration { get; init; }
 
         /// <summary>
         /// For buy orders, the amount of ISK in escrow
         /// </summary>
-        public double? Escrow {  get; set; }
+        public double? Escrow { get; init; }
 
         /// <summary>
         /// True if the order is a bid (buy) order
@@ -22,12 +22,12 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Signifies whether the buy/sell order was placed on behalf of a corporation.
         /// </summary>
-        public bool IsCorporation {  get; set; }
+        public bool IsCorporation { get; init; }
 
         /// <summary>
         /// Date and time when this order was issued
         /// </summary>
-        public DateTime Issued {  get; set; }
+        public DateTime Issued { get; init; }
 
         /// <summary>
         /// ID of the location where order was placed
@@ -70,12 +70,12 @@ namespace EVEClient.NET.DataContract
         public int TypeId { get; init; }
 
         /// <summary>
-        /// Quantity of items still required or offered
+        /// Quantity of items still or offered
         /// </summary>
         public int VolumeRemain { get; init; }
 
         /// <summary>
-        /// Quantity of items required or offered at time order was placed
+        /// Quantity of items or offered at time order was placed
         /// </summary>
         public int VolumeTotal { get; init; }
     }

@@ -8,30 +8,30 @@ namespace EVEClient.NET.DataContract
         /// constellation_id integer
         /// </summary>
         [JsonProperty("constellation_id")]
-        public required int ConstellationId {  get; set; }
+        public int ConstellationId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// Position coordinates
         /// </summary>
         [JsonProperty("position")]
-        public required Position Position { get; init; }
+        public Position Position { get; init; }
 
         /// <summary>
         /// The region this constellation is in
         /// </summary>
         [JsonProperty("region_id")]
-        public required int RegionId { get; init; }
+        public int RegionId { get; init; }
 
         /// <summary>
         /// systems array
         /// </summary>
         [JsonProperty("systems")]
-        public required int[] Systems { get; init; }
+        public int[] Systems { get; init; }
     }
 }

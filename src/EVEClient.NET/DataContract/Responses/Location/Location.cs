@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// solar_system_id integer
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public required int SolarSystemId { get; init; }
+        public int SolarSystemId { get; init; }
 
         /// <summary>
         /// station_id integer

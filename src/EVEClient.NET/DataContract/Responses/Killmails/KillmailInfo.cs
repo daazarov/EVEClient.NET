@@ -10,19 +10,19 @@ namespace EVEClient.NET.DataContract
         /// attackers array
         /// </summary>
         [JsonProperty("attackers")]
-        public required List<Attacker> Attackers { get; init; }
+        public List<Attacker> Attackers { get; init; }
 
         /// <summary>
         /// ID of the killmail
         /// </summary>
         [JsonProperty("killmail_id")]
-        public required int KillmailId { get; init; }
+        public int KillmailId { get; init; }
 
         /// <summary>
         /// Time that the victim was killed and the killmail generated
         /// </summary>
         [JsonProperty("killmail_time")]
-        public required DateTime KillmailTime { get; init; }
+        public DateTime KillmailTime { get; init; }
 
         /// <summary>
         /// Moon if the kill took place at one
@@ -34,13 +34,13 @@ namespace EVEClient.NET.DataContract
         /// Solar system that the kill took place in
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public required int SolarSystemId { get; init; }
+        public int SolarSystemId { get; init; }
 
         /// <summary>
         /// victim info
         /// </summary>
         [JsonProperty("victim")]
-        public required Victim Victim { get; init; }
+        public Victim Victim { get; init; }
 
         /// <summary>
         /// War if the killmail is generated in relation to an official war

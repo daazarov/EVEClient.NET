@@ -9,43 +9,43 @@ namespace EVEClient.NET.DataContract
         /// action string
         /// </summary>
         [JsonProperty("action")]
-        public required ContainerAction Action {  get; set; }
+        public ContainerAction Action { get; init; }
 
         /// <summary>
         /// ID of the character who performed the action.
         /// </summary>
         [JsonProperty("character_id")]
-        public required int CharacterId { get; init; }
+        public int CharacterId { get; init; }
 
         /// <summary>
         /// ID of the container
         /// </summary>
         [JsonProperty("container_id")]
-        public required long Container_id { get; init; }
+        public long Container_id { get; init; }
 
         /// <summary>
         /// Type ID of the container
         /// </summary>
         [JsonProperty("container_type_id")]
-        public required int ContainerTypeId { get; init; }
+        public int ContainerTypeId { get; init; }
 
         /// <summary>
         /// location_flag string
         /// </summary>
         [JsonProperty("location_flag")]
-        public required CorporationLocationType LocationFlag { get; init; }
+        public CorporationLocationType LocationFlag { get; init; }
 
         /// <summary>
         /// location_id integer
         /// </summary>
         [JsonProperty("location_id")]
-        public required long LocationId { get; init; }
+        public long LocationId { get; init; }
 
         /// <summary>
         /// Timestamp when this log was created
         /// </summary>
         [JsonProperty("logged_at")]
-        public required DateTime LoggedAt { get; init; }
+        public DateTime LoggedAt { get; init; }
 
         /// <summary>
         /// new_config_bitmask integer

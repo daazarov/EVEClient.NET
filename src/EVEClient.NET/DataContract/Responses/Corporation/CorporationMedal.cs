@@ -9,30 +9,30 @@ namespace EVEClient.NET.DataContract
         /// created_at string
         /// </summary>
         [JsonProperty("created_at")]
-        public required DateTime CreatedAt {  get; set; }
+        public DateTime CreatedAt { get; init; }
 
         /// <summary>
         /// ID of the character who created this medal
         /// </summary>
         [JsonProperty("creator_id")]
-        public required int CreatorId { get; init; }
+        public int CreatorId { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public required string Description { get; init; }
+        public string Description { get; init; }
 
         /// <summary>
         /// medal_id integer
         /// </summary>
         [JsonProperty("medal_id")]
-        public required int MedalId { get; init; }
+        public int MedalId { get; init; }
 
         /// <summary>
         /// title string
         /// </summary>
         [JsonProperty("title")]
-        public required string Title { get; init; }
+        public string Title { get; init; }
     }
 }

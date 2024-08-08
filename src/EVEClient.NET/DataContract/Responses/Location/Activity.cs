@@ -27,6 +27,6 @@ namespace EVEClient.NET.DataContract
         /// If the character is online
         /// </summary>
         [JsonProperty("online")]
-        public required bool Online { get; init; }
+        public bool Online { get; init; }
     }
 }

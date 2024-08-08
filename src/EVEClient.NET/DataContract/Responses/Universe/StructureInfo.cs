@@ -8,13 +8,13 @@ namespace EVEClient.NET.DataContract
         /// The full name of the structure
         /// </summary>
         [JsonProperty("name")]
-        public required string Name {  get; set; }
+        public string Name { get; init; }
 
         /// <summary>
         /// The ID of the corporation who owns this particular structure
         /// </summary>
         [JsonProperty("owner_id")]
-        public required int OwnerId { get; init; }
+        public int OwnerId { get; init; }
 
         /// <summary>
         /// position object
@@ -26,7 +26,7 @@ namespace EVEClient.NET.DataContract
         /// solar_system_id integer
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public required int SolarSystemId { get; init; }
+        public int SolarSystemId { get; init; }
 
         /// <summary>
         /// type_id integer

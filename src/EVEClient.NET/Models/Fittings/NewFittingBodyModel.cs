@@ -10,16 +10,16 @@ namespace EVEClient.NET.Models
     internal class NewFittingBodyModel
     {
         [JsonProperty("description")]
-        public required string Description { get; set; }
+        public string Description { get; set; }
 
         [JsonProperty("items")]
-        public required List<FittingItemBodyModel> Items { get; set; }
+        public List<FittingItemBodyModel> Items { get; set; }
 
         [JsonProperty("name")]
-        public required string Name { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("ship_type_id")]
-        public required int ShipTypeId { get; set; }
+        public int ShipTypeId { get; set; }
 
         public static NewFittingBodyModel FromDataContractModel(NewFitting fitting)
         {
@@ -36,13 +36,13 @@ namespace EVEClient.NET.Models
     internal class FittingItemBodyModel
     {
         [JsonProperty("type_id")]
-        public required int TypeId { get; set; }
+        public int TypeId { get; set; }
 
         [JsonProperty("flag")]
-        public required string Flag { get; set; }
+        public string Flag { get; set; }
 
         [JsonProperty("quantity")]
-        public required int Quantity { get; set; }
+        public int Quantity { get; set; }
 
         public static FittingItemBodyModel FromDataContractModel(NewFitting.FittingItem item)
         {

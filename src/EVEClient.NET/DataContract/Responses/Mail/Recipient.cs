@@ -8,12 +8,12 @@ namespace EVEClient.NET.DataContract
         /// recipient_id integer
         /// </summary>
         [JsonProperty("recipient_id")]
-        public required int RecipientId { get; init; }
+        public int RecipientId { get; init; }
 
         /// <summary>
         /// recipient_type string
         /// </summary>
         [JsonProperty("recipient_type")]
-        public required RecipientType RecipientType { get; init; }
+        public RecipientType RecipientType { get; init; }
     }
 }

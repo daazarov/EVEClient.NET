@@ -14,13 +14,13 @@ namespace EVEClient.NET.DataContract
         /// The character’s ID
         /// </summary>
         [JsonProperty("character_id")]
-        public required int CharacterId { get; init; }
+        public int CharacterId { get; init; }
 
         /// <summary>
         /// The character’s corporation ID
         /// </summary>
         [JsonProperty("corporation_id")]
-        public required int CorporationId { get; init; }
+        public int CorporationId { get; init; }
 
         /// <summary>
         /// The character’s faction ID, if their corporation is in a faction

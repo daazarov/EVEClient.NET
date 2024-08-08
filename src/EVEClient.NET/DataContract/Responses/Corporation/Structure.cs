@@ -10,7 +10,7 @@ namespace EVEClient.NET.DataContract
         /// ID of the corporation that owns the structure
         /// </summary>
         [JsonProperty("corporation_id")]
-        public required int CorporationId { get; init; }
+        public int CorporationId { get; init; }
 
         /// <summary>
         /// Date on which the structure will run out of fuel
@@ -40,7 +40,7 @@ namespace EVEClient.NET.DataContract
         /// The id of the ACL profile for this citadel
         /// </summary>
         [JsonProperty("profile_id")]
-        public required int ProfileId { get; init; }
+        public int ProfileId { get; init; }
 
         /// <summary>
         /// The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull.
@@ -59,7 +59,7 @@ namespace EVEClient.NET.DataContract
         /// state string
         /// </summary>
         [JsonProperty("state")]
-        public required StructureState State { get; init; }
+        public StructureState State { get; init; }
 
         /// <summary>
         /// Date at which the structure will move to it’s next state
@@ -77,25 +77,25 @@ namespace EVEClient.NET.DataContract
         /// The solar system the structure is in
         /// </summary>
         [JsonProperty("structure_id")]
-        public required long StructureId { get; init; }
+        public long StructureId { get; init; }
 
         /// <summary>
         /// The solar system the structure is in
         /// </summary>
         [JsonProperty("system_id")]
-        public required int SystemId { get; init; }
+        public int SystemId { get; init; }
 
         /// <summary>
         /// The type id of the structure
         /// </summary>
         [JsonProperty("type_id")]
-        public required int TypeId { get; init; }
+        public int TypeId { get; init; }
 
         /// <summary>
         /// Date at which the structure will unanchor
         /// </summary>
         [JsonProperty("unanchors_at")]
-        public DateTime? InanchorsAt {  get; set; }
+        public DateTime? InanchorsAt { get; init; }
     }
 
     public class StructureService
@@ -104,12 +104,12 @@ namespace EVEClient.NET.DataContract
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// state string
         /// </summary>
         [JsonProperty("state")]
-        public required ServiceState State { get; init; }
+        public ServiceState State { get; init; }
     }
 }

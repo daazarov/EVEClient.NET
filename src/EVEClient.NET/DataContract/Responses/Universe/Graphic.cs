@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// collision_file string
         /// </summary>
         [JsonProperty("collision_file")]
-        public string? CollisionFile {  get; set; }
+        public string? CollisionFile { get; init; }
 
         /// <summary>
         /// graphic_file string
@@ -20,7 +20,7 @@ namespace EVEClient.NET.DataContract
         /// graphic_id integer
         /// </summary>
         [JsonProperty("graphic_id")]
-        public required int GraphicId { get; init; }
+        public int GraphicId { get; init; }
 
         /// <summary>
         /// icon_folder string

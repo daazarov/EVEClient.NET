@@ -10,7 +10,7 @@ namespace EVEClient.NET.DataContract
         /// Positive when ISK is deposited into the wallet and negative when ISK is withdrawn
         /// </summary>
         [JsonProperty("amount")]
-        public double? Amount {  get; set; }
+        public double? Amount { get; init; }
 
         /// <summary>
         /// Wallet balance after transaction occurred
@@ -35,13 +35,13 @@ namespace EVEClient.NET.DataContract
         /// Date and time of transaction
         /// </summary>
         [JsonProperty("date")]
-        public required DateTime Date { get; init; }
+        public DateTime Date { get; init; }
 
         /// <summary>
         /// The reason for the transaction, mirrors what is seen in the client
         /// </summary>
         [JsonProperty("description")]
-        public required string Description { get; init; }
+        public string Description { get; init; }
 
         /// <summary>
         /// The id of the first party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types.
@@ -55,7 +55,7 @@ namespace EVEClient.NET.DataContract
         /// Unique journal reference ID
         /// </summary>
         [JsonProperty("id")]
-        public required long ID { get; init; }
+        public long ID { get; init; }
 
         /// <summary>
         /// The user stated reason for the transaction. Only applies to some ref_types
@@ -67,7 +67,7 @@ namespace EVEClient.NET.DataContract
         /// The transaction type for the given. transaction. Different transaction types will populate different attributes.
         /// </summary>
         [JsonProperty("ref_type")]
-        public required TransactionType RefType { get; init; }
+        public TransactionType RefType { get; init; }
 
         /// <summary>
         /// The id of the second party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types.

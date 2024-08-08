@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// The moon this starbase (POS) is anchored on, unanchored POSes do not have this information
         /// </summary>
         [JsonProperty("moon_id")]
-        public int? MoonId {  get; set; }
+        public int? MoonId { get; init; }
 
         /// <summary>
         /// When the POS onlined, for starbases (POSes) in online state
@@ -27,7 +27,7 @@ namespace EVEClient.NET.DataContract
         /// Unique ID for this starbase (POS)
         /// </summary>
         [JsonProperty("starbase_id")]
-        public required long StarbaseId { get; init; }
+        public long StarbaseId { get; init; }
 
         /// <summary>
         /// state string
@@ -39,13 +39,13 @@ namespace EVEClient.NET.DataContract
         /// The solar system this starbase (POS) is in, unanchored POSes have this information
         /// </summary>
         [JsonProperty("system_id")]
-        public required int SystemId { get; init; }
+        public int SystemId { get; init; }
 
         /// <summary>
         /// Starbase (POS) type
         /// </summary>
         [JsonProperty("type_id")]
-        public required int TypeId { get; init; }
+        public int TypeId { get; init; }
 
         /// <summary>
         /// When the POS started unanchoring, for starbases (POSes) in unanchoring state

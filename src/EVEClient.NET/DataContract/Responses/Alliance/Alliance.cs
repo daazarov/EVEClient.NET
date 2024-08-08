@@ -9,19 +9,19 @@ namespace EVEClient.NET.DataContract
         /// ID of the corporation that created the alliance
         /// </summary>
         [JsonProperty("creator_corporation_id")]
-        public required int CreatorCorporationId { get; init; }
+        public int CreatorCorporationId { get; init; }
 
         /// <summary>
         /// ID of the character that created the alliance
         /// </summary>
         [JsonProperty("creator_id")]
-        public required int CreatorId { get; init; }
+        public int CreatorId { get; init; }
 
         /// <summary>
         /// date_founded string
         /// </summary>
         [JsonProperty("date_founded")]
-        public required DateTime DateFounded { get; init; }
+        public DateTime DateFounded { get; init; }
 
         /// <summary>
         /// the executor corporation ID, if this alliance is not closed
@@ -39,12 +39,12 @@ namespace EVEClient.NET.DataContract
         /// the full name of the alliance
         /// </summary>
         [JsonProperty("name")]
-        public required string Name { get; init; }
+        public string Name { get; init; }
 
         /// <summary>
         /// the short name of the alliance
         /// </summary>
         [JsonProperty("ticker")]
-        public required string Ticker { get; init; }
+        public string Ticker { get; init; }
     }
 }

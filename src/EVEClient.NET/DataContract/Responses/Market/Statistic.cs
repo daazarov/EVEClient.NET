@@ -9,25 +9,25 @@ namespace EVEClient.NET.DataContract
         /// average number
         /// </summary>
         [JsonProperty("average")]
-        public required double Average {  get; set; }
+        public double Average { get; init; }
 
         /// <summary>
         /// The date of this historical statistic entry
         /// </summary>
         [JsonProperty("date")]
-        public required DateTime Date { get; init; }
+        public DateTime Date { get; init; }
 
         /// <summary>
         /// highest number
         /// </summary>
         [JsonProperty("highest")]
-        public required double Highest { get; init; }
+        public double Highest { get; init; }
 
         /// <summary>
         /// lowest number
         /// </summary>
         [JsonProperty("lowest")]
-        public required double Lowest { get; init; }
+        public double Lowest { get; init; }
 
         /// <summary>
         /// Total number of orders happened that day
@@ -39,6 +39,6 @@ namespace EVEClient.NET.DataContract
         /// Total
         /// </summary>
         [JsonProperty("volume")]
-        public required long Volume {  get; set; }
+        public long Volume { get; init; }
     }
 }

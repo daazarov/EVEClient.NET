@@ -8,6 +8,6 @@ namespace EVEClient.NET.DataContract
         /// The wing_id of the newly created wing
         /// </summary>
         [JsonProperty("wing_id")]
-        public required long WingId { get; init; }
+        public long WingId { get; init; }
     }
 }

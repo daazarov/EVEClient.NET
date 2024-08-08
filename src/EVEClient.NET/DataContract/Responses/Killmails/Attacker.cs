@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// alliance_id integer
         /// </summary>
         [JsonProperty("alliance_id")]
-        public int? AllianceId {  get; set; }
+        public int? AllianceId { get; init; }
 
         /// <summary>
         /// character_id integer
@@ -26,7 +26,7 @@ namespace EVEClient.NET.DataContract
         /// damage_done integer
         /// </summary>
         [JsonProperty("damage_done")]
-        public required int DamageDone { get; init; }
+        public int DamageDone { get; init; }
 
         /// <summary>
         /// faction_id integer
@@ -38,13 +38,13 @@ namespace EVEClient.NET.DataContract
         /// Was the attacker the one to achieve the final blow
         /// </summary>
         [JsonProperty("final_blow")]
-        public required bool FinalBlow { get; init; }
+        public bool FinalBlow { get; init; }
 
         /// <summary>
         /// Security status for the attacker
         /// </summary>
         [JsonProperty("security_status")]
-        public required float SecurityStatus { get; init; }
+        public float SecurityStatus { get; init; }
 
         /// <summary>
         /// What ship was the attacker flying

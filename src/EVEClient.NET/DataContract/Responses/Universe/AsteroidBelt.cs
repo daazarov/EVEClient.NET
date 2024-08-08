@@ -8,18 +8,18 @@ namespace EVEClient.NET.DataContract
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name {  get; set; }
+        public string Name { get; init; }
 
         /// <summary>
         /// position coordinates
         /// </summary>
         [JsonProperty("position")]
-        public required Position Position { get; init; }
+        public Position Position { get; init; }
 
         /// <summary>
         /// The solar system this asteroid belt is in
         /// </summary>
         [JsonProperty("system_id")]
-        public required int SystemId { get; init; }
+        public int SystemId { get; init; }
     }
 }

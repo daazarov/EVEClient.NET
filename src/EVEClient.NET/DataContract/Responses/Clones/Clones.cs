@@ -16,7 +16,7 @@ namespace EVEClient.NET.DataContract
         /// Clone list
         /// </summary>
         [JsonProperty("jump_clones")]
-        public required List<JumpClone> JumpClones { get; init; }
+        public List<JumpClone> JumpClones { get; init; }
 
         /// <summary>
         /// last_clone_jump_date string

@@ -21,13 +21,13 @@ namespace EVEClient.NET.DataContract
         /// charisma integer
         /// </summary>
         [JsonProperty("charisma")]
-        public required int Charisma { get; init; }
+        public int Charisma { get; init; }
 
         /// <summary>
         /// intelligence integer
         /// </summary>
         [JsonProperty("intelligence")]
-        public required int Intelligence { get; init; }
+        public int Intelligence { get; init; }
 
         /// <summary>
         /// Datetime of last neural remap, including usage of bonus remaps
@@ -39,18 +39,18 @@ namespace EVEClient.NET.DataContract
         /// memory integer
         /// </summary>
         [JsonProperty("memory")]
-        public required int Memory { get; init; }
+        public int Memory { get; init; }
 
         /// <summary>
         /// perception integer
         /// </summary>
         [JsonProperty("perception")]
-        public required int Perception { get; init; }
+        public int Perception { get; init; }
 
         /// <summary>
         /// willpower integer
         /// </summary>
         [JsonProperty("willpower")]
-        public required int Willpower { get; init; }
+        public int Willpower { get; init; }
     }
 }

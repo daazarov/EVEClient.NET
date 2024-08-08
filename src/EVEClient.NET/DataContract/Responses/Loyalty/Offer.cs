@@ -15,37 +15,37 @@ namespace EVEClient.NET.DataContract
         /// isk_cost integer
         /// </summary>
         [JsonProperty("isk_cost")]
-        public required long IskCost { get; init; }
+        public long IskCost { get; init; }
 
         /// <summary>
         /// lp_cost integer
         /// </summary>
         [JsonProperty("lp_cost")]
-        public required int LpCost { get; init; }
+        public int LpCost { get; init; }
 
         /// <summary>
         /// offer_id integer
         /// </summary>
         [JsonProperty("offer_id")]
-        public required int OfferId { get; init; }
+        public int OfferId { get; init; }
 
         /// <summary>
         /// quantity integer
         /// </summary>
         [JsonProperty("quantity")]
-        public required int Quantity { get; init; }
+        public int Quantity { get; init; }
 
         /// <summary>
         /// required_items array
         /// </summary>
         [JsonProperty("required_items")]
-        public required List<Item> RequiredItems { get; init; }
+        public List<Item> RequiredItems { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public required int TypeId { get; init; }
+        public int TypeId { get; init; }
     }
 
     public class Item
@@ -54,12 +54,12 @@ namespace EVEClient.NET.DataContract
         /// quantity integer
         /// </summary>
         [JsonProperty("quantity")]
-        public required int Quantity { get; init; }
+        public int Quantity { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public required int TypeId { get; init; }
+        public int TypeId { get; init; }
     }
 }

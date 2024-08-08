@@ -8,12 +8,12 @@ namespace EVEClient.NET.DataContract
         /// A hash of this killmail
         /// </summary>
         [JsonProperty("killmail_hash")]
-        public required string KillmailHash { get; init; }
+        public string KillmailHash { get; init; }
 
         /// <summary>
         /// ID of this killmail
         /// </summary>
         [JsonProperty("killmail_id")]
-        public required int KillmailId { get; init; }
+        public int KillmailId { get; init; }
     }
 }

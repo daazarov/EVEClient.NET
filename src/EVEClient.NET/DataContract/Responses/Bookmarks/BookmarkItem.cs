@@ -8,12 +8,12 @@ namespace EVEClient.NET.DataContract
         /// item_id integer
         /// </summary>
         [JsonProperty("item_id")]
-        public required long item_id { get; init; }
+        public long item_id { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
         [JsonProperty("type_id")]
-        public required int type_id { get; init; }
+        public int type_id { get; init; }
     }
 }

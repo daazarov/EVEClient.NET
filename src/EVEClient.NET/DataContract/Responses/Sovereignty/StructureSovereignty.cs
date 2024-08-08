@@ -9,25 +9,25 @@ namespace EVEClient.NET.DataContract
         /// The alliance that owns the structure.
         /// </summary>
         [JsonProperty("alliance_id")]
-        public required int AllianceId {  get; set; }
+        public int AllianceId { get; init; }
 
         /// <summary>
         /// Solar system in which the structure is located.
         /// </summary>
         [JsonProperty("solar_system_id")]
-        public required int SolarSystemId { get; init; }
+        public int SolarSystemId { get; init; }
 
         /// <summary>
         /// Unique item ID for this structure.
         /// </summary>
         [JsonProperty("structure_id")]
-        public required long StructureId { get; init; }
+        public long StructureId { get; init; }
 
         /// <summary>
         /// A reference to the type of structure this is.
         /// </summary>
         [JsonProperty("structure_type_id")]
-        public required int StructureTypeId { get; init; }
+        public int StructureTypeId { get; init; }
 
         /// <summary>
         /// The occupancy level for the next or current vulnerability window.
