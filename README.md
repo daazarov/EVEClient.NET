@@ -38,7 +38,7 @@ To use the library, you need to invoke the extension method for `IServiceCollect
 ```cs
 _serviceCollection.AddEVEOnlineEsiClient(config =>
 {
-    // property. Header in your client which includes the source of the request and contact information.
+    // Required property. Header in your client which includes the source of the request and contact information.
     // This way, CCP can identify and help you with issues if you’re banned.
     config.UserAgent = "agent name";
     // If you want to use the eTag functionality for less ESI API server load.
