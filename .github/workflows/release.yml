@@ -21,7 +21,7 @@ env:
   NUGET_DIRECTORY: ${{ github.workspace}}/nuget
 
 jobs:
-  validate_tests:
+  validate_build_tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Restore dependencies
-      run: dotnet restore $${{ env.SOLUTION }}
+      run: dotnet restore ${{ env.SOLUTION }}
       
     - name: Build
       run: dotnet build ${{ env.SOLUTION }} --configuration Release --no-restore
@@ -42,6 +42,8 @@ jobs:
 
   create_nuget:
     runs-on: ubuntu-latest
+    needs: [ validate_build_tests ]
+    
     steps:
     - uses: actions/checkout@v4
 
@@ -90,7 +92,7 @@ jobs:
   
   publish_nuget:
     runs-on: ubuntu-latest
-    needs: [ validate_nuget, validate_tests ]
+    needs: [ validate_nuget, validate_build_tests ]
     
     steps:
     - uses: actions/checkout@v4
