@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// px128x128 string
         /// </summary>
         [JsonProperty("px128x128")]
-        public string? px128x128 {  get; set; }
+        public string? px128x128 { get; init; }
 
         /// <summary>
         /// px256x256 string

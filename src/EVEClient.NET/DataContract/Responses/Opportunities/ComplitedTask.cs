@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// completed_at string
         /// </summary>
         [JsonProperty("completed_at")]
-        public required DateTime CompletedAt {  get; set; }
+        public required DateTime CompletedAt { get; init; }
 
         /// <summary>
         /// task_id integer

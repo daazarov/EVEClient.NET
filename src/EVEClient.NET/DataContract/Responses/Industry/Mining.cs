@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// date string
         /// </summary>
         [JsonProperty("date")]
-        public required DateTime Date {  get; set; }
+        public required DateTime Date { get; init; }
 
         /// <summary>
         /// quantity integer

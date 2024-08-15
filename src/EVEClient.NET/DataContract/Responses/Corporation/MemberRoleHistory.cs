@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// changed_at string
         /// </summary>
         [JsonProperty("changed_at")]
-        public required DateTime ChangedAt {  get; set; }
+        public required DateTime ChangedAt { get; init; }
 
         /// <summary>
         /// The character whose roles are changed

@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// Is free-move enabled
         /// </summary>
         [JsonProperty("is_free_move")]
-        public required bool IsFreeMove {  get; set; }
+        public required bool IsFreeMove { get; init; }
 
         /// <summary>
         /// Does the fleet have an active fleet advertisement
@@ -26,6 +26,6 @@ namespace EVEClient.NET.DataContract
         /// Fleet MOTD in CCP flavoured HTML
         /// </summary>
         [JsonProperty("motd")]
-        public required string Motd {  get; set; }
+        public required string Motd { get; init; }
     }
 }

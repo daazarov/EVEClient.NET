@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// ID of the character who was rewarded this medal
         /// </summary>
         [JsonProperty("character_id")]
-        public required int CharacterId {  get; set; }
+        public required int CharacterId { get; init; }
 
         /// <summary>
         /// issued_at string

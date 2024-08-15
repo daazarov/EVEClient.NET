@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// created_at string
         /// </summary>
         [JsonProperty("created_at")]
-        public required DateTime CreatedAt {  get; set; }
+        public required DateTime CreatedAt { get; init; }
 
         /// <summary>
         /// ID of the character who created this medal

@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// hangar array
         /// </summary>
         [JsonProperty("hangar")]
-        public List<Division>? Hangar {  get; set; }
+        public List<Division>? Hangar { get; init; }
 
         /// <summary>
         /// wallet array
@@ -24,7 +24,7 @@ namespace EVEClient.NET.DataContract
         /// division integer
         /// </summary>
         [JsonProperty("division")]
-        public int? DivisionId {  get; set; }
+        public int? DivisionId { get; init; }
 
         /// <summary>
         /// name string

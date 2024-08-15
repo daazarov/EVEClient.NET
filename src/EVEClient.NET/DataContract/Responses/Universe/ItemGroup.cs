@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// category_id integer
         /// </summary>
         [JsonProperty("category_id")]
-        public required int CategoryId {  get; set; }
+        public required int CategoryId { get; init; }
 
         /// <summary>
         /// group_id integer

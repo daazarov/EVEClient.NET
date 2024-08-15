@@ -21,13 +21,13 @@ namespace EVEClient.NET.DataContract
         /// To whom the contract is available
         /// </summary>
         [JsonProperty("availability")]
-        public required ContractAvailability Availability {  get; set; }
+        public required ContractAvailability Availability { get; init; }
 
         /// <summary>
         /// Buyout price (for Auctions only)
         /// </summary>
         [JsonProperty("buyout")]
-        public double? Buyout {  get; set; }
+        public double? Buyout { get; init; }
 
         /// <summary>
         /// Collateral price (for Couriers only)

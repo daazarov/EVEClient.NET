@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// base_id integer
         /// </summary>
         [JsonProperty("base_id")]
-        public int? BaseId {  get; set; }
+        public int? BaseId { get; init; }
 
         /// <summary>
         /// character_id integer

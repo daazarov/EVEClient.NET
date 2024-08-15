@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// false if the isser is asking for this item in the contract
         /// </summary>
         [JsonProperty("is_included")]
-        public required bool IsIncluded {  get; set; }
+        public required bool IsIncluded { get; init; }
 
         /// <summary>
         /// is_singleton boolean

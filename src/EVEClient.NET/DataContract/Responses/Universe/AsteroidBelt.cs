@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// name string
         /// </summary>
         [JsonProperty("name")]
-        public required string Name {  get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// position coordinates

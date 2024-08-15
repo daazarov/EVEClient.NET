@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// The moon this starbase (POS) is anchored on, unanchored POSes do not have this information
         /// </summary>
         [JsonProperty("moon_id")]
-        public int? MoonId {  get; set; }
+        public int? MoonId { get; init; }
 
         /// <summary>
         /// When the POS onlined, for starbases (POSes) in online state
