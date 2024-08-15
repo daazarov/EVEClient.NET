@@ -82,6 +82,6 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The corporation wallet division used for this order.
         /// </summary>
-        public int WalletDivision {  get; set; }
+        public int WalletDivision { get; init; }
     }
 }

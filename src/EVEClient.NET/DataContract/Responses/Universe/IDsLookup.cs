@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
     public class IDsLookup
     {
         [JsonProperty("agents")]
-        public List<LookupInfo>? Agents {  get; set; }
+        public List<LookupInfo>? Agents { get; init; }
 
         [JsonProperty("alliances")]
         public List<LookupInfo>? Alliances { get; init; }
@@ -41,7 +41,7 @@ namespace EVEClient.NET.DataContract
         public class LookupInfo
         {
             [JsonProperty("id")]
-            public int? ID {  get; set; }
+            public int? ID { get; init; }
 
             [JsonProperty("name")]
             public string? Name { get; init; }

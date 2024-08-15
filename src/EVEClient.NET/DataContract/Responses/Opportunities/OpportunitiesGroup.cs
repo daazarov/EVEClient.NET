@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// The groups that are connected to this group on the opportunities map
         /// </summary>
         [JsonProperty("connected_groups")]
-        public required int[] ConnectedGroups {  get; set; }
+        public required int[] ConnectedGroups { get; init; }
 
         /// <summary>
         /// description string
@@ -32,7 +32,7 @@ namespace EVEClient.NET.DataContract
         /// notification string
         /// </summary>
         [JsonProperty("notification")]
-        public required string Notification {  get; set; }
+        public required string Notification { get; init; }
 
         /// <summary>
         /// Tasks need to complete for this group

@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// average number
         /// </summary>
         [JsonProperty("average")]
-        public required double Average {  get; set; }
+        public required double Average { get; init; }
 
         /// <summary>
         /// The date of this historical statistic entry
@@ -39,6 +39,6 @@ namespace EVEClient.NET.DataContract
         /// Total
         /// </summary>
         [JsonProperty("volume")]
-        public required long Volume {  get; set; }
+        public required long Volume { get; init; }
     }
 }

@@ -95,7 +95,7 @@ namespace EVEClient.NET.DataContract
         /// Date at which the structure will unanchor
         /// </summary>
         [JsonProperty("unanchors_at")]
-        public DateTime? InanchorsAt {  get; set; }
+        public DateTime? InanchorsAt { get; init; }
     }
 
     public class StructureService

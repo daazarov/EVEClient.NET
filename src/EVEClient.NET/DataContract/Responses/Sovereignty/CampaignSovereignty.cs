@@ -10,7 +10,7 @@ namespace EVEClient.NET.DataContract
         /// Score for all attacking parties, only present in Defense Events.
         /// </summary>
         [JsonProperty("attackers_score")]
-        public float? AttackersScore {  get; set; }
+        public float? AttackersScore { get; init; }
 
         /// <summary>
         /// Unique ID for this campaign.

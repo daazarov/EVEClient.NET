@@ -10,7 +10,7 @@ namespace EVEClient.NET.DataContract
         /// aggressor object
         /// </summary>
         [JsonProperty("aggressor")]
-        public required Fighter Aggressor {  get; set; }
+        public required Fighter Aggressor { get; init; }
 
         /// <summary>
         /// allied corporations or alliances, each object contains either corporation_id or alliance_id
@@ -22,7 +22,7 @@ namespace EVEClient.NET.DataContract
         /// Time that the war was declared
         /// </summary>
         [JsonProperty("declared")]
-        public required DateTime Declared {  get; set; }
+        public required DateTime Declared { get; init; }
 
         /// <summary>
         /// defender object
@@ -73,7 +73,7 @@ namespace EVEClient.NET.DataContract
             /// Alliance ID if and only if this ally is an alliance
             /// </summary>
             [JsonProperty("alliance_id")]
-            public int? AllianceId {  get; set; }
+            public int? AllianceId { get; init; }
 
             /// <summary>
             /// Corporation ID if and only if this ally is a corporation

@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// contested string
         /// </summary>
         [JsonProperty("contested")]
-        public required Contested Contested {  get; set; }
+        public required Contested Contested { get; init; }
 
         /// <summary>
         /// occupier_faction_id integer
@@ -32,7 +32,7 @@ namespace EVEClient.NET.DataContract
         /// victory_points integer
         /// </summary>
         [JsonProperty("victory_points")]
-        public required int VictoryPoints {  get; set; }
+        public required int VictoryPoints { get; init; }
 
         /// <summary>
         /// victory_points_threshold integer

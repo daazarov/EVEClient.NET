@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// character_id integer
         /// </summary>
         [JsonProperty("character_id")]
-        public required int CharacterId {  get; set; }
+        public required int CharacterId { get; init; }
 
         /// <summary>
         /// join_time string

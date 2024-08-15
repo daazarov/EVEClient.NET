@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// The alliance generally associated with this race
         /// </summary>
         [JsonProperty("alliance_id")]
-        public required int AllianceId {  get; set; }
+        public required int AllianceId { get; init; }
 
         /// <summary>
         /// description string

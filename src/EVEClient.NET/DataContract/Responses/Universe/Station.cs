@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// max_dockable_ship_volume number
         /// </summary>
         [JsonProperty("max_dockable_ship_volume")]
-        public required float MaxDockableShipVolume {  get; set; }
+        public required float MaxDockableShipVolume { get; init; }
 
         /// <summary>
         /// name string
@@ -27,7 +27,7 @@ namespace EVEClient.NET.DataContract
         /// ID of the corporation that controls this station
         /// </summary>
         [JsonProperty("owner")]
-        public int? Owner {  get; set; }
+        public int? Owner { get; init; }
 
         /// <summary>
         /// position object

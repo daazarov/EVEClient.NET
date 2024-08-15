@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// capacity number
         /// </summary>
         [JsonProperty("capacity")]
-        public float? Capacity {  get; set; }
+        public float? Capacity { get; init; }
 
         /// <summary>
         /// description string

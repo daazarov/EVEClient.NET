@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// The constellation this solar system is in
         /// </summary>
         [JsonProperty("constellation_id")]
-        public required int ConstellationId {  get; set; }
+        public required int ConstellationId { get; init; }
 
         /// <summary>
         /// name string

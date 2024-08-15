@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// contact_id integer
         /// </summary>
         [JsonProperty("contact_id")]
-        public required int ContactId {  get; set; }
+        public required int ContactId { get; init; }
 
         /// <summary>
         /// contact_type string

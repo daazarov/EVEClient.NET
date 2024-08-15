@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// adjusted_price number
         /// </summary>
         [JsonProperty("adjusted_price")]
-        public double? AdjustedPrice {  get; set; }
+        public double? AdjustedPrice { get; init; }
 
         /// <summary>
         /// average_price number

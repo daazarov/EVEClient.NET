@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// allow_alliance_members boolean
         /// </summary>
         [JsonProperty("allow_alliance_members")]
-        public required bool AllowAllianceMembers {  get; set; }
+        public required bool AllowAllianceMembers { get; init; }
 
         /// <summary>
         /// allow_corporation_members boolean
@@ -20,13 +20,13 @@ namespace EVEClient.NET.DataContract
         /// Who can anchor starbase (POS) and its structures
         /// </summary>
         [JsonProperty("anchor")]
-        public required string Anchor {  get; set; }
+        public required string Anchor { get; init; }
 
         /// <summary>
         /// attack_if_at_war boolean
         /// </summary>
         [JsonProperty("attack_if_at_war")]
-        public required bool AttackIfAtWar {  get; set; }
+        public required bool AttackIfAtWar { get; init; }
 
         /// <summary>
         /// attack_if_other_security_status_dropping boolean
@@ -70,7 +70,7 @@ namespace EVEClient.NET.DataContract
         /// Who can offline starbase (POS) and its structures
         /// </summary>
         [JsonProperty("offline")]
-        public required string Offline {  get; set; }
+        public required string Offline { get; init; }
 
         /// <summary>
         /// Who can online starbase (POS) and its structures

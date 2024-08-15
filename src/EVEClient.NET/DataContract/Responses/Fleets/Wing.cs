@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// id integer
         /// </summary>
         [JsonProperty("id")]
-        public required long Id {  get; set; }
+        public required long Id { get; init; }
 
         /// <summary>
         /// name string

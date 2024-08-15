@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// ID of the alliance that corporation is a member of, if any
         /// </summary>
         [JsonProperty("alliance_id")]
-        public int? AllianceId {  get; set; }
+        public int? AllianceId { get; init; }
 
         /// <summary>
         /// ceo_id integer

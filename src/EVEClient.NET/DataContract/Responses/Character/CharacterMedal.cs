@@ -86,6 +86,6 @@ namespace EVEClient.NET.DataContract
         /// part integer
         /// </summary>
         [JsonProperty("part")]
-        public required int Part {  get; set; }
+        public required int Part { get; init; }
     }
 }

@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// Number of NPC ships killed in this system
         /// </summary>
         [JsonProperty("npc_kills")]
-        public required int NpcKills {  get; set; }
+        public required int NpcKills { get; init; }
 
         /// <summary>
         /// Number of pods killed in this system

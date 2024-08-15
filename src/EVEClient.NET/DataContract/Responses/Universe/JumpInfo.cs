@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// ship_jumps integer
         /// </summary>
         [JsonProperty("ship_jumps")]
-        public required int ShipJumps {  get; set; }
+        public required int ShipJumps { get; init; }
 
         /// <summary>
         /// system_id integer

@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// constellations array
         /// </summary>
         [JsonProperty("constellations")]
-        public required int[] Constellations {  get; set; }
+        public required int[] Constellations { get; init; }
 
         /// <summary>
         /// description string

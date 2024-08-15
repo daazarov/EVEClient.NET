@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// The alliance that owns the structure.
         /// </summary>
         [JsonProperty("alliance_id")]
-        public required int AllianceId {  get; set; }
+        public required int AllianceId { get; init; }
 
         /// <summary>
         /// Solar system in which the structure is located.

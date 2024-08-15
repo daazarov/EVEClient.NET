@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// Age of star in years
         /// </summary>
         [JsonProperty("age")]
-        public required long Age {  get; set; }
+        public required long Age { get; init; }
 
         /// <summary>
         /// luminosity number
@@ -38,7 +38,7 @@ namespace EVEClient.NET.DataContract
         /// spectral_class string
         /// </summary>
         [JsonProperty("spectral_class")]
-        public required string SpectralClass {  get; set; }
+        public required string SpectralClass { get; init; }
 
         /// <summary>
         /// temperature integer

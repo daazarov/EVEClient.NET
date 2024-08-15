@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// Flag for the location of the item
         /// </summary>
         [JsonProperty("flag")]
-        public required int Flag {  get; set; }
+        public required int Flag { get; init; }
 
         /// <summary>
         /// item_type_id integer
@@ -39,6 +39,6 @@ namespace EVEClient.NET.DataContract
         /// singleton integer
         /// </summary>
         [JsonProperty("singleton")]
-        public required int Singleton {  get; set; }
+        public required int Singleton { get; init; }
     }
 }
