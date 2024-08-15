@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// The full name of the structure
         /// </summary>
         [JsonProperty("name")]
-        public required string Name {  get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// The ID of the corporation who owns this particular structure

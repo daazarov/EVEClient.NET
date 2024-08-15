@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// The constellation id in which this incursion takes place
         /// </summary>
         [JsonProperty("constellation_id")]
-        public required int ConstellationId {  get; set; }
+        public required int ConstellationId { get; init; }
 
         /// <summary>
         /// The attacking faction’s id
@@ -32,7 +32,7 @@ namespace EVEClient.NET.DataContract
         /// Influence of this incursion as a float from 0 to 1
         /// </summary>
         [JsonProperty("influence")]
-        public required float Influence {  get; set; }
+        public required float Influence { get; init; }
 
         /// <summary>
         /// Staging solar system for this incursion

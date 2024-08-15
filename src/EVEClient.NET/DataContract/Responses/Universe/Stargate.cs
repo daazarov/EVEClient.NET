@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// destination object
         /// </summary>
         [JsonProperty("destination")]
-        public required Destination Destination {  get; set; }
+        public required Destination Destination { get; init; }
 
         /// <summary>
         /// name string

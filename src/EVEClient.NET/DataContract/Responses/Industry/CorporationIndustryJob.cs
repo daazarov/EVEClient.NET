@@ -46,7 +46,7 @@ namespace EVEClient.NET.DataContract
         /// The sume of job installation fee and industry facility tax
         /// </summary>
         [JsonProperty("cost")]
-        public double? Cost {  get; set; }
+        public double? Cost { get; init; }
 
         /// <summary>
         /// Job duration in seconds
@@ -82,7 +82,7 @@ namespace EVEClient.NET.DataContract
         /// Number of runs blueprint is licensed for
         /// </summary>
         [JsonProperty("licensed_runs")]
-        public int? LicensedRuns {  get; set; }
+        public int? LicensedRuns { get; init; }
 
         /// <summary>
         /// Location ID of the location to which the output of the job will be delivered. Normally a station ID, but can also be a corporation facility
@@ -112,7 +112,7 @@ namespace EVEClient.NET.DataContract
         /// Number of runs for a manufacturing job, or number of copies to make for a blueprint copy
         /// </summary>
         [JsonProperty("runs")]
-        public required int Runs {  get; set; }
+        public required int Runs { get; init; }
 
         /// <summary>
         /// Date and time when this job started

@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// moon_id integer
         /// </summary>
         [JsonProperty("moon_id")]
-        public required int MoonId {  get; set; }
+        public required int MoonId { get; init; }
 
         /// <summary>
         /// name string

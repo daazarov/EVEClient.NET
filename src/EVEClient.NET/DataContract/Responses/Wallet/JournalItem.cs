@@ -10,7 +10,7 @@ namespace EVEClient.NET.DataContract
         /// Positive when ISK is deposited into the wallet and negative when ISK is withdrawn
         /// </summary>
         [JsonProperty("amount")]
-        public double? Amount {  get; set; }
+        public double? Amount { get; init; }
 
         /// <summary>
         /// Wallet balance after transaction occurred

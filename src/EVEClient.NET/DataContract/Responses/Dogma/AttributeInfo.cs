@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// attribute_id integer
         /// </summary>
         [JsonProperty("attribute_id")]
-        public required int AttributeId {  get; set; }
+        public required int AttributeId { get; init; }
 
         /// <summary>
         /// default_value number

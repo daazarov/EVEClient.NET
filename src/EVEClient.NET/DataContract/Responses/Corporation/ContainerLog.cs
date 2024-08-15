@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// action string
         /// </summary>
         [JsonProperty("action")]
-        public required ContainerAction Action {  get; set; }
+        public required ContainerAction Action { get; init; }
 
         /// <summary>
         /// ID of the character who performed the action.

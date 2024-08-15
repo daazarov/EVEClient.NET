@@ -15,7 +15,7 @@ namespace EVEClient.NET.DataContract
         /// total_sp integer
         /// </summary>
         [JsonProperty("total_sp")]
-        public required long TotalSp {  get; set; }
+        public required long TotalSp { get; init; }
 
         /// <summary>
         /// Skill points available to be assigned

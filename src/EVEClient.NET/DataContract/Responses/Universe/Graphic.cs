@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// collision_file string
         /// </summary>
         [JsonProperty("collision_file")]
-        public string? CollisionFile {  get; set; }
+        public string? CollisionFile { get; init; }
 
         /// <summary>
         /// graphic_file string

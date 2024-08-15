@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// share_count integer
         /// </summary>
         [JsonProperty("share_count")]
-        public required long ShareCount {  get; set; }
+        public required long ShareCount { get; init; }
 
         /// <summary>
         /// shareholder_id integer

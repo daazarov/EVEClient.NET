@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// description string
         /// </summary>
         [JsonProperty("description")]
-        public required string Description {  get; set; }
+        public required string Description { get; init; }
 
         /// <summary>
         /// fitting_id integer

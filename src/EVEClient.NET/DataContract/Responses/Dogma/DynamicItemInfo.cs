@@ -9,7 +9,7 @@ namespace EVEClient.NET.DataContract
         /// The ID of the character who created the item
         /// </summary>
         [JsonProperty("created_by")]
-        public required int CreatedBy {  get; set; }
+        public required int CreatedBy { get; init; }
          
         /// <summary>
         /// dogma_attributes array

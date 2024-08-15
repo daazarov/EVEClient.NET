@@ -8,13 +8,13 @@ namespace EVEClient.NET.DataContract
         /// bloodline_id integer
         /// </summary>
         [JsonProperty("bloodline_id")]
-        public required int BloodlineId {  get; set; }
+        public required int BloodlineId { get; init; }
 
         /// <summary>
         /// charisma integer
         /// </summary>
         [JsonProperty("charisma")]
-        public required int Charisma {  get; set; }
+        public required int Charisma { get; init; }
 
         /// <summary>
         /// corporation_id integer
@@ -38,7 +38,7 @@ namespace EVEClient.NET.DataContract
         /// memory integer
         /// </summary>
         [JsonProperty("memory")]
-        public required int Memory {  get; set; }
+        public required int Memory { get; init; }
 
         /// <summary>
         /// name string

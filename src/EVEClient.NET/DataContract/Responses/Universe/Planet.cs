@@ -8,7 +8,7 @@ namespace EVEClient.NET.DataContract
         /// planet_id integer
         /// </summary>
         [JsonProperty("planet_id")]
-        public required int PlanetId {  get; set; }
+        public required int PlanetId { get; init; }
 
         /// <summary>
         /// name string

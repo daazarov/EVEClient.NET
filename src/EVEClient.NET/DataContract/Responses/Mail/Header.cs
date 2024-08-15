@@ -10,7 +10,7 @@ namespace EVEClient.NET.DataContract
         /// From whom the mail was sent
         /// </summary>
         [JsonProperty("from")]
-        public int? From {  get; set; }
+        public int? From { get; init; }
 
         /// <summary>
         /// is_read boolean
