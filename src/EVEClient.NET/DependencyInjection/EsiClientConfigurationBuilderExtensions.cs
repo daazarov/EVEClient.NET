@@ -99,16 +99,19 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         public static IEsiClientConfigurationBuilder AddPiplineHandlers(this IEsiClientConfigurationBuilder builder)
         {
-            builder.Services.TryAddSingleton<RequestHeadersHandler>();
-            builder.Services.TryAddSingleton<UrlRequestParametersHandler>();
+            // handlers without injections
             builder.Services.TryAddSingleton<RequestGetHandler>();
             builder.Services.TryAddSingleton<RequestPostHandler>();
             builder.Services.TryAddSingleton<RequestDeleteHandler>();
             builder.Services.TryAddSingleton<RequestPutHandler>();
-            builder.Services.TryAddSingleton<ETagHandler>();
             builder.Services.TryAddSingleton<EndpointHandler>();
-            builder.Services.TryAddSingleton<ProtectionHandler>();
             builder.Services.TryAddSingleton<BodyRequestParametersHandler>();
+
+            // handlers with injections
+            builder.Services.TryAddScoped<ETagHandler>();
+            builder.Services.TryAddScoped<ProtectionHandler>();
+            builder.Services.TryAddScoped<RequestHeadersHandler>();
+            builder.Services.TryAddScoped<UrlRequestParametersHandler>();
 
             return builder;
         }
@@ -174,7 +177,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(IAccessTokenProvider), instanceType);
 
-            builder.Services.TryAddTransient(typeof(IAccessTokenProvider), instanceType);
+            builder.Services.AddScopedWithReplace(typeof(IAccessTokenProvider), instanceType);
 
             return builder;
         }
@@ -203,7 +206,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(IScopeAccessValidator), instanceType);
 
-            builder.Services.AddSingletonWithReplace(typeof(IScopeAccessValidator), instanceType);
+            builder.Services.AddScopedWithReplace(typeof(IScopeAccessValidator), instanceType);
 
             return builder;
         }
@@ -232,7 +235,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IsAssignableFrom(typeof(IETagStorage), instanceType);
 
-            builder.Services.AddSingletonWithReplace(typeof(IETagStorage), instanceType);
+            builder.Services.AddScopedWithReplace(typeof(IETagStorage), instanceType);
 
             return builder;
         }
