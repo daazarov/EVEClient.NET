@@ -18,7 +18,7 @@ EVEClient.NET includes following default ordered middlewares:
 
 1. ~~EVEClient.NET currently has no built-in functionality to work in ESI SSO. You need to implement your own token provider and scope validator using the provided interfaces `IAccessTokenProvider` & `IScopeAccessValidator`.
 In the future it is planned to write a separate library for ASP.NET Core, which will provide native authorization support.~~
-> `EVEClient.NET.Identity` was released in an alpha version.
+> `EVEClient.NET.Identity` was released in an alpha version. (see [Quick Start Example](https://github.com/daazarov/EVEClient.NET.Identity/tree/main/Examples/QuickStart))
 2. EVEClient.NET uses ENDPOINT VERSIONING according to best practices (see [more](https://developers.eveonline.com/blog/article/esi-endpoint-versioning-important-info-and-best-practices)). At the moment there is no way to choose a different route (e.g. legacy/latest or dev) except to override the EndpointHandler in pipline. But in the future, we plan to provide this feature in separate package along with repeat customization. I don't know why it might be necessary :sweat_smile:
 
 ## NuGet Packages
