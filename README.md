@@ -54,7 +54,7 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
     option.CallbackPath = "/eve-callback";
     option.Scopes.AddRange("esi-mail.read_mail.v1", "esi-characters.read_standings.v1");
 })
-// or your own implementations of providing SSO token
+// or your own implementations of providing and validation SSO token
 .AddAccessTokenProvider<YourAccessTokenProvider>()
 .AddScopeValidator<YourScopeAccessValidator>()
 // or
