@@ -111,13 +111,17 @@ internal class CustomHandler : IHandler
         // after request area
         if (context.Response.StatusCode == HttpStatusCode.NotModified)
         {
-            var eTag = context.Response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
+            var eTag = HttpContext.Response.Headers["ETag"].ToString().Replace("\"", string.Empty);
             var data = await _cache.GetCachedResponse(eTag);
-            var response = new HttpResponseMessage(HttpStatusCode.OK);
+	    var response = new HttpResponseMessage(HttpStatusCode.OK);
 
-            response.Content = new StringContent(JsonConvert.SerializeObject(data));
+	    response.Content = new StringContent(JsonConvert.SerializeObject(data));
+	    foreach (var headers in HttpContext.Response.Headers)
+	    {
+    	        response.Headers.TryAddWithoutValidation(headers.Key, headers.Value.AsEnumerable());
+	    }
 
-            context.SetHttpResponseMessage(response);
+	    context.SetHttpResponseMessage(response);
         }
     }
 }
