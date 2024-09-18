@@ -27,7 +27,7 @@ namespace EVEClient.NET
             var context = _contextFactory.CreateContext(marker, requestModel, token);
             var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
 
-            return new EsiResponse(handledContext.Response);
+            return new EsiResponseDefault(handledContext.Response);
         }
 
         public virtual async Task<EsiResponsePagination<TResponse>> GetPaginationRequestAsync<TRequest, TResponse>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
@@ -45,7 +45,7 @@ namespace EVEClient.NET
             var context = _contextFactory.CreateContext(marker, token);
             var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
 
-            return new EsiResponse<TResponse>(handledContext.Response);
+            return new EsiResponseDefaultGeneric<TResponse>(handledContext.Response);
         }
 
         public virtual async Task<EsiResponse<TResponse>> GetRequestAsync<TRequest, TResponse>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
@@ -54,7 +54,7 @@ namespace EVEClient.NET
             var context = _contextFactory.CreateContext(marker, requestModel, token);
             var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
 
-            return new EsiResponse<TResponse>(handledContext.Response);
+            return new EsiResponseDefaultGeneric<TResponse>(handledContext.Response);
         }
 
         public virtual async Task<EsiResponse> PostNoContentRequestAsync<TRequest>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
@@ -63,7 +63,7 @@ namespace EVEClient.NET
             var context = _contextFactory.CreateContext(marker, requestModel, token);
             var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
 
-            return new EsiResponse(handledContext.Response);
+            return new EsiResponseDefault(handledContext.Response);
         }
 
         public virtual async Task<EsiResponse<TResponse>> PostRequestAsync<TRequest, TResponse>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
@@ -72,7 +72,7 @@ namespace EVEClient.NET
             var context = _contextFactory.CreateContext(marker, requestModel, token);
             var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
 
-            return new EsiResponse<TResponse>(handledContext.Response);
+            return new EsiResponseDefaultGeneric<TResponse>(handledContext.Response);
         }
 
         public virtual async Task<EsiResponse> PutRequestAsync<TRequest>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
@@ -81,7 +81,7 @@ namespace EVEClient.NET
             var context = _contextFactory.CreateContext(marker, requestModel, token);
             var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
 
-            return new EsiResponse(handledContext.Response);
+            return new EsiResponseDefault(handledContext.Response);
         }
     }
 }

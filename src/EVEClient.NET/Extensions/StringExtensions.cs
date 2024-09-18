@@ -18,9 +18,9 @@ namespace EVEClient.NET.Extensions
 
         public static string EnsureLeadingSlash(this string url)
         {
-            if (!string.IsNullOrEmpty(url) && !url.StartsWith("/"))
+            if (!string.IsNullOrEmpty(url) && !url.StartsWith('/'))
             {
-                return "/" + url;
+                return '/' + url;
             }
 
             return url;
@@ -34,6 +34,16 @@ namespace EVEClient.NET.Extensions
         public static string SHA256(this string @this)
         {
             return HashingFactory.Instance.CreateHashingInstance(HashingAliases.SHA256).GenerateHash(@this);
+        }
+
+        public static bool IsPotentiallyJson(this string? value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+
+            return (value.StartsWith('{') && value.EndsWith('}')) || (value.StartsWith('[') && value.EndsWith(']'));
         }
     }
 }
