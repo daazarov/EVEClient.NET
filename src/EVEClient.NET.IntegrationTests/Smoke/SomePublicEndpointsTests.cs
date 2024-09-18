@@ -50,7 +50,8 @@ namespace EVEClient.NET.IntegrationTests.Smoke
             var response = await _logicAccessor.CharacterLogic.PublicInformation(CharacterId);
 
             Assert.That(response.Success, Is.True);
-            Assert.That(response.Data, Is.Not.Null);
+            Assert.That(response.TryGetData(out var data, out _), Is.True);
+            Assert.That(data, Is.Not.Null);
         }
 
         [Test]
@@ -60,11 +61,14 @@ namespace EVEClient.NET.IntegrationTests.Smoke
             var response1 = await _logicAccessor.CharacterLogic.PublicInformation(CharacterId);
 
             Assert.That(response.Success, Is.True);
-            Assert.That(response.Data, Is.Not.Null);
+            Assert.That(response.TryGetData(out var responseData, out _), Is.True);
+            Assert.That(responseData, Is.Not.Null);
 
             Assert.That(response1.Success, Is.True);
             Assert.That(response1.StatusCode, Is.EqualTo(HttpStatusCode.NotModified));
-            Assert.That(response1.Data, Is.Null);
+            Assert.That(response1.TryGetData(out var response1Data, out var message), Is.False);
+            Assert.That(response1Data, Is.Null);
+            Assert.That(message, Is.EqualTo("No results can be returned because the server returned the NotModified http status code."));
         }
 
         [Test]
@@ -73,7 +77,8 @@ namespace EVEClient.NET.IntegrationTests.Smoke
             var response = await _logicAccessor.CharacterLogic.CorporationHistory(CharacterId);
 
             Assert.That(response.Success, Is.True);
-            Assert.That(response.Data, Is.Not.Null);
+            Assert.That(response.TryGetData(out var data, out _), Is.True);
+            Assert.That(data, Is.Not.Null);
         }
     }
 }
