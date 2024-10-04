@@ -1,0 +1,52 @@
+[
+  {
+    "endpoint_id": "get_characters_character_id",
+    "http_method_type": "GET",
+    "protected": false,
+    "routes": [
+      {
+        "value": "/latest/characters/{character_id}/",
+        "version": "Latest",
+        "preferred": false
+      },
+      {
+        "value": "/v5/characters/{character_id}/",
+        "version": "V5",
+        "preferred": true
+      },
+      {
+        "value": "/legacy/characters/{character_id}/",
+        "version": "Legacy",
+        "preferred": false
+      },
+      {
+        "value": "/dev/characters/{character_id}/",
+        "version": "Dev",
+        "preferred": false
+      }
+    ]
+  },
+  {
+    "endpoint_id": "get_characters_character_id_standings",
+    "http_method_type": "GET",
+    "protected": true,
+    "scope": "esi-characters.read_standings.v1",
+    "routes": [
+      {
+        "value": "/latest/characters/{character_id}/standings/",
+        "version": "Latest",
+        "preferred": false
+      },
+      {
+        "value": "/v2/characters/{character_id}/standings/",
+        "version": "V2",
+        "preferred": true
+      },
+      {
+        "value": "/dev/characters/{character_id}/standings/",
+        "version": "Dev",
+        "preferred": false
+      }
+    ]
+  }
+]

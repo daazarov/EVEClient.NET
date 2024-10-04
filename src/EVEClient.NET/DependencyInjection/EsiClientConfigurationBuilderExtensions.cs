@@ -32,8 +32,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
                 });
 
-            builder.Services.TryAddScoped<IEsiContextFactory, EsiContextFactory>();
-            builder.Services.TryAddScoped(typeof(IEsiHttpClient<>), typeof(EsiHttpClient<>));
+            builder.Services.TryAddScoped<IEsiHttpClient, EsiHttpClient>();
+            builder.Services.TryAddSingleton<IEndpointConfigurationProvider, EndpointConfigurationProvider>();
 
             return builder;
         }
@@ -100,17 +100,13 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IEsiClientConfigurationBuilder AddPiplineHandlers(this IEsiClientConfigurationBuilder builder)
         {
             // handlers without injections
-            builder.Services.TryAddSingleton<RequestGetHandler>();
-            builder.Services.TryAddSingleton<RequestPostHandler>();
-            builder.Services.TryAddSingleton<RequestDeleteHandler>();
-            builder.Services.TryAddSingleton<RequestPutHandler>();
             builder.Services.TryAddSingleton<EndpointHandler>();
             builder.Services.TryAddSingleton<BodyRequestParametersHandler>();
 
             // handlers with injections
+            builder.Services.TryAddScoped<RequestHandler>();
             builder.Services.TryAddScoped<ETagHandler>();
             builder.Services.TryAddScoped<ProtectionHandler>();
-            builder.Services.TryAddScoped<RequestHeadersHandler>();
             builder.Services.TryAddScoped<UrlRequestParametersHandler>();
 
             return builder;

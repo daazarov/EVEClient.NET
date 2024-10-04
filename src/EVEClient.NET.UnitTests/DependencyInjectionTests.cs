@@ -74,7 +74,7 @@ namespace EVEClient.NET.UnitTests
         [TestCase(typeof(IETagStorage), ServiceLifetime.Singleton)]
         [TestCase(typeof(IPiplineStore), ServiceLifetime.Singleton)]
         [TestCase(typeof(IHttpClientFactory), ServiceLifetime.Singleton)]
-        [TestCase(typeof(IEsiContextFactory), ServiceLifetime.Scoped)]
+        [TestCase(typeof(IEsiContextBuilder), ServiceLifetime.Scoped)]
         [TestCase(typeof(IEsiLogicAccessor), ServiceLifetime.Scoped)]
         [TestCase(typeof(IEsiHttpClient<>), ServiceLifetime.Scoped)]
         public void ServiceCollection_ContainsOther(Type type, ServiceLifetime lifetime)

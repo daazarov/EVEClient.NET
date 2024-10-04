@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using EVEClient.NET.Attributes;
@@ -51,6 +53,20 @@ namespace EVEClient.NET
         [Route("/v3/characters/{character_id}/blueprints/", Version = EndpointVersion.V3, Preferred = true)]
         [Route("/dev/characters/{character_id}/blueprints/", Version = EndpointVersion.Dev)]
         Task<EsiResponsePagination<List<CharacterBlueprint>>> Blueprints(int characterId, int page = 1, string? token = null);
+
+        /// <summary>
+        /// A list of blueprints
+        /// </summary>
+        /// <param name="characterId">An EVE character ID</param>
+        /// <param name="pageLimit">How many pages to load. No limit by default.</param>
+        /// <param name="pageOffset">How many pages to skip. No skip by default.</param>
+        /// <param name="token">The EVE access token. If not specified, the <see cref="IAccessTokenProvider"/> is used.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/>.</param>
+        //[ProtectedEndpoint(RequiredScope = "esi-characters.read_blueprints.v1")]
+        //[Route("/latest/characters/{character_id}/blueprints/", Version = EndpointVersion.Latest)]
+        //[Route("/v3/characters/{character_id}/blueprints/", Version = EndpointVersion.V3, Preferred = true)]
+        //[Route("/dev/characters/{character_id}/blueprints/", Version = EndpointVersion.Dev)]
+        //Task<EsiStreamResponse<CharacterBlueprint>> Blueprints(int characterId, int pageLimit = 0, int pageOffset = 0, string? token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all the corporations a character has been a member of

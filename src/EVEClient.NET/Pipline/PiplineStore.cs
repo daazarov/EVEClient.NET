@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 using EVEClient.NET.Pipline.Modifications;
-using EVEClient.NET.Utilities;
 
 namespace EVEClient.NET.Pipline
 {
@@ -11,15 +11,17 @@ namespace EVEClient.NET.Pipline
     {
         private readonly Dictionary<string, IRequestPipline> _cache = new();
         private readonly IEnumerable<PiplineModification>? _modifications;
+        private readonly IEndpointConfigurationProvider _configurations;
 
-        private const string DefaultGetPiplineKey = "get_default";
-        private const string DefaultPostPiplineKey = "post_default";
-        private const string DefaultPutPiplineKey = "put_default";
-        private const string DefaultDeletePiplineKey = "delete_default";
+        internal const string DefaultGetPiplineKey = "get_default";
+        internal const string DefaultPostPiplineKey = "post_default";
+        internal const string DefaultPutPiplineKey = "put_default";
+        internal const string DefaultDeletePiplineKey = "delete_default";
 
-        public PiplineStore(IEnumerable<PiplineModification>? modifications = null)
+        public PiplineStore(IEndpointConfigurationProvider configurations, IEnumerable<PiplineModification>? modifications = null)
         {
             _modifications = modifications;
+            _configurations = configurations;
 
             GenericPipline(DefaultGetPiplineKey, new RequestPiplineBuilder().UseGetPipline());
             GenericPipline(DefaultPostPiplineKey, new RequestPiplineBuilder().UsePostPipline());
@@ -29,26 +31,20 @@ namespace EVEClient.NET.Pipline
             ApplyModifications();
         }
 
-        public IRequestPipline GetPipline(EndpointMarker marker)
+        public Task<IRequestPipline> GetPiplineAsync(string endpointId, HttpMethodType methodType)
         {
-            var endpointId = marker.ToEndpointId();
-            if (string.IsNullOrEmpty(endpointId))
-            {
-                throw new InvalidOperationException($"Can not convert EndpointMartker to endpoint id. HttpMethodType: {marker.HttpMethodType}; CallerType: {marker.CallerType}; CallerName: {marker.CallerName}");
-            }
-
             if (_cache.TryGetValue(endpointId, out var pipline))
             {
-                return pipline;
+                return Task.FromResult(pipline);
             }
 
-            // found no custom settings for the endpoint. We use the default
-            return marker.HttpMethodType switch
+            // no found custom pipline for the endpoint, use the default
+            return methodType switch
             {
-                "GET" => _cache[DefaultGetPiplineKey],
-                "POST" => _cache[DefaultPostPiplineKey],
-                "PUT" => _cache[DefaultPutPiplineKey],
-                "DELETE" => _cache[DefaultDeletePiplineKey],
+                HttpMethodType.Get => Task.FromResult(_cache[DefaultGetPiplineKey]),
+                HttpMethodType.Post => Task.FromResult(_cache[DefaultPostPiplineKey]),
+                HttpMethodType.Put => Task.FromResult(_cache[DefaultPutPiplineKey]),
+                HttpMethodType.Delete => Task.FromResult(_cache[DefaultDeletePiplineKey]),
                 _ => throw new InvalidOperationException("Unsupported HTTP method.")
             };
         }
@@ -85,27 +81,22 @@ namespace EVEClient.NET.Pipline
             // Apply modificators
             foreach (var modification in normalizedModifications)
             {
-                var marker = EndpointsMapper.Instance[modification.EndpointId];
-                if (marker == EndpointMarker.Null)
-                {
-                    throw new InvalidOperationException($"Unknown ESI entpoint identifier: { modification.EndpointId }");
-                }
-
+                var configuration = _configurations.GetEndpointConfiguration(modification.EndpointId);
                 var piplineBuilder = new RequestPiplineBuilder(modification.Replacements, modification.Additions);
 
                 // apply default pipline by http method
-                switch (marker.HttpMethodType)
+                switch (configuration.MethodType)
                 { 
-                    case "GET":
+                    case HttpMethodType.Get:
                         piplineBuilder.UseGetPipline();
                         break;
-                    case "POST":
+                    case HttpMethodType.Post:
                         piplineBuilder.UsePostPipline();
                         break;
-                    case "PUT":
+                    case HttpMethodType.Put:
                         piplineBuilder.UsePutPipline();
                         break;
-                    case "DELETE":
+                    case HttpMethodType.Delete:
                         piplineBuilder.UseDeletePipline();
                         break;
                 }

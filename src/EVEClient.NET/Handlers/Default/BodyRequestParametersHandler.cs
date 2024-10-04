@@ -2,23 +2,20 @@
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-using EVEClient.NET.Models;
 using EVEClient.NET.Pipline;
 
 namespace EVEClient.NET.Handlers
 {
     /// <summary>
-    /// Prepares the body of the POST and PUT requests.
+    /// Prepares the body of the Post and Put requests.
     /// </summary>
     public class BodyRequestParametersHandler : IHandler
     {
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            var bodyRequestModel = context.RequestModel as IBodyModel;
-
-            if (bodyRequestModel != null) 
+            if (context.Request.Parameters.Body is not null)
             {
-                context.RequestContext.Body = CreateHttpContent(bodyRequestModel.Body);
+                context.Request.Content = CreateHttpContent(context.Request.Parameters.Body);
             }
 
             await next.Invoke(context);

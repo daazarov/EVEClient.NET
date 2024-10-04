@@ -18,6 +18,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="endpoint.configuration.default.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="api.specification.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

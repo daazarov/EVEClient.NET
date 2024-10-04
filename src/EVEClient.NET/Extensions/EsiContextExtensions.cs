@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Linq;
 
-using EVEClient.NET.Attributes;
-using EVEClient.NET.Utilities;
+using Microsoft.Extensions.DependencyInjection;
+
+using EVEClient.NET.Configuration;
+using System.Collections.Generic;
 
 namespace EVEClient.NET.Extensions
 {
@@ -14,47 +15,25 @@ namespace EVEClient.NET.Extensions
         /// </summary>
         /// <param name="context">The <see cref="EsiContext"/>.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
-        public static bool PublicEndpoint(this EsiContext context)
+        public static bool IsProtectedEndpoint(this EsiContext context)
         {
-            ArgumentNullException.ThrowIfNull(context);
-
-            return ReflectionCacheAttributeAccessor.Instance.ContainsAttribute<PublicEndpointAttribute>(context.EndpointMarker.AsMethodInfo());
+            return GetEndpointConfiguration(context).ProtectedEndpoint;
         }
 
-        /// <summary>
-        /// Indicates whether the access token was passed as an input parameter when the logic method was called.
-        /// </summary>
-        /// <param name="context">The <see cref="EsiContext"/>.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        public static bool TokenProvidedInRequest(this EsiContext context)
+        public static List<Route> GetEndpointRoutes(this EsiContext context)
         {
-            ArgumentNullException.ThrowIfNull(context);
-
-            return !string.IsNullOrEmpty(context.RequestContext.Token);
+            return GetEndpointConfiguration(context).Routes.ToList();
         }
 
-        /// <summary>
-        /// Sets the authentication header value for the <see cref="HttpClient"/>.
-        /// </summary>
-        /// <param name="context">The <see cref="EsiContext"/>.</param>
-        /// <param name="parameter">The authentication header value without scheme.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        public static void SetAuthorizationHeader(this EsiContext context, string parameter)
+        public static string? GetEndpointRequiredScope(this EsiContext context)
         {
-            ArgumentNullException.ThrowIfNull(context);
+            return GetEndpointConfiguration(context).Scope;
+        }
 
-            if (string.IsNullOrEmpty(parameter))
-            {
-                throw new ArgumentNullException(nameof(parameter));
-            }
-
-            if (context.HttpClient.DefaultRequestHeaders.Authorization is not null)
-            {
-                return;
-            }
-
-            context.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", parameter);
+        private static EndpointConfiguration GetEndpointConfiguration(EsiContext context)
+        {
+            var configurations = context.ScopedServices.GetRequiredService<IEndpointConfigurationProvider>();
+            return configurations.GetEndpointConfiguration(context.EndpointId);
         }
     }
 }

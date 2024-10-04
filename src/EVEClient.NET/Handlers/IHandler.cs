@@ -2,7 +2,7 @@
 
 using EVEClient.NET.Pipline;
 
-namespace EVEClient.NET
+namespace EVEClient.NET.Handlers
 {
     /// <summary>
     /// Defines handler (middleware) that can be added to the ESI request pipeline.

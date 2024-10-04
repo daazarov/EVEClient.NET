@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 using EVEClient.NET.Models;
@@ -8,80 +7,42 @@ using EVEClient.NET.Pipline;
 
 namespace EVEClient.NET
 {
-    internal class EsiHttpClient<T> : IEsiHttpClient<T>
+    internal class EsiHttpClient : IEsiHttpClient
     {
-        private readonly IEsiContextFactory _contextFactory;
         private readonly IPiplineStore _piplineStore;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly IEndpointConfigurationProvider _configurations;
 
-        private Type callerMemberType = typeof(T);
-
-        public EsiHttpClient(IEsiContextFactory contextFactory, IPiplineStore piplineStore)
+        public EsiHttpClient(IPiplineStore piplineStore, IServiceProvider serviceProvider, IEndpointConfigurationProvider configurations)
         {
-            _contextFactory = contextFactory;
             _piplineStore = piplineStore;
+            _configurations = configurations;
+
+            // 
+            _serviceProvider = serviceProvider;
         }
 
-        public virtual async Task<EsiResponse> DeleteRequestAsync<TRequest>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
+        public async Task<EsiResponseContext> Request(string endpointId, EsiRequest request, ExecutionOptions options = ExecutionOptions.None, CancellationToken cancellationToken = default)
         {
-            var marker = new EndpointMarker(HttpMethod.Delete.Method, callerMemberType, callerMemberName);
-            var context = _contextFactory.CreateContext(marker, requestModel, token);
-            var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
+            ArgumentNullException.ThrowIfNull(request);
+            ArgumentNullException.ThrowIfNullOrEmpty(endpointId);
 
-            return new EsiResponseDefault(handledContext.Response);
-        }
+            var config = _configurations.GetEndpointConfiguration(endpointId);
+            if (config is null)
+            {
+                throw new InvalidOperationException("Failed to retrieve configuration for the ESI endpoint identifier: " + endpointId);
+            }
 
-        public virtual async Task<EsiResponsePagination<TResponse>> GetPaginationRequestAsync<TRequest, TResponse>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
-        {
-            var marker = new EndpointMarker(HttpMethod.Get.Method, callerMemberType, callerMemberName);
-            var context = _contextFactory.CreateContext(marker, requestModel, token);
-            var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
+            var context = new EsiContext(endpointId, request)
+            {
+                CancellationToken = cancellationToken,
+                ExecutionOptions = options,
+                ScopedServices = _serviceProvider
+            };
 
-            return new EsiResponsePagination<TResponse>(handledContext.Response);
-        }
-
-        public virtual async Task<EsiResponse<TResponse>> GetRequestAsync<TResponse>(string? token = null, [CallerMemberName] string callerMemberName = "")
-        {
-            var marker = new EndpointMarker(HttpMethod.Delete.Method, callerMemberType, callerMemberName);
-            var context = _contextFactory.CreateContext(marker, token);
-            var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
-
-            return new EsiResponseDefaultGeneric<TResponse>(handledContext.Response);
-        }
-
-        public virtual async Task<EsiResponse<TResponse>> GetRequestAsync<TRequest, TResponse>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
-        {
-            var marker = new EndpointMarker(HttpMethod.Get.Method, callerMemberType, callerMemberName);
-            var context = _contextFactory.CreateContext(marker, requestModel, token);
-            var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
-
-            return new EsiResponseDefaultGeneric<TResponse>(handledContext.Response);
-        }
-
-        public virtual async Task<EsiResponse> PostNoContentRequestAsync<TRequest>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
-        {
-            var marker = new EndpointMarker(HttpMethod.Post.Method, callerMemberType, callerMemberName);
-            var context = _contextFactory.CreateContext(marker, requestModel, token);
-            var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
-
-            return new EsiResponseDefault(handledContext.Response);
-        }
-
-        public virtual async Task<EsiResponse<TResponse>> PostRequestAsync<TRequest, TResponse>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
-        {
-            var marker = new EndpointMarker(HttpMethod.Post.Method, callerMemberType, callerMemberName);
-            var context = _contextFactory.CreateContext(marker, requestModel, token);
-            var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
-
-            return new EsiResponseDefaultGeneric<TResponse>(handledContext.Response);
-        }
-
-        public virtual async Task<EsiResponse> PutRequestAsync<TRequest>(TRequest requestModel, string? token = null, [CallerMemberName] string callerMemberName = "") where TRequest : IRequestModel
-        {
-            var marker = new EndpointMarker(HttpMethod.Put.Method, callerMemberType, callerMemberName);
-            var context = _contextFactory.CreateContext(marker, requestModel, token);
-            var handledContext = await _piplineStore.GetPipline(marker).ExecuteAsync(context);
-
-            return new EsiResponseDefault(handledContext.Response);
+            var pipline = await _piplineStore.GetPiplineAsync(endpointId, config.MethodType);
+            
+            return (await pipline.ExecuteAsync(context)).ResponseContext;
         }
     }
 }

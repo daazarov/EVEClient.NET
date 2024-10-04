@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.Extensions.Options;
 
 using EVEClient.NET.Configuration;
@@ -13,7 +14,7 @@ namespace EVEClient.NET.Handlers
     /// Used when the setting "UseETag" setting is enabled.
     /// Stores the eTag value for a particular request in internal storage and applies it to the next request.
     /// </summary>
-    public class ETagHandler : IHandler
+    public class ETagHandler : IRequestETagHandler
     {
         private readonly EsiClientConfiguration _options;
         private readonly IETagStorage _storage;
@@ -26,13 +27,13 @@ namespace EVEClient.NET.Handlers
 
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
-            if (!_options.EnableETag)
+            if (!_options.EnableETag || context.ExecutionOptions.HasFlag(ExecutionOptions.WithoutETag))
             {
                 await next.Invoke(context);
             }
             else
             {
-                await SetupETagToHttpClient(context);
+                await SetupETagToHttpRequest(context);
                 
                 await next.Invoke(context);
 
@@ -40,27 +41,29 @@ namespace EVEClient.NET.Handlers
             }
         }
 
-        protected virtual async Task SetupETagToHttpClient(EsiContext context)
+        protected virtual async Task SetupETagToHttpRequest(EsiContext context)
         {
             if (await _storage.TryGetETagAsync(GetKey(context), out var eTag))
             {
-                context.HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("If-None-Match", eTag);
+                context.Request.Headers.TryAddWithoutValidation("If-None-Match", eTag);
             }
         }
 
         protected virtual async Task StoreETagFromResponse(EsiContext context)
         {
-            if (!context.Response.Headers.Contains("ETag"))
+            if (!context.ResponseContext.Response.Headers.Contains("ETag"))
             {
                 return;
             }
 
-            var eTag = context.Response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
+            var eTag = context.ResponseContext.Response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
 
             await _storage.StoreETagAsync(GetKey(context), eTag);
         }
 
-        protected virtual string GetKey(EsiContext context) =>
-            ETagStoreKeyGenerator.GetKey(context.RequestContext.EndpointId, context.RequestContext.PathParametersMap.AsNameValueCollection(), context.RequestContext.QueryParametersMap.AsNameValueCollection());
+        protected virtual string GetKey(EsiContext context)
+        { 
+            return ETagStoreKeyGenerator.GetKey(context.EndpointId, context.Request.Parameters.Route.AsNameValueCollection(), context.Request.Parameters.Query.AsNameValueCollection());
+        }
     }
 }

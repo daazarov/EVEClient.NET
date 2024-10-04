@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Collections.Specialized;
 
 using EVEClient.NET.Extensions;
@@ -19,9 +20,9 @@ namespace EVEClient.NET.Utilities
 
         public static string GetKey(string endpointId, NameValueCollection routingParams, NameValueCollection queryParams)
         {
-            endpointId.ArgumentStringNotNullOrEmpty(nameof(endpointId));
-            routingParams.ArgumentNotNull(nameof(routingParams));
-            queryParams.ArgumentNotNull(nameof(queryParams));
+            ArgumentNullException.ThrowIfNull(routingParams);
+            ArgumentNullException.ThrowIfNull(queryParams);
+            ArgumentNullException.ThrowIfNullOrEmpty(endpointId);
 
             var stringBuilder = new StringBuilder();
 

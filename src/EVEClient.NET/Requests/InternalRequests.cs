@@ -83,42 +83,6 @@ namespace EVEClient.NET.Models
             }
         }
     }
-    
-    internal class CharactersRequests
-    {
-        internal class GetCharacterBlueprintsRequest : RouteModelBase<PageBasedCharacterIdModel>
-        {
-            private GetCharacterBlueprintsRequest(PageBasedCharacterIdModel uriModel) : base(uriModel)
-            { }
-
-            public static GetCharacterBlueprintsRequest Create(int characterId, int page)
-            {
-                return new GetCharacterBlueprintsRequest(new PageBasedCharacterIdModel(characterId, page));
-            }
-        }
-
-        internal class PostCharacterCspaRequest : RequestBase<CharacterIdModel, CharacterIdsBodyModel>
-        {
-            private PostCharacterCspaRequest(CharacterIdModel uriModel, CharacterIdsBodyModel bodyModel) : base(uriModel, bodyModel)
-            { }
-
-            public static PostCharacterCspaRequest Create(int characterId, int[] characterIds)
-            {
-                return new PostCharacterCspaRequest(new CharacterIdModel(characterId), new CharacterIdsBodyModel(characterIds));
-            }
-        }
-
-        internal class PostCharacterAffilationRequest : BodyModelBase<CharacterIdsBodyModel>
-        {
-            private PostCharacterAffilationRequest(CharacterIdsBodyModel bodyModel) : base(bodyModel)
-            { }
-
-            public static PostCharacterAffilationRequest Create(int[] characterIds)
-            {
-                return new PostCharacterAffilationRequest(new CharacterIdsBodyModel(characterIds));
-            }
-        }
-    }
 
     internal class AssetsRequests
     {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using EVEClient.NET.Extensions;
-using EVEClient.NET.Utilities;
 
 namespace EVEClient.NET.Pipline.Modifications
 {
@@ -36,12 +35,12 @@ namespace EVEClient.NET.Pipline.Modifications
 
         public IEndpointModificationBuilder ModificationFor(string[] endpointIds)
         {
-            if (endpointIds is null || endpointIds.Length == 0 || endpointIds.Any(x => string.IsNullOrEmpty(x)))
+            if (endpointIds is null || endpointIds.Length == 0 || endpointIds.Any(string.IsNullOrEmpty))
             {
                 throw new ArgumentException("Endpoint IDs can not be null or empty.");
             }
 
-            return new CompositeEndpointModificationBuilder(endpointIds.Select(x => ModificationFor(x)));
+            return new CompositeEndpointModificationBuilder(endpointIds.Select(ModificationFor));
         }
 
         public IEndpointModificationBuilder ModificationFor(EndpointsSelector selector)

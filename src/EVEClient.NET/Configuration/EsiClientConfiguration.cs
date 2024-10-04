@@ -1,9 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
 
 namespace EVEClient.NET.Configuration
 {
     public class EsiClientConfiguration
     {
+        private readonly List<EndpointConfigurationBuilder> _endpointConfigurations = new();
+        private readonly Dictionary<string, EndpointConfigurationBuilder> _configurationMap = new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// Returns the esi endpoint configuration builders.
+        /// </summary>
+        public IEnumerable<EndpointConfigurationBuilder> EndpointConfigurations => _endpointConfigurations;
+
+        /// <summary>
+        /// Adds an <see cref="EndpointConfiguration"/>.
+        /// </summary>
+        /// <param name="endpointId">The esi endpoint identifier from <see cref="ESI.Endpoints"/>.</param>
+        /// <param name="configureBuilder">Configures the endpoint.</param>
+        public void AddEndpointConfiguration(string endpointId, Action<EndpointConfigurationBuilder> configureBuilder)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(endpointId);
+            ArgumentNullException.ThrowIfNull(configureBuilder);
+
+            if (_configurationMap.ContainsKey(endpointId))
+            {
+                throw new InvalidOperationException("Endpoint configuration already exists: " + endpointId);
+            }
+
+            var builder = new EndpointConfigurationBuilder(endpointId);
+            configureBuilder(builder);
+            _endpointConfigurations.Add(builder);
+            _configurationMap[endpointId] = builder;
+        }
+
         /// <summary>
         /// Get or set UserAgent header value which will be used when sending requests.
         /// </summary>
@@ -30,6 +61,11 @@ namespace EVEClient.NET.Configuration
         /// </summary>
         /// <remarks>The default value: https://esi.evetech.net</remarks>
         public string EsiBaseUrl { get; set; } = ESI.EsiBaseUrl;
+
+        /// <summary>
+        /// Used to communicate with the remote ESI API.
+        /// </summary>
+        public HttpClient Backchannel { get; set; } = default!;
     }
 
     public enum EVEOnlineServer

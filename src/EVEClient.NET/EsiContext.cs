@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 
 using EVEClient.NET.Models;
 
@@ -9,107 +10,68 @@ namespace EVEClient.NET
     public class EsiContext
     {
         /// <summary>
-        /// Get the internal model built on the basis of passed parameters.
+        /// The ESI endpoint identifier for which the context is created.
         /// </summary>
-        public IRequestModel? RequestModel { get; }
+        public string EndpointId { get; }
 
         /// <summary>
-        /// Linking marker between EVEClient.NET methods and ESI endpoints Ids.
+        /// Gets ot sets <see cref="NET.ExecutionOptions"/>.
         /// </summary>
-        public EndpointMarker EndpointMarker { get; }
+        public ExecutionOptions ExecutionOptions { get; set; } = ExecutionOptions.None;
 
         /// <summary>
-        /// Gets the <see cref="IServiceProvider"/> that provides access to the request's service container.
+        /// Gets or sets <see cref="CancellationToken"/> that fires if the request is aborted and the application should cease processing.
         /// </summary>
-        public IServiceProvider ScopedServices { get; }
+        public CancellationToken CancellationToken { get; set; } = default;
 
         /// <summary>
-        /// Gets the <see cref="HttpClient"/> that will be used to send the request.
+        /// Gets the <see cref="IServiceProvider"/> that provides access to the service container.
         /// </summary>
-        public HttpClient HttpClient { get; }
+        public IServiceProvider ScopedServices { get; set; } = default!;
 
         /// <summary>
-        /// Gets the <see cref="RequestContext"/> that contains data for forming a ready URL.
+        /// Gets the <see cref="EsiRequest"/> that will be sent to the ESI API.
         /// </summary>
-        public RequestContext RequestContext { get; }
+        public EsiRequest Request { get; }
 
         /// <summary>
-        /// Gets the <see cref="HttpResponseMessage"/> received from the ESI API.
+        /// Gets the <see cref="EsiResponseContext"/>.
         /// </summary>
-        public HttpResponseMessage Response { get; private set; } = default!;
+        public EsiResponseContext ResponseContext { get; }
 
         /// <summary>
         /// A container for storing custom objects between midleware components with per-request life cycle.
         /// </summary>
-        public Dictionary<string, object> Items { get; } = new();
+        public Dictionary<string, object> Properties { get; } = new();
 
-        public EsiContext(HttpClient httpClient, EndpointMarker endpointMarker, IServiceProvider scopedServices, string? token)
-            : this(httpClient, endpointMarker, scopedServices, null!, token)
+        /// <summary>
+        /// Creates a new instance of the object.
+        /// </summary>
+        /// <param name="endpointId">ESI endpoint id from <see cref="ESI.Endpoints"/>.</param>
+        /// <param name="request">The <see cref="EsiRequest"/> object.</param>
+        public EsiContext(string endpointId, EsiRequest request)
         {
-        }
+            EndpointId = endpointId;
+            Request = request;
 
-        public EsiContext(HttpClient httpClient, EndpointMarker endpointMarker, IServiceProvider scopedServices, IRequestModel requestModel, string? token)
-        {
-            HttpClient = httpClient;
-            EndpointMarker = endpointMarker;
-            ScopedServices = scopedServices;
-            RequestModel = requestModel;
-
-            var endpointId = EndpointMarker.ToEndpointId();
-            if (string.IsNullOrEmpty(endpointId))
-            {
-                throw new InvalidOperationException($"Can not convert EndpointMartker to endpoint id. HttpMethodType: {endpointMarker.HttpMethodType}; CallerType: {endpointMarker.CallerType}; CallerName: {endpointMarker.CallerName}");
-            }
-
-            RequestContext = new RequestContext { EndpointId = endpointId, Token = token };
-        }
-
-        public void SetHttpResponseMessage(HttpResponseMessage httpResponseMessage)
-        {
-            if (httpResponseMessage == null)
-            { 
-                throw new ArgumentNullException(nameof(httpResponseMessage));
-            }
-
-            Response = httpResponseMessage;
+            ResponseContext = new EsiResponseContext(this);
         }
     }
 
-    public class RequestContext
+    public class EsiResponseContext
     {
-        /// <summary>
-        /// The ready built URL to which the request will be executed.
-        /// </summary>
-        public string RequestUrl { get; internal set; } = default!;
+        public EsiResponseContext(EsiContext context)
+        {
+            EsiContext = context;
+        }
 
         /// <summary>
-        /// The ESI endpoint identifier.
+        /// Gets the parent <see cref="NET.EsiContext"/>.
         /// </summary>
-        public string EndpointId { get; internal set; } = default!;
+        public EsiContext EsiContext { get; }
 
-        /// <summary>
-        /// The request body.
-        /// </summary>
-        public HttpContent? Body { get; internal set; }
+        public HttpResponseMessage Response { get; set; } = default!;
 
-        /// <summary>
-        /// Available ready built routes for sending a request to a specific endpoint Id.
-        /// </summary>
-        public Dictionary<EndpointVersion, string> EndpointUrls { get; } = new();
-
-        /// <summary>
-        /// Gets a list of parameters to be replaced in the route of the request.
-        /// </summary>
-        public Dictionary<string, string> PathParametersMap { get; } = new();
-
-        /// <summary>
-        /// Gets a list of parameters to be replaced in the query of the request.
-        /// </summary>
-        public Dictionary<string, string> QueryParametersMap { get; } = new();
-
-        /// <summary>
-        /// Gets an access token which was passed as an input parameter.
-        /// </summary>
-        public string? Token { get; internal set; }
+        public bool Completed { get; set; }
     }
 }

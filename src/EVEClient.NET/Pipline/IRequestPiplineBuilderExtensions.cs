@@ -30,7 +30,7 @@ namespace EVEClient.NET.Pipline
         }
 
         /// <summary>
-        /// Prepare the default middleware for the DELETE ESI endpoints.
+        /// Prepare the default middleware for the Delete ESI endpoints.
         /// </summary>
         /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UseDeletePipline(this IRequestPiplineBuilder builder)
@@ -45,7 +45,7 @@ namespace EVEClient.NET.Pipline
         }
 
         /// <summary>
-        /// Prepare the default middleware for the GET ESI endpoints.
+        /// Prepare the default middleware for the Get ESI endpoints.
         /// </summary>
         /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UseGetPipline(this IRequestPiplineBuilder builder)
@@ -61,7 +61,7 @@ namespace EVEClient.NET.Pipline
         }
 
         /// <summary>
-        /// Prepare the default middleware for the POST ESI endpoints.
+        /// Prepare the default middleware for the Post ESI endpoints.
         /// </summary>
         /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UsePostPipline(this IRequestPiplineBuilder builder)
@@ -77,7 +77,7 @@ namespace EVEClient.NET.Pipline
         }
 
         /// <summary>
-        /// Prepare the default middleware for the PUT ESI endpoints.
+        /// Prepare the default middleware for the Put ESI endpoints.
         /// </summary>
         /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
         public static IRequestPiplineBuilder UsePutPipline(this IRequestPiplineBuilder builder)

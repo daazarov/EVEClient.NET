@@ -53,6 +53,7 @@ namespace Microsoft.Extensions.DependencyInjection
             });
 
             services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<EsiClientConfiguration>, EnshureUserAgentProvidedPostConfigure>());
+            services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<EsiClientConfiguration>, EnshureBackchannelPostConfigure>());
 
             var builder = services.AddEsiClientConfigurationBuilder(configuration);
 

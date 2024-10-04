@@ -339,5 +339,24 @@
                 public const string Kills =                           "get_wars_war_id_killmails";
             }
         }
+
+        internal static class KnownHeaders
+        {
+            public const string ETag = "ETag";
+        }
+
+        public static class Parameters
+        {
+            public static class Route
+            {
+                public const string CharacterId = "character_id";
+            }
+
+            public static class Query
+            {
+                public const string Datasource = "datasource";
+                public const string Page = "page";
+            }
+        }
     }
 }

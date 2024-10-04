@@ -2,61 +2,195 @@
 using System.Threading.Tasks;
 
 using EVEClient.NET.DataContract;
-
-using static EVEClient.NET.Models.CharactersRequests;
-using static EVEClient.NET.Models.CommonRequests;
+using EVEClient.NET.Extensions;
+using EVEClient.NET.Requests;
+using EVEClient.NET.Requests.Characters;
 
 namespace EVEClient.NET.Logic
 {
     internal class CharacterLogic : ICharacterLogic
     {
-        private readonly IEsiHttpClient<ICharacterLogic> _esiClient;
+        private readonly IEsiHttpClient _client;
 
-        public CharacterLogic(IEsiHttpClient<ICharacterLogic> esiClient)
+        public CharacterLogic(IEsiHttpClient client)
         { 
-            _esiClient = esiClient;
+            _client = client;
         }
 
-        public Task<EsiResponse<CharacterPublicInformation>> PublicInformation(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, CharacterPublicInformation>(CharacterIdRouteRequest.Create(characterId));
+        public async Task<EsiResponse<CharacterPublicInformation>> PublicInformation(int characterId)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.PublicInformation, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId
+            });
+            
+            return await response.ReadEsiResponse<CharacterPublicInformation>();
+        }
 
-        public Task<EsiResponse<List<CharacterStanding>>> Standings(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterStanding>>(CharacterIdRouteRequest.Create(characterId), token);
+        public async Task<EsiResponse<List<CharacterStanding>>> Standings(int characterId, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Standings, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+                Token = token
+            });
 
-        public Task<EsiResponse<List<CharacterAgentsResearch>>> AgentsResearch(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterAgentsResearch>>(CharacterIdRouteRequest.Create(characterId), token);
+            return await response.ReadEsiResponse<List<CharacterStanding>>();
+        }
 
-        public Task<EsiResponsePagination<List<CharacterBlueprint>>> Blueprints(int characterId, int page = 1, string? token = null) =>
-            _esiClient.GetPaginationRequestAsync<GetCharacterBlueprintsRequest, List<CharacterBlueprint>>(GetCharacterBlueprintsRequest.Create(characterId, page), token);
+        public async Task<EsiResponse<List<CharacterAgentsResearch>>> AgentsResearch(int characterId, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.AgentsResearch, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+                Token = token
+            });
+            
+            return await response.ReadEsiResponse<List<CharacterAgentsResearch>>();
+        }
 
-        public Task<EsiResponse<List<CharacterCorporationHistory>>> CorporationHistory(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterCorporationHistory>>(CharacterIdRouteRequest.Create(characterId));
+        public async Task<EsiResponsePagination<List<CharacterBlueprint>>> Blueprints(int characterId, int page = 1, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Blueprints, new Common.PageBasedCharacterIdRequest
+            {
+                CharacterId = characterId,
+                Page = page,
+                Token = token
+            });
 
-        public Task<EsiResponse<long>> CSPA(int characterId, int[] characterIds, string? token = null) =>
-            _esiClient.PostRequestAsync<PostCharacterCspaRequest, long>(PostCharacterCspaRequest.Create(characterId, characterIds), token);
+            return await response.ReadPaginatedEsiResponse<List<CharacterBlueprint>>();
+        }
 
-        public Task<EsiResponse<CharacterFatigue>> Fatigue(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, CharacterFatigue>(CharacterIdRouteRequest.Create(characterId), token);
+        public async Task<EsiResponse<List<CharacterCorporationHistory>>> CorporationHistory(int characterId)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.CorporationHistory, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId
+            });
 
-        public Task<EsiResponse<List<CharacterMedal>>> Medals(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterMedal>>(CharacterIdRouteRequest.Create(characterId), token);
+            return await response.ReadEsiResponse<List<CharacterCorporationHistory>>();
+        }
 
-        public Task<EsiResponse<List<CharacterNotification>>> Notifications(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterNotification>>(CharacterIdRouteRequest.Create(characterId), token);
+        public async Task<EsiResponse<long>> CSPA(int characterId, int[] characterIds, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.CSPA, new PostCharacterCspaRequest
+            {
+                CharacterId = characterId,
+                CharacterIds = characterIds,
+                Token = token
+            });
 
-        public Task<EsiResponse<List<CharacterContactNotification>>> ContactNotifications(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterContactNotification>>(CharacterIdRouteRequest.Create(characterId), token);
+            return await response.ReadEsiResponse<long>();
+        }
 
-        public Task<EsiResponse<CharacterPortrait>> Portrait(int characterId) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, CharacterPortrait>(CharacterIdRouteRequest.Create(characterId));
+        public async Task<EsiResponse<CharacterFatigue>> Fatigue(int characterId, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Fatigue, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+                Token = token
+            });
 
-        public Task<EsiResponse<CharacterRoles>> Roles(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, CharacterRoles>(CharacterIdRouteRequest.Create(characterId), token);
+            return await response.ReadEsiResponse<CharacterFatigue>();
+        }
 
-        public Task<EsiResponse<List<CharacterTitle>>> Titles(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<CharacterTitle>>(CharacterIdRouteRequest.Create(characterId), token);
+        public async Task<EsiResponse<List<CharacterMedal>>> Medals(int characterId, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Medals, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+                Token = token
+            });
 
-        public Task<EsiResponse<List<CharacterAffilation>>> Affilation(int[] characterIds) =>
-            _esiClient.PostRequestAsync<PostCharacterAffilationRequest, List<CharacterAffilation>>(PostCharacterAffilationRequest.Create(characterIds));
+            return await response.ReadEsiResponse<List<CharacterMedal>>();
+        }
+
+        public async Task<EsiResponse<List<CharacterNotification>>> Notifications(int characterId, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Notifications, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+                Token = token
+            });
+
+            return await response.ReadEsiResponse<List<CharacterNotification>>();
+        }
+
+        public async Task<EsiResponse<List<CharacterContactNotification>>> ContactNotifications(int characterId, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.ContactNotifications, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+                Token = token
+            });
+
+            return await response.ReadEsiResponse<List<CharacterContactNotification>>();
+        }
+
+        public async Task<EsiResponse<CharacterPortrait>> Portrait(int characterId)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Portrait, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+            });
+
+            return await response.ReadEsiResponse<CharacterPortrait>();
+        }
+
+        public async Task<EsiResponse<CharacterRoles>> Roles(int characterId, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Roles, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+                Token = token
+            });
+
+            return await response.ReadEsiResponse<CharacterRoles>();
+        }
+
+        public async Task<EsiResponse<List<CharacterTitle>>> Titles(int characterId, string? token = null)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Titles, new Common.CharacterIdRequest
+            {
+                CharacterId = characterId,
+                Token = token
+            });
+
+            return await response.ReadEsiResponse<List<CharacterTitle>>();
+        }
+
+        public async Task<EsiResponse<List<CharacterAffilation>>> Affilation(int[] characterIds)
+        {
+            var response = await _client.Request(ESI.Endpoints.Characters.Affilation, new PostCharacterAffilationRequest
+            {
+                CharacterIds = characterIds
+            });
+
+            return await response.ReadEsiResponse<List<CharacterAffilation>>();
+        }
+
+        //public async Task<EsiStreamResponse<CharacterBlueprint>> Blueprints(int characterId, int pageLimit = 0, int pageOffset = 0, string? token = null, CancellationToken cancellationToken = default)
+        //{
+        //    var resonse = new EsiStreamResponseDefault<CharacterBlueprint>
+        //    (
+        //        executor: (page) => 
+        //            _client.GetPaginationRequestAsync<List<CharacterBlueprint>>(ESI.Endpoints.Characters.Blueprints, new Common.PageBasedCharacterIdRequest
+        //            {
+        //                CharacterId = characterId,
+        //                Page = page,
+        //                MethodType = HttpMethodType.Get
+        //            },
+        //            token,
+        //            ExecutionOptions.WithoutETag),
+        //        pageOffset: pageOffset,
+        //        pageLimit: pageLimit,
+        //        cancellationToken: cancellationToken,
+        //        pageSize: 1000
+        //    );
+
+        //    await resonse.InitializeAsync();
+
+        //    return resonse;
+        //}
     }
 }
