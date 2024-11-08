@@ -16,7 +16,7 @@ namespace EVEClient.NET.Handlers
     /// <summary>
     /// Performs getting the access token from IAccessTokenProvider or input parameter, validates scope, and sets the Authorization header
     /// </summary>
-    public class ProtectionHandler : IRequestProtectionHandler
+    public class DefaultRequestProtectionHandler : IRequestProtectionHandler
     {
         public async Task HandleAsync(EsiContext context, RequestDelegate next)
         {
@@ -61,8 +61,6 @@ namespace EVEClient.NET.Handlers
             {
                 Content = new StringContent(JsonConvert.SerializeObject(new { error = errorMessage }), Encoding.UTF8, "application/json")
             };
-
-            context.ResponseContext.Completed = true;
         }
     }
 }

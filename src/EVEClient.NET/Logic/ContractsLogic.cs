@@ -1,47 +1,155 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using EVEClient.NET.DataContract;
-
-using static EVEClient.NET.Models.CommonRequests;
-using static EVEClient.NET.Models.ContractRequests;
+using EVEClient.NET.Extensions;
+using EVEClient.NET.Requests;
 
 namespace EVEClient.NET.Logic
 {
     internal class ContractsLogic : IContractsLogic
     {
-        private readonly IEsiHttpClient<IContractsLogic> _esiClient;
+        private readonly IEsiHttpClient _client;
+        private readonly IEsiRequestFactory _esiRequestFactory;
 
-        public ContractsLogic(IEsiHttpClient<IContractsLogic> esiClient)
+        public ContractsLogic(IEsiHttpClient client, IEsiRequestFactory esiRequestFactory)
         {
-            _esiClient = esiClient;
+            _client = client;
+            _esiRequestFactory = esiRequestFactory;
         }
 
-        public Task<EsiResponsePagination<List<Contract>>> CharacterContracts(int characterId, int page = 1, string? token = null) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<Contract>>(PageBasedCharacterIdRouteRequest.Create(characterId, page), token);
+        public async Task<EsiResponsePagination<List<Contract>>> CharacterContracts(int characterId, int page = 1, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponse<List<Bid>>> CharacterContractBids(int characterId, int contractId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterContractRouteRequest, List<Bid>>(CharacterContractRouteRequest.Create(characterId, contractId), token);
+            var response = await _client.Request(ESI.Endpoints.Contracts.CharacterContracts, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<List<ContractItem>>> CharacterContractItems(int characterId, int contractId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterContractRouteRequest, List<ContractItem>>(CharacterContractRouteRequest.Create(characterId, contractId), token);
+            return await response.ReadPaginatedEsiResponse<List<Contract>>();
+        }
 
-        public Task<EsiResponsePagination<List<PublicContract>>> PublicContracts(int regionId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedRegionIdRouteRequest, List<PublicContract>>(PageBasedRegionIdRouteRequest.Create(regionId, page));
+        public async Task<EsiResponse<List<Bid>>> CharacterContractBids(int characterId, int contractId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                    parameters.Route[ESI.Parameters.Route.ContractId] = contractId.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponsePagination<List<Bid>>> PublicContractBids(int contractId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedContractIdRouteRequest, List<Bid>>(PageBasedContractIdRouteRequest.Create(contractId, page));
+            var response = await _client.Request(ESI.Endpoints.Contracts.CharacterContractBids, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponsePagination<List<ContractItem>>> PublicContractItems(int contractId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedContractIdRouteRequest, List<ContractItem>>(PageBasedContractIdRouteRequest.Create(contractId, page));
+            return await response.ReadEsiResponse<List<Bid>>();
+        }
 
-        public Task<EsiResponsePagination<List<Contract>>> CorporationContracts(int corporationId, int page = 1, string? token = null) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<Contract>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page), token);
+        public async Task<EsiResponse<List<ContractItem>>> CharacterContractItems(int characterId, int contractId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                    parameters.Route[ESI.Parameters.Route.ContractId] = contractId.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponsePagination<List<Bid>>> CorporationContractBids(int corporationId, int contractId, int page = 1, string? token = null) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationContractRouteRequest, List<Bid>>(PageBasedCorporationContractRouteRequest.Create(corporationId, contractId, page), token);
+            var response = await _client.Request(ESI.Endpoints.Contracts.CharacterContractItems, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<List<ContractItem>>> CorporationContractItems(int corporationId, int contractId, string? token = null) =>
-            _esiClient.GetRequestAsync<CorporationContractRouteRequest, List<ContractItem>>(CorporationContractRouteRequest.Create(corporationId, contractId), token);
+            return await response.ReadEsiResponse<List<ContractItem>>();
+        }
+
+        public async Task<EsiResponsePagination<List<PublicContract>>> PublicContracts(int regionId, int page = 1, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.RegionId] = regionId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Contracts.PublicContracts, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<PublicContract>>();
+        }
+
+        public async Task<EsiResponsePagination<List<Bid>>> PublicContractBids(int contractId, int page = 1, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.ContractId] = contractId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Contracts.PublicContractBids, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<Bid>>();
+        }
+
+        public async Task<EsiResponsePagination<List<ContractItem>>> PublicContractItems(int contractId, int page = 1, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.ContractId] = contractId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Contracts.PublicContractItems, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<ContractItem>>();
+        }
+
+        public async Task<EsiResponsePagination<List<Contract>>> CorporationContracts(int corporationId, int page = 1, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CorporationId] = corporationId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Contracts.CorporationContracts, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<Contract>>();
+        }
+
+        public async Task<EsiResponsePagination<List<Bid>>> CorporationContractBids(int corporationId, int contractId, int page = 1, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CorporationId] = corporationId.ToString();
+                    parameters.Route[ESI.Parameters.Route.ContractId] = contractId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Contracts.CorporationContractBids, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<Bid>>();
+        }
+
+        public async Task<EsiResponse<List<ContractItem>>> CorporationContractItems(int corporationId, int contractId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CorporationId] = corporationId.ToString();
+                    parameters.Route[ESI.Parameters.Route.ContractId] = contractId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Contracts.CorporationContractItems, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<ContractItem>>();
+        }
     }
 }

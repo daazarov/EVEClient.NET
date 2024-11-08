@@ -2,18 +2,18 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-using EVEClient.NET.Models;
 using EVEClient.NET.Pipline;
+using EVEClient.NET.Requests;
 
 namespace EVEClient.NET
 {
-    internal class EsiHttpClient : IEsiHttpClient
+    internal class DefaultEsiHttpClient : IEsiHttpClient
     {
         private readonly IPiplineStore _piplineStore;
         private readonly IServiceProvider _serviceProvider;
         private readonly IEndpointConfigurationProvider _configurations;
 
-        public EsiHttpClient(IPiplineStore piplineStore, IServiceProvider serviceProvider, IEndpointConfigurationProvider configurations)
+        public DefaultEsiHttpClient(IPiplineStore piplineStore, IServiceProvider serviceProvider, IEndpointConfigurationProvider configurations)
         {
             _piplineStore = piplineStore;
             _configurations = configurations;
@@ -27,8 +27,7 @@ namespace EVEClient.NET
             ArgumentNullException.ThrowIfNull(request);
             ArgumentNullException.ThrowIfNullOrEmpty(endpointId);
 
-            var config = _configurations.GetEndpointConfiguration(endpointId);
-            if (config is null)
+            if (!_configurations.Exists(endpointId))
             {
                 throw new InvalidOperationException("Failed to retrieve configuration for the ESI endpoint identifier: " + endpointId);
             }
@@ -40,7 +39,7 @@ namespace EVEClient.NET
                 ScopedServices = _serviceProvider
             };
 
-            var pipline = await _piplineStore.GetPiplineAsync(endpointId, config.MethodType);
+            var pipline = await _piplineStore.GetPiplineAsync(endpointId);
             
             return (await pipline.ExecuteAsync(context)).ResponseContext;
         }

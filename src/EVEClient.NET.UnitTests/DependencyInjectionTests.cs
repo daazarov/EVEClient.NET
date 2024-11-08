@@ -55,15 +55,15 @@ namespace EVEClient.NET.UnitTests
             Assert.That(_serviceCollection.Single(x => x.ServiceType == type).Lifetime, Is.EqualTo(ServiceLifetime.Scoped));
         }
 
-        [TestCase(typeof(EndpointHandler), ServiceLifetime.Singleton)]
-        [TestCase(typeof(ProtectionHandler), ServiceLifetime.Scoped)]
+        [TestCase(typeof(DefaultRequestParameterPreparationHandler), ServiceLifetime.Singleton)]
+        [TestCase(typeof(DefaultRequestProtectionHandler), ServiceLifetime.Scoped)]
         [TestCase(typeof(RequestDeleteHandler), ServiceLifetime.Singleton)]
         [TestCase(typeof(RequestPutHandler), ServiceLifetime.Singleton)]
         [TestCase(typeof(RequestGetHandler), ServiceLifetime.Singleton)]
         [TestCase(typeof(RequestPostHandler), ServiceLifetime.Singleton)]
         [TestCase(typeof(UrlRequestParametersHandler), ServiceLifetime.Scoped)]
         [TestCase(typeof(RequestHeadersHandler), ServiceLifetime.Scoped)]
-        [TestCase(typeof(ETagHandler), ServiceLifetime.Scoped)]
+        [TestCase(typeof(DefaultRequestETagHandler), ServiceLifetime.Scoped)]
         [TestCase(typeof(BodyRequestParametersHandler), ServiceLifetime.Singleton)]
         public void ServiceCollection_ContainsHandlers(Type type, ServiceLifetime lifetime)
         {

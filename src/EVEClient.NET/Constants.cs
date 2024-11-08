@@ -350,12 +350,33 @@
             public static class Route
             {
                 public const string CharacterId = "character_id";
+                public const string AllianceId = "alliance_id";
+                public const string CorporationId = "corporation_id";
+                public const string EventId = "event_id";
+                public const string ContractId = "contract_id";
+                public const string RegionId = "region_id";
+                public const string StarbaseId = "starbase_id";
+                public const string AttributeId = "attribute_id";
+                public const string EffectId = "effect_id";
+                public const string TypeId = "type_id";
+                public const string ItemId = "item_id";
+                public const string FittingId = "fitting_id";
+                public const string FleetId = "fleet_id";
+                public const string MemberId = "member_id";
+                public const string SquadId = "squad_id";
+                public const string WingId = "wing_id";
             }
 
             public static class Query
             {
                 public const string Datasource = "datasource";
                 public const string Page = "page";
+                public const string FromEvent = "from_event";
+                public const string Standing = "standing";
+                public const string Watched = "watched";
+                public const string LableIds = "label_ids";
+                public const string ContactIds = "contact_ids";
+                public const string SystemId = "system_id";
             }
         }
     }

@@ -24,7 +24,12 @@ namespace EVEClient.NET
             }
         }
 
-        public EndpointConfiguration GetEndpointConfiguration(string endpointId)
+        public bool Exists(string endpointId)
+        {
+           return _configurations.ContainsKey(endpointId);
+        }
+
+        public EndpointConfiguration GetConfiguration(string endpointId)
         {
             return _configurations[endpointId];
         }

@@ -9,13 +9,11 @@ namespace EVEClient.NET.Pipline
     internal class RequestPiplineBuilder : IRequestPiplineBuilder
     {
         private readonly List<PiplineComponent> _components = new();
-        private readonly List<ReplaceComponent> _replacements;
         private readonly List<AdditionalComponent> _additions;
 
-        public RequestPiplineBuilder(List<ReplaceComponent>? replacements = null, List<AdditionalComponent>? additions = null)
+        public RequestPiplineBuilder(List<AdditionalComponent>? additions = null)
         {
             _additions = additions ?? new();
-            _replacements = replacements ?? new();
         }
 
         public IRequestPipline Build()
@@ -23,15 +21,6 @@ namespace EVEClient.NET.Pipline
             // Now all validation for modifiers happens when configuring the pipelines in DI.
             // So far the library has no alternative ways of configuring the pipeline other than DI.
             // But everything may change, it may be worth performing validation of correctness of modifier settings here as well
-
-            foreach (var replacement in _replacements)
-            {
-                var index = _components.FindIndex(c => c.ComponentId == replacement.ReplaceId);
-                if (index >= 0)
-                {
-                    _components[index] = replacement.PiplineComponent;
-                }
-            }
 
             var additionsToEnd = _additions.Where(a => a.AddToEnd).OrderBy(a => a.EndOrder).ToList();
             var additionsToStart = _additions.Where(a => a.AddToStart).OrderByDescending(a => a.StartOrder).ToList();

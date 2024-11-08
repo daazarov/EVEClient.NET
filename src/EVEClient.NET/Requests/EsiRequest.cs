@@ -1,19 +1,18 @@
-﻿using System;
+﻿using EVEClient.NET.Configuration;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
+using System.Web;
 
-namespace EVEClient.NET.Models
+namespace EVEClient.NET.Requests
 {
     public abstract class EsiRequest : HttpRequestMessage
     {
-        /// <summary>
-        /// Gets or sets the http method type.
-        /// </summary>
-        public HttpMethodType MethodType { get; set; }
-
         /// <summary>
         /// Gets or sets access token for sending HTTP request to the ESI API.
         /// </summary>
@@ -41,43 +40,27 @@ namespace EVEClient.NET.Models
         public IEnumerable<string> AvailableEndpointUrls { get; set; } = default!;
 
         /// <summary>
-        /// Allows derived types to handle <see cref="Parameters"/> initializing.
-        /// </summary>
-        public abstract void InitializeParameters();
-
-        /// <summary>
         /// 
         /// </summary>
-        public void Prepare()
+        public virtual void Prepare(EndpointConfiguration configuration)
         {
             Validate();
 
-            switch (MethodType)
+            switch (configuration.MethodType)
             {
-                case HttpMethodType.Get: base.Method = System.Net.Http.HttpMethod.Get; break;
-                case HttpMethodType.Post: base.Method = System.Net.Http.HttpMethod.Post; break;
-                case HttpMethodType.Put: base.Method = System.Net.Http.HttpMethod.Put; break;
-                case HttpMethodType.Delete: base.Method = System.Net.Http.HttpMethod.Delete; break;
+                case HttpMethodType.Get: base.Method = HttpMethod.Get; break;
+                case HttpMethodType.Post: base.Method = HttpMethod.Post; break;
+                case HttpMethodType.Put: base.Method = HttpMethod.Put; break;
+                case HttpMethodType.Delete: base.Method = HttpMethod.Delete; break;
                 default: 
-                    throw new NotImplementedException(MethodType.ToString());
+                    throw new NotImplementedException(configuration.MethodType.ToString());
             }
 
-            SetAuthorizationHeaderIfProvided();
-
+            // make sure that all necessary parameters are configured, if this was not done in the pipline
+            EnshureAuthorizationHeader(Token);
+            EnshureRequestBody(Parameters.Body);
+            EnshureAvailableEndpointUrls(configuration.Routes);
             EnshureRequestUrl();
-        }
-
-        /// <summary>
-        /// Sets the <see cref="AuthenticationHeaderValue"/> for the current request if it hasn't already been done.
-        /// </summary>
-        public virtual void SetAuthorizationHeaderIfProvided()
-        {
-            if (string.IsNullOrEmpty(Token) || base.Headers.Authorization is not null)
-            {
-                return;
-            }
-
-            base.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Token);
         }
 
         /// <summary>
@@ -85,11 +68,68 @@ namespace EVEClient.NET.Models
         /// </summary>
         public virtual void Validate()
         {
-            if (string.IsNullOrEmpty(RequestUrl) && (AvailableEndpointUrls is null || !AvailableEndpointUrls.Any()))
+        }
+
+        private void EnshureAuthorizationHeader(string? token)
+        {
+            if (string.IsNullOrEmpty(token) || base.Headers.Authorization is not null)
             {
-                throw new InvalidOperationException("Can not determine request url. At least the RequestUrl or AvailableEndpointUrls must be set to successfully send a request.");
+                return;
+            }
+
+            base.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        }
+
+        private void EnshureRequestBody(object? body)
+        {
+            if (base.Content is not null && body is not null)
+            {
+                base.Content = new StringContent(JsonConvert.SerializeObject(body));
             }
         }
+
+        private void EnshureAvailableEndpointUrls(IEnumerable<Route> routes)
+        {
+            if (AvailableEndpointUrls is not null && AvailableEndpointUrls.Any())
+            {
+                return;
+            }
+            
+            var urls = new List<string>();
+
+            foreach (var route in routes)
+            {
+                var url = BuildUrl(route.Value, Parameters.Route, Parameters.Query);
+                urls.Add(url);
+
+                if (route.Preferred && RequestUrl == null)
+                {
+                    RequestUrl = url;
+                }
+            }
+
+            string BuildUrl(string template, ParameterCollection routeParameters, ParameterCollection queryParameters)
+            {
+                var query = HttpUtility.ParseQueryString(string.Empty);
+                var path = new StringBuilder(template);
+
+                foreach (var kvp in routeParameters)
+                {
+                    path = path.Replace($"{{{kvp.Key}}}", kvp.Value);
+                }
+
+                foreach (var kvp in queryParameters)
+                {
+                    if(!string.IsNullOrEmpty(kvp.Value))
+                        query[kvp.Key] = kvp.Value;
+                }
+
+                return string.Concat(path.ToString(), "?", query.ToString());
+            }
+
+            AvailableEndpointUrls = urls;
+        }
+
 
         private void EnshureRequestUrl()
         {

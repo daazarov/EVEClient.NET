@@ -1,10 +1,9 @@
-﻿namespace EVEClient.NET.Models
+﻿namespace EVEClient.NET.Requests
 {
-    public class EsiRequestEmpty : EsiRequest
+    public class EsiRequestEmpty : EsiRequestDefault
     {
-        public override void InitializeParameters()
+        public EsiRequestEmpty() : base(parameters => { })
         {
-            // do nothing
         }
     }
 }

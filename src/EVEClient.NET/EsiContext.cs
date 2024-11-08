@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 
-using EVEClient.NET.Models;
+using EVEClient.NET.Requests;
 
 namespace EVEClient.NET
 {
@@ -71,7 +71,5 @@ namespace EVEClient.NET
         public EsiContext EsiContext { get; }
 
         public HttpResponseMessage Response { get; set; } = default!;
-
-        public bool Completed { get; set; }
     }
 }

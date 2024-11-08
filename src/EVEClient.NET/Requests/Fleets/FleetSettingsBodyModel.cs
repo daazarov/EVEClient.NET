@@ -1,29 +1,15 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
-namespace EVEClient.NET.Models
+namespace EVEClient.NET.Requests
 {
     internal class FleetSettingsBodyModel
     {
-        public FleetSettingsBodyModel(bool? isFreeMove, string? motd)
-        { 
-            IsFreeMove = isFreeMove;
-            Motd = motd;
-        }
-
-        [JsonProperty("is_free_move")]
+        [JsonPropertyName("is_free_move")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? IsFreeMove {  get; set; }
 
-        [JsonProperty("motd")]
+        [JsonPropertyName("motd")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Motd {  get; set; }
-
-        public bool ShouldSerializeIsFreeMove() // todo -- make a test
-        {
-            return IsFreeMove.HasValue;
-        }
-
-        public bool ShouldSerializeMotd()
-        {
-            return !string.IsNullOrEmpty(Motd);
-        }
     }
 }

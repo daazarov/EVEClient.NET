@@ -14,12 +14,12 @@ namespace EVEClient.NET.Handlers
     /// Used when the setting "UseETag" setting is enabled.
     /// Stores the eTag value for a particular request in internal storage and applies it to the next request.
     /// </summary>
-    public class ETagHandler : IRequestETagHandler
+    public class DefaultRequestETagHandler : IRequestETagHandler
     {
         private readonly EsiClientConfiguration _options;
         private readonly IETagStorage _storage;
 
-        public ETagHandler(IOptions<EsiClientConfiguration> options, IETagStorage storage)
+        public DefaultRequestETagHandler(IOptions<EsiClientConfiguration> options, IETagStorage storage)
         { 
             _options = options.Value;
             _storage = storage;

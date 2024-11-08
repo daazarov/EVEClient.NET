@@ -1,63 +1,241 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using EVEClient.NET.DataContract;
 using EVEClient.NET.Extensions;
-
-using static EVEClient.NET.Models.CommonRequests;
-using static EVEClient.NET.Models.FleetsRequests;
+using EVEClient.NET.Requests;
 
 namespace EVEClient.NET.Logic
 {
     internal class FleetsLogic : IFleetsLogic
     {
-        private readonly IEsiHttpClient<IFleetsLogic> _esiClient;
+        private readonly IEsiHttpClient _client;
+        private readonly IEsiRequestFactory _esiRequestFactory;
 
-        public FleetsLogic(IEsiHttpClient<IFleetsLogic> esiClient)
+        public FleetsLogic(IEsiHttpClient client, IEsiRequestFactory esiRequestFactory)
         {
-            _esiClient = esiClient;
+            _client = client;
+            _esiRequestFactory = esiRequestFactory;
         }
 
-        public Task<EsiResponse<FleetInfo>> FleetInfo(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, FleetInfo>(CharacterIdRouteRequest.Create(characterId), token);
+        public async Task<EsiResponse<FleetInfo>> FleetInfo(int characterId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponse<FleetSettings>> FleetSettings(long fleetId, string? token = null) =>
-            _esiClient.GetRequestAsync<FleetIdRouteRequest, FleetSettings>(FleetIdRouteRequest.Create(fleetId), token);
+            var response = await _client.Request(ESI.Endpoints.Fleets.FleetInfo, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse> UpdateFleetSettings(long fleetId, bool? isFreeMove, string? motd, string? token = null) =>
-            _esiClient.PutRequestAsync(UpdateFleetSettingsRequest.Create(fleetId, isFreeMove, motd), token);
+            return await response.ReadEsiResponse<FleetInfo>();
+        }
 
-        public Task<EsiResponse<List<FleetMember>>> FleetMembers(long fleetId, string? token = null) =>
-            _esiClient.GetRequestAsync<FleetIdRouteRequest, List<FleetMember>>(FleetIdRouteRequest.Create(fleetId), token);
+        public async Task<EsiResponse<FleetSettings>> FleetSettings(long fleetId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponse> InviteMember(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null, string? token = null) =>
-            _esiClient.PostNoContentRequestAsync(InviteFleetMemberRequest.Create(fleetId, characterId, role.ToEsiString(), squadId, wingId), token);
+            var response = await _client.Request(ESI.Endpoints.Fleets.FleetSettings, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse> KickMember(long fleetId, int memberId, string? token = null) =>
-            _esiClient.DeleteRequestAsync(FleetMemberRouteRequest.Create(fleetId, memberId), token);
+            return await response.ReadEsiResponse<FleetSettings>();
+        }
 
-        public Task<EsiResponse> MoveMember(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null, string? token = null) =>
-            _esiClient.PutRequestAsync(MoveFleetMemberRequest.Create(fleetId, memberId, role.ToEsiString(), squadId, wingId), token);
+        public async Task<EsiResponse> UpdateFleetSettings(long fleetId, bool? isFreeMove, string? motd, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Body = new FleetSettingsBodyModel { IsFreeMove = isFreeMove, Motd = motd };
+                },
+                token: token);
 
-        public Task<EsiResponse> DeleteSquad(long fleetId, long squadId, string? token = null) =>
-            _esiClient.DeleteRequestAsync(FleetSquadRouteRequest.Create(fleetId, squadId), token);
+            var response = await _client.Request(ESI.Endpoints.Fleets.UpdateFleetSettings, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse> RenameSquad(long fleetId, long squadId, string name, string? token = null) =>
-            _esiClient.PutRequestAsync(RenameSquadRequest.Create(fleetId, squadId, name), token);
+            return await response.ReadEsiResponse();
+        }
 
-        public Task<EsiResponse<List<Wing>>> FleetWings(long fleetId, string? token = null) =>
-            _esiClient.GetRequestAsync<FleetIdRouteRequest, List<Wing>>(FleetIdRouteRequest.Create(fleetId), token);
+        public async Task<EsiResponse<List<FleetMember>>> FleetMembers(long fleetId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponse<NewWing>> NewWing(long fleetId, string? token = null) =>
-            _esiClient.PostRequestAsync<FleetIdRouteRequest, NewWing>(FleetIdRouteRequest.Create(fleetId), token);
+            var response = await _client.Request(ESI.Endpoints.Fleets.FleetMembers, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse> DeleteWing(long fleetId, long wingId, string? token = null) =>
-            _esiClient.DeleteRequestAsync(FleetWingRouteRequest.Create(fleetId, wingId), token);
+            return await response.ReadEsiResponse<List<FleetMember>>();
+        }
 
-        public Task<EsiResponse> RenameWing(long fleetId, long wingId, string name, string? token = null) =>
-            _esiClient.PutRequestAsync(RenameWingRequest.Create(fleetId, wingId, name), token);
+        public async Task<EsiResponse> InviteMember(long fleetId, int characterId, FleetRole role, long? squadId = null, long? wingId = null, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Body = new InviteFleetMemberBodyModel
+                    {
+                        CharacterId = characterId,
+                        Role = role.ToEsiString(),
+                        SquadId = squadId,
+                        WingId = wingId
+                    };
+                },
+                token: token);
 
-        public Task<EsiResponse<NewSquad>> NewSquad(long fleetId, long wingId, string? token = null) =>
-            _esiClient.PostRequestAsync<FleetWingRouteRequest, NewSquad>(FleetWingRouteRequest.Create(fleetId, wingId), token);
+            var response = await _client.Request(ESI.Endpoints.Fleets.InviteMember, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse();
+        }
+
+        public async Task<EsiResponse> KickMember(long fleetId, int memberId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Route[ESI.Parameters.Route.MemberId] = memberId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.KickMember, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse();
+        }
+
+        public async Task<EsiResponse> MoveMember(long fleetId, int memberId, FleetRole role, long? squadId = null, long? wingId = null, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Route[ESI.Parameters.Route.MemberId] = memberId.ToString();
+                    parameters.Body = new MoveFleetMemberBodyModel
+                    {
+                        Role = role.ToEsiString(),
+                        SquadId = squadId,
+                        WingId = wingId
+                    };
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.MoveMember, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse();
+        }
+
+        public async Task<EsiResponse> DeleteSquad(long fleetId, long squadId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Route[ESI.Parameters.Route.SquadId] = squadId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.DeleteSquad, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse();
+        }
+
+        public async Task<EsiResponse> RenameSquad(long fleetId, long squadId, string name, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Route[ESI.Parameters.Route.SquadId] = squadId.ToString();
+                    parameters.Body = new { name };
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.RenameSquad, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse();
+        }
+
+        public async Task<EsiResponse<List<Wing>>> FleetWings(long fleetId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.FleetWings, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<Wing>>();
+        }
+
+        public async Task<EsiResponse<NewWing>> NewWing(long fleetId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.NewWing, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<NewWing>();
+        }
+
+        public async Task<EsiResponse> DeleteWing(long fleetId, long wingId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Route[ESI.Parameters.Route.WingId] = wingId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.DeleteWing, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse();
+        }
+
+        public async Task<EsiResponse> RenameWing(long fleetId, long wingId, string name, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Route[ESI.Parameters.Route.WingId] = wingId.ToString();
+                    parameters.Body = new { name };
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.RenameWing, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse();
+        }
+
+        public async Task<EsiResponse<NewSquad>> NewSquad(long fleetId, long wingId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.FleetId] = fleetId.ToString();
+                    parameters.Route[ESI.Parameters.Route.WingId] = wingId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Fleets.NewSquad, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<NewSquad>();
+        }
     }
 }

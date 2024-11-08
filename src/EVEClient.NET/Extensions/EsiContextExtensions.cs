@@ -33,7 +33,7 @@ namespace EVEClient.NET.Extensions
         private static EndpointConfiguration GetEndpointConfiguration(EsiContext context)
         {
             var configurations = context.ScopedServices.GetRequiredService<IEndpointConfigurationProvider>();
-            return configurations.GetEndpointConfiguration(context.EndpointId);
+            return configurations.GetConfiguration(context.EndpointId);
         }
     }
 }

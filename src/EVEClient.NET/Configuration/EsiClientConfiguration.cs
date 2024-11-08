@@ -21,7 +21,7 @@ namespace EVEClient.NET.Configuration
         /// <param name="configureBuilder">Configures the endpoint.</param>
         public void AddEndpointConfiguration(string endpointId, Action<EndpointConfigurationBuilder> configureBuilder)
         {
-            ArgumentException.ThrowIfNullOrEmpty(endpointId);
+            ArgumentNullException.ThrowIfNullOrEmpty(endpointId);
             ArgumentNullException.ThrowIfNull(configureBuilder);
 
             if (_configurationMap.ContainsKey(endpointId))
@@ -33,6 +33,27 @@ namespace EVEClient.NET.Configuration
             configureBuilder(builder);
             _endpointConfigurations.Add(builder);
             _configurationMap[endpointId] = builder;
+        }
+
+        /// <summary>
+        /// Try to adds an <see cref="EndpointConfiguration"/>.
+        /// </summary>
+        /// <param name="endpointId">The esi endpoint identifier from <see cref="ESI.Endpoints"/>.</param>
+        /// <param name="configureBuilder">Configures the endpoint.</param>
+        public bool TryAddEndpointConfiguration(string endpointId, Action<EndpointConfigurationBuilder> configureBuilder)
+        {
+            ArgumentNullException.ThrowIfNullOrEmpty(endpointId);
+            ArgumentNullException.ThrowIfNull(configureBuilder);
+
+            try
+            {
+                AddEndpointConfiguration(endpointId, configureBuilder);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ namespace EVEClient.NET
 {
     public interface IEndpointConfigurationProvider
     {
-        EndpointConfiguration GetEndpointConfiguration(string endpointId);
+        EndpointConfiguration GetConfiguration(string endpointId);
+        bool Exists(string endpointId);
     }
 }

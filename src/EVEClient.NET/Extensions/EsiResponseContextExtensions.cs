@@ -9,12 +9,12 @@ namespace EVEClient.NET.Extensions
     {
         public static Task<EsiResponse> ReadEsiResponse(this EsiResponseContext responseContext)
         {
-            return GetResponseReaderProvider(responseContext).GetDefaultReader().ReadResponse<EsiResponse>(responseContext);
+            return GetResponseReaderProvider(responseContext).GetDefaultReader().ReadResponse(responseContext);
         }
 
         public static Task<EsiResponse<TResponse>> ReadEsiResponse<TResponse>(this EsiResponseContext responseContext)
         {
-            return GetResponseReaderProvider(responseContext).GetGenericReader().ReadResponse<TResponse>(responseContext);
+            return GetResponseReaderProvider(responseContext).GetGenericReader<TResponse>().ReadResponse(responseContext);
         }
 
         [Obsolete("EsiResponsePagination is obsolete and will be removed.")]

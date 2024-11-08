@@ -256,7 +256,7 @@ namespace EVEClient.NET.UnitTests.Pipline
                     .AdditionalMiddleware("customComponent3", (next) => context => next(context), addToStart: true, startOrder: 1)
                     .AdditionalMiddleware("customComponent4", (next) => context => next(context), addToStart: true, startOrder: 2)
                     .ReplaceHandler<CustomHandler>("ProtectionHandler")
-                    .ReplaceHandler<CustomHandler1, ETagHandler>();
+                    .ReplaceHandler<CustomHandler1, DefaultRequestETagHandler>();
             }));
         }
     }
