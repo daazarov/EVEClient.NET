@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,61 +8,61 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// date string
         /// </summary>
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public required DateTime Date { get; init; }
 
         /// <summary>
         /// Length in minutes
         /// </summary>
-        [JsonProperty("duration")]
+        [JsonPropertyName("duration")]
         public required int Duration { get; init; }
 
         /// <summary>
         /// event_id integer
         /// </summary>
-        [JsonProperty("event_id")]
+        [JsonPropertyName("event_id")]
         public required int EventId { get; init; }
 
         /// <summary>
         /// importance integer
         /// </summary>
-        [JsonProperty("importance")]
+        [JsonPropertyName("importance")]
         public required int Importance { get; init; }
 
         /// <summary>
         /// owner_id integer
         /// </summary>
-        [JsonProperty("owner_id")]
+        [JsonPropertyName("owner_id")]
         public required int OwnerId { get; init; }
 
         /// <summary>
         /// owner_name string
         /// </summary>
-        [JsonProperty("owner_name")]
+        [JsonPropertyName("owner_name")]
         public required string OwnerName { get; init; }
 
         /// <summary>
         /// owner_type string
         /// </summary>
-        [JsonProperty("owner_type")]
+        [JsonPropertyName("owner_type")]
         public required OwnerType OwnerType { get; init; }
 
         /// <summary>
         /// response string
         /// </summary>
-        [JsonProperty("response")]
+        [JsonPropertyName("response")]
         public required string Response { get; init; }
 
         /// <summary>
         /// text string
         /// </summary>
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public required string Text { get; init; }
 
         /// <summary>
         /// title string
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public required string Title { get; init; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,127 +7,127 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// IEnumerable<KeyValuePair<TKey, TValue>>
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; init; }
 
         /// <summary>
         /// disallow_auto_repeat boolean
         /// </summary>
-        [JsonProperty("disallow_auto_repeat")]
+        [JsonPropertyName("disallow_auto_repeat")]
         public bool? DisallowAutoRepeat { get; init; }
 
         /// <summary>
         /// discharge_attribute_id integer
         /// </summary>
-        [JsonProperty("discharge_attribute_id")]
+        [JsonPropertyName("discharge_attribute_id")]
         public int? DischargeAttributeId { get; init; }
 
         /// <summary>
         /// display_name string
         /// </summary>
-        [JsonProperty("display_name")]
+        [JsonPropertyName("display_name")]
         public string? DisplayName { get; init; }
 
         /// <summary>
         /// duration_attribute_id integer
         /// </summary>
-        [JsonProperty("duration_attribute_id")]
+        [JsonPropertyName("duration_attribute_id")]
         public int? DurationAttributeId { get; init; }
 
         /// <summary>
         /// effect_category integer
         /// </summary>
-        [JsonProperty("effect_category")]
+        [JsonPropertyName("effect_category")]
         public int? EffectCategory { get; init; }
 
         /// <summary>
         /// effect_id integer
         /// </summary>
-        [JsonProperty("effect_id")]
+        [JsonPropertyName("effect_id")]
         public required int EffectId { get; init; }
 
         /// <summary>
         /// electronic_chance boolean
         /// </summary>
-        [JsonProperty("electronic_chance")]
+        [JsonPropertyName("electronic_chance")]
         public bool? ElectronicChance { get; init; }
 
         /// <summary>
         /// falloff_attribute_id integer
         /// </summary>
-        [JsonProperty("falloff_attribute_id")]
+        [JsonPropertyName("falloff_attribute_id")]
         public int? FalloffAttributeId { get; init; }
 
         /// <summary>
         /// icon_id integer
         /// </summary>
-        [JsonProperty("icon_id")]
+        [JsonPropertyName("icon_id")]
         public int? IconId { get; init; }
 
         /// <summary>
         /// is_assistance boolean
         /// </summary>
-        [JsonProperty("is_assistance")]
+        [JsonPropertyName("is_assistance")]
         public bool? IsAssistance { get; init; }
 
         /// <summary>
         /// is_offensive boolean
         /// </summary>
-        [JsonProperty("is_offensive")]
+        [JsonPropertyName("is_offensive")]
         public bool? IsOffensive { get; init; }
 
         /// <summary>
         /// is_warp_safe boolean
         /// </summary>
-        [JsonProperty("is_warp_safe")]
+        [JsonPropertyName("is_warp_safe")]
         public bool? IsWarpSafe { get; init; }
 
         /// <summary>
         /// modifiers array
         /// </summary>
-        [JsonProperty("modifiers")]
+        [JsonPropertyName("modifiers")]
         public Modifier[]? Modifiers { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string? Name { get; init; }
 
         /// <summary>
         /// post_expression integer
         /// </summary>
-        [JsonProperty("post_expression")]
+        [JsonPropertyName("post_expression")]
         public int? PostExpression { get; init; }
 
         /// <summary>
         /// pre_expression integer
         /// </summary>
-        [JsonProperty("pre_expression")]
+        [JsonPropertyName("pre_expression")]
         public int? PreExpression { get; init; }
 
         /// <summary>
         /// published boolean
         /// </summary>
-        [JsonProperty("published")]
+        [JsonPropertyName("published")]
         public bool? Published { get; init; }
 
         /// <summary>
         /// range_attribute_id integer
         /// </summary>
-        [JsonProperty("range_attribute_id")]
+        [JsonPropertyName("range_attribute_id")]
         public int? RangeAttributeId { get; init; }
 
         /// <summary>
         /// range_chance boolean
         /// </summary>
-        [JsonProperty("range_chance")]
+        [JsonPropertyName("range_chance")]
         public bool? RangeChance { get; init; }
 
         /// <summary>
         /// tracking_speed_attribute_id integer
         /// </summary>
-        [JsonProperty("tracking_speed_attribute_id")]
+        [JsonPropertyName("tracking_speed_attribute_id")]
         public int? TrackingSpeedAttributeId { get; init; }
     }
 
@@ -136,37 +136,37 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// domain string
         /// </summary>
-        [JsonProperty("domain")]
+        [JsonPropertyName("domain")]
         public string? Domain { get; init; }
 
         /// <summary>
         /// effect_id integer
         /// </summary>
-        [JsonProperty("effect_id")]
+        [JsonPropertyName("effect_id")]
         public int? EffectId { get; init; }
 
         /// <summary>
         /// func string
         /// </summary>
-        [JsonProperty("func")]
+        [JsonPropertyName("func")]
         public required string Func { get; init; }
 
         /// <summary>
         /// modified_attribute_id integer
         /// </summary>
-        [JsonProperty("modified_attribute_id")]
+        [JsonPropertyName("modified_attribute_id")]
         public int? ModifiedAttributeId { get; init; }
 
         /// <summary>
         /// modifying_attribute_id integer
         /// </summary>
-        [JsonProperty("modifying_attribute_id")]
+        [JsonPropertyName("modifying_attribute_id")]
         public int? ModifyingAttributeId { get; init; }
 
         /// <summary>
         /// operator integer
         /// </summary>
-        [JsonProperty("operator")]
+        [JsonPropertyName("operator")]
         public int? Operator { get; init; }
     }
 }

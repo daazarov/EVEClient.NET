@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -9,55 +9,55 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// corporation_id integer
         /// </summary>
-        [JsonProperty("corporation_id")]
+        [JsonPropertyName("corporation_id")]
         public required int CorporationId { get; init; }
 
         /// <summary>
         /// date string
         /// </summary>
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public required DateTime Date { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public required string Description { get; init; }
 
         /// <summary>
         /// graphics array
         /// </summary>
-        [JsonProperty("graphics")]
+        [JsonPropertyName("graphics")]
         public required List<CharacterMedalGraphics> Graphics { get; init; }
 
         /// <summary>
         /// issuer_id integer
         /// </summary>
-        [JsonProperty("issuer_id")]
+        [JsonPropertyName("issuer_id")]
         public required int IssuerId { get; init; }
 
         /// <summary>
         /// medal_id integer
         /// </summary>
-        [JsonProperty("medal_id")]
+        [JsonPropertyName("medal_id")]
         public required int MedalId { get; init; }
 
         /// <summary>
         /// reason string
         /// </summary>
-        [JsonProperty("reason")]
+        [JsonPropertyName("reason")]
         public required string Reason { get; init; }
 
         /// <summary>
         /// status string
         /// </summary>
-        [JsonProperty("status")]
+        [JsonPropertyName("status")]
         public required Status Status { get; init; }
 
         /// <summary>
         /// title string
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public required string Title { get; init; }
 
     }
@@ -67,25 +67,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// color integer
         /// </summary>
-        [JsonProperty("color")]
+        [JsonPropertyName("color")]
         public int? Color { get; init; }
 
         /// <summary>
         /// graphic string
         /// </summary>
-        [JsonProperty("graphic")]
+        [JsonPropertyName("graphic")]
         public required string Graphic { get; init; }
 
         /// <summary>
         /// layer integer
         /// </summary>
-        [JsonProperty("layer")]
+        [JsonPropertyName("layer")]
         public required int Layer { get; init; }
 
         /// <summary>
         /// part integer
         /// </summary>
-        [JsonProperty("part")]
+        [JsonPropertyName("part")]
         public required int Part { get; init; }
     }
 }

@@ -69,7 +69,9 @@ jobs:
         name: nugets
         overwrite: true
         if-no-files-found: error
-        path: ${{ env.NUGET_DIRECTORY }}/*.nupkg
+        path: |
+          ${{ env.NUGET_DIRECTORY }}/*.nupkg
+          ${{ env.NUGET_DIRECTORY }}/*.snupkg
         retention-days: 1
 
   validate_nuget:

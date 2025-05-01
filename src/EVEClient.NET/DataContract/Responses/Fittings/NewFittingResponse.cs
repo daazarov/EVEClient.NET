@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,7 +7,7 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// fitting_id integer
         /// </summary>
-        [JsonProperty("fitting_id")]
+        [JsonPropertyName("fitting_id")]
         public required int FittingId { get; init; }
     }
 }

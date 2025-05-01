@@ -10,7 +10,6 @@ namespace EVEClient.NET.Pipline.Modifications
         }
 
         public string EndpointId { get; }
-        public List<ReplaceComponent> Replacements { get; } = new();
         public List<AdditionalComponent> Additions { get; } = new();
     }
 }

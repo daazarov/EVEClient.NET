@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,13 +8,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// labels array
         /// </summary>
-        [JsonProperty("labels")]
+        [JsonPropertyName("labels")]
         public List<Label>? Labels { get; init; }
 
         /// <summary>
         /// total_unread_count integer
         /// </summary>
-        [JsonProperty("total_unread_count")]
+        [JsonPropertyName("total_unread_count")]
         public int? TotalUnreadCount { get; init; }
     }
 
@@ -23,25 +23,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// color string
         /// </summary>
-        [JsonProperty("color")]
+        [JsonPropertyName("color")]
         public LabelColor? Color { get; init; }
 
         /// <summary>
         /// label_id integer
         /// </summary>
-        [JsonProperty("label_id")]
+        [JsonPropertyName("label_id")]
         public int? LabelId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string? Name { get; init; }
 
         /// <summary>
         /// unread_count integer
         /// </summary>
-        [JsonProperty("unread_count")]
+        [JsonPropertyName("unread_count")]
         public int? UnreadCount { get; init; }
     }
 }

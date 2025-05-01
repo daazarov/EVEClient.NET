@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,19 +8,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// id integer
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public required long Id { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// squads array
         /// </summary>
-        [JsonProperty("squads")]
+        [JsonPropertyName("squads")]
         public required List<Squad> Squads { get; init; }
     }
 
@@ -29,13 +29,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// id integer
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public required long Id { get; init; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,13 +7,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// character_id integer
         /// </summary>
-        [JsonProperty("character_id")]
+        [JsonPropertyName("character_id")]
         public int? CharacterId { get; init; }
 
         /// <summary>
         /// event_response string
         /// </summary>
-        [JsonProperty("event_response")]
+        [JsonPropertyName("event_response")]
         public CalendarEventResponse? EventResponse { get; init; }
     }
 }

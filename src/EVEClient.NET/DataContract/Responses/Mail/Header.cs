@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -9,43 +9,43 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// From whom the mail was sent
         /// </summary>
-        [JsonProperty("from")]
+        [JsonPropertyName("from")]
         public int? From { get; init; }
 
         /// <summary>
         /// is_read boolean
         /// </summary>
-        [JsonProperty("is_read")]
+        [JsonPropertyName("is_read")]
         public bool? IsRead { get; init; }
 
         /// <summary>
         /// labels array
         /// </summary>
-        [JsonProperty("labels")]
+        [JsonPropertyName("labels")]
         public int[]? Labels { get; init; }
 
         /// <summary>
         /// mail_id integer
         /// </summary>
-        [JsonProperty("mail_id")]
+        [JsonPropertyName("mail_id")]
         public int? MailId { get; init; }
 
         /// <summary>
         /// Recipients of the mail
         /// </summary>
-        [JsonProperty("recipients")]
+        [JsonPropertyName("recipients")]
         public List<Recipient>? Recipients { get; init; }
 
         /// <summary>
         /// Mail subject
         /// </summary>
-        [JsonProperty("subject")]
+        [JsonPropertyName("subject")]
         public string? Subject { get; init; }
 
         /// <summary>
         /// When the mail was sent
         /// </summary>
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public DateTime? Timestamp { get; init; }
     }
 }

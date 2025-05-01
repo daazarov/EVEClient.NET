@@ -80,6 +80,13 @@ namespace EVEClient.NET.Extensions
             return @this;
         }
 
+        public static string? ToQueryArrayParameterValue<T>(this IEnumerable<T>? @this)
+        {
+            if (@this == null || !@this.Any()) return null;
+            
+            return string.Join(",", @this);
+        }
+
         public static string ToEsiString(this Enum @enum)
         {
             ArgumentNullException.ThrowIfNull(@enum);

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,25 +7,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// moon_id integer
         /// </summary>
-        [JsonProperty("moon_id")]
+        [JsonPropertyName("moon_id")]
         public required int MoonId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// position object
         /// </summary>
-        [JsonProperty("position")]
+        [JsonPropertyName("position")]
         public required Position Position { get; init; }
 
         /// <summary>
         /// The solar system this moon is in
         /// </summary>
-        [JsonProperty("system_id")]
+        [JsonPropertyName("system_id")]
         public required int SystemId { get; init; }
     }
 }

@@ -5,7 +5,6 @@
         private readonly ICharacterLogic _characterLogic;
         private readonly IAllianceLogic _allianceLogic;
         private readonly IAssetsLogic _assetsLogic;
-        private readonly IBookmarksLogic _bookmarksLogic;
         private readonly ICalendarLogic _calendarLogic;
         private readonly IClonesLogic _clonesLogic;
         private readonly IContactsLogic _contactsLogic;
@@ -23,7 +22,6 @@
         private readonly ILoyaltyLogic _loyaltyLogic;
         private readonly IMailLogic _mailLogic;
         private readonly IMarketLogic _marketLogic;
-        private readonly IOpportunitiesLogic _opportunitiesLogic;
         private readonly IPlanetaryInteractionLogic _planetaryInteractionLogic;
         private readonly IRoutesLogic _routesLogic;
         private readonly ISearchLogic _searchLogic;
@@ -37,7 +35,6 @@
             ICharacterLogic characterLogic,
             IAllianceLogic allianceLogic,
             IAssetsLogic assetsLogic,
-            IBookmarksLogic bookmarksLogic,
             ICalendarLogic calendarLogic,
             IClonesLogic clonesLogic,
             IContactsLogic contactsLogic,
@@ -55,7 +52,6 @@
             ILoyaltyLogic loyaltyLogic,
             IMailLogic mailLogic,
             IMarketLogic marketLogic,
-            IOpportunitiesLogic opportunitiesLogic,
             IPlanetaryInteractionLogic planetaryInteractionLogic,
             IRoutesLogic routesLogic,
             ISearchLogic searchLogic,
@@ -68,7 +64,6 @@
             _characterLogic = characterLogic;
             _allianceLogic = allianceLogic;
             _assetsLogic = assetsLogic;
-            _bookmarksLogic = bookmarksLogic;
             _calendarLogic = calendarLogic;
             _clonesLogic = clonesLogic;
             _contactsLogic = contactsLogic;
@@ -86,7 +81,6 @@
             _loyaltyLogic = loyaltyLogic;
             _mailLogic = mailLogic;
             _marketLogic = marketLogic;
-            _opportunitiesLogic = opportunitiesLogic;
             _planetaryInteractionLogic = planetaryInteractionLogic;
             _routesLogic = routesLogic;
             _searchLogic = searchLogic;
@@ -100,7 +94,6 @@
         public ICharacterLogic CharacterLogic => _characterLogic;
         public IAllianceLogic AllianceLogic => _allianceLogic;
         public IAssetsLogic AssetsLogic => _assetsLogic;
-        public IBookmarksLogic BookmarksLogic => _bookmarksLogic;
         public ICalendarLogic CalendarLogic => _calendarLogic;
         public IClonesLogic ClonesLogic => _clonesLogic;
         public IContactsLogic ContactsLogic => _contactsLogic;
@@ -118,7 +111,6 @@
         public ILoyaltyLogic LoyaltyLogic => _loyaltyLogic;
         public IMailLogic MailLogic => _mailLogic;
         public IMarketLogic MarketLogic => _marketLogic;
-        public IOpportunitiesLogic OpportunitiesLogic => _opportunitiesLogic;
         public IPlanetaryInteractionLogic PlanetaryInteractionLogic => _planetaryInteractionLogic;
         public IRoutesLogic RoutesLogic => _routesLogic;
         public ISearchLogic SearchLogic => _searchLogic;

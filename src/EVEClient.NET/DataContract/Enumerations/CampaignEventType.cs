@@ -1,10 +1,10 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using EVEClient.NET.Utilities.Serialization;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     public enum CampaignEventType
     {
         [EnumMember(Value = "tcu_defense")] TcuDefense,

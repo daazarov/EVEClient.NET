@@ -1,111 +1,365 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using EVEClient.NET.DataContract;
 using EVEClient.NET.Extensions;
-
-using static EVEClient.NET.Models.CommonRequests;
-using static EVEClient.NET.Models.UniverseRequests;
+using EVEClient.NET.Requests;
 
 namespace EVEClient.NET.Logic
 {
     internal class UniverseLogic : IUniverseLogic
     {
-        private readonly IEsiHttpClient<IUniverseLogic> _esiClient;
+        private readonly IEsiHttpClient _client;
+        private readonly IEsiRequestFactory _esiRequestFactory;
 
-        public UniverseLogic(IEsiHttpClient<IUniverseLogic> esiClient)
+        public UniverseLogic(IEsiHttpClient client, IEsiRequestFactory esiRequestFactory)
         {
-            _esiClient = esiClient;
+            _client = client;
+            _esiRequestFactory = esiRequestFactory;
         }
 
-        public Task<EsiResponse<List<Ancestry>>> Ancestries() =>
-            _esiClient.GetRequestAsync<List<Ancestry>>();
+        public async Task<EsiResponse<List<Ancestry>>> Ancestries(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
 
-        public Task<EsiResponse<AsteroidBelt>> AsteroidBeltInfo(int asteroidBeltId) =>
-            _esiClient.GetRequestAsync<AsteroidBeltRequest, AsteroidBelt>(AsteroidBeltRequest.Create(asteroidBeltId));
+            var response = await _client.Request(ESI.Endpoints.Universe.Ancestries, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<List<Bloodline>>> Bloodlines() =>
-            _esiClient.GetRequestAsync<List<Bloodline>>();
+            return await response.ReadEsiResponse<List<Ancestry>>();
+        }
 
-        public Task<EsiResponse<Constellation>> ConstellationInfo(int constellationId) =>
-            _esiClient.GetRequestAsync<ConstellationRequest, Constellation>(ConstellationRequest.Create(constellationId));
+        public async Task<EsiResponse<AsteroidBelt>> AsteroidBeltInfo(int asteroidBeltId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                   parameters.Route[ESI.Parameters.Route.AsteroidBeltId] = asteroidBeltId.ToString();
+               });
 
-        public Task<EsiResponse<List<int>>> Constellations() =>
-            _esiClient.GetRequestAsync<List<int>>();
+            var response = await _client.Request(ESI.Endpoints.Universe.AsteroidBeltInfo, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<List<Faction>>> Factions() =>
-            _esiClient.GetRequestAsync<List<Faction>>();
+            return await response.ReadEsiResponse<AsteroidBelt>();
+        }
 
-        public Task<EsiResponse<Graphic>> GraphicInfo(int graphicId) =>
-            _esiClient.GetRequestAsync<GraphicRequest, Graphic>(GraphicRequest.Create(graphicId));
+        public async Task<EsiResponse<List<Bloodline>>> Bloodlines(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
 
-        public Task<EsiResponse<List<int>>> Graphics() =>
-            _esiClient.GetRequestAsync<List<int>>();
+            var response = await _client.Request(ESI.Endpoints.Universe.Bloodlines, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<IDsLookup>> IDs(string[] names) =>
-            _esiClient.PostRequestAsync<IDsRequest, IDsLookup>(IDsRequest.Create(names));
+            return await response.ReadEsiResponse<List<Bloodline>>();
+        }
 
-        public Task<EsiResponse<List<int>>> ItemCategories() =>
-            _esiClient.GetRequestAsync<List<int>>();
+        public async Task<EsiResponse<Constellation>> ConstellationInfo(int constellationId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.ConstellationId] = constellationId.ToString();
+                });
 
-        public Task<EsiResponse<ItemCategory>> ItemCategoryInfo(int categoryId) =>
-            _esiClient.GetRequestAsync<ItemCategoryInfoRequest, ItemCategory>(ItemCategoryInfoRequest.Create(categoryId));
+            var response = await _client.Request(ESI.Endpoints.Universe.ConstellationInfo, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<ItemGroup>> ItemGroupInfo(int groupId) =>
-            _esiClient.GetRequestAsync<ItemGroupInfoRequest, ItemGroup>(ItemGroupInfoRequest.Create(groupId));
+            return await response.ReadEsiResponse<Constellation>();
+        }
 
-        public Task<EsiResponsePagination<List<int>>> ItemGroups(int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedRouteRequest, List<int>>(PageBasedRouteRequest.Create(page));
+        public async Task<EsiResponse<List<int>>> Constellations(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
 
-        public Task<EsiResponse<Moon>> MoonInfo(int moonId) =>
-            _esiClient.GetRequestAsync<MoonInfoRequest, Moon>(MoonInfoRequest.Create(moonId));
+            var response = await _client.Request(ESI.Endpoints.Universe.Constellations, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<List<NamesLookup>>> Names(int[] ids) =>
-            _esiClient.PostRequestAsync<NamesRequest, List<NamesLookup>>(NamesRequest.Create(ids));
+            return await response.ReadEsiResponse<List<int>>();
+        }
 
-        public Task<EsiResponse<Planet>> PlanetInfo(int planetId) =>
-            _esiClient.GetRequestAsync<PlanetInfoRequest, Planet>(PlanetInfoRequest.Create(planetId));
+        public async Task<EsiResponse<List<Faction>>> Factions(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
 
-        public Task<EsiResponse<List<Race>>> Races() =>
-            _esiClient.GetRequestAsync<List<Race>>();
+            var response = await _client.Request(ESI.Endpoints.Universe.Factions, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<Region>> RegionInfo(int regionId) =>
-            _esiClient.GetRequestAsync<RegionInfoRequest, Region>(RegionInfoRequest.Create(regionId));
+            return await response.ReadEsiResponse<List<Faction>>();
+        }
 
-        public Task<EsiResponse<List<int>>> Regions() =>
-            _esiClient.GetRequestAsync<List<int>>();
+        public async Task<EsiResponse<Graphic>> GraphicInfo(int graphicId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.GraphicId] = graphicId.ToString();
+                });
 
-        public Task<EsiResponse<SolarSystemInfo>> SolarSystemInfo(int systemId) =>
-            _esiClient.GetRequestAsync<SolarSystemInfoRequest, SolarSystemInfo>(SolarSystemInfoRequest.Create(systemId));
+            var response = await _client.Request(ESI.Endpoints.Universe.GraphicInfo, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<List<int>>> SolarSystems() =>
-            _esiClient.GetRequestAsync<List<int>>();
+            return await response.ReadEsiResponse<Graphic>();
+        }
 
-        public Task<EsiResponse<Stargate>> StargateInfo(int stargateId) =>
-            _esiClient.GetRequestAsync<StargateInfoRequest, Stargate>(StargateInfoRequest.Create(stargateId));
+        public async Task<EsiResponse<List<int>>> Graphics(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
 
-        public Task<EsiResponse<Star>> StarInfo(int starId) =>
-            _esiClient.GetRequestAsync<StarInfoRequest, Star>(StarInfoRequest.Create(starId));
+            var response = await _client.Request(ESI.Endpoints.Universe.Graphics, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<Station>> StationInfo(int stationId) =>
-            _esiClient.GetRequestAsync<StationInfoRequest, Station>(StationInfoRequest.Create(stationId));
+            return await response.ReadEsiResponse<List<int>>();
+        }
 
-        public Task<EsiResponse<StructureInfo>> StructureInfo(long structureId, string? token = null) =>
-            _esiClient.GetRequestAsync<StructureInfoRequest, StructureInfo>(StructureInfoRequest.Create(structureId), token);
+        public async Task<EsiResponse<IDsLookup>> IDs(string[] names, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Body = names;
+                });
 
-        public Task<EsiResponse<List<long>>> Structures(StructureType? type) =>
-            _esiClient.GetRequestAsync<StructuresRequest, List<long>>(StructuresRequest.Create(type?.ToEsiString()));
+            var response = await _client.Request(ESI.Endpoints.Universe.IDs, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<List<JumpInfo>>> SystemJumps() =>
-            _esiClient.GetRequestAsync<List<JumpInfo>>();
+            return await response.ReadEsiResponse<IDsLookup>();
+        }
 
-        public Task<EsiResponse<List<KillInfo>>> SystemKills() =>
-            _esiClient.GetRequestAsync<List<KillInfo>>();
+        public async Task<EsiResponse<List<int>>> ItemCategories(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
 
-        public Task<EsiResponse<EveType>> TypeInfo(int typeId) =>
-            _esiClient.GetRequestAsync<TypeInfoRequest, EveType>(TypeInfoRequest.Create(typeId));
+            var response = await _client.Request(ESI.Endpoints.Universe.ItemCategories, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<List<int>>> Types() =>
-            _esiClient.GetRequestAsync<List<int>>();
+            return await response.ReadEsiResponse<List<int>>();
+        }
+
+        public async Task<EsiResponse<ItemCategory>> ItemCategoryInfo(int categoryId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.ItemCategoryId] = categoryId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.ItemCategoryInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<ItemCategory>();
+        }
+
+        public async Task<EsiResponse<ItemGroup>> ItemGroupInfo(int groupId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.ItemGroupId] = groupId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.ItemGroupInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<ItemGroup>();
+        }
+
+        public async Task<EsiResponsePagination<List<int>>> ItemGroups(int page = 1, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.ItemGroups, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<int>>();
+        }
+
+        public async Task<EsiResponse<Moon>> MoonInfo(int moonId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.MoonId] = moonId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.MoonInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<Moon>();
+        }
+
+        public async Task<EsiResponse<List<NamesLookup>>> Names(int[] ids, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Body = ids;
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.Names, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<NamesLookup>>();
+        }
+
+        public async Task<EsiResponse<Planet>> PlanetInfo(int planetId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.PlanetId] = planetId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.PlanetInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<Planet>();
+        }
+
+        public async Task<EsiResponse<List<Race>>> Races(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
+
+            var response = await _client.Request(ESI.Endpoints.Universe.Races, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<Race>>();
+        }
+
+        public async Task<EsiResponse<Region>> RegionInfo(int regionId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.RegionId] = regionId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.RegionInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<Region>();
+        }
+
+        public async Task<EsiResponse<List<int>>> Regions(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
+
+            var response = await _client.Request(ESI.Endpoints.Universe.Regions, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<int>>();
+        }
+
+        public async Task<EsiResponse<SolarSystemInfo>> SolarSystemInfo(int systemId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.SystemId] = systemId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.SolarSystemInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<SolarSystemInfo>();
+        }
+
+        public async Task<EsiResponse<List<int>>> SolarSystems(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
+
+            var response = await _client.Request(ESI.Endpoints.Universe.SolarSystems, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<int>>();
+        }
+
+        public async Task<EsiResponse<Stargate>> StargateInfo(int stargateId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.StargateId] = stargateId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.StargateInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<Stargate>();
+        }
+
+        public async Task<EsiResponse<Star>> StarInfo(int starId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.StarId] = starId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.StarInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<Star>();
+        }
+
+        public async Task<EsiResponse<Station>> StationInfo(int stationId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.StationId] = stationId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.StationInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<Station>();
+        }
+
+        public async Task<EsiResponse<StructureInfo>> StructureInfo(long structureId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.StructureId] = structureId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Universe.StructureInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<StructureInfo>();
+        }
+
+        public async Task<EsiResponse<List<long>>> Structures(StructureType? type, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Query[ESI.Parameters.Query.StructuresFilter] = type?.ToEsiString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.Structures, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<long>>();
+        }
+
+        public async Task<EsiResponse<List<JumpInfo>>> SystemJumps(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
+
+            var response = await _client.Request(ESI.Endpoints.Universe.SystemJumps, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<JumpInfo>>();
+        }
+
+        public async Task<EsiResponse<List<KillInfo>>> SystemKills(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
+
+            var response = await _client.Request(ESI.Endpoints.Universe.SystemKills, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<KillInfo>>();
+        }
+
+        public async Task<EsiResponse<EveType>> TypeInfo(int typeId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.TypeId] = typeId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Universe.TypeInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<EveType>();
+        }
+
+        public async Task<EsiResponse<List<int>>> Types(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
+
+            var response = await _client.Request(ESI.Endpoints.Universe.Types, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<int>>();
+        }
     }
 }

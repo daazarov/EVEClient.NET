@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -9,19 +9,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// links array
         /// </summary>
-        [JsonProperty("links")]
+        [JsonPropertyName("links")]
         public required List<Link> Links { get; init; }
 
         /// <summary>
         /// pins array
         /// </summary>
-        [JsonProperty("pins")]
+        [JsonPropertyName("pins")]
         public required List<Pin> Pins { get; init; }
 
         /// <summary>
         /// routes array
         /// </summary>
-        [JsonProperty("routes")]
+        [JsonPropertyName("routes")]
         public required List<Route> Routes { get; init; }
 
         public class Link
@@ -29,19 +29,19 @@ namespace EVEClient.NET.DataContract
             /// <summary>
             /// destination_pin_id integer
             /// </summary>
-            [JsonProperty("destination_pin_id")]
+            [JsonPropertyName("destination_pin_id")]
             public required long DestinationPinId { get; init; }
 
             /// <summary>
             /// link_level integer
             /// </summary>
-            [JsonProperty("link_level")]
+            [JsonPropertyName("link_level")]
             public required int LinkLevel { get; init; }
 
             /// <summary>
             /// source_pin_id integer
             /// </summary>
-            [JsonProperty("source_pin_id")]
+            [JsonPropertyName("source_pin_id")]
             public required long SourcePinId { get; init; }
         }
 
@@ -50,67 +50,67 @@ namespace EVEClient.NET.DataContract
             /// <summary>
             /// contents array
             /// </summary>
-            [JsonProperty("contents")]
+            [JsonPropertyName("contents")]
             public List<Content>? Contents { get; init; }
 
             /// <summary>
             /// expiry_time string
             /// </summary>
-            [JsonProperty("expiry_time")]
+            [JsonPropertyName("expiry_time")]
             public DateTime? ExpirationTime { get; init; }
 
             /// <summary>
             /// extractor object
             /// </summary>
-            [JsonProperty("extractor_details")]
+            [JsonPropertyName("extractor_details")]
             public Extractor? ExtractorDetails { get; init; }
 
             /// <summary>
             /// factory object
             /// </summary>
-            [JsonProperty("factory_details")]
+            [JsonPropertyName("factory_details")]
             public Factory? FactoryDetails { get; init; }
 
             /// <summary>
             /// install_time string
             /// </summary>
-            [JsonProperty("install_time")]
+            [JsonPropertyName("install_time")]
             public DateTime? InstallTime { get; init; }
 
             /// <summary>
             /// last_cycle_start string
             /// </summary>
-            [JsonProperty("last_cycle_start")]
+            [JsonPropertyName("last_cycle_start")]
             public DateTime? LastCycleStart { get; init; }
 
             /// <summary>
             /// latitude number
             /// </summary>
-            [JsonProperty("latitude")]
+            [JsonPropertyName("latitude")]
             public required float Latitude { get; init; }
 
             /// <summary>
             /// longitude number
             /// </summary>
-            [JsonProperty("longitude")]
+            [JsonPropertyName("longitude")]
             public required float Longitude { get; init; }
 
             /// <summary>
             /// pin_id integer
             /// </summary>
-            [JsonProperty("pin_id")]
+            [JsonPropertyName("pin_id")]
             public required long PinId { get; init; }
 
             /// <summary>
             /// schematic_id integer
             /// </summary>
-            [JsonProperty("schematic_id")]
+            [JsonPropertyName("schematic_id")]
             public int? SchematicId { get; init; }
 
             /// <summary>
             /// type_id integer
             /// </summary>
-            [JsonProperty("type_id")]
+            [JsonPropertyName("type_id")]
             public required int TypeId { get; init; }
 
             public class Content
@@ -118,13 +118,13 @@ namespace EVEClient.NET.DataContract
                 /// <summary>
                 /// amount integer
                 /// </summary>
-                [JsonProperty("amount")]
+                [JsonPropertyName("amount")]
                 public required long Amount { get; init; }
 
                 /// <summary>
                 /// type_id integer
                 /// </summary>
-                [JsonProperty("type_id")]
+                [JsonPropertyName("type_id")]
                 public required int TypeId { get; init; }
             }
 
@@ -133,31 +133,31 @@ namespace EVEClient.NET.DataContract
                 /// <summary>
                 /// in seconds
                 /// </summary>
-                [JsonProperty("cycle_time")]
+                [JsonPropertyName("cycle_time")]
                 public int? CycleTime { get; init; }
 
                 /// <summary>
                 /// head_radius number
                 /// </summary>
-                [JsonProperty("head_radius")]
+                [JsonPropertyName("head_radius")]
                 public float? HeadRadius { get; init; }
 
                 /// <summary>
                 /// heads array
                 /// </summary>
-                [JsonProperty("heads")]
+                [JsonPropertyName("heads")]
                 public required List<Head> Heads { get; init; }
 
                 /// <summary>
                 /// product_type_id integer
                 /// </summary>
-                [JsonProperty("product_type_id")]
+                [JsonPropertyName("product_type_id")]
                 public int? ProductTypeId { get; init; }
 
                 /// <summary>
                 /// qty_per_cycle integer
                 /// </summary>
-                [JsonProperty("qty_per_cycle")]
+                [JsonPropertyName("qty_per_cycle")]
                 public int? QuantityPerCycle { get; init; }
 
                 public class Head
@@ -165,19 +165,19 @@ namespace EVEClient.NET.DataContract
                     /// <summary>
                     /// head_id integer
                     /// </summary>
-                    [JsonProperty("head_id")]
+                    [JsonPropertyName("head_id")]
                     public required int HeadId { get; init; }
 
                     /// <summary>
                     /// latitude number
                     /// </summary>
-                    [JsonProperty("latitude")]
+                    [JsonPropertyName("latitude")]
                     public required float Latitude { get; init; }
 
                     /// <summary>
                     /// longitude number
                     /// </summary>
-                    [JsonProperty("longitude")]
+                    [JsonPropertyName("longitude")]
                     public required float Longitude { get; init; }
                 }
             }
@@ -187,7 +187,7 @@ namespace EVEClient.NET.DataContract
                 /// <summary>
                 /// schematic_id integer
                 /// </summary>
-                [JsonProperty("schematic_id")]
+                [JsonPropertyName("schematic_id")]
                 public required int SchematicId { get; init; }
             }
         }
@@ -197,37 +197,37 @@ namespace EVEClient.NET.DataContract
             /// <summary>
             /// content_type_id integer
             /// </summary>
-            [JsonProperty("content_type_id")]
+            [JsonPropertyName("content_type_id")]
             public required int ContentTypeId { get; init; }
 
             /// <summary>
             /// destination_pin_id integer
             /// </summary>
-            [JsonProperty("destination_pin_id")]
+            [JsonPropertyName("destination_pin_id")]
             public required long DestinationPinId { get; init; }
 
             /// <summary>
             /// quantity number
             /// </summary>
-            [JsonProperty("quantity")]
+            [JsonPropertyName("quantity")]
             public required float Quantity { get; init; }
 
             /// <summary>
             /// route_id integer
             /// </summary>
-            [JsonProperty("route_id")]
+            [JsonPropertyName("route_id")]
             public required long RouteId { get; init; }
 
             /// <summary>
             /// source_pin_id integer
             /// </summary>
-            [JsonProperty("source_pin_id")]
+            [JsonPropertyName("source_pin_id")]
             public required long SourcePinId { get; init; }
 
             /// <summary>
             /// list of pin ID waypoints
             /// </summary>
-            [JsonProperty("waypoints")]
+            [JsonPropertyName("waypoints")]
             public long[]? Waypoints { get; init; }
         }
     }

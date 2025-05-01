@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 
 namespace EVEClient.NET.Pipline
 {
@@ -10,8 +10,8 @@ namespace EVEClient.NET.Pipline
         /// <summary>
         /// Provides the ESI endpoint request middleware.
         /// </summary>
-        /// <param name="marker">The <see cref="EndpointMarker"/> witch associated with specific ESI endpoint.</param>
+        /// <param name="endpointId">The ESI endpoint id from <see cref="ESI.Endpoints"/>.</param>
         /// <returns>The <see cref="IRequestPipline"/>.</returns>
-        IRequestPipline GetPipline(EndpointMarker marker);
+        Task<IRequestPipline> GetPiplineAsync(string endpointId);
     }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,25 +7,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The alliance generally associated with this race
         /// </summary>
-        [JsonProperty("alliance_id")]
+        [JsonPropertyName("alliance_id")]
         public required int AllianceId { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public required string Description { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// race_id integer
         /// </summary>
-        [JsonProperty("race_id")]
+        [JsonPropertyName("race_id")]
         public required int RaceId { get; init; }
     }
 }

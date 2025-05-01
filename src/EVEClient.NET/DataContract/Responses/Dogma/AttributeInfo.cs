@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,61 +7,61 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// attribute_id integer
         /// </summary>
-        [JsonProperty("attribute_id")]
+        [JsonPropertyName("attribute_id")]
         public required int AttributeId { get; init; }
 
         /// <summary>
         /// default_value number
         /// </summary>
-        [JsonProperty("default_value")]
+        [JsonPropertyName("default_value")]
         public float? DefaultValue { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; init; }
 
         /// <summary>
         /// display_name string
         /// </summary>
-        [JsonProperty("display_name")]
+        [JsonPropertyName("display_name")]
         public string? DisplayName { get; init; }
 
         /// <summary>
         /// high_is_good boolean
         /// </summary>
-        [JsonProperty("high_is_good")]
+        [JsonPropertyName("high_is_good")]
         public bool? HighIsGood { get; init; }
 
         /// <summary>
         /// icon_id integer
         /// </summary>
-        [JsonProperty("icon_id")]
+        [JsonPropertyName("icon_id")]
         public int? IconId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string? Name { get; init; }
 
         /// <summary>
         /// published boolean
         /// </summary>
-        [JsonProperty("published")]
+        [JsonPropertyName("published")]
         public bool? Published { get; init; }
 
         /// <summary>
         /// stackable boolean
         /// </summary>
-        [JsonProperty("stackable")]
+        [JsonPropertyName("stackable")]
         public bool? Stackable { get; init; }
 
         /// <summary>
         /// unit_id integer
         /// </summary>
-        [JsonProperty("unit_id")]
+        [JsonPropertyName("unit_id")]
         public int? UnitId { get; init; }
     }
 }

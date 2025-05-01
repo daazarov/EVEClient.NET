@@ -1,6 +1,5 @@
-﻿using EVEClient.NET.Pipline;
-using Newtonsoft.Json;
-using System.Net;
+﻿using EVEClient.NET.Handlers;
+using EVEClient.NET.Pipline;
 
 namespace EVEClient.NET.UnitTests.TestsClasses
 {

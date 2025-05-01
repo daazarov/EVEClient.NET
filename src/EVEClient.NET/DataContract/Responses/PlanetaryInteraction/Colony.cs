@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,43 +8,43 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// last_update string
         /// </summary>
-        [JsonProperty("last_update")]
+        [JsonPropertyName("last_update")]
         public required DateTime LastUpdate { get; init; }
 
         /// <summary>
         /// num_pins integer
         /// </summary>
-        [JsonProperty("num_pins")]
+        [JsonPropertyName("num_pins")]
         public required int NumberOfPins { get; init; }
 
         /// <summary>
         /// owner_id integer
         /// </summary>
-        [JsonProperty("owner_id")]
+        [JsonPropertyName("owner_id")]
         public required int OwnerId { get; init; }
 
         /// <summary>
         /// planet_id integer
         /// </summary>
-        [JsonProperty("planet_id")]
+        [JsonPropertyName("planet_id")]
         public required int PlanetId { get; init; }
 
         /// <summary>
         /// planet_type string
         /// </summary>
-        [JsonProperty("planet_type")]
+        [JsonPropertyName("planet_type")]
         public required PlanetType PlanetType { get; init; }
 
         /// <summary>
         /// solar_system_id integer
         /// </summary>
-        [JsonProperty("solar_system_id")]
+        [JsonPropertyName("solar_system_id")]
         public required int SolarSystemId { get; init; }
 
         /// <summary>
         /// upgrade_level integer
         /// </summary>
-        [JsonProperty("upgrade_level")]
+        [JsonPropertyName("upgrade_level")]
         public required int UpgradeLevel { get; init; }
     }
 }

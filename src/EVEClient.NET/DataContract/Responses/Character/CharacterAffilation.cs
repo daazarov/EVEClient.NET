@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,25 +7,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The character’s alliance ID, if their corporation is in an alliance
         /// </summary>
-        [JsonProperty("alliance_id")]
+        [JsonPropertyName("alliance_id")]
         public int? AllianceId { get; init; }
 
         /// <summary>
         /// The character’s ID
         /// </summary>
-        [JsonProperty("character_id")]
+        [JsonPropertyName("character_id")]
         public required int CharacterId { get; init; }
 
         /// <summary>
         /// The character’s corporation ID
         /// </summary>
-        [JsonProperty("corporation_id")]
+        [JsonPropertyName("corporation_id")]
         public required int CorporationId { get; init; }
 
         /// <summary>
         /// The character’s faction ID, if their corporation is in a faction
         /// </summary>
-        [JsonProperty("faction_id")]
+        [JsonPropertyName("faction_id")]
         public int? FactionId { get; init; }
     }
 }

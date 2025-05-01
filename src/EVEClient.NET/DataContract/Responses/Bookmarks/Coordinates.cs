@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,19 +7,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// x number
         /// </summary>
-        [JsonProperty("x")]
+        [JsonPropertyName("x")]
         public required double X { get; init; }
 
         /// <summary>
         /// x number
         /// </summary>
-        [JsonProperty("y")]
+        [JsonPropertyName("y")]
         public required double Y { get; init; }
 
         /// <summary>
         /// z number
         /// </summary>
-        [JsonProperty("z")]
+        [JsonPropertyName("z")]
         public required double Z { get; init; }
     }
 }

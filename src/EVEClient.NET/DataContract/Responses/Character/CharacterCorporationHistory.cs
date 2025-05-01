@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,25 +8,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// corporation_id integer
         /// </summary>
-        [JsonProperty("corporation_id")]
+        [JsonPropertyName("corporation_id")]
         public required int CorporationId { get; init; }
 
         /// <summary>
         /// True if the corporation has been deleted
         /// </summary>
-        [JsonProperty("is_deleted")]
+        [JsonPropertyName("is_deleted")]
         public bool? IsDeleted { get; init; }
 
         /// <summary>
         /// An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous
         /// </summary>
-        [JsonProperty("record_id")]
+        [JsonPropertyName("record_id")]
         public required int RecordId { get; init; }
 
         /// <summary>
         /// start_date string
         /// </summary>
-        [JsonProperty("start_date")]
+        [JsonPropertyName("start_date")]
         public required DateTime StartDate { get; init; }
     }
 }

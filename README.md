@@ -6,27 +6,24 @@ EVEClient.ESI is a wrapper over the [`ESI API`](https://esi.evetech.net/ui/) bas
 
 EVEClient.NET includes following default ordered middlewares:
 
-- `ProtectionHandler` - Performs getting the access token from `IAccessTokenProvider`, validates scope, and sets the Authorization header
-- `RequestHeadersHandler` - Configures the default headers for the request.
-- `UrlRequestParametersHandler` - Prepares a list of parameters to be passed and replaced in the URL template.
-- `BodyRequestParametersHandler` - (only for POST & PUT requests) - Prepares the body of the request.
-- `EndpointHandler` - Prepares a ready URL for sending the request.
-- `ETagHandler` - Used when the setting "UseETag" is enabled. Stores the eTag value for a particular request in internal storage and applies it to the next request.
-- `RequestGetHandler` or `RequestPostHandler` or `RequestDeleteHandler` or `RequestPutHandler` - Make a request to API
+- `RequestProtectionHandler` - Performs getting the access token from `IAccessTokenProvider`, validates scope, and sets the Authorization header
+- `RequestETagHandler` - Used when the setting "UseETag" is enabled. Stores the eTag value for a particular request in internal storage and applies it to the next request.
+- `RequestSendingHandler` - Make a request to API
 
 ## Limitations
 
-1. EVEClient.NET currently has no built-in functionality to work in ESI SSO. You need to implement your own token provider using the provided interface `IAccessTokenProvider`.
-In the future it is planned to write a separate library for ASP.NET Core, which will provide native authorization support.
+1. ~~EVEClient.NET currently has no built-in functionality to work in ESI SSO. You need to implement your own token provider and scope validator using the provided interfaces `IAccessTokenProvider` & `IScopeAccessValidator`.
+In the future it is planned to write a separate library for ASP.NET Core, which will provide native authorization support.~~
+> `EVEClient.NET.Identity` was released in an alpha version. (see [Quick Start Example](https://github.com/daazarov/EVEClient.NET.Identity/tree/main/Examples/QuickStart))
 2. EVEClient.NET uses ENDPOINT VERSIONING according to best practices (see [more](https://developers.eveonline.com/blog/article/esi-endpoint-versioning-important-info-and-best-practices)). At the moment there is no way to choose a different route (e.g. legacy/latest or dev) except to override the EndpointHandler in pipline. But in the future, we plan to provide this feature in separate package along with repeat customization. I don't know why it might be necessary :sweat_smile:
 
 ## NuGet Packages
 
 | **Package** | **Latest Version** | **About** |
 |:--|:--|:--|
-| `EVEClient.NET` | [![NuGet](https://buildstats.info/nuget/EVEClient.NET)](https://www.nuget.org/packages/EVEClient.NET "Download EVEClient.NET from NuGet.org") | The core functionality to communicate with [`ESI API`](https://esi.evetech.net/ui/). |
+| `EVEClient.NET` | [![NuGet](https://img.shields.io/nuget/v/EVEClient.NET)](https://www.nuget.org/packages/EVEClient.NET "Download EVEClient.NET from NuGet.org") | The core functionality to communicate with [`ESI API`](https://esi.evetech.net/ui/). |
 | `EVEClient.NET.Polly` | Coming Soon... | Integration with [`Polly`](https://www.nuget.org/packages/Polly/) APIs to provide a repeat function and selection of alternative routes. |
-| `EVEClient.NET.Identity` | Coming Soon... | OAuth 2.0 framework for ASP.NET Core to provide out-of-the-box functionality for EVE SSO authorization. |
+| `EVEClient.NET.Identity` | [![NuGet](https://img.shields.io/nuget/v/EVEClient.NET.Identity)](https://www.nuget.org/packages/EVEClient.NET.Identity "Download EVEClient.NET.Identity from NuGet.org") | OAuth 2.0 library for ASP.NET Core applications to provide out-of-the-box functionality for EVE SSO authorization. |
 
 ## Quick start
 
@@ -45,6 +42,15 @@ _serviceCollection.AddEVEOnlineEsiClient(config =>
     // 304 http status code will be returned on a second request as long as the data on the server is cached and has not been changed 
     config.EnableETag = true; // 
 })
+// EVEClient.NET.Identity package dependency
+.AddAuthentication(option =>
+{
+    option.ClientId = "******";
+    option.ClientSecret = "******";
+    option.CallbackPath = "/eve-callback";
+    option.Scopes.AddRange("esi-mail.read_mail.v1", "esi-characters.read_standings.v1");
+})
+// or your own implementations of providing and validation SSO token
 .AddAccessTokenProvider<YourAccessTokenProvider>()
 .AddScopeValidator<YourScopeAccessValidator>()
 // or
@@ -101,13 +107,17 @@ internal class CustomHandler : IHandler
         // after request area
         if (context.Response.StatusCode == HttpStatusCode.NotModified)
         {
-            var eTag = context.Response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
+            var eTag = context.Response.Headers["ETag"].ToString().Replace("\"", string.Empty);
             var data = await _cache.GetCachedResponse(eTag);
-            var response = new HttpResponseMessage(HttpStatusCode.OK);
+	    var response = new HttpResponseMessage(HttpStatusCode.OK);
 
-            response.Content = new StringContent(JsonConvert.SerializeObject(data));
+	    response.Content = new StringContent(JsonConvert.SerializeObject(data));
+	    foreach (var headers in context.Response.Headers)
+	    {
+    	        response.Headers.TryAddWithoutValidation(headers.Key, headers.Value.AsEnumerable());
+	    }
 
-            context.SetHttpResponseMessage(response);
+	    context.SetHttpResponseMessage(response);
         }
     }
 }

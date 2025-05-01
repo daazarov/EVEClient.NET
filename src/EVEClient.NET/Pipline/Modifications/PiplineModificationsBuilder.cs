@@ -1,29 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using EVEClient.NET.Configuration;
 using EVEClient.NET.Extensions;
-using EVEClient.NET.Utilities;
+using EVEClient.NET.Handlers;
 
 namespace EVEClient.NET.Pipline.Modifications
 {
     internal class PiplineModificationsBuilder : IPiplineModificationsBuilder
     {
+        private readonly static Dictionary<string, HttpMethodType> _endpointsHttpMethodsMap;
+        private readonly static string[] _defaultsComponentIds;
+
         internal readonly List<PiplineModification> Modifications = new();
         internal readonly Dictionary<string, List<string>> AddedComponentIds = new();
-        internal readonly string[] DefaultsComponentIds =
+
+        static PiplineModificationsBuilder()
         {
-            "RequestHeadersHandler",
-            "UrlRequestParametersHandler",
-            "RequestGetHandler",
-            "RequestPostHandler",
-            "RequestDeleteHandler",
-            "RequestPutHandler",
-            "ETagHandler",
-            "EndpointHandler",
-            "ProtectionHandler",
-            "BodyRequestParametersHandler"
-        };
+            _defaultsComponentIds = new[]
+            {
+                nameof(DefaultRequestETagHandler),
+                nameof(DefaultRequestProtectionHandler),
+                nameof(DefaultRequestSendingHandler)
+            };
+
+            _endpointsHttpMethodsMap = new Dictionary<string, HttpMethodType>();
+
+            foreach (var configurationBuilder in ESI.Endpoints.Configurations.Default)
+            {
+                var builder = new EndpointConfigurationBuilder(configurationBuilder.Key);
+                configurationBuilder.Value(builder);
+                var configuration = builder.Build();
+                _endpointsHttpMethodsMap.Add(configuration.EndpointId, configuration.MethodType);
+            }
+        }
 
         public IEndpointModificationBuilder ModificationFor(string endpointId)
         {
@@ -34,40 +44,40 @@ namespace EVEClient.NET.Pipline.Modifications
             return new SingleEndpointModificationBuilder(modification, this);
         }
 
-        public IEndpointModificationBuilder ModificationFor(string[] endpointIds)
+        public IEndpointModificationBuilder ModificationFor(IEnumerable<string> endpointIds)
         {
-            if (endpointIds is null || endpointIds.Length == 0 || endpointIds.Any(x => string.IsNullOrEmpty(x)))
+            if (endpointIds is null || !endpointIds.Any())
             {
                 throw new ArgumentException("Endpoint IDs can not be null or empty.");
             }
 
-            return new CompositeEndpointModificationBuilder(endpointIds.Select(x => ModificationFor(x)));
+            return new CompositeEndpointModificationBuilder(endpointIds.Select(ModificationFor));
         }
 
         public IEndpointModificationBuilder ModificationFor(EndpointsSelector selector)
         {
             if (selector.HasFlag(EndpointsSelector.AllRequests))
             {
-                return ModificationFor(EndpointsMapper.Instance.Select(x => x.Value).ToArray());
+                return ModificationFor(_endpointsHttpMethodsMap.Keys);
             }
 
             var endpoindIds = new List<string>();
 
             if (selector.HasFlag(EndpointsSelector.GetRequests))
             {
-                endpoindIds.AddRange(EndpointsMapper.Instance.Where(x => x.Key.HttpMethodType == "GET").Select(x => x.Value));
+                endpoindIds.AddRange(_endpointsHttpMethodsMap.Where(x => x.Value == HttpMethodType.Get).Select(x => x.Key));
             }
             if (selector.HasFlag(EndpointsSelector.PutRequests))
             {
-                endpoindIds.AddRange(EndpointsMapper.Instance.Where(x => x.Key.HttpMethodType == "PUT").Select(x => x.Value));
+                endpoindIds.AddRange(_endpointsHttpMethodsMap.Where(x => x.Value == HttpMethodType.Put).Select(x => x.Key));
             }
             if (selector.HasFlag(EndpointsSelector.PostRequests))
             {
-                endpoindIds.AddRange(EndpointsMapper.Instance.Where(x => x.Key.HttpMethodType == "POST").Select(x => x.Value));
+                endpoindIds.AddRange(_endpointsHttpMethodsMap.Where(x => x.Value == HttpMethodType.Post).Select(x => x.Key));
             }
             if (selector.HasFlag(EndpointsSelector.DeleteRequests))
             {
-                endpoindIds.AddRange(EndpointsMapper.Instance.Where(x => x.Key.HttpMethodType == "DELETE").Select(x => x.Value));
+                endpoindIds.AddRange(_endpointsHttpMethodsMap.Where(x => x.Value == HttpMethodType.Delete).Select(x => x.Key));
             }
 
             return ModificationFor(endpoindIds.ToArray());
@@ -78,9 +88,8 @@ namespace EVEClient.NET.Pipline.Modifications
             foreach (var group in Modifications.GroupBy(m => m.EndpointId))
             {
                 // 1. Validate modifiers for the existence of a endpoint
-                var unknownModifications = group.Where(x => EndpointsMapper.Instance[x.EndpointId] == EndpointMarker.Null).ToList();
-                if (unknownModifications.Any())
-                    throw new InvalidOperationException($"Unknown endpoint identifiers: {string.Join(", ", unknownModifications.Select(x => x.EndpointId).Distinct())}.");
+                if (!_endpointsHttpMethodsMap.ContainsKey(group.Key))
+                    throw new InvalidOperationException($"Unknown endpoint identifier: {group.Key}.");
 
                 foreach (var modification in group)
                 {
@@ -93,22 +102,7 @@ namespace EVEClient.NET.Pipline.Modifications
                     if (duplicateAdditionalComponentIds.Any())
                         throw new InvalidOperationException($"Duplicate AdditionalComponent ids found: {string.Join(", ", duplicateAdditionalComponentIds)}");
 
-                    // 3. One PiplineModification does not have multiple ReplaceComponents that replace the same ReplaceId
-                    var duplicateReplaceIds = modification.Replacements
-                        .GroupBy(r => r.ReplaceId)
-                        .Where(g => g.Count() > 1)
-                        .Select(g => g.Key)
-                        .ToList();
-                    if (duplicateReplaceIds.Any())
-                        throw new InvalidOperationException($"Duplicate ReplaceIds found: {string.Join(", ", duplicateReplaceIds)}");
 
-                    // 4. ReplaceId of the ReplaceComponent is contained in the list of valid values
-                    var invalidReplaceIds = modification.Replacements
-                        .Where(r => !DefaultsComponentIds.Contains(r.ReplaceId))
-                        .Select(r => r.ReplaceId)
-                        .ToList();
-                    if (invalidReplaceIds.Any())
-                        throw new InvalidOperationException($"{string.Join(", ", invalidReplaceIds)} component ids to be replaced is not found among the list of standard components. See the list of components available for replacement: {string.Join(", ", DefaultsComponentIds)}");
 
                     // 5. There is no AdditionalComponent where all properties except PiplineComponent have a default value
                     var unconfiguredAdditionalComponents = modification.Additions
@@ -162,20 +156,11 @@ namespace EVEClient.NET.Pipline.Modifications
                     // 12. To have the AddAfter of an AdditionalComponent contained in the list of allowed values, or equal to one of the ComponentId in the PiplineComponent
                     var validComponentIds = new HashSet<string>(modification.Additions.Select(a => a.PiplineComponent.ComponentId));
                     var invalidAddAfterIds = modification.Additions
-                        .Where(a => !string.IsNullOrEmpty(a.AddAfter) && !DefaultsComponentIds.Contains(a.AddAfter) && !validComponentIds.Contains(a.AddAfter))
+                        .Where(a => !string.IsNullOrEmpty(a.AddAfter) && !_defaultsComponentIds.Contains(a.AddAfter) && !validComponentIds.Contains(a.AddAfter))
                         .Select(a => a.AddAfter)
                         .ToList();
                     if (invalidAddAfterIds.Any())
                         throw new InvalidOperationException($"Invalid AddAfter ids found: {string.Join(", ", invalidAddAfterIds)}");
-
-                    // 13. AddAfter does not refer to the component to be replaced
-                    var componentsToBeReplace = new HashSet<string>(modification.Replacements.Select(a => a.ReplaceId));
-                    var componentIdsWithIncorrectAddAfter = modification.Additions
-                        .Where(a => !string.IsNullOrEmpty(a.AddAfter) && componentsToBeReplace.Contains(a.AddAfter))
-                        .Select(a => a.PiplineComponent.ComponentId)
-                        .ToList();
-                    if(componentIdsWithIncorrectAddAfter.Any())
-                        throw new InvalidOperationException($"AddAfter refer to the component to be replaced: {string.Join(", ", componentIdsWithIncorrectAddAfter)}");
                 }
             }
         }

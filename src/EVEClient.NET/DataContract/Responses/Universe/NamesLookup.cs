@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,19 +7,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// id integer
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public required int ID { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// category string
         /// </summary>
-        [JsonProperty("category")]
+        [JsonPropertyName("category")]
         public required NameCategory Category { get; init; }
     }
 }

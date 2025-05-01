@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,43 +8,43 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// is_read boolean
         /// </summary>
-        [JsonProperty("is_read")]
+        [JsonPropertyName("is_read")]
         public bool? IsRead { get; init; }
 
         /// <summary>
         /// notification_id integer
         /// </summary>
-        [JsonProperty("notification_id")]
+        [JsonPropertyName("notification_id")]
         public required long NotificationId { get; init; }
 
         /// <summary>
         /// sender_id integer
         /// </summary>
-        [JsonProperty("sender_id")]
+        [JsonPropertyName("sender_id")]
         public required int SenderId { get; init; }
 
         /// <summary>
         /// sender_type string
         /// </summary>
-        [JsonProperty("sender_type")]
+        [JsonPropertyName("sender_type")]
         public required SenderType SenderType { get; init; }
 
         /// <summary>
         /// text string
         /// </summary>
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string? Text { get; init; }
 
         /// <summary>
         /// timestamp string
         /// </summary>
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public required DateTime Timestamp { get; init; }
 
         /// <summary>
         /// type string
         /// </summary>
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public required NotificationType Type { get; init; }
     }
 }

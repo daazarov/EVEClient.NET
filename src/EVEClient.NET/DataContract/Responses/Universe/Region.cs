@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,25 +7,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// constellations array
         /// </summary>
-        [JsonProperty("constellations")]
+        [JsonPropertyName("constellations")]
         public required int[] Constellations { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// region_id integer
         /// </summary>
-        [JsonProperty("region_id")]
+        [JsonPropertyName("region_id")]
         public required int RegionId { get; init; }
     }
 }

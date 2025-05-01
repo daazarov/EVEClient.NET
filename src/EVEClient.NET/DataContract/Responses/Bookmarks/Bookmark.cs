@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,55 +8,55 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// bookmark_id integer
         /// </summary>
-        [JsonProperty("bookmark_id")]
+        [JsonPropertyName("bookmark_id")]
         public required int BookmarkId { get; init; }
 
         /// <summary>
         /// coordinates object
         /// </summary>
-        [JsonProperty("coordinates")]
+        [JsonPropertyName("coordinates")]
         public Coordinates? Coordinates { get; init; }
 
         /// <summary>
         /// created string
         /// </summary>
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public required DateTime Created { get; init; }
 
         /// <summary>
         /// creator_id integer
         /// </summary>
-        [JsonProperty("creator_id")]
+        [JsonPropertyName("creator_id")]
         public required int CreatorId { get; init; }
 
         /// <summary>
         /// folder_id integer
         /// </summary>
-        [JsonProperty("folder_id")]
+        [JsonPropertyName("folder_id")]
         public int? FolderId { get; init; }
 
         /// <summary>
         /// item object
         /// </summary>
-        [JsonProperty("item")]
+        [JsonPropertyName("item")]
         public BookmarkItem? Item { get; init; }
 
         /// <summary>
         /// label string
         /// </summary>
-        [JsonProperty("label")]
+        [JsonPropertyName("label")]
         public required string Label { get; init; }
 
         /// <summary>
         /// location_id integer
         /// </summary>
-        [JsonProperty("location_id")]
+        [JsonPropertyName("location_id")]
         public required int LocationId { get; init; }
 
         /// <summary>
         /// notes string
         /// </summary>
-        [JsonProperty("notes")]
+        [JsonPropertyName("notes")]
         public required string Notes { get; init; }
     }
 }

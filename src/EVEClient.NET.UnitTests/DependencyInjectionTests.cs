@@ -22,7 +22,6 @@ namespace EVEClient.NET.UnitTests
         [TestCase(typeof(ICharacterLogic))]
         [TestCase(typeof(IAllianceLogic))]
         [TestCase(typeof(IAssetsLogic))]
-        [TestCase(typeof(IBookmarksLogic))]
         [TestCase(typeof(ICalendarLogic))]
         [TestCase(typeof(IClonesLogic))]
         [TestCase(typeof(IContactsLogic))]
@@ -40,7 +39,6 @@ namespace EVEClient.NET.UnitTests
         [TestCase(typeof(ILoyaltyLogic))]
         [TestCase(typeof(IMailLogic))]
         [TestCase(typeof(IMarketLogic))]
-        [TestCase(typeof(IOpportunitiesLogic))]
         [TestCase(typeof(IPlanetaryInteractionLogic))]
         [TestCase(typeof(IRoutesLogic))]
         [TestCase(typeof(ISearchLogic))]
@@ -55,16 +53,9 @@ namespace EVEClient.NET.UnitTests
             Assert.That(_serviceCollection.Single(x => x.ServiceType == type).Lifetime, Is.EqualTo(ServiceLifetime.Scoped));
         }
 
-        [TestCase(typeof(EndpointHandler), ServiceLifetime.Singleton)]
-        [TestCase(typeof(ProtectionHandler), ServiceLifetime.Scoped)]
-        [TestCase(typeof(RequestDeleteHandler), ServiceLifetime.Singleton)]
-        [TestCase(typeof(RequestPutHandler), ServiceLifetime.Singleton)]
-        [TestCase(typeof(RequestGetHandler), ServiceLifetime.Singleton)]
-        [TestCase(typeof(RequestPostHandler), ServiceLifetime.Singleton)]
-        [TestCase(typeof(UrlRequestParametersHandler), ServiceLifetime.Scoped)]
-        [TestCase(typeof(RequestHeadersHandler), ServiceLifetime.Scoped)]
-        [TestCase(typeof(ETagHandler), ServiceLifetime.Scoped)]
-        [TestCase(typeof(BodyRequestParametersHandler), ServiceLifetime.Singleton)]
+        [TestCase(typeof(IRequestProtectionHandler), ServiceLifetime.Scoped)]
+        [TestCase(typeof(IRequestETagHandler), ServiceLifetime.Scoped)]
+        [TestCase(typeof(IRequestSendingHandler), ServiceLifetime.Scoped)]
         public void ServiceCollection_ContainsHandlers(Type type, ServiceLifetime lifetime)
         {
             Assert.That(_serviceCollection.Single(x => x.ServiceType == type), Is.Not.Null);
@@ -73,10 +64,8 @@ namespace EVEClient.NET.UnitTests
 
         [TestCase(typeof(IETagStorage), ServiceLifetime.Singleton)]
         [TestCase(typeof(IPiplineStore), ServiceLifetime.Singleton)]
-        [TestCase(typeof(IHttpClientFactory), ServiceLifetime.Singleton)]
-        [TestCase(typeof(IEsiContextFactory), ServiceLifetime.Scoped)]
         [TestCase(typeof(IEsiLogicAccessor), ServiceLifetime.Scoped)]
-        [TestCase(typeof(IEsiHttpClient<>), ServiceLifetime.Scoped)]
+        [TestCase(typeof(IEsiHttpClient), ServiceLifetime.Scoped)]
         public void ServiceCollection_ContainsOther(Type type, ServiceLifetime lifetime)
         {
             Assert.That(_serviceCollection.Single(x => x.ServiceType == type), Is.Not.Null);

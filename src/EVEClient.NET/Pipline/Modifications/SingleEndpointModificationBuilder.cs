@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 
 using EVEClient.NET.Extensions;
+using EVEClient.NET.Handlers;
 
 namespace EVEClient.NET.Pipline.Modifications
 {
@@ -50,34 +51,6 @@ namespace EVEClient.NET.Pipline.Modifications
             }
 
             _modification.Additions.Add(component);
-
-            return this;
-        }
-
-        public IEndpointModificationBuilder ReplaceHandler<CustomHandler, ReplacingHandler>()
-            where CustomHandler : IHandler
-            where ReplacingHandler : IHandler
-        {
-            return ReplaceHandler<CustomHandler>(typeof(ReplacingHandler));
-        }
-
-        public IEndpointModificationBuilder ReplaceHandler<CustomHandler>(Type replacingComponentType) where CustomHandler : IHandler
-        {
-            return ReplaceHandler<CustomHandler>(replacingComponentType.Name);
-        }
-
-        public IEndpointModificationBuilder ReplaceHandler<CustomHandler>(string replacingComponentId) where CustomHandler : IHandler
-        {
-            var componentId = typeof(CustomHandler).Name;
-            var middleware = CreateMiddleware<CustomHandler>();
-
-            var component = new ReplaceComponent
-            {
-                PiplineComponent = new PiplineComponent(componentId, middleware),
-                ReplaceId = replacingComponentId
-            };
-
-            _modification.Replacements.Add(component);
 
             return this;
         }

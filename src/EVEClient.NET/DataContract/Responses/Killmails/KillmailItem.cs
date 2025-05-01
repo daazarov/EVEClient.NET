@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,37 +8,37 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Flag for the location of the item
         /// </summary>
-        [JsonProperty("flag")]
+        [JsonPropertyName("flag")]
         public required int Flag { get; init; }
 
         /// <summary>
         /// item_type_id integer
         /// </summary>
-        [JsonProperty("item_type_id")]
+        [JsonPropertyName("item_type_id")]
         public required int ItemTypeId { get; init; }
 
         /// <summary>
         /// items array
         /// </summary>
-        [JsonProperty("items")]
+        [JsonPropertyName("items")]
         public List<KillmailItem>? Items { get; init; }
 
         /// <summary>
         /// How many of the item were destroyed if any
         /// </summary>
-        [JsonProperty("quantity_destroyed")]
+        [JsonPropertyName("quantity_destroyed")]
         public long? QuantityDestroyed { get; init; }
 
         /// <summary>
         /// How many of the item were dropped if any
         /// </summary>
-        [JsonProperty("quantity_dropped")]
+        [JsonPropertyName("quantity_dropped")]
         public long? QuantityDropped { get; init; }
 
         /// <summary>
         /// singleton integer
         /// </summary>
-        [JsonProperty("singleton")]
+        [JsonPropertyName("singleton")]
         public required int Singleton { get; init; }
     }
 }

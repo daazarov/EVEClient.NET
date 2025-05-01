@@ -8,7 +8,6 @@
         ICharacterLogic CharacterLogic { get; }
         IAllianceLogic AllianceLogic { get; }
         IAssetsLogic AssetsLogic { get; }
-        IBookmarksLogic BookmarksLogic { get; }
         ICalendarLogic CalendarLogic { get; }
         IClonesLogic ClonesLogic { get; }
         IContactsLogic ContactsLogic { get; }
@@ -26,7 +25,6 @@
         ILoyaltyLogic LoyaltyLogic { get; }
         IMailLogic MailLogic { get; }
         IMarketLogic MarketLogic { get; }
-        IOpportunitiesLogic OpportunitiesLogic { get; }
         IPlanetaryInteractionLogic PlanetaryInteractionLogic { get; }
         IRoutesLogic RoutesLogic { get; }
         ISearchLogic SearchLogic { get; }

@@ -1,5 +1,15 @@
 Historical reference of changes made in EVEClient.NET.
 
+# 2024-08-15 `(Release - v8.0.1, v6.0.1)`
+- **Fix**
+  - DataContract models - fix inconsistency in the property setters
+- **ENHANCEMENT**:
+  - Changed ServiceLifetime from Singleton to Scoped for the
+    * ProtectionHandler
+    * ETagHandler
+    * RequestHeadersHandler
+    * UrlRequestParametersHandler
+
 # 2024-08-08 `(Release - v8.0.0)`
 - **Fix**
   - `esi-issues` changes from `2024-07-16` - [details](https://github.com/esi/esi-issues/blob/master/changelog.md#2024-07-16)

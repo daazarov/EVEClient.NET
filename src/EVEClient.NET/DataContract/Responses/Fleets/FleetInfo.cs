@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,25 +7,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The character’s current fleet ID
         /// </summary>
-        [JsonProperty("fleet_id")]
+        [JsonPropertyName("fleet_id")]
         public required long FleetId { get; init; }
 
         /// <summary>
         /// Member’s role in fleet
         /// </summary>
-        [JsonProperty("role")]
+        [JsonPropertyName("role")]
         public required FleetRole Role { get; init; }
 
         /// <summary>
         /// ID of the squad the member is in. If not applicable, will be set to -
         /// </summary>
-        [JsonProperty("squad_id")]
+        [JsonPropertyName("squad_id")]
         public required long SquadId { get; init; }
 
         /// <summary>
         /// ID of the wing the member is in. If not applicable, will be set to -1
         /// </summary>
-        [JsonProperty("wing_id")]
+        [JsonPropertyName("wing_id")]
         public required long WingId { get; init; }
     }
 }

@@ -40,10 +40,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <exception cref="ArgumentNullException"></exception>
         public static IEsiClientConfigurationBuilder AddEVEOnlineEsiClient(this IServiceCollection services, EsiClientConfiguration configuration)
         {
-            if (configuration is null)
-            {
-                throw new ArgumentNullException(nameof(configuration));
-            }
+            ArgumentNullException.ThrowIfNull(configuration);
 
             services.Configure<EsiClientConfiguration>(options =>
             {
@@ -52,15 +49,17 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.EnableETag = configuration.EnableETag;
             });
 
+
             services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<EsiClientConfiguration>, EnshureUserAgentProvidedPostConfigure>());
+            services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<EsiClientConfiguration>, EnshureBackchannelPostConfigure>());
 
             var builder = services.AddEsiClientConfigurationBuilder(configuration);
 
             builder
-                .AddRequiredClientServices()
                 .AddDefaults()
                 .AddEsiLogic()
-                .AddPiplineHandlers();
+                .AddPiplineHandlers()
+                .AddDefaultEndpointsConfiguration();
 
             return builder;
         }
