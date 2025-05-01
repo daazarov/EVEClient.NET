@@ -1,51 +1,32 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using EVEClient.NET;
-using EVEClient.NET.DependencyInjection;
 using EVEClient.NET.Handlers;
 using EVEClient.NET.Pipline;
 using EVEClient.NET.Pipline.Modifications;
 using EVEClient.NET.Defaults;
 using EVEClient.NET.Logic;
+using EVEClient.NET.Requests;
+using EVEClient.NET.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static partial class EsiClientConfigurationBuilderExtensions
     {
         /// <summary>
-        /// Adds the configured HTTP client.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        public static IEsiClientConfigurationBuilder AddRequiredClientServices(this IEsiClientConfigurationBuilder builder)
-        {
-            builder.Services
-                .AddHttpClient(ESI.HttpClientName, httpClient =>
-                {
-                    httpClient.BaseAddress = new Uri(builder.Configuration.EsiBaseUrl);
-                })
-                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
-                { 
-                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-                });
-
-            builder.Services.TryAddScoped<IEsiContextFactory, EsiContextFactory>();
-            builder.Services.TryAddScoped(typeof(IEsiHttpClient<>), typeof(EsiHttpClient<>));
-
-            return builder;
-        }
-
-        /// <summary>
         /// Adds the default implementations.
         /// </summary>
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         public static IEsiClientConfigurationBuilder AddDefaults(this IEsiClientConfigurationBuilder builder)
         {
+            builder.Services.TryAddScoped<IEsiHttpClient, DefaultEsiHttpClient>();
             builder.Services.TryAddSingleton<IETagStorage, DefaultInMemoryETagThreadSaveStore>();
-            builder.Services.TryAddSingleton<IPiplineStore, PiplineStore>();
+            builder.Services.TryAddSingleton<IPiplineStore, DefaultPiplineStore>();
+            builder.Services.TryAddSingleton<IEndpointConfigurationProvider, EndpointConfigurationProvider>();
+            builder.Services.TryAddSingleton<IResponseReaderProvider, DefaultResponseReaderProvider>();
+            builder.Services.TryAddSingleton<IEsiRequestFactory, DefaultEsiRequestFactory>();
 
             return builder;
         }
@@ -60,7 +41,6 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.TryAddScoped<ICharacterLogic, CharacterLogic>();
             builder.Services.TryAddScoped<IAllianceLogic, AllianceLogic>();
             builder.Services.TryAddScoped<IAssetsLogic, AssetsLogic>();
-            builder.Services.TryAddScoped<IBookmarksLogic, BookmarksLogic>();
             builder.Services.TryAddScoped<ICalendarLogic, CalendarLogic>();
             builder.Services.TryAddScoped<IClonesLogic, ClonesLogic>();
             builder.Services.TryAddScoped<IContactsLogic, ContactsLogic>();
@@ -78,7 +58,6 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.TryAddScoped<ILoyaltyLogic, LoyaltyLogic>();
             builder.Services.TryAddScoped<IMailLogic, MailLogic>();
             builder.Services.TryAddScoped<IMarketLogic, MarketLogic>();
-            builder.Services.TryAddScoped<IOpportunitiesLogic, OpportunitiesLogic>();
             builder.Services.TryAddScoped<IPlanetaryInteractionLogic, PlanetaryInteractionLogic>();
             builder.Services.TryAddScoped<IRoutesLogic, RoutesLogic>();
             builder.Services.TryAddScoped<ISearchLogic, SearchLogic>();
@@ -99,19 +78,20 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         public static IEsiClientConfigurationBuilder AddPiplineHandlers(this IEsiClientConfigurationBuilder builder)
         {
-            // handlers without injections
-            builder.Services.TryAddSingleton<RequestGetHandler>();
-            builder.Services.TryAddSingleton<RequestPostHandler>();
-            builder.Services.TryAddSingleton<RequestDeleteHandler>();
-            builder.Services.TryAddSingleton<RequestPutHandler>();
-            builder.Services.TryAddSingleton<EndpointHandler>();
-            builder.Services.TryAddSingleton<BodyRequestParametersHandler>();
+            builder.Services.TryAddScoped<IRequestSendingHandler, DefaultRequestSendingHandler>();
+            builder.Services.TryAddScoped<IRequestETagHandler, DefaultRequestETagHandler>();
+            builder.Services.TryAddScoped<IRequestProtectionHandler, DefaultRequestProtectionHandler>();
 
-            // handlers with injections
-            builder.Services.TryAddScoped<ETagHandler>();
-            builder.Services.TryAddScoped<ProtectionHandler>();
-            builder.Services.TryAddScoped<RequestHeadersHandler>();
-            builder.Services.TryAddScoped<UrlRequestParametersHandler>();
+            return builder;
+        }
+
+        /// <summary>
+        /// Set up the default configuration for all ESI endpoints. Does not affect already configured ESI endpoints.
+        /// </summary>
+        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
+        public static IEsiClientConfigurationBuilder AddDefaultEndpointsConfiguration(this IEsiClientConfigurationBuilder builder)
+        {
+            builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<EsiClientConfiguration>, EnshureEndpointsConfigurationPostConfigure>());
 
             return builder;
         }
@@ -157,27 +137,13 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds the specified <see cref="IAccessTokenProvider"/> as a <see cref="ServiceLifetime.Transient"/> service
         /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
         /// </summary>
-        /// <typeparam name="T">The <see cref="IAccessTokenProvider"/> implementation.</typeparam>
+        /// <typeparam name="TImplementation">The <see cref="IAccessTokenProvider"/> implementation.</typeparam>
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder AddAccessTokenProvider<T>(this IEsiClientConfigurationBuilder builder)
+        public static IEsiClientConfigurationBuilder AddAccessTokenProvider<TImplementation>(this IEsiClientConfigurationBuilder builder)
+            where TImplementation : class, IAccessTokenProvider
         {
-            return builder.AddAccessTokenProvider(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="IAccessTokenProvider"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder AddAccessTokenProvider(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(IAccessTokenProvider), instanceType);
-
-            builder.Services.AddScopedWithReplace(typeof(IAccessTokenProvider), instanceType);
+            builder.Services.AddScoped<IAccessTokenProvider, TImplementation>();
 
             return builder;
         }
@@ -186,56 +152,13 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds the specified <see cref="IScopeAccessValidator"/> as a <see cref="ServiceLifetime.Transient"/> service
         /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
         /// </summary>
-        /// <typeparam name="T">The <see cref="IScopeAccessValidator"/> implementation.</typeparam>
+        /// <typeparam name="TImplementation">The <see cref="IScopeAccessValidator"/> implementation.</typeparam>
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder AddScopeValidator<T>(this IEsiClientConfigurationBuilder builder)
+        public static IEsiClientConfigurationBuilder AddScopeValidator<TImplementation>(this IEsiClientConfigurationBuilder builder)
+            where TImplementation : class, IScopeAccessValidator
         {
-            return builder.AddScopeValidator(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="IScopeAccessValidator"/> as a <see cref="ServiceLifetime.Transient"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder AddScopeValidator(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(IScopeAccessValidator), instanceType);
-
-            builder.Services.AddScopedWithReplace(typeof(IScopeAccessValidator), instanceType);
-
-            return builder;
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="IETagStorage"/> as a <see cref="ServiceLifetime.Singleton"/> service
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <typeparam name="T">The <see cref="IETagStorage"/> implementation.</typeparam>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder AddETagStorage<T>(this IEsiClientConfigurationBuilder builder)
-        {
-            return builder.AddETagStorage(typeof(T));
-        }
-
-        /// <summary>
-        /// Adds the specified <see cref="IETagStorage"/> as a <see cref="ServiceLifetime.Singleton"/> service
-        /// with the <paramref name="instanceType"/> implementation
-        /// to the <see cref="IServiceCollection"/> if the service type hasn't already been registered.
-        /// </summary>
-        /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
-        /// <param name="instanceType">The implementation type of the service.</param>
-        /// <returns>The <see cref="IEsiClientConfigurationBuilder"/>.</returns>
-        public static IEsiClientConfigurationBuilder AddETagStorage(this IEsiClientConfigurationBuilder builder, Type instanceType)
-        {
-            IsAssignableFrom(typeof(IETagStorage), instanceType);
-
-            builder.Services.AddScopedWithReplace(typeof(IETagStorage), instanceType);
+            builder.Services.AddScoped<IScopeAccessValidator, TImplementation>();
 
             return builder;
         }
@@ -244,14 +167,6 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             builder.Services.AddSingleton(modification);
             return builder;
-        }
-
-        private static void IsAssignableFrom(Type from, Type to)
-        {
-            if (!(from.GetTypeInfo().IsAssignableFrom(to.GetTypeInfo())))
-            {
-                throw new InvalidCastException($"{to.FullName} is not assignable from {from.FullName}");
-            }
         }
     }
 }

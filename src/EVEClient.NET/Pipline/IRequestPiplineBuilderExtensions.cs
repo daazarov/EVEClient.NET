@@ -12,13 +12,11 @@ namespace EVEClient.NET.Pipline
         /// </summary>
         /// <typeparam name="THandler">The handler type.</typeparam>
         /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
-        public static IRequestPiplineBuilder UseHandler<THandler>(this IRequestPiplineBuilder builder) where THandler : IHandler
+        public static IRequestPiplineBuilder UseHandler<THandler>(this IRequestPiplineBuilder builder, string? handlerName = null) where THandler : IHandler
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            var componentId = typeof(THandler).Name;
-
-            return builder.Use(new PiplineComponent(componentId, next =>
+            return builder.Use(new PiplineComponent(handlerName ?? typeof(THandler).Name, next =>
             {
                 return context =>
                 {
@@ -30,66 +28,16 @@ namespace EVEClient.NET.Pipline
         }
 
         /// <summary>
-        /// Prepare the default middleware for the DELETE ESI endpoints.
+        /// Prepare the default middleware for the ESI endpoints.
         /// </summary>
         /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
-        public static IRequestPiplineBuilder UseDeletePipline(this IRequestPiplineBuilder builder)
+        public static IRequestPiplineBuilder UseDefaultPipline(this IRequestPiplineBuilder builder)
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            return builder.UseHandler<ProtectionHandler>()
-                          .UseHandler<RequestHeadersHandler>()
-                          .UseHandler<UrlRequestParametersHandler>()
-                          .UseHandler<EndpointHandler>()
-                          .UseHandler<RequestDeleteHandler>();
-        }
-
-        /// <summary>
-        /// Prepare the default middleware for the GET ESI endpoints.
-        /// </summary>
-        /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
-        public static IRequestPiplineBuilder UseGetPipline(this IRequestPiplineBuilder builder)
-        {
-            builder.ArgumentNotNull(nameof(builder));
-
-            return builder.UseHandler<ProtectionHandler>()
-                          .UseHandler<RequestHeadersHandler>()
-                          .UseHandler<UrlRequestParametersHandler>()
-                          .UseHandler<EndpointHandler>()
-                          .UseHandler<ETagHandler>()
-                          .UseHandler<RequestGetHandler>();
-        }
-
-        /// <summary>
-        /// Prepare the default middleware for the POST ESI endpoints.
-        /// </summary>
-        /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
-        public static IRequestPiplineBuilder UsePostPipline(this IRequestPiplineBuilder builder)
-        {
-            builder.ArgumentNotNull(nameof(builder));
-
-            return builder.UseHandler<ProtectionHandler>()
-                          .UseHandler<RequestHeadersHandler>()
-                          .UseHandler<UrlRequestParametersHandler>()
-                          .UseHandler<BodyRequestParametersHandler>()
-                          .UseHandler<EndpointHandler>()
-                          .UseHandler<RequestPostHandler>();
-        }
-
-        /// <summary>
-        /// Prepare the default middleware for the PUT ESI endpoints.
-        /// </summary>
-        /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
-        public static IRequestPiplineBuilder UsePutPipline(this IRequestPiplineBuilder builder)
-        {
-            builder.ArgumentNotNull(nameof(builder));
-
-            return builder.UseHandler<ProtectionHandler>()
-                          .UseHandler<RequestHeadersHandler>()
-                          .UseHandler<UrlRequestParametersHandler>()
-                          .UseHandler<BodyRequestParametersHandler>()
-                          .UseHandler<EndpointHandler>()
-                          .UseHandler<RequestPutHandler>();
+            return builder.UseHandler<IRequestProtectionHandler>("RequestProtectionHandler")
+                          .UseHandler<IRequestETagHandler>("RequestETagHandler")
+                          .UseHandler<IRequestSendingHandler>("RequestSendingHandler");
         }
     }
 }

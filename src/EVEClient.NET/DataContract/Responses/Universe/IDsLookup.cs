@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,42 +8,42 @@ namespace EVEClient.NET.DataContract
     /// </summary>
     public class IDsLookup
     {
-        [JsonProperty("agents")]
+        [JsonPropertyName("agents")]
         public List<LookupInfo>? Agents { get; init; }
 
-        [JsonProperty("alliances")]
+        [JsonPropertyName("alliances")]
         public List<LookupInfo>? Alliances { get; init; }
 
-        [JsonProperty("characters")]
+        [JsonPropertyName("characters")]
         public List<LookupInfo>? Characters { get; init; }
 
-        [JsonProperty("constellations")]
+        [JsonPropertyName("constellations")]
         public List<LookupInfo>? Constellations { get; init; }
 
-        [JsonProperty("corporations")]
+        [JsonPropertyName("corporations")]
         public List<LookupInfo>? Corporations { get; init; }
 
-        [JsonProperty("factions")]
+        [JsonPropertyName("factions")]
         public List<LookupInfo>? Factions { get; init; }
 
-        [JsonProperty("inventory_types")]
+        [JsonPropertyName("inventory_types")]
         public List<LookupInfo>? InventoryTypes { get; init; }
 
-        [JsonProperty("regions")]
+        [JsonPropertyName("regions")]
         public List<LookupInfo>? Regions { get; init; }
 
-        [JsonProperty("stations")]
+        [JsonPropertyName("stations")]
         public List<LookupInfo>? Stations { get; init; }
 
-        [JsonProperty("systems")]
+        [JsonPropertyName("systems")]
         public List<LookupInfo>? Systems { get; init; }
 
         public class LookupInfo
         {
-            [JsonProperty("id")]
+            [JsonPropertyName("id")]
             public int? ID { get; init; }
 
-            [JsonProperty("name")]
+            [JsonPropertyName("name")]
             public string? Name { get; init; }
         }
     }

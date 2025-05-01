@@ -1,52 +1,10 @@
 ﻿using System;
+using EVEClient.NET.Handlers;
 
 namespace EVEClient.NET.Pipline.Modifications
 {
     public interface IEndpointModificationBuilder
     {
-        /// <summary>
-        /// Replaces the standard EVE middleware component with a custom.
-        /// </summary>
-        /// <typeparam name="CustomHandler">The custom handler type.</typeparam>
-        /// <param name="replacingComponentId">The component identifier to be replaced.</param>
-        /// <remarks>
-        /// The following component IDs are available for replacement: 
-        /// <c>ProtectionHandler</c>, <c>RequestHeadersHandler</c>, <c>UrlRequestParametersHandler</c>, <c>BodyRequestParametersHandler</c>, 
-        /// <c>EndpointHandler</c>, <c>ETagHandler</c>, <c>RequestGetHandler</c>, <c>RequestPostHandler</c>, <c>RequestPutHandler</c>, 
-        /// <c>RequestDeleteHandler</c>, 
-        /// </remarks>
-        IEndpointModificationBuilder ReplaceHandler<CustomHandler>(string replacingComponentId)
-            where CustomHandler : IHandler;
-
-        /// <summary>
-        /// Replaces the standard EVE middleware component with a custom.
-        /// </summary>
-        /// <typeparam name="CustomHandler">The custom handler type.</typeparam>
-        /// <param name="replacingComponentType">The component type to be replaced.</param>
-        /// <remarks>
-        /// The following component types are available for replacement: 
-        /// <c>ProtectionHandler</c>, <c>RequestHeadersHandler</c>, <c>UrlRequestParametersHandler</c>, <c>BodyRequestParametersHandler</c>, 
-        /// <c>EndpointHandler</c>, <c>ETagHandler</c>, <c>RequestGetHandler</c>, <c>RequestPostHandler</c>, <c>RequestPutHandler</c>, 
-        /// <c>RequestDeleteHandler</c>, 
-        /// </remarks>
-        IEndpointModificationBuilder ReplaceHandler<CustomHandler>(Type replacingComponentType)
-            where CustomHandler : IHandler;
-
-        /// <summary>
-        /// Replaces the standard EVE middleware component with a custom.
-        /// </summary>
-        /// <typeparam name="CustomHandler">The custom handler type.</typeparam>
-        /// <typeparam name="ReplacingHandler">The original handler type.</typeparam>
-        /// <remarks>
-        /// The following <typeparamref name="ReplacingHandler"/> types are available for replacement: 
-        /// <c>ProtectionHandler</c>, <c>RequestHeadersHandler</c>, <c>UrlRequestParametersHandler</c>, <c>BodyRequestParametersHandler</c>, 
-        /// <c>EndpointHandler</c>, <c>ETagHandler</c>, <c>RequestGetHandler</c>, <c>RequestPostHandler</c>, <c>RequestPutHandler</c>, 
-        /// <c>RequestDeleteHandler</c>, 
-        /// </remarks>
-        IEndpointModificationBuilder ReplaceHandler<CustomHandler, ReplacingHandler>()
-            where CustomHandler : IHandler
-            where ReplacingHandler : IHandler;
-
         /// <summary>
         /// Adds the custom EVE middleware component in addition to the defaults.
         /// </summary>

@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,37 +8,37 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// average number
         /// </summary>
-        [JsonProperty("average")]
+        [JsonPropertyName("average")]
         public required double Average { get; init; }
 
         /// <summary>
         /// The date of this historical statistic entry
         /// </summary>
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public required DateTime Date { get; init; }
 
         /// <summary>
         /// highest number
         /// </summary>
-        [JsonProperty("highest")]
+        [JsonPropertyName("highest")]
         public required double Highest { get; init; }
 
         /// <summary>
         /// lowest number
         /// </summary>
-        [JsonProperty("lowest")]
+        [JsonPropertyName("lowest")]
         public required double Lowest { get; init; }
 
         /// <summary>
         /// Total number of orders happened that day
         /// </summary>
-        [JsonProperty("order_count")]
+        [JsonPropertyName("order_count")]
         public long OrderCount { get; init; }
 
         /// <summary>
         /// Total
         /// </summary>
-        [JsonProperty("volume")]
+        [JsonPropertyName("volume")]
         public required long Volume { get; init; }
     }
 }

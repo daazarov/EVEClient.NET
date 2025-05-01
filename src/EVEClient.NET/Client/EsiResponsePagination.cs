@@ -1,22 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 
 namespace EVEClient.NET
 {
-    public class EsiResponsePagination<T> : EsiResponse<T>
+    [Obsolete("EsiResponsePagination<T> will be replaced by EsiResponse<T> in the near future. " +
+        "Make sure you don't use an explicit EsiResponsePagination type when creating variables, otherwise replace the declaration with \"var\" usage.")]
+    public class EsiResponsePagination<T> : EsiResponseDefaultGeneric<T>
     {
         /// <summary>
         /// Gets the total count of pages.
         /// </summary>
+        [Obsolete("The Pages propery is obsolete. Use TotalPages property instead.")]
         public int Pages { get; }
 
-        // A future concept
-        /*
-        public int CurrentPage => _currentPage;
-        public Func<Task<EsiResponsePagination<T>>> NextPage { get; }
-        public Func<Task<EsiResponsePagination<T>>> PreviousPage { get; }
-        public Func<int, Task<EsiResponsePagination<T>>> SpecificPage { get; }
-        */
+        public override bool Success => base.Success || StatusCode == HttpStatusCode.NotModified;
 
         public EsiResponsePagination(HttpResponseMessage response) : base(response)
         {

@@ -1,28 +1,64 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using EVEClient.NET.DataContract;
-
-using static EVEClient.NET.Models.CommonRequests;
+using EVEClient.NET.Extensions;
+using EVEClient.NET.Requests;
 
 namespace EVEClient.NET.Logic
 {
     internal class SkillsLogic : ISkillsLogic
     {
-        private readonly IEsiHttpClient<ISkillsLogic> _esiClient;
+        private readonly IEsiHttpClient _client;
+        private readonly IEsiRequestFactory _esiRequestFactory;
 
-        public SkillsLogic(IEsiHttpClient<ISkillsLogic> esiClient)
+        public SkillsLogic(IEsiHttpClient client, IEsiRequestFactory esiRequestFactory)
         {
-            _esiClient = esiClient;
+            _client = client;
+            _esiRequestFactory = esiRequestFactory;
         }
 
-        public Task<EsiResponse<SkillAttributes>> Attributes(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, SkillAttributes>(CharacterIdRouteRequest.Create(characterId), token);
+        public async Task<EsiResponse<SkillAttributes>> Attributes(int characterId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponse<List<SkillQueueItem>>> SkillQueue(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<SkillQueueItem>>(CharacterIdRouteRequest.Create(characterId), token);
+            var response = await _client.Request(ESI.Endpoints.Skills.Attributes, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<SkillDetails>> SkillDetails(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, SkillDetails>(CharacterIdRouteRequest.Create(characterId), token);
+            return await response.ReadEsiResponse<SkillAttributes>();
+        }
+
+        public async Task<EsiResponse<List<SkillQueueItem>>> SkillQueue(int characterId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Skills.SkillQueue, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<SkillQueueItem>>();
+        }
+
+        public async Task<EsiResponse<SkillDetails>> SkillDetails(int characterId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Skills.SkillDetails, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<SkillDetails>();
+        }
     }
 }

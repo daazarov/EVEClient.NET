@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,13 +8,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// cost_indices array
         /// </summary>
-        [JsonProperty("cost_indices")]
+        [JsonPropertyName("cost_indices")]
         public required List<CostIndice> CostIndices { get; init; }
 
         /// <summary>
         /// solar_system_id integer
         /// </summary>
-        [JsonProperty("solar_system_id")]
+        [JsonPropertyName("solar_system_id")]
         public required int SolarSystemId { get; init; }
     }
 
@@ -23,13 +23,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// activity string
         /// </summary>
-        [JsonProperty("activity")]
+        [JsonPropertyName("activity")]
         public required SolarSystemActivity Activity { get; init; }
 
         /// <summary>
         /// cost_index number
         /// </summary>
-        [JsonProperty("cost_index")]
+        [JsonPropertyName("cost_index")]
         public required float CostIndex { get; init; }
     }
 }

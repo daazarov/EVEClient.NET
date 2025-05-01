@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,13 +7,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The faction ID of the enemy faction.
         /// </summary>
-        [JsonProperty("faction_id")]
+        [JsonPropertyName("faction_id")]
         public required int FactionId { get; init; }
 
         /// <summary>
         /// faction_id integer
         /// </summary>
-        [JsonProperty("against_id")]
+        [JsonPropertyName("against_id")]
         public required int AgainstId { get; init; }
     }
 }

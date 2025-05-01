@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,19 +7,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// solar_system_id integer
         /// </summary>
-        [JsonProperty("solar_system_id")]
+        [JsonPropertyName("solar_system_id")]
         public required int SolarSystemId { get; init; }
 
         /// <summary>
         /// station_id integer
         /// </summary>
-        [JsonProperty("station_id")]
+        [JsonPropertyName("station_id")]
         public int? StationId { get; init; }
 
         /// <summary>
         /// structure_id integer
         /// </summary>
-        [JsonProperty("structure_id")]
+        [JsonPropertyName("structure_id")]
         public long? StructureId { get; init; }
     }
 }

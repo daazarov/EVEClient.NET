@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EVEClient.NET.Pipline.Modifications
 {
@@ -15,7 +16,7 @@ namespace EVEClient.NET.Pipline.Modifications
         /// <summary>
         /// Defines a modification builder for a specific endpoint IDs from <see cref="ESI.Endpoints"/>
         /// </summary>
-        IEndpointModificationBuilder ModificationFor(string[] endpointIds);
+        IEndpointModificationBuilder ModificationFor(IEnumerable<string> endpointIds);
 
         /// <summary>
         /// Defines a modification builder for endpoints satisfying the selected selector.

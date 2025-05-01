@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,37 +8,37 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// changed_at string
         /// </summary>
-        [JsonProperty("changed_at")]
+        [JsonPropertyName("changed_at")]
         public required DateTime ChangedAt { get; init; }
 
         /// <summary>
         /// The character whose roles are changed
         /// </summary>
-        [JsonProperty("character_id")]
+        [JsonPropertyName("character_id")]
         public required int CharacterId { get; init; }
 
         /// <summary>
         /// ID of the character who issued this change
         /// </summary>
-        [JsonProperty("issuer_id")]
+        [JsonPropertyName("issuer_id")]
         public required int IssuerId { get; init; }
 
         /// <summary>
         /// new_roles array
         /// </summary>
-        [JsonProperty("new_roles")]
+        [JsonPropertyName("new_roles")]
         public required CorporationRole[] NewRoles { get; init; }
 
         /// <summary>
         /// old_roles array
         /// </summary>
-        [JsonProperty("old_roles")]
+        [JsonPropertyName("old_roles")]
         public required CorporationRole[] OldRoles { get; init; }
 
         /// <summary>
         /// role_type string
         /// </summary>
-        [JsonProperty("role_type")]
+        [JsonPropertyName("role_type")]
         public required CorporationRoleType RoleType { get; init; }
     }
 }

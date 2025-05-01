@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,31 +8,31 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public required string Description { get; init; }
 
         /// <summary>
         /// fitting_id integer
         /// </summary>
-        [JsonProperty("fitting_id")]
+        [JsonPropertyName("fitting_id")]
         public required int FittingId { get; init; }
 
         /// <summary>
         /// items array
         /// </summary>
-        [JsonProperty("items")]
+        [JsonPropertyName("items")]
         public required List<FittingItem> Items { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// ship_type_id integer
         /// </summary>
-        [JsonProperty("ship_type_id")]
+        [JsonPropertyName("ship_type_id")]
         public required int ShipTypeId { get; init; }
 
     }
@@ -42,19 +42,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// type_id integer
         /// </summary>
-        [JsonProperty("type_id")]
+        [JsonPropertyName("type_id")]
         public required int TypeId { get; init; }
 
         /// <summary>
         /// flag string
         /// </summary>
-        [JsonProperty("flag")]
+        [JsonPropertyName("flag")]
         public required FittingFlag Flag { get; init; }
 
         /// <summary>
         /// quantity integer
         /// </summary>
-        [JsonProperty("quantity")]
+        [JsonPropertyName("quantity")]
         public required int Quantity { get; init; }
     }
 }

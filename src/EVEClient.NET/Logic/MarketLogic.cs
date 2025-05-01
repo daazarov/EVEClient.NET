@@ -1,54 +1,170 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using EVEClient.NET.DataContract;
 using EVEClient.NET.Extensions;
-
-using static EVEClient.NET.Models.CommonRequests;
-using static EVEClient.NET.Models.MarketRequests;
+using EVEClient.NET.Requests;
 
 namespace EVEClient.NET.Logic
 {
     internal class MarketLogic : IMarketLogic
     {
-        private readonly IEsiHttpClient<IMarketLogic> _esiClient;
+        private readonly IEsiHttpClient _client;
+        private readonly IEsiRequestFactory _esiRequestFactory;
 
-        public MarketLogic(IEsiHttpClient<IMarketLogic> esiClient)
+        public MarketLogic(IEsiHttpClient client, IEsiRequestFactory esiRequestFactory)
         {
-            _esiClient = esiClient;
+            _client = client;
+            _esiRequestFactory = esiRequestFactory;
         }
 
-        public Task<EsiResponse<List<OrderBase>>> CharacterOrders(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, List<OrderBase>>(CharacterIdRouteRequest.Create(characterId), token);
+        public async Task<EsiResponse<List<OrderBase>>> CharacterOrders(int characterId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponsePagination<List<OrderBase>>> CharacterOrdersHistory(int characterId, int page = 1, string? token = null) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCharacterIdRouteRequest, List<OrderBase>>(PageBasedCharacterIdRouteRequest.Create(characterId, page), token);
+            var response = await _client.Request(ESI.Endpoints.Market.CharacterOrders, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponsePagination<List<OrderBase>>> CorporationOrders(int corporationId, int page = 1, string? token = null) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<OrderBase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page), token);
+            return await response.ReadEsiResponse<List<OrderBase>>();
+        }
 
-        public Task<EsiResponsePagination<List<OrderBase>>> CorporationOrdersHistory(int corporationId, int page = 1, string? token = null) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedCorporationIdRouteRequest, List<OrderBase>>(PageBasedCorporationIdRouteRequest.Create(corporationId, page), token);
+        public async Task<EsiResponsePagination<List<OrderBase>>> CharacterOrdersHistory(int characterId, int page = 1, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponse<List<Statistic>>> RegionStatistics(int regionId, int typeId) =>
-            _esiClient.GetRequestAsync<RegionStatisticsRouteRequest, List<Statistic>>(RegionStatisticsRouteRequest.Create(regionId, typeId));
+            var response = await _client.Request(ESI.Endpoints.Market.CharacterOrdersHistory, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponsePagination<List<OrderBase>>> RegionOrders(int regionId, OrderType orderType = OrderType.All, int? typeId = null, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<RegionOrdersRequest, List<OrderBase>>(RegionOrdersRequest.Create(regionId, orderType.ToEsiString(), typeId, page));
+            return await response.ReadPaginatedEsiResponse<List<OrderBase>>();
+        }
 
-        public Task<EsiResponsePagination<List<int>>> ActiveRegionOrderTypes(int regionId, int page = 1) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedRegionIdRouteRequest, List<int>>(PageBasedRegionIdRouteRequest.Create(regionId, page));
+        public async Task<EsiResponsePagination<List<OrderBase>>> CorporationOrders(int corporationId, int page = 1, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CorporationId] = corporationId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponse<List<int>>> MarketGroups() =>
-            _esiClient.GetRequestAsync<List<int>>();
+            var response = await _client.Request(ESI.Endpoints.Market.CorporationOrders, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<MarketGroup>> MarketGroupInfo(int marketGroupId) =>
-            _esiClient.GetRequestAsync<MarketGroupInfoRequest, MarketGroup>(MarketGroupInfoRequest.Create(marketGroupId));
+            return await response.ReadPaginatedEsiResponse<List<OrderBase>>();
+        }
 
-        public Task<EsiResponse<List<Price>>> TypePrices() =>
-            _esiClient.GetRequestAsync<List<Price>>();
+        public async Task<EsiResponsePagination<List<OrderBase>>> CorporationOrdersHistory(int corporationId, int page = 1, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.CorporationId] = corporationId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                },
+                token: token);
 
-        public Task<EsiResponsePagination<List<OrderBase>>> StructureOrders(long structureId, int page = 1, string? token = null) =>
-            _esiClient.GetPaginationRequestAsync<PageBasedStructureIdRouteRequest, List<OrderBase>>(PageBasedStructureIdRouteRequest.Create(structureId, page), token);
+            var response = await _client.Request(ESI.Endpoints.Market.CorporationOrdersHistory, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<OrderBase>>();
+        }
+
+        public async Task<EsiResponse<List<Statistic>>> RegionStatistics(int regionId, int typeId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.RegionId] = regionId.ToString();
+                    parameters.Query[ESI.Parameters.Query.RegionTypeId] = typeId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Market.RegionStatistics, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<Statistic>>();
+        }
+
+        public async Task<EsiResponsePagination<List<OrderBase>>> RegionOrders(int regionId, OrderType orderType = OrderType.All, int? typeId = null, int page = 1, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.RegionId] = regionId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                    parameters.Query[ESI.Parameters.Query.RegionOrderType] = orderType.ToEsiString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Market.RegionOrders, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<OrderBase>>();
+        }
+
+        public async Task<EsiResponsePagination<List<int>>> ActiveRegionOrderTypes(int regionId, int page = 1, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.RegionId] = regionId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Market.ActiveRegionOrderTypes, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<int>>();
+        }
+
+        public async Task<EsiResponse<List<int>>> MarketGroups(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
+
+            var response = await _client.Request(ESI.Endpoints.Market.MarketGroups, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<int>>();
+        }
+
+        public async Task<EsiResponse<MarketGroup>> MarketGroupInfo(int marketGroupId, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.MarketGroupId] = marketGroupId.ToString();
+                });
+
+            var response = await _client.Request(ESI.Endpoints.Market.MarketGroupInfo, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<MarketGroup>();
+        }
+
+        public async Task<EsiResponse<List<Price>>> TypePrices(CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateEmptyRequest();
+
+            var response = await _client.Request(ESI.Endpoints.Market.TypePrices, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<List<Price>>();
+        }
+
+        public async Task<EsiResponsePagination<List<OrderBase>>> StructureOrders(long structureId, int page = 1, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+                configure: parameters =>
+                {
+                    parameters.Route[ESI.Parameters.Route.StructureId] = structureId.ToString();
+                    parameters.Query[ESI.Parameters.Query.Page] = page.ToString();
+                },
+                token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Market.StructureOrders, request, cancellationToken: cancellationToken);
+
+            return await response.ReadPaginatedEsiResponse<List<OrderBase>>();
+        }
     }
 }

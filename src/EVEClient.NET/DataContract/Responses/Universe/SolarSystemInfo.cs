@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,61 +8,61 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The constellation this solar system is in
         /// </summary>
-        [JsonProperty("constellation_id")]
+        [JsonPropertyName("constellation_id")]
         public required int ConstellationId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// planets array
         /// </summary>
-        [JsonProperty("planets")]
+        [JsonPropertyName("planets")]
         public List<IncludedObject>? Planets { get; init; }
 
         /// <summary>
         /// position object
         /// </summary>
-        [JsonProperty("position")]
+        [JsonPropertyName("position")]
         public required Position Position { get; init; }
 
         /// <summary>
         /// security_class string
         /// </summary>
-        [JsonProperty("security_class")]
+        [JsonPropertyName("security_class")]
         public string? SecurityClass { get; init; }
 
         /// <summary>
         /// security_status number
         /// </summary>
-        [JsonProperty("security_status")]
+        [JsonPropertyName("security_status")]
         public required float SecurityStatus { get; init; }
 
         /// <summary>
         /// star_id integer
         /// </summary>
-        [JsonProperty("star_id")]
+        [JsonPropertyName("star_id")]
         public int? StarId { get; init; }
 
         /// <summary>
         /// stargates array
         /// </summary>
-        [JsonProperty("stargates")]
+        [JsonPropertyName("stargates")]
         public int[]? Stargates { get; init; }
 
         /// <summary>
         /// stations array
         /// </summary>
-        [JsonProperty("stations")]
+        [JsonPropertyName("stations")]
         public int[]? Stations { get; init; }
 
         /// <summary>
         /// system_id integer
         /// </summary>
-        [JsonProperty("system_id")]
+        [JsonPropertyName("system_id")]
         public required int SystemId { get; init; }
 
 
@@ -71,19 +71,19 @@ namespace EVEClient.NET.DataContract
             /// <summary>
             /// asteroid_belts array
             /// </summary>
-            [JsonProperty("asteroid_belts")]
+            [JsonPropertyName("asteroid_belts")]
             public int[]? AsteroidBelts { get; init; }
 
             /// <summary>
             /// moons array
             /// </summary>
-            [JsonProperty("moons")]
+            [JsonPropertyName("moons")]
             public int[]? Moons { get; init; }
 
             /// <summary>
             /// planet_id integer
             /// </summary>
-            [JsonProperty("planet_id")]
+            [JsonPropertyName("planet_id")]
             public required int PlanetId { get; init; }
         }
     }

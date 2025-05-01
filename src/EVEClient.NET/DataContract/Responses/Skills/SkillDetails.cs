@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,19 +8,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// skills array
         /// </summary>
-        [JsonProperty("skills")]
+        [JsonPropertyName("skills")]
         public required List<Skill> Skills { get; init; }
 
         /// <summary>
         /// total_sp integer
         /// </summary>
-        [JsonProperty("total_sp")]
+        [JsonPropertyName("total_sp")]
         public required long TotalSp { get; init; }
 
         /// <summary>
         /// Skill points available to be assigned
         /// </summary>
-        [JsonProperty("unallocated_sp")]
+        [JsonPropertyName("unallocated_sp")]
         public int? UnallocatedSp { get; init; }
     }
 
@@ -29,25 +29,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// active_skill_level integer
         /// </summary>
-        [JsonProperty("active_skill_level")]
+        [JsonPropertyName("active_skill_level")]
         public required int ActiveSkillLevel { get; init; }
 
         /// <summary>
         /// skill_id integer
         /// </summary>
-        [JsonProperty("skill_id")]
+        [JsonPropertyName("skill_id")]
         public required int SkillId { get; init; }
 
         /// <summary>
         /// killpoints_in_skill integer
         /// </summary>
-        [JsonProperty("skillpoints_in_skill")]
+        [JsonPropertyName("skillpoints_in_skill")]
         public required long SkillpointsInSkill { get; init; }
 
         /// <summary>
         /// trained_skill_level integer
         /// </summary>
-        [JsonProperty("trained_skill_level")]
+        [JsonPropertyName("trained_skill_level")]
         public required int TrainedSkillLevel { get; init; }
     }
 }

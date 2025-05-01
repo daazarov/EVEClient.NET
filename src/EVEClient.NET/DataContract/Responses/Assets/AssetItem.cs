@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,49 +7,49 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// is_blueprint_copy boolean
         /// </summary>
-        [JsonProperty("is_blueprint_copy")]
+        [JsonPropertyName("is_blueprint_copy")]
         public bool? IsBlueprintCopy { get; init; }
 
         /// <summary>
         /// is_singleton boolean
         /// </summary>
-        [JsonProperty("is_singleton")]
+        [JsonPropertyName("is_singleton")]
         public required bool IsSingleton { get; init; }
 
         /// <summary>
         /// item_id integer
         /// </summary>
-        [JsonProperty("item_id")]
+        [JsonPropertyName("item_id")]
         public required long ItemId { get; init; }
 
         /// <summary>
         /// location_flag string
         /// </summary>
-        [JsonProperty("location_flag")]
+        [JsonPropertyName("location_flag")]
         public required string LocationFlag { get; init; }
 
         /// <summary>
         /// location_id integer
         /// </summary>
-        [JsonProperty("location_id")]
+        [JsonPropertyName("location_id")]
         public required long LocationId { get; init; }
 
         /// <summary>
         /// location_type string
         /// </summary>
-        [JsonProperty("location_type")]
+        [JsonPropertyName("location_type")]
         public required LocationType LocationType { get; init; }
 
         /// <summary>
         /// quantity integer
         /// </summary>
-        [JsonProperty("quantity")]
+        [JsonPropertyName("quantity")]
         public required int Quantity { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
-        [JsonProperty("type_id")]
+        [JsonPropertyName("type_id")]
         public required int TypeId { get; init; }
     }
 }

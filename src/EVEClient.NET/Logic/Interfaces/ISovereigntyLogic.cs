@@ -1,10 +1,8 @@
-﻿using EVEClient.NET.Attributes;
-using EVEClient.NET.DataContract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+
+using EVEClient.NET.DataContract;
 
 namespace EVEClient.NET
 {
@@ -13,31 +11,16 @@ namespace EVEClient.NET
         /// <summary>
         /// Shows sovereignty data for campaigns.
         /// </summary>
-        [PublicEndpoint]
-        [Route("/latest/sovereignty/campaigns/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/sovereignty/campaigns/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/sovereignty/campaigns/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/sovereignty/campaigns/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<CampaignSovereignty>>> Campaigns();
+        Task<EsiResponse<List<CampaignSovereignty>>> Campaigns(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Shows sovereignty information for solar systems
         /// </summary>
-        [PublicEndpoint]
-        [Route("/latest/sovereignty/map/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/sovereignty/map/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/sovereignty/map/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/sovereignty/map/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<SolarSystemSovereignty>>> SolarSystems();
+        Task<EsiResponse<List<SolarSystemSovereignty>>> SolarSystems(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Shows sovereignty data for structures.
         /// </summary>
-        [PublicEndpoint]
-        [Route("/latest/sovereignty/structures/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/sovereignty/structures/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/sovereignty/structures/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/sovereignty/structures/", Version = EndpointVersion.Dev)]
-        Task<EsiResponse<List<StructureSovereignty>>> Structures();
+        Task<EsiResponse<List<StructureSovereignty>>> Structures(CancellationToken cancellationToken = default);
     }
 }

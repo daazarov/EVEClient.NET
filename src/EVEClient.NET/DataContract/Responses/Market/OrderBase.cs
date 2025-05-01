@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -16,109 +16,109 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Number of days for which order is/was valid (starting from the issued date). An order expires at time issued + duration
         /// </summary>
-        [JsonProperty("duration")]
+        [JsonPropertyName("duration")]
         public required int Duration { get; init; }
 
         /// <summary>
         /// For buy orders, the amount of ISK in escrow
         /// </summary>
-        [JsonProperty("escrow")]
+        [JsonPropertyName("escrow")]
         public double? Escrow { get; init; }
 
         /// <summary>
         /// True if the order is a bid (buy) order
         /// </summary>
-        [JsonProperty("is_buy_order")]
+        [JsonPropertyName("is_buy_order")]
         public bool? IsBuyOrder { get; init; }
 
         /// <summary>
         /// Signifies whether the buy/sell order was placed on behalf of a corporation.
         /// </summary>
-        [JsonProperty("is_corporation")]
+        [JsonPropertyName("is_corporation")]
         public bool? IsCorporation { get; init; }
 
         /// <summary>
         /// Date and time when this order was issued
         /// </summary>
-        [JsonProperty("issued")]
+        [JsonPropertyName("issued")]
         public required DateTime Issued { get; init; }
 
         /// <summary>
         /// The character who issued this order
         /// </summary>
-        [JsonProperty("issued_by")]
+        [JsonPropertyName("issued_by")]
         public int? IssuedBy { get; init; }
 
         /// <summary>
         /// ID of the location where order was placed
         /// </summary>
-        [JsonProperty("location_id")]
+        [JsonPropertyName("location_id")]
         public required long LocationId { get; init; }
 
         /// <summary>
         /// For buy orders, the minimum quantity that will be accepted in a matching sell order
         /// </summary>
-        [JsonProperty("min_volume")]
+        [JsonPropertyName("min_volume")]
         public int? MinVolume { get; init; }
 
         /// <summary>
         /// Unique order ID
         /// </summary>
-        [JsonProperty("order_id")]
+        [JsonPropertyName("order_id")]
         public required long OrderId { get; init; }
 
         /// <summary>
         /// Cost per unit for this order
         /// </summary>
-        [JsonProperty("price")]
+        [JsonPropertyName("price")]
         public required double Price { get; init; }
 
         /// <summary>
         /// Valid order range, numbers are ranges in jumps
         /// </summary>
-        [JsonProperty("range")]
+        [JsonPropertyName("range")]
         public required OrderRange Range { get; init; }
 
         /// <summary>
         /// The solar system this order was placed
         /// </summary>
-        [JsonProperty("system_id")]
+        [JsonPropertyName("system_id")]
         public int? SystemId { get; init; }
 
         /// <summary>
         /// ID of the region where order was placed
         /// </summary>
-        [JsonProperty("region_id")]
+        [JsonPropertyName("region_id")]
         public int? RegionId { get; init; }
 
         /// <summary>
         /// Current order state
         /// </summary>
-        [JsonProperty("state")]
+        [JsonPropertyName("state")]
         public OrderState? State { get; init; }
 
         /// <summary>
         /// The type ID of the item transacted in this order
         /// </summary>
-        [JsonProperty("type_id")]
+        [JsonPropertyName("type_id")]
         public required int TypeId { get; init; }
 
         /// <summary>
         /// Quantity of items still required or offered
         /// </summary>
-        [JsonProperty("volume_remain")]
+        [JsonPropertyName("volume_remain")]
         public required int VolumeRemain { get; init; }
 
         /// <summary>
         /// Quantity of items required or offered at time order was placed
         /// </summary>
-        [JsonProperty("volume_total")]
+        [JsonPropertyName("volume_total")]
         public required int VolumeTotal { get; init; }
 
         /// <summary>
         /// The corporation wallet division used for this order.
         /// </summary>
-        [JsonProperty("wallet_division")]
+        [JsonPropertyName("wallet_division")]
         public int? WalletDivision { get; init; }
 
         public CharacterOrder ToCharacterOrderView()

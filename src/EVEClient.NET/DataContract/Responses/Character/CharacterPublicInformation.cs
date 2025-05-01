@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 
 namespace EVEClient.NET.DataContract
@@ -8,67 +8,67 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The character’s alliance ID
         /// </summary>
-        [JsonProperty("alliance_id")]
+        [JsonPropertyName("alliance_id")]
         public int? AlianceId { get; init; }
 
         /// <summary>
         /// Creation date of the character
         /// </summary>
-        [JsonProperty("birthday")]
+        [JsonPropertyName("birthday")]
         public required DateTime Birthdate { get; init; }
 
         /// <summary>
         /// bloodline_id integer
         /// </summary>
-        [JsonProperty("bloodline_id")]
+        [JsonPropertyName("bloodline_id")]
         public required int Bloodline { get; init; }
 
         /// <summary>
         /// The character’s corporation ID
         /// </summary>
-        [JsonProperty("corporation_id")]
+        [JsonPropertyName("corporation_id")]
         public required int CorporationId { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; init; }
 
         /// <summary>
         /// ID of the faction the character is fighting for, if the character is enlisted in Factional Warfare
         /// </summary>
-        [JsonProperty("faction_id")]
+        [JsonPropertyName("faction_id")]
         public int? FactionId { get; init; }
 
         /// <summary>
         /// The character’s gender
         /// </summary>
-        [JsonProperty("gender")]
+        [JsonPropertyName("gender")]
         public required Gender Gender { get; init; }
 
         /// <summary>
         /// The character's name
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// race_id integer
         /// </summary>
-        [JsonProperty("race_id")]
+        [JsonPropertyName("race_id")]
         public required int RaceId { get; init; }
 
         /// <summary>
         /// security_status number
         /// </summary>
-        [JsonProperty("security_status")]
+        [JsonPropertyName("security_status")]
         public float? SecurityStatus { get; init; }
 
         /// <summary>
         /// The individual title of the character
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string? Title { get; init; }
     }
 }

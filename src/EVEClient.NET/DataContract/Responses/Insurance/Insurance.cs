@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,13 +8,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// A list of a available insurance levels for this ship type
         /// </summary>
-        [JsonProperty("levels")]
+        [JsonPropertyName("levels")]
         public required List<Levels> Levels { get; init; }
 
         /// <summary>
         /// type_id integer
         /// </summary>
-        [JsonProperty("type_id")]
+        [JsonPropertyName("type_id")]
         public required int TypeId { get; init; }
     }
 
@@ -23,19 +23,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// cost number
         /// </summary>
-        [JsonProperty("cost")]
+        [JsonPropertyName("cost")]
         public required float Cost { get; init; }
 
         /// <summary>
         /// Localized insurance level
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// payout number
         /// </summary>
-        [JsonProperty("payout")]
+        [JsonPropertyName("payout")]
         public required float Payout { get; init; }
     }
 }
