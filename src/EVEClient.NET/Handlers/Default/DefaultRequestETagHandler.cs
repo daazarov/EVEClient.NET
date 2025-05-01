@@ -43,6 +43,7 @@ namespace EVEClient.NET.Handlers
 
         protected virtual async Task SetupETagToHttpRequest(EsiContext context)
         {
+            var key = GetKey(context);
             if (await _storage.TryGetETagAsync(GetKey(context), out var eTag))
             {
                 context.Request.Headers.TryAddWithoutValidation("If-None-Match", eTag);
@@ -57,13 +58,17 @@ namespace EVEClient.NET.Handlers
             }
 
             var eTag = context.ResponseContext.Response.Headers.GetValues("ETag").First().Replace("\"", string.Empty);
-
+            var key = GetKey(context);
             await _storage.StoreETagAsync(GetKey(context), eTag);
         }
 
         protected virtual string GetKey(EsiContext context)
         { 
-            return ETagStoreKeyGenerator.GetKey(context.EndpointId, context.Request.Parameters.Route.AsNameValueCollection(), context.Request.Parameters.Query.AsNameValueCollection());
+            return ETagStoreKeyGenerator.GetKey(
+                endpointId: context.EndpointId,
+                routingParams: context.Request.Parameters.Route.AsNameValueCollection(),
+                queryParams: context.Request.Parameters.Query.AsNameValueCollection(),
+                ignoredKeys: [ESI.Parameters.Query.Datasource]);
         }
     }
 }

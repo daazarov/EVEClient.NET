@@ -48,14 +48,23 @@ namespace EVEClient.NET.Requests
             _parameters = parameters;
         }
 
-        public string this[string key]
+        public string? this[string key]
         {
             get => GetParameter(key);
             set => SetParameter(key, value);
         }
 
-        protected virtual void SetParameter(string key, string value)
+        public bool ContainsKey(string key)
         {
+            ArgumentNullException.ThrowIfNullOrEmpty(key);
+
+            return this[key] != null;
+        }
+
+        protected virtual void SetParameter(string key, string? value)
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            
             var index = _parameters.FindIndex(p => p.Key == key);
             if (index >= 0)
                 _parameters[index] = new KeyValuePair<string, string>(key, value);
@@ -63,11 +72,11 @@ namespace EVEClient.NET.Requests
                 _parameters.Add(new KeyValuePair<string, string>(key, value));
         }
 
-        protected virtual string GetParameter(string key)
+        protected virtual string? GetParameter(string key)
         {
             var parameter = _parameters.Find(p => p.Key == key);
             if (parameter.Equals(default(KeyValuePair<string, string>)))
-                throw new KeyNotFoundException($"Parameter '{key}' not found.");
+                return null;
 
             return parameter.Value;
         }

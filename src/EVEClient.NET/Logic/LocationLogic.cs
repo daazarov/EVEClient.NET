@@ -1,27 +1,63 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 using EVEClient.NET.DataContract;
-
-using static EVEClient.NET.Models.CommonRequests;
+using EVEClient.NET.Extensions;
+using EVEClient.NET.Requests;
 
 namespace EVEClient.NET.Logic
 {
     internal class LocationLogic : ILocationLogic
     {
-        private readonly IEsiHttpClient<ILocationLogic> _esiClient;
+        private readonly IEsiHttpClient _client;
+        private readonly IEsiRequestFactory _esiRequestFactory;
 
-        public LocationLogic(IEsiHttpClient<ILocationLogic> esiClient)
+        public LocationLogic(IEsiHttpClient client, IEsiRequestFactory esiRequestFactory)
         {
-            _esiClient = esiClient;
+            _client = client;
+            _esiRequestFactory = esiRequestFactory;
         }
 
-        public Task<EsiResponse<Location>> CurrentLocation(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Location>(CharacterIdRouteRequest.Create(characterId), token);
+        public async Task<EsiResponse<Location>> CurrentLocation(int characterId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+               configure: parameters =>
+               {
+                   parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+               },
+            token: token);
 
-        public Task<EsiResponse<Activity>> Online(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Activity>(CharacterIdRouteRequest.Create(characterId), token);
+            var response = await _client.Request(ESI.Endpoints.Location.CurrentLocation, request, cancellationToken: cancellationToken);
 
-        public Task<EsiResponse<Ship>> CurrentShip(int characterId, string? token = null) =>
-            _esiClient.GetRequestAsync<CharacterIdRouteRequest, Ship>(CharacterIdRouteRequest.Create(characterId), token);
+            return await response.ReadEsiResponse<Location>();
+        }
+
+        public async Task<EsiResponse<Activity>> Online(int characterId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+               configure: parameters =>
+               {
+                   parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+               },
+            token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Location.Online, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<Activity>();
+        }
+
+        public async Task<EsiResponse<Ship>> CurrentShip(int characterId, string? token = null, CancellationToken cancellationToken = default)
+        {
+            var request = await _esiRequestFactory.CreateRequest(
+               configure: parameters =>
+               {
+                   parameters.Route[ESI.Parameters.Route.CharacterId] = characterId.ToString();
+               },
+            token: token);
+
+            var response = await _client.Request(ESI.Endpoints.Location.CurrentShip, request, cancellationToken: cancellationToken);
+
+            return await response.ReadEsiResponse<Ship>();
+        }
     }
 }

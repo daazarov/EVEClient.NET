@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-using EVEClient.NET.Attributes;
 using EVEClient.NET.DataContract;
 
 namespace EVEClient.NET
@@ -14,11 +13,6 @@ namespace EVEClient.NET
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         /// <param name="includeCompleted">Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days</param>
-        [ProtectedEndpoint(RequiredScope = "esi-industry.read_character_jobs.v1")]
-        [Route("/latest/characters/{character_id}/industry/jobs/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/characters/{character_id}/industry/jobs/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/characters/{character_id}/industry/jobs/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/characters/{character_id}/industry/jobs/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<CharacterIndustryJob>>> CharacterJobs(int characterId, bool includeCompleted = false, string? token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -26,11 +20,6 @@ namespace EVEClient.NET
         /// </summary>
         /// <param name="characterId">An EVE character ID</param>
         /// <param name="page">Which page of results to return. Default value: 1</param>
-        [ProtectedEndpoint(RequiredScope = "esi-industry.read_character_mining.v1")]
-        [Route("/latest/characters/{character_id}/mining/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/characters/{character_id}/mining/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/characters/{character_id}/mining/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/characters/{character_id}/mining/", Version = EndpointVersion.Dev)]
         Task<EsiResponsePagination<List<Mining>>> CharacterMiningLedger(int characterId, int page = 1, string? token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -39,11 +28,6 @@ namespace EVEClient.NET
         /// </summary>
         /// <param name="corporation">An EVE corporation ID</param>
         /// <param name="page">Which page of results to return. Default value: 1</param>
-        [ProtectedEndpoint(RequiredScope = "esi-industry.read_corporation_mining.v1")]
-        [Route("/latest/corporation/{corporation_id}/mining/extractions/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/corporation/{corporation_id}/mining/extractions/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/corporation/{corporation_id}/mining/extractions/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/corporation/{corporation_id}/mining/extractions/", Version = EndpointVersion.Dev)]
         Task<EsiResponsePagination<List<Extraction>>> ExtractionTimers(int corporation, int page = 1, string? token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -51,11 +35,6 @@ namespace EVEClient.NET
         /// </summary>
         /// <param name="corporation">An EVE corporation ID</param>
         /// <param name="page">Which page of results to return. Default value: 1</param>
-        [ProtectedEndpoint(RequiredScope = "esi-industry.read_corporation_mining.v1")]
-        [Route("/latest/corporation/{corporation_id}/mining/observers/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/corporation/{corporation_id}/mining/observers/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/corporation/{corporation_id}/mining/observers/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/corporation/{corporation_id}/mining/observers/", Version = EndpointVersion.Dev)]
         Task<EsiResponsePagination<List<Observer>>> CorporationObservers(int corporation, int page = 1, string? token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -64,11 +43,6 @@ namespace EVEClient.NET
         /// <param name="corporation">An EVE corporation ID</param>
         /// <param name="observerId">A mining observer id</param>
         /// <param name="page">Which page of results to return. Default value: 1</param>
-        [ProtectedEndpoint(RequiredScope = "esi-industry.read_corporation_mining.v1")]
-        [Route("/latest/corporation/{corporation_id}/mining/observers/{observer_id}/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/corporation/{corporation_id}/mining/observers/{observer_id}/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/corporation/{corporation_id}/mining/observers/{observer_id}/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/corporation/{corporation_id}/mining/observers/{observer_id}/", Version = EndpointVersion.Dev)]
         Task<EsiResponsePagination<List<ObserverInfo>>> ObserverInfo(int corporation, long observerId, int page = 1, string? token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -78,31 +52,16 @@ namespace EVEClient.NET
         /// <param name="corporationId">An EVE corporation ID</param>
         /// <param name="includeCompleted">Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days</param>
         /// <param name="page">Which page of results to return. Default value: 1</param>
-        [ProtectedEndpoint(RequiredScope = "esi-industry.read_corporation_jobs.v1")]
-        [Route("/latest/corporations/{corporation_id}/industry/jobs/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/corporations/{corporation_id}/industry/jobs/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/corporations/{corporation_id}/industry/jobs/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/corporations/{corporation_id}/industry/jobs/", Version = EndpointVersion.Dev)]
         Task<EsiResponsePagination<List<CorporationIndustryJob>>> CorporationJobs(int corporationId, bool includeCompleted = false, int page = 1, string? token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Return a list of industry facilities
         /// </summary>
-        [PublicEndpoint]
-        [Route("/latest/industry/facilities/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/industry/facilities/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/industry/facilities/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/industry/facilities/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<IndustryFacility>>> Facilities(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Return cost indices for solar systems
         /// </summary>
-        [PublicEndpoint]
-        [Route("/latest/industry/systems/", Version = EndpointVersion.Latest)]
-        [Route("/legacy/industry/systems/", Version = EndpointVersion.Legacy)]
-        [Route("/v1/industry/systems/", Version = EndpointVersion.V1, Preferred = true)]
-        [Route("/dev/industry/systems/", Version = EndpointVersion.Dev)]
         Task<EsiResponse<List<SolarSystem>>> SolarSystems(CancellationToken cancellationToken = default);
     }
 }

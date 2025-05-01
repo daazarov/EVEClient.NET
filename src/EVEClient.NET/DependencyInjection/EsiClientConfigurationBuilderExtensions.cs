@@ -44,7 +44,6 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.TryAddScoped<ICharacterLogic, CharacterLogic>();
             builder.Services.TryAddScoped<IAllianceLogic, AllianceLogic>();
             builder.Services.TryAddScoped<IAssetsLogic, AssetsLogic>();
-            builder.Services.TryAddScoped<IBookmarksLogic, BookmarksLogic>();
             builder.Services.TryAddScoped<ICalendarLogic, CalendarLogic>();
             builder.Services.TryAddScoped<IClonesLogic, ClonesLogic>();
             builder.Services.TryAddScoped<IContactsLogic, ContactsLogic>();
@@ -62,7 +61,6 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.TryAddScoped<ILoyaltyLogic, LoyaltyLogic>();
             builder.Services.TryAddScoped<IMailLogic, MailLogic>();
             builder.Services.TryAddScoped<IMarketLogic, MarketLogic>();
-            builder.Services.TryAddScoped<IOpportunitiesLogic, OpportunitiesLogic>();
             builder.Services.TryAddScoped<IPlanetaryInteractionLogic, PlanetaryInteractionLogic>();
             builder.Services.TryAddScoped<IRoutesLogic, RoutesLogic>();
             builder.Services.TryAddScoped<ISearchLogic, SearchLogic>();

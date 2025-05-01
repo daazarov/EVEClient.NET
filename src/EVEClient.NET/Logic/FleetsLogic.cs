@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -236,6 +237,49 @@ namespace EVEClient.NET.Logic
             var response = await _client.Request(ESI.Endpoints.Fleets.NewSquad, request, cancellationToken: cancellationToken);
 
             return await response.ReadEsiResponse<NewSquad>();
+        }
+
+        private class FleetSettingsBodyModel
+        {
+            [JsonPropertyName("is_free_move")]
+            [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+            public bool? IsFreeMove { get; set; }
+
+            [JsonPropertyName("motd")]
+            [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+            public string? Motd { get; set; }
+        }
+
+        private class InviteFleetMemberBodyModel
+        {
+            [JsonPropertyName("character_id")]
+            public required int CharacterId { get; init; }
+
+            [JsonPropertyName("role")]
+            public required string Role { get; init; }
+
+            [JsonPropertyName("squad_id")]
+            [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+            public long? SquadId { get; init; }
+
+            [JsonPropertyName("wing_id")]
+            [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+            public long? WingId { get; init; }
+        }
+
+        private class MoveFleetMemberBodyModel
+        {
+
+            [JsonPropertyName("role")]
+            public required string Role { get; set; }
+
+            [JsonPropertyName("squad_id")]
+            [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+            public long? SquadId { get; set; }
+
+            [JsonPropertyName("wing_id")]
+            [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+            public long? WingId { get; set; }
         }
     }
 }

@@ -69,37 +69,6 @@ namespace EVEClient.NET.UnitTests.Pipline
         }
 
         [Test]
-        public void CustomizePipline_ReplcaeHandler_DublicateReplaceId_ThrowException()
-        {
-            var builder = new ServiceCollection().AddEVEOnlineEsiClient(config =>
-            {
-                config.UserAgent = "blah blah blah";
-            });
-
-            Assert.Throws<InvalidOperationException>(() => builder.CustomizePipline(configure =>
-            {
-                configure.ModificationFor(ESI.Endpoints.Status.ServerStatus)
-                    .ReplaceHandler<CustomHandler>("ETagHandler")
-                    .ReplaceHandler<CustomHandler1>("ETagHandler");
-            }));
-        }
-
-        [Test]
-        public void CustomizePipline_ReplcaeHandler_UnknownReplaceId_ThrowException()
-        {
-            var builder = new ServiceCollection().AddEVEOnlineEsiClient(config =>
-            {
-                config.UserAgent = "blah blah blah";
-            });
-
-            Assert.Throws<InvalidOperationException>(() => builder.CustomizePipline(configure =>
-            {
-                configure.ModificationFor(ESI.Endpoints.Status.ServerStatus)
-                    .ReplaceHandler<CustomHandler>("non-existent handler");
-            }));
-        }
-
-        [Test]
         public void CustomizePipline_AdditionalComponent_WithoutSetting_ThrowException()
         {
             var builder = new ServiceCollection().AddEVEOnlineEsiClient(config =>
@@ -223,21 +192,6 @@ namespace EVEClient.NET.UnitTests.Pipline
             }));
         }
 
-        [Test]
-        public void CustomizePipline_AdditionalComponent_AddAfterReferToReplacedComponent_ThrowException()
-        {
-            var builder = new ServiceCollection().AddEVEOnlineEsiClient(config =>
-            {
-                config.UserAgent = "blah blah blah";
-            });
-
-            Assert.Throws<InvalidOperationException>(() => builder.CustomizePipline(configure =>
-            {
-                configure.ModificationFor(ESI.Endpoints.Status.ServerStatus)
-                    .ReplaceHandler<CustomHandler>("ETagHandler")
-                    .AdditionalMiddleware("customComponent", (next) => context => next(context), addAfter: "ETagHandler");
-            }));
-        }
 
         [Test]
         public void CustomizePipline_AdditionalComponent_ValidConfiguration_NotThrowException()
@@ -250,13 +204,11 @@ namespace EVEClient.NET.UnitTests.Pipline
             Assert.DoesNotThrow(() => builder.CustomizePipline(configure =>
             {
                 configure.ModificationFor(ESI.Endpoints.Status.ServerStatus)
-                    .AdditionalMiddleware("customComponent", (next) => context => next(context), addAfter: "RequestHeadersHandler")
+                    .AdditionalMiddleware("customComponent", (next) => context => next(context), addAfter: "DefaultRequestProtectionHandler")
                     .AdditionalMiddleware("customComponent1", (next) => context => next(context), addAfter: "customComponent")
                     .AdditionalMiddleware("customComponent2", (next) => context => next(context), addToEnd: true)
                     .AdditionalMiddleware("customComponent3", (next) => context => next(context), addToStart: true, startOrder: 1)
-                    .AdditionalMiddleware("customComponent4", (next) => context => next(context), addToStart: true, startOrder: 2)
-                    .ReplaceHandler<CustomHandler>("ProtectionHandler")
-                    .ReplaceHandler<CustomHandler1, DefaultRequestETagHandler>();
+                    .AdditionalMiddleware("customComponent4", (next) => context => next(context), addToStart: true, startOrder: 2);
             }));
         }
     }
