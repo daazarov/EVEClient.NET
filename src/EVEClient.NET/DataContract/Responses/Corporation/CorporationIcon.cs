@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,19 +7,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// px128x128 string
         /// </summary>
-        [JsonProperty("px128x128")]
+        [JsonPropertyName("px128x128")]
         public string? px128x128 { get; init; }
 
         /// <summary>
         /// px256x256 string
         /// </summary>
-        [JsonProperty("px256x256")]
+        [JsonPropertyName("px256x256")]
         public string? px256x256 { get; init; }
 
         /// <summary>
         /// px64x64 string
         /// </summary>
-        [JsonProperty("px64x64")]
+        [JsonPropertyName("px64x64")]
         public string? px64x64 { get; init; }
     }
 }

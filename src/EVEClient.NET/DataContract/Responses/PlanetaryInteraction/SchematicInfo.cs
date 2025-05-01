@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,13 +7,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Time in seconds to process a run
         /// </summary>
-        [JsonProperty("cycle_time")]
+        [JsonPropertyName("cycle_time")]
         public required int CycleTime { get; init; }
 
         /// <summary>
         /// schematic_name string
         /// </summary>
-        [JsonProperty("schematic_name")]
+        [JsonPropertyName("schematic_name")]
         public required string Name { get; init; }
     }
 }

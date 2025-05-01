@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,31 +8,31 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// created_at string
         /// </summary>
-        [JsonProperty("created_at")]
+        [JsonPropertyName("created_at")]
         public required DateTime CreatedAt { get; init; }
 
         /// <summary>
         /// ID of the character who created this medal
         /// </summary>
-        [JsonProperty("creator_id")]
+        [JsonPropertyName("creator_id")]
         public required int CreatorId { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public required string Description { get; init; }
 
         /// <summary>
         /// medal_id integer
         /// </summary>
-        [JsonProperty("medal_id")]
+        [JsonPropertyName("medal_id")]
         public required int MedalId { get; init; }
 
         /// <summary>
         /// title string
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public required string Title { get; init; }
     }
 }

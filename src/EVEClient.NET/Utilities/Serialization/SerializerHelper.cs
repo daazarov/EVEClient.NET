@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
-namespace EVEClient.NET.Utilities
+namespace EVEClient.NET.Utilities.Serialization
 {
     internal static class SerializerHelper
     {
@@ -10,7 +10,7 @@ namespace EVEClient.NET.Utilities
         {
             try
             {
-                if ((value.StartsWith("{") && value.EndsWith("}")) ||
+                if (value.StartsWith("{") && value.EndsWith("}") ||
                      value.StartsWith("[") && value.EndsWith("]"))
                 {
                     result = JsonSerializer.Deserialize<T>(value);
@@ -24,7 +24,7 @@ namespace EVEClient.NET.Utilities
             }
             catch
             {
-                result = default(T);
+                result = default;
                 return false;
             }
         }
@@ -32,6 +32,11 @@ namespace EVEClient.NET.Utilities
         public static T? DeserializeAnonymousType<T>(string value, T anonymousTypeObject)
         { 
             return JsonSerializer.Deserialize<T>(value);
+        }
+
+        public static string SerializeAnonymousType<T>(T anonymousTypeObject)
+        {
+            return JsonSerializer.Serialize(anonymousTypeObject);
         }
     }
 }

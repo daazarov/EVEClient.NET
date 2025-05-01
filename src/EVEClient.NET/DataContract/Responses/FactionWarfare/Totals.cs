@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
     public class Totals
     {
-        [JsonProperty("last_week")]
+        [JsonPropertyName("last_week")]
         public required int LastWeek { get; init; }
 
-        [JsonProperty("total")]
+        [JsonPropertyName("total")]
         public required int Total { get; init; }
 
-        [JsonProperty("yesterday")]
+        [JsonPropertyName("yesterday")]
         public required int Yesterday { get; init; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+﻿using System.Text.Json;
 
 namespace EVEClient.NET.UnitTests.Datasets.Providers
 {
@@ -18,11 +16,16 @@ namespace EVEClient.NET.UnitTests.Datasets.Providers
         private static T Item()
         {
             var content = GetFileContent();
-            var testFixtureParams = JsonConvert.DeserializeObject<JObject>(content);
-            var sectionName = string.IsNullOrEmpty(_customSectionName) ? $"{typeof(T).Name}" : _customSectionName;
-            var item = testFixtureParams[sectionName].ToObject<T>();
 
-            return item;
+            using (var jsonDoc = JsonDocument.Parse(content))
+            {
+                var root = jsonDoc.RootElement;
+                var sectionName = string.IsNullOrEmpty(_customSectionName) ? typeof(T).Name : _customSectionName;
+                if (!root.TryGetProperty(sectionName, out var sectionElement))
+                    throw new KeyNotFoundException($"Section '{sectionName}' not found in JSON.");
+
+                return sectionElement.Deserialize<T>();
+            }
         }
 
         public static IEnumerable<T> GetTestData(string fileName, string customSectionName)

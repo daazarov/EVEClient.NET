@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -9,38 +9,38 @@ namespace EVEClient.NET.DataContract
         /// The amount of ISK given or taken from the wallet as a result of the given transaction.
         /// Positive when ISK is deposited into the wallet and negative when ISK is withdrawn
         /// </summary>
-        [JsonProperty("amount")]
+        [JsonPropertyName("amount")]
         public double? Amount { get; init; }
 
         /// <summary>
         /// Wallet balance after transaction occurred
         /// </summary>
-        [JsonProperty("balance")]
+        [JsonPropertyName("balance")]
         public double? Balance { get; init; }
 
         /// <summary>
         /// An ID that gives extra context to the particular transaction. Because of legacy reasons the context is completely different per ref_type and means different things.
         /// It is also possible to not have a context_id
         /// </summary>
-        [JsonProperty("context_id")]
+        [JsonPropertyName("context_id")]
         public long? ContextId { get; init; }
 
         /// <summary>
         /// The type of the given context_id if present
         /// </summary>
-        [JsonProperty("context_id_type")]
+        [JsonPropertyName("context_id_type")]
         public ContextIdType? ContextIdType { get; init; }
 
         /// <summary>
         /// Date and time of transaction
         /// </summary>
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public required DateTime Date { get; init; }
 
         /// <summary>
         /// The reason for the transaction, mirrors what is seen in the client
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public required string Description { get; init; }
 
         /// <summary>
@@ -48,25 +48,25 @@ namespace EVEClient.NET.DataContract
         /// The description attribute will help make sense of what this attribute means.
         /// For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
         /// </summary>
-        [JsonProperty("first_party_id")]
+        [JsonPropertyName("first_party_id")]
         public int? FirstPartyId { get; init; }
 
         /// <summary>
         /// Unique journal reference ID
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public required long ID { get; init; }
 
         /// <summary>
         /// The user stated reason for the transaction. Only applies to some ref_types
         /// </summary>
-        [JsonProperty("reason")]
+        [JsonPropertyName("reason")]
         public string? Reason { get; init; }
 
         /// <summary>
         /// The transaction type for the given. transaction. Different transaction types will populate different attributes.
         /// </summary>
-        [JsonProperty("ref_type")]
+        [JsonPropertyName("ref_type")]
         public required TransactionType RefType { get; init; }
 
         /// <summary>
@@ -74,19 +74,19 @@ namespace EVEClient.NET.DataContract
         /// The description attribute will help make sense of what this attribute means.
         /// For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
         /// </summary>
-        [JsonProperty("second_party_id")]
+        [JsonPropertyName("second_party_id")]
         public int? SecondPartyId { get; init; }
 
         /// <summary>
         /// Tax amount received. Only applies to tax related transactions
         /// </summary>
-        [JsonProperty("tax")]
+        [JsonPropertyName("tax")]
         public double? Tax { get; init; }
 
         /// <summary>
         /// The corporation ID receiving any tax paid. Only applies to tax related transactions
         /// </summary>
-        [JsonProperty("tax_receiver_id")]
+        [JsonPropertyName("tax_receiver_id")]
         public int? TaxReceiverId { get; init; }
     }
 }

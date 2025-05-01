@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,25 +8,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Timestamp of the last login
         /// </summary>
-        [JsonProperty("last_login")]
+        [JsonPropertyName("last_login")]
         public DateTime? LastLogin { get; init; }
 
         /// <summary>
         /// Timestamp of the last logout
         /// </summary>
-        [JsonProperty("last_logout")]
+        [JsonPropertyName("last_logout")]
         public DateTime? LastLogout { get; init; }
 
         /// <summary>
         /// Total number of times the character has logged in
         /// </summary>
-        [JsonProperty("logins")]
+        [JsonPropertyName("logins")]
         public int? Logins { get; init; }
 
         /// <summary>
         /// If the character is online
         /// </summary>
-        [JsonProperty("online")]
+        [JsonPropertyName("online")]
         public required bool Online { get; init; }
     }
 }

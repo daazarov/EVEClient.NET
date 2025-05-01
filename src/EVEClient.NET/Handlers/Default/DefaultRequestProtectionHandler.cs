@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using Newtonsoft.Json;
-
 using EVEClient.NET.Pipline;
 using EVEClient.NET.Extensions;
+using System.Text.Json;
+using EVEClient.NET.Utilities.Serialization;
 
 namespace EVEClient.NET.Handlers
 {
@@ -59,7 +59,7 @@ namespace EVEClient.NET.Handlers
         {
             context.ResponseContext.Response = new HttpResponseMessage(httpStatusCode)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(new { error = errorMessage }), Encoding.UTF8, "application/json")
+                Content = new StringContent(SerializerHelper.SerializeAnonymousType(new { error = errorMessage }), Encoding.UTF8, "application/json")
             };
         }
     }

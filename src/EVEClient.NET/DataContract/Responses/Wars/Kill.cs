@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,13 +7,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// A hash of this killmail
         /// </summary>
-        [JsonProperty("killmail_hash")]
+        [JsonPropertyName("killmail_hash")]
         public required string KillmailHash { get; init; }
 
         /// <summary>
         /// ID of this killmail
         /// </summary>
-        [JsonProperty("killmail_id")]
+        [JsonPropertyName("killmail_id")]
         public required int KillmailId { get; init; }
     }
 }

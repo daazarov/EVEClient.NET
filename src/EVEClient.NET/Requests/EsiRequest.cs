@@ -1,13 +1,14 @@
-﻿using EVEClient.NET.Configuration;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Web;
+
+using EVEClient.NET.Configuration;
 
 namespace EVEClient.NET.Requests
 {
@@ -84,7 +85,7 @@ namespace EVEClient.NET.Requests
         {
             if (base.Content is not null && body is not null)
             {
-                base.Content = new StringContent(JsonConvert.SerializeObject(body));
+                base.Content = new StringContent(JsonSerializer.Serialize(body));
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,49 +8,49 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Neural remapping cooldown after a character uses remap accrued over time
         /// </summary>
-        [JsonProperty("accrued_remap_cooldown_date")]
+        [JsonPropertyName("accrued_remap_cooldown_date")]
         public DateTime? AccruedRemapCooldownDate { get; init; }
 
         /// <summary>
         /// Number of available bonus character neural remaps
         /// </summary>
-        [JsonProperty("bonus_remaps")]
+        [JsonPropertyName("bonus_remaps")]
         public int? BonusRemaps { get; init; }
 
         /// <summary>
         /// charisma integer
         /// </summary>
-        [JsonProperty("charisma")]
+        [JsonPropertyName("charisma")]
         public required int Charisma { get; init; }
 
         /// <summary>
         /// intelligence integer
         /// </summary>
-        [JsonProperty("intelligence")]
+        [JsonPropertyName("intelligence")]
         public required int Intelligence { get; init; }
 
         /// <summary>
         /// Datetime of last neural remap, including usage of bonus remaps
         /// </summary>
-        [JsonProperty("last_remap_date")]
+        [JsonPropertyName("last_remap_date")]
         public DateTime? LastRemapDate { get; init; }
 
         /// <summary>
         /// memory integer
         /// </summary>
-        [JsonProperty("memory")]
+        [JsonPropertyName("memory")]
         public required int Memory { get; init; }
 
         /// <summary>
         /// perception integer
         /// </summary>
-        [JsonProperty("perception")]
+        [JsonPropertyName("perception")]
         public required int Perception { get; init; }
 
         /// <summary>
         /// willpower integer
         /// </summary>
-        [JsonProperty("willpower")]
+        [JsonPropertyName("willpower")]
         public required int Willpower { get; init; }
     }
 }

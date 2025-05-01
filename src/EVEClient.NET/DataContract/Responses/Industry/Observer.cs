@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,19 +8,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// last_updated string
         /// </summary>
-        [JsonProperty("last_updated")]
+        [JsonPropertyName("last_updated")]
         public required DateTime LastUpdated { get; init; }
 
         /// <summary>
         /// The entity that was observing the asteroid field when it was mined.
         /// </summary>
-        [JsonProperty("observer_id")]
+        [JsonPropertyName("observer_id")]
         public required long ObserverId { get; init; }
 
         /// <summary>
         /// The category of the observing entity
         /// </summary>
-        [JsonProperty("observer_type")]
+        [JsonPropertyName("observer_type")]
         public required string ObserverType { get; init; }
     }
 }

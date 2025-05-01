@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,25 +8,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Current online player count
         /// </summary>
-        [JsonProperty("players")]
+        [JsonPropertyName("players")]
         public required int Players { get; init; }
 
         /// <summary>
         /// Running version as string
         /// </summary>
-        [JsonProperty("server_version")]
+        [JsonPropertyName("server_version")]
         public required string ServerVersion { get; init; }
 
         /// <summary>
         /// Server start timestamp
         /// </summary>
-        [JsonProperty("start_time")]
+        [JsonPropertyName("start_time")]
         public required DateTime StartTime { get; init; }
 
         /// <summary>
         /// If the server is in VIP mode
         /// </summary>
-        [JsonProperty("vip")]
+        [JsonPropertyName("vip")]
         public bool? Vip { get; init; }
     }
 }

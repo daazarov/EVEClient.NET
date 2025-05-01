@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,43 +8,43 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// base_id integer
         /// </summary>
-        [JsonProperty("base_id")]
+        [JsonPropertyName("base_id")]
         public int? BaseId { get; init; }
 
         /// <summary>
         /// character_id integer
         /// </summary>
-        [JsonProperty("character_id")]
+        [JsonPropertyName("character_id")]
         public required int CharacterId { get; init; }
 
         /// <summary>
         /// location_id integer
         /// </summary>
-        [JsonProperty("location_id")]
+        [JsonPropertyName("location_id")]
         public long? LocationId { get; init; }
 
         /// <summary>
         /// logoff_date string
         /// </summary>
-        [JsonProperty("logoff_date")]
+        [JsonPropertyName("logoff_date")]
         public DateTime? LogoffDate { get; init; }
 
         /// <summary>
         /// logon_date string
         /// </summary>
-        [JsonProperty("logon_date")]
+        [JsonPropertyName("logon_date")]
         public DateTime? LogonDate { get; init; }
 
         /// <summary>
         /// ship_type_id integer
         /// </summary>
-        [JsonProperty("ship_type_id")]
+        [JsonPropertyName("ship_type_id")]
         public int? ShipTypeId { get; init; }
 
         /// <summary>
         /// start_date string
         /// </summary>
-        [JsonProperty("start_date")]
+        [JsonPropertyName("start_date")]
         public DateTime? StartDate { get; init; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,7 +7,7 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The wing_id of the newly created wing
         /// </summary>
-        [JsonProperty("wing_id")]
+        [JsonPropertyName("wing_id")]
         public required long WingId { get; init; }
     }
 }

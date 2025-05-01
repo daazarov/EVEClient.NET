@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,13 +8,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// hangar array
         /// </summary>
-        [JsonProperty("hangar")]
+        [JsonPropertyName("hangar")]
         public List<Division>? Hangar { get; init; }
 
         /// <summary>
         /// wallet array
         /// </summary>
-        [JsonProperty("wallet")]
+        [JsonPropertyName("wallet")]
         public List<Division>? Wallet { get; init; }
     }
 
@@ -23,13 +23,13 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// division integer
         /// </summary>
-        [JsonProperty("division")]
+        [JsonPropertyName("division")]
         public int? DivisionId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string? Name { get; init; }
     }
 }

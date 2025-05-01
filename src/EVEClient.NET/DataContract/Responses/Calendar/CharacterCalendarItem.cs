@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -8,31 +8,31 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// event_date string
         /// </summary>
-        [JsonProperty("event_date")]
+        [JsonPropertyName("event_date")]
         public DateTime? EventDate { get; init; }
 
         /// <summary>
         /// event_id integer
         /// </summary>
-        [JsonProperty("event_id")]
+        [JsonPropertyName("event_id")]
         public int? EventId { get; init; }
 
         /// <summary>
         /// event_response string
         /// </summary>
-        [JsonProperty("event_response")]
+        [JsonPropertyName("event_response")]
         public CalendarEventResponse? EventResponse { get; init; }
 
         /// <summary>
         /// importance integer
         /// </summary>
-        [JsonProperty("importance")]
+        [JsonPropertyName("importance")]
         public int? Importance { get; init; }
 
         /// <summary>
         /// title string
         /// </summary>
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string? Title { get; init; }
     }
 }

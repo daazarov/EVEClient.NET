@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,19 +7,19 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// share_count integer
         /// </summary>
-        [JsonProperty("share_count")]
+        [JsonPropertyName("share_count")]
         public required long ShareCount { get; init; }
 
         /// <summary>
         /// shareholder_id integer
         /// </summary>
-        [JsonProperty("shareholder_id")]
+        [JsonPropertyName("shareholder_id")]
         public required int ShareholderId { get; init; }
 
         /// <summary>
         /// shareholder_type string
         /// </summary>
-        [JsonProperty("shareholder_type")]
+        [JsonPropertyName("shareholder_type")]
         public required ShareholderType ShareholderType { get; init; }
     }
 }

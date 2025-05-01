@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,25 +7,25 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// Is free-move enabled
         /// </summary>
-        [JsonProperty("is_free_move")]
+        [JsonPropertyName("is_free_move")]
         public required bool IsFreeMove { get; init; }
 
         /// <summary>
         /// Does the fleet have an active fleet advertisement
         /// </summary>
-        [JsonProperty("is_registered")]
+        [JsonPropertyName("is_registered")]
         public required bool IsRegistered { get; init; }
 
         /// <summary>
         /// Is EVE Voice enabled
         /// </summary>
-        [JsonProperty("is_voice_enabled")]
+        [JsonPropertyName("is_voice_enabled")]
         public required bool IsVoiceEnabled { get; init; }
 
         /// <summary>
         /// Fleet MOTD in CCP flavoured HTML
         /// </summary>
-        [JsonProperty("motd")]
+        [JsonPropertyName("motd")]
         public required string Motd { get; init; }
     }
 }

@@ -5,10 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-
+using System.Text.Json;
 using EVEClient.NET.Extensions;
-
-using Newtonsoft.Json;
+using EVEClient.NET.Utilities.Serialization;
 
 namespace EVEClient.NET
 {
@@ -130,7 +129,7 @@ namespace EVEClient.NET
                 var result = GetStringContent(_response.Content);
                 _errors = new List<string>()
                 {
-                    JsonConvert.DeserializeAnonymousType(result, new { error = "Unknown error." })?.error!
+                    SerializerHelper.DeserializeAnonymousType(result, new { error = "Unknown error." })?.error!
                 };
             }
         }
@@ -163,7 +162,7 @@ namespace EVEClient.NET
             {
                 if (result.IsPotentiallyJson())
                 {
-                    _cachedData = JsonConvert.DeserializeObject<T>(result) ?? throw new JsonSerializationException();
+                    _cachedData = JsonSerializer.Deserialize<T>(result) ?? throw new JsonException();
                 }
                 else
                 {

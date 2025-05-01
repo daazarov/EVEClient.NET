@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,37 +7,37 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The groups that are connected to this group on the opportunities map
         /// </summary>
-        [JsonProperty("connected_groups")]
+        [JsonPropertyName("connected_groups")]
         public required int[] ConnectedGroups { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public required string Description { get; init; }
 
         /// <summary>
         /// group_id integer
         /// </summary>
-        [JsonProperty("group_id")]
+        [JsonPropertyName("group_id")]
         public required int GroupId { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// notification string
         /// </summary>
-        [JsonProperty("notification")]
+        [JsonPropertyName("notification")]
         public required string Notification { get; init; }
 
         /// <summary>
         /// Tasks need to complete for this group
         /// </summary>
-        [JsonProperty("required_tasks")]
+        [JsonPropertyName("required_tasks")]
         public required int[] RequiredTasks { get; init; }
     }
 }

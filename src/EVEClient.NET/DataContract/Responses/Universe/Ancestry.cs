@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,37 +7,37 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The bloodline associated with this ancestry
         /// </summary>
-        [JsonProperty("bloodline_id")]
+        [JsonPropertyName("bloodline_id")]
         public required int BloodlineId { get; init; }
 
         /// <summary>
         /// description string
         /// </summary>
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public required string Description { get; init; }
 
         /// <summary>
         /// icon_id integer
         /// </summary>
-        [JsonProperty("icon_id")]
+        [JsonPropertyName("icon_id")]
         public int? IconId { get; init; }
 
         /// <summary>
         /// id integer
         /// </summary>
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public required int Id { get; init; }
 
         /// <summary>
         /// name string
         /// </summary>
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
 
         /// <summary>
         /// short_description string
         /// </summary>
-        [JsonProperty("short_description")]
+        [JsonPropertyName("short_description")]
         public string? ShortDescription { get; init; }
     }
 }

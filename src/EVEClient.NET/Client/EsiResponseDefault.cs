@@ -1,11 +1,11 @@
-﻿using System;
+﻿using EVEClient.NET.Utilities.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace EVEClient.NET
 {
@@ -115,7 +115,7 @@ namespace EVEClient.NET
                 var result = GetStringContent(_response.Content);
                 _errors = new List<string>()
                 {
-                    JsonConvert.DeserializeAnonymousType(result, new { error = "Unknown error." })?.error!
+                    SerializerHelper.DeserializeAnonymousType(result, new { error = "Unknown error." })?.error!
                 };
             }
         }

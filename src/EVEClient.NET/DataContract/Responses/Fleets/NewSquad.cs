@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace EVEClient.NET.DataContract
 {
@@ -7,7 +7,7 @@ namespace EVEClient.NET.DataContract
         /// <summary>
         /// The squad_id of the newly created squad
         /// </summary>
-        [JsonProperty("squad_id")]
+        [JsonPropertyName("squad_id")]
         public required long SquadId { get; init; }
     }
 }
