@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using EVEClient.NET;
-using EVEClient.NET.DependencyInjection;
 using EVEClient.NET.Handlers;
 using EVEClient.NET.Pipline;
 using EVEClient.NET.Pipline.Modifications;
@@ -11,7 +9,6 @@ using EVEClient.NET.Defaults;
 using EVEClient.NET.Logic;
 using EVEClient.NET.Requests;
 using EVEClient.NET.Configuration;
-using EVEClient.NET.DataContract;
 using Microsoft.Extensions.Options;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -81,9 +78,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder">The <see cref="IEsiClientConfigurationBuilder"/>.</param>
         public static IEsiClientConfigurationBuilder AddPiplineHandlers(this IEsiClientConfigurationBuilder builder)
         {
-            builder.Services.TryAddScoped<DefaultRequestSendingHandler>();
-            builder.Services.TryAddScoped<DefaultRequestETagHandler>();
-            builder.Services.TryAddScoped<DefaultRequestProtectionHandler>();
+            builder.Services.TryAddScoped<IRequestSendingHandler, DefaultRequestSendingHandler>();
+            builder.Services.TryAddScoped<IRequestETagHandler, DefaultRequestETagHandler>();
+            builder.Services.TryAddScoped<IRequestProtectionHandler, DefaultRequestProtectionHandler>();
 
             return builder;
         }
@@ -170,14 +167,6 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             builder.Services.AddSingleton(modification);
             return builder;
-        }
-
-        private static void IsAssignableFrom(Type from, Type to)
-        {
-            if (!(from.GetTypeInfo().IsAssignableFrom(to.GetTypeInfo())))
-            {
-                throw new InvalidCastException($"{to.FullName} is not assignable from {from.FullName}");
-            }
         }
     }
 }

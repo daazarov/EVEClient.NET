@@ -12,13 +12,11 @@ namespace EVEClient.NET.Pipline
         /// </summary>
         /// <typeparam name="THandler">The handler type.</typeparam>
         /// <param name="builder">The <see cref="IRequestPiplineBuilder"/>.</param>
-        public static IRequestPiplineBuilder UseHandler<THandler>(this IRequestPiplineBuilder builder) where THandler : IHandler
+        public static IRequestPiplineBuilder UseHandler<THandler>(this IRequestPiplineBuilder builder, string? handlerName = null) where THandler : IHandler
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            var componentId = typeof(THandler).Name;
-
-            return builder.Use(new PiplineComponent(componentId, next =>
+            return builder.Use(new PiplineComponent(handlerName ?? typeof(THandler).Name, next =>
             {
                 return context =>
                 {
@@ -37,9 +35,9 @@ namespace EVEClient.NET.Pipline
         {
             builder.ArgumentNotNull(nameof(builder));
 
-            return builder.UseHandler<DefaultRequestProtectionHandler>()
-                          .UseHandler<DefaultRequestETagHandler>()
-                          .UseHandler<DefaultRequestSendingHandler>();
+            return builder.UseHandler<IRequestProtectionHandler>("RequestProtectionHandler")
+                          .UseHandler<IRequestETagHandler>("RequestETagHandler")
+                          .UseHandler<IRequestSendingHandler>("RequestSendingHandler");
         }
     }
 }

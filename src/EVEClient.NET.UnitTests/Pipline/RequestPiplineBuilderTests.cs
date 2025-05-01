@@ -14,9 +14,9 @@ namespace EVEClient.NET.UnitTests.Pipline
             var expectedComponents = new List<string>
             {
                 "StartHandler",
-                nameof(DefaultRequestProtectionHandler),
-                nameof(DefaultRequestETagHandler),
-                nameof(DefaultRequestSendingHandler),
+                "RequestProtectionHandler",
+                "RequestETagHandler",
+                "RequestSendingHandler",
                 "EndHandler"
             };
 
@@ -38,15 +38,15 @@ namespace EVEClient.NET.UnitTests.Pipline
         {
             var expectedComponents = new List<string>
             {
-                nameof(DefaultRequestProtectionHandler),
-                nameof(DefaultRequestETagHandler),
+                "RequestProtectionHandler",
+                "RequestETagHandler",
                 "HandlerAfterETagHandler",
-                nameof(DefaultRequestSendingHandler)
+                "RequestSendingHandler"
             };
 
             var additions = new List<AdditionalComponent>()
             {
-                new AdditionalComponent { AddAfter = nameof(DefaultRequestETagHandler), PiplineComponent = new PiplineComponent("HandlerAfterETagHandler", next => context => next(context)) },
+                new AdditionalComponent { AddAfter = "RequestETagHandler", PiplineComponent = new PiplineComponent("HandlerAfterETagHandler", next => context => next(context)) },
             };
 
             var builder = new RequestPiplineBuilder(additions).UseDefaultPipline();
@@ -61,16 +61,16 @@ namespace EVEClient.NET.UnitTests.Pipline
         {
             var expectedComponents = new List<string>
             {
-                nameof(DefaultRequestProtectionHandler),
-                nameof(DefaultRequestETagHandler),
+                "RequestProtectionHandler",
+                "RequestETagHandler",
                 "CustomHandler1",
                 "CustomHandler2",
-                nameof(DefaultRequestSendingHandler)
+                "RequestSendingHandler"
             };
 
             var additions = new List<AdditionalComponent>()
             {
-                new AdditionalComponent { AddAfter = nameof(DefaultRequestETagHandler), PiplineComponent = new PiplineComponent("CustomHandler1", next => context => next(context)) },
+                new AdditionalComponent { AddAfter = "RequestETagHandler", PiplineComponent = new PiplineComponent("CustomHandler1", next => context => next(context)) },
                 new AdditionalComponent { AddAfter = "CustomHandler1", PiplineComponent = new PiplineComponent("CustomHandler2", next => context => next(context)) }
             };
 
@@ -88,9 +88,9 @@ namespace EVEClient.NET.UnitTests.Pipline
             {
                 "StartHandlerOrder1",
                 "StartHandlerOrder2",
-                nameof(DefaultRequestProtectionHandler),
-                nameof(DefaultRequestETagHandler),
-                nameof(DefaultRequestSendingHandler),
+                "RequestProtectionHandler",
+                "RequestETagHandler",
+                "RequestSendingHandler",
                 "EndHandlerOrder1",
                 "EndHandlerOrder2"
             };
@@ -115,16 +115,16 @@ namespace EVEClient.NET.UnitTests.Pipline
         {
             var expectedComponents = new List<string>
             {
-                nameof(DefaultRequestProtectionHandler),
-                nameof(DefaultRequestETagHandler),
+                "RequestProtectionHandler",
+                "RequestETagHandler",
                 "CustomAdditionHandler1",
                 "CustomAdditionHandler2",
-                nameof(DefaultRequestSendingHandler),
+                "RequestSendingHandler",
             };
 
             var additions = new List<AdditionalComponent>()
             {
-                new AdditionalComponent { AddAfter = nameof(DefaultRequestETagHandler), PiplineComponent = new PiplineComponent("CustomAdditionHandler1", next => context => next(context)) },
+                new AdditionalComponent { AddAfter = "RequestETagHandler", PiplineComponent = new PiplineComponent("CustomAdditionHandler1", next => context => next(context)) },
                 new AdditionalComponent { AddAfter = "CustomAdditionHandler1", PiplineComponent = new PiplineComponent("CustomAdditionHandler2", next => context => next(context)) }
             };
 

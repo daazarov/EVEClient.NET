@@ -18,7 +18,6 @@ namespace EVEClient.NET
             _piplineStore = piplineStore;
             _configurations = configurations;
 
-            // 
             _serviceProvider = serviceProvider;
         }
 
