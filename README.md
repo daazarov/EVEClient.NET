@@ -6,13 +6,9 @@ EVEClient.ESI is a wrapper over the [`ESI API`](https://esi.evetech.net/ui/) bas
 
 EVEClient.NET includes following default ordered middlewares:
 
-- `ProtectionHandler` - Performs getting the access token from `IAccessTokenProvider`, validates scope, and sets the Authorization header
-- `RequestHeadersHandler` - Configures the default headers for the request.
-- `UrlRequestParametersHandler` - Prepares a list of parameters to be passed and replaced in the URL template.
-- `BodyRequestParametersHandler` - (only for POST & PUT requests) - Prepares the body of the request.
-- `EndpointHandler` - Prepares a ready URL for sending the request.
-- `ETagHandler` - Used when the setting "UseETag" is enabled. Stores the eTag value for a particular request in internal storage and applies it to the next request.
-- `RequestGetHandler` or `RequestPostHandler` or `RequestDeleteHandler` or `RequestPutHandler` - Make a request to API
+- `RequestProtectionHandler` - Performs getting the access token from `IAccessTokenProvider`, validates scope, and sets the Authorization header
+- `RequestETagHandler` - Used when the setting "UseETag" is enabled. Stores the eTag value for a particular request in internal storage and applies it to the next request.
+- `RequestSendingHandler` - Make a request to API
 
 ## Limitations
 
