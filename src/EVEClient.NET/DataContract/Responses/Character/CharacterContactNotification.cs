@@ -15,7 +15,7 @@ namespace EVEClient.NET.DataContract
         /// notification_id integer
         /// </summary>
         [JsonPropertyName("notification_id")]
-        public required int NotificationId { get; init; }
+        public required long NotificationId { get; init; }
 
         /// <summary>
         /// send_date string

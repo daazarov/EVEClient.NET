@@ -796,10 +796,10 @@ namespace EVEClient.NET
                                 builder.Scope = "esi-alliances.read_contacts.v1";
                                 builder.Routes =
                                 [
-                                    new("/latest/alliances/{alliance_id}/contacts/", EndpointVersion.Latest, false),
-                                    new("/v1/alliances/{alliance_id}/contacts/", EndpointVersion.V1, true),
-                                    new("/dev/alliances/{alliance_id}/contacts/", EndpointVersion.Dev, false),
-                                    new("/legacy/alliances/{alliance_id}/contacts/", EndpointVersion.Legacy, false)
+                                    new("/latest/alliances/{alliance_id}/contacts/labels/", EndpointVersion.Latest, false),
+                                    new("/v1/alliances/{alliance_id}/contacts/labels/", EndpointVersion.V1, true),
+                                    new("/dev/alliances/{alliance_id}/contacts/labels/", EndpointVersion.Dev, false),
+                                    new("/legacy/alliances/{alliance_id}/contacts/labels/", EndpointVersion.Legacy, false)
                                 ];
                             }
                         },
@@ -867,10 +867,10 @@ namespace EVEClient.NET
                                 builder.Scope = "esi-characters.read_contacts.v1";
                                 builder.Routes =
                                 [
-                                    new("/latest/alliances/{alliance_id}/contacts/labels/", EndpointVersion.Latest, false),
-                                    new("/v1/alliances/{alliance_id}/contacts/labels/", EndpointVersion.V1, true),
-                                    new("/dev/alliances/{alliance_id}/contacts/labels/", EndpointVersion.Dev, false),
-                                    new("/legacy/alliances/{alliance_id}/contacts/labels/", EndpointVersion.Legacy, false)
+                                    new("/latest/characters/{character_id}/contacts/labels/", EndpointVersion.Latest, false),
+                                    new("/v1/characters/{character_id}/contacts/labels/", EndpointVersion.V1, true),
+                                    new("/dev/characters/{character_id}/contacts/labels/", EndpointVersion.Dev, false),
+                                    new("/legacy/characters/{character_id}/contacts/labels/", EndpointVersion.Legacy, false)
                                 ];
                             }
                         },
